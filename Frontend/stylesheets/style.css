@@ -1,0 +1,589 @@
+:root{
+    --footer-height: 30px;
+}
+*{
+    padding: 0;
+    margin: 0;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html, body{
+    width: 100vw;
+    height: 100vh;
+}
+
+.sections{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: flex-start;
+}
+
+.leftSection{
+    height: 100%;
+    width: 15%;
+    background-color: hsl(0, 0%, 95%);
+    display: flex;
+    flex-direction: column;
+}
+
+.slideBarNewChatHolder{
+    display: flex;
+    width: 100%;
+    justify-content: center; 
+    align-items: center;
+}
+
+.chatSlideContainer{
+    width: 100%;
+    display: flex;
+    height: 7vmin;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.slideBar{
+    display: flex;
+    align-items: center;
+}
+
+.slideBar img{
+    width: 6vmin;
+    cursor: pointer;
+    user-select: none;
+    pointer-events: auto;
+    margin-left: 1vmin;
+    padding: 1vmin;
+    border-radius: 2vmin;
+}
+
+.slideBar img:hover{
+    background-color: rgba(0, 0, 0, 0.1);
+}
+
+.newChat{
+    display: flex;
+    align-items: center;
+}
+.newChatLink{
+    width: 8vmin;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.newChat img{
+    width: 6vmin;
+    cursor: pointer;
+    user-select: none;
+    pointer-events: auto;
+    padding: 1vmin;
+    border-radius: 1.5vmin;
+}
+
+.newChat img:hover{
+    background-color: rgba(0, 0, 0, 0.1);
+}
+
+.breakBarHorizontal{
+    position: absolute;
+    width: 18%;
+    border: .2vmin solid rgba(0, 0, 0, 0.3);
+    border-radius: 5vmin;
+    top: 8vmin;
+}
+
+.modelsChatHolder{
+    width: 100%;
+    height: 100vh;
+    max-height: 2000vmin;
+    overflow-y: auto;
+    overflow-x: hidden;
+    padding: 1vmin;
+    box-sizing: border-box;
+}
+
+
+.modelsContainer {
+    width: 100%;
+    max-height: 25vmin;
+    overflow-y: auto;
+    overflow-x: hidden;
+    padding: .5vmin;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    gap: 1vmin;
+}
+
+.models_ {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    border-radius: 1vmin;
+    font-weight: bold;
+    height: 4vmin;
+    font-size: 2vmin;
+    box-shadow: .01vmin .01vmin .4vmin;
+    cursor: pointer;
+    position: relative;
+    user-select: none;
+    text-wrap: nowrap;
+    overflow: hidden;
+}
+
+.models_:hover{
+    background-color: hsl(0, 0%, 90%);
+}
+
+
+.ripple-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 2vmin;
+    overflow: hidden;
+    pointer-events: none;
+}
+
+.ripple {
+    position: absolute;
+    border-radius: 50%;
+    transform: scale(0);
+    background-color: rgba(0, 0, 0, .1);
+    animation: ripple-animation .8s ease-out;
+}
+
+@keyframes ripple-animation {
+    to {
+        transform: scale(1.5);
+        opacity: 0;
+    }
+}
+
+.models_ img{
+    width: 3vmin;
+    border-radius: 5vmin;
+}
+
+.horizontalBar{
+    width: 100%;
+    height: .1vmax;
+    background-color: hsla(0, 0%, 0%, 0.4);
+
+}
+
+.chatContainer{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    border-radius: 1vmin;
+}
+
+.chatHistory{
+    height: 5vmin;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    border-radius: 1vmin;
+    cursor: pointer;
+    overflow: hidden;
+}
+.chatHistory:hover{
+    background-color: rgba(255, 255, 255, 0.5);
+}
+
+.chatDetails{
+    width: 100%;
+    max-width: 100%;
+    margin: .5vmin;
+    height: 4vmin;
+    font-size: 2.5vmin;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    border-radius: 1vmin;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    color: hsla(0, 0%, 0%, 0.75);
+}
+
+.chatMenuHolder{
+    background-color: hsl(0, 0%, 95%);
+    box-shadow: 0 0 3vmin 5vmin hsl(0, 0%, 95%);
+    user-select: none;
+}
+
+.chatMenuHolder img {
+    width: 2vmin;
+    margin-top: 0.5vmin;
+    margin-right: 1vmin;
+    opacity: 0;
+    display: none;
+    pointer-events: none;
+}
+
+.chatHistory:hover .chatMenuHolder img{
+    opacity: 1;
+    display: flex;
+    pointer-events: auto;
+}
+
+.rightSection{
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.rightSectionItemsHolder{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-direction: column;
+    position: relative;
+}
+
+.rightUpperLowerSectionItemsContainer{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-direction: column;
+    position: relative;
+}
+
+.upperRightSectionItemsHolder{
+    width: 100%;
+    height: 8%;
+    display: flex;
+    overflow: hidden;
+    align-items: center;
+    position: relative;
+    top: 0;
+}
+
+.websiteLogoNightModeHolder{
+    width: 26%;
+    min-width: 26%;
+    height: 100%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 1vmin;
+}
+
+.websiteLogoNightModeHolder img{
+    width: 20vmin;
+    user-select: none;
+}
+
+.dayNightModeHolder{
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.dayNightModeHolder img{
+    width: 4vmin;
+    cursor: pointer;
+    opacity: .6;
+    user-select: none;
+
+}
+.dayNightModeHolder img:hover{
+    opacity: 1;
+    transition: opacity .2s ease-out;
+}
+
+.websiteLogo{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.darkModeOn{
+    position: absolute;
+    display: none;
+}
+
+.shareChatLoginHolder{
+    width: 74%;
+    height: 100%;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.shareChat{
+    height: 10%;
+    border: .1vmin solid rgba(0, 0, 0, 0.3);
+    border-radius: 6vmin;
+    display: flex;
+    overflow: hidden;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 2vmin;
+    gap: 1vmin;
+    cursor: pointer;
+}
+
+.shareChat:hover{
+    background-color: hsl(0, 0%, 90%);
+    transition: background-color .09s ease-out;
+}
+
+.shareChat img{
+    width: 3vmin;
+    user-select: none;
+}
+
+.shareChat span{
+    font-weight: bolder;
+    font-size: 2.3vmin;
+    color: hsla(0, 0%, 0%, 0.6);
+}
+
+.userLoginRegister{
+    padding: 2vmin;
+    height: 80%;
+    margin-right: 2vmin;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.userLoginNow{
+    width: 60%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.userLoginNow img{
+    width: 3.5vmin;
+    opacity: .6;
+    user-select: none;
+}
+
+.userLoginNow img:hover{
+    opacity: 1;
+    transition: opacity .2s ease-out;
+}
+
+.lowerRightSectionHolder{
+    width: 100%;
+    height: 92%;
+    display: flex;
+    justify-content: center;
+    max-height: 20000vmin;
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+
+.rightLowerSectionItemsHolder{
+    width: 1000px;
+    max-height: 20000vmin;
+    display: flex;
+    flex-direction: column;
+    margin: 0vmin 5vmin 0vmin 5vmin;
+}
+
+.modelChat_responseContainer{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+.userChat_responseContainer{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.modelChat_Holder{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 3vmin;
+}
+
+.userChat_Holder{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 3vmin;
+}
+
+.modelChatMainImageHolder{
+    margin: 1vmin;
+    display: flex;
+    justify-content: flex-start;
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+
+.imageOfModel{
+    width: 5vmin;
+    height: 5vmin;
+    user-select: none;
+    padding-right: 1vmin;
+}
+.imageOfModel img   {
+    width: 4vmin;
+}
+
+.chatOfModel{
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+}
+
+.userChatMainImageHolder{
+    margin: 1vmin;
+    display: flex;
+    justify-content: flex-end;
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+
+.imageOfUser{
+    width: 5vmin;
+    height: 5vmin;
+    user-select: none;
+    padding-right: 1vmin;
+}
+
+.chatOfUser{
+    display: flex;
+    border-radius: 2vmin;
+    background-color: hsl(0, 0%, 90%);
+    padding: 1vmin;
+    align-items: flex-start;
+    max-width: 70%;
+    justify-content: flex-start;
+}
+
+.askModel_TypeAreaBox_WebsiteInfo{
+    width: 100%;
+    height: 30vmin;
+    max-height: 30vmin;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    flex-direction: column;
+    overflow: hidden;
+    position: absolute;
+    bottom: 0;
+}
+
+.modelNotice_websiteInfo_infoContainer{
+    width: 100%;
+    height: 10%;
+    display: flex;
+    align-items: center;
+}
+
+.modelNotice{
+    width: 98%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.8vmin;
+}
+
+.websiteInfo{
+    width: 2%;
+    height: 100%;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+.websiteInfo img{
+    width: 3vmin;
+    margin: .5vmin;
+    opacity: .7;
+    cursor: pointer;
+}
+.websiteInfo img:hover{
+    opacity: 1;
+    transition: opacity .1s ease-out;
+}
+
+.askModel_responseHolderContainer{
+    width: 100%;
+    height: 25vmin;
+    max-height: 30vmin;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+}
+
+.askModel_responseHolder{
+    width: 70%;
+    min-height: 25%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+.askModel_{
+    width: 100%;
+    overflow-x: hidden;
+    overflow-y: auto;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+}
+
+.askModel_response{
+    width: 100%;
+    height: 100%;
+    border: none;
+    outline: none;
+    background-color: hsl(0,0%, 90%);
+    display: flex;
+    overflow-y: auto;
+    border-radius: 1vmin;
+    padding: 2vmin;
+}
+
+.askModel_buttonHolder{
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    margin: 1vmin;
+}
+
+.askModel_button{
+    padding: 1vmin;
+    border: none;
+    border-radius: 10vmin;
+    background-color: transparent;
+    cursor: pointer;
+    outline: none;
+}
+
+.askModel_button img{
+    width: 4vmin;
+}
+
+.askModel_button:hover{
+    background-color: hsl(0, 0%, 98%);
+    transition: background-color .1s ease-out;
+}
