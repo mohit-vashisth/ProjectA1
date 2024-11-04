@@ -202,7 +202,6 @@ html, body{
 .chatDetails{
     width: 100%;
     max-width: 100%;
-    margin: .5vmin;
     height: 4vmin;
     font-size: 2.5vmin;
     display: flex;
@@ -210,7 +209,6 @@ html, body{
     align-items: center;
     border-radius: 1vmin;
     white-space: nowrap;
-    overflow: hidden;
     text-overflow: ellipsis;
     color: hsla(0, 0%, 0%, 0.75);
 }
