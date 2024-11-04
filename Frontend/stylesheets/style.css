@@ -534,7 +534,7 @@ html, body{
     transition: opacity .1s ease-out;
 }
 
-.microphoneHolder{
+.microphoneHolder {
     position: absolute;
     left: 0;
     bottom: 0;
@@ -542,6 +542,9 @@ html, body{
     margin: 1vmin;
     cursor: pointer;
     border-radius: 10vmin;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .microphoneHolder img{
@@ -598,7 +601,7 @@ html, body{
     margin: 1vmin;
 }
 
-.askModel_button{
+.askModel_button {
     padding: 1vmin;
     border: none;
     border-radius: 10vmin;
@@ -606,6 +609,9 @@ html, body{
     cursor: pointer;
     outline: none;
     background-color: hsl(0, 0%, 94%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .askModel_button img{
