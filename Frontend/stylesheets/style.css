@@ -561,6 +561,7 @@ html, body{
     overflow-y: auto;
     border-radius: 1vmin;
     padding: 2vmin;
+    resize: none;
 }
 
 .askModel_buttonHolder{
