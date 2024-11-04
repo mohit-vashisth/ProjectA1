@@ -211,6 +211,7 @@ html, body{
     white-space: nowrap;
     text-overflow: ellipsis;
     color: hsla(0, 0%, 0%, 0.75);
+    filter: blur(.4vmin);
 }
 
 .whiteSheetContainer{
@@ -243,6 +244,47 @@ html, body{
 .chatHistory:hover .chatMenuHolder img{
     visibility: visible;
     pointer-events: auto;
+}
+
+.chatMenuOptions{
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    border-radius: 1vmin;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.renameChat{
+    width: 40%;
+    height: 100%;
+    display: flex;
+    font-size: 2vmin;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+    gap: .5vmin;
+}
+
+.renameChat img{
+    width: 2.5vmin;
+}
+.deleteChat img{
+    width: 2.5vmin;
+    
+}
+
+.deleteChat{
+    width: 40%;
+    height: 100%;
+    font-size: 2vmin;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+    gap: .5vmin;
+    color: hsla(0, 100%, 60%, 0.8);
 }
 
 .rightSection{
@@ -397,6 +439,7 @@ html, body{
     width: 100%;
     height: 92%;
     display: flex;
+    margin-bottom: 13vmin;
     justify-content: center;
     max-height: 20000vmin;
     overflow-x: hidden;
