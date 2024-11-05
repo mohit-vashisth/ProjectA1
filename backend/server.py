@@ -1,19 +1,19 @@
-import mysql.connector
 
-def connect_to_db():
-    connection = mysql.connector.connect(
-        host="127.0.0.1:3306",
-        user="root",
-        password="Naveen@205",
-        database="server"
-    )
-    return connection
+import firebase_admin
+from firebase_admin import credentials, auth
 
-# Use this function to execute queries
-def execute_query(query, values=None):
-    connection = connect_to_db()
-    cursor = connection.cursor()
-    cursor.execute(query, values)
-    connection.commit()
-    cursor.close()
-    connection.close()
+# Load the service account key JSON file
+cred = credentials.Certificate("backend/serviceAccountKey.json")
+
+# Initialize the Firebase Admin SDK
+firebase_admin.initialize_app(cred)
+
+# verify_firebase_token
+
+def verify_token(id_token):
+    try:
+        decoded_token = auth.verify_id_token(id_token)
+        return decoded_token['uid']
+    except Exception as e:
+        print("Token verification failed:", e)
+        return None
