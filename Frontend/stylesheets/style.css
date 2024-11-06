@@ -1,11 +1,25 @@
 :root{
     --footer-height: 30px;
+    --light-grey: hsl(0, 0%, 95%);
+    --sliders-light-grey: rgba(0, 0, 0, 0.1);
+    --mode-chatHolder-light-grey: hsl(0, 0%, 90%);
+    --ripple-grey-black: hsla(0, 0%, 0%, 0.1);
+    --response-holder: hsl(0,0%, 90%);
+    --light--opposite: hsl(0, 0%, 15%);
+    --light--opposite-body: hsl(0, 0%, 25%);
+    --response-holder-opposite: hsl(0,0%, 10%);
+    --ripple-grey-black-opposite: hsla(0, 0%, 100%, 0.1);
+    --sliders-light-grey-opposite: rgba(255, 255, 255, 0.1);
+    --mode-chatHolder-light-grey-opposite: hsl(0, 0%, 10%);
 }
-*{
+
+* {
     padding: 0;
     margin: 0;
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    box-sizing: border-box;
 }
+
 *,
 *::before,
 *::after {
@@ -17,6 +31,17 @@ html, body{
     height: 100vh;
 }
 
+body.dark-mode, .leftSection.dark-mode {
+    background-color: var(--light--opposite-body);
+    color: white;
+    transition: background-color 4s ease, color 4s ease-in;
+}
+.leftSection.dark-mode {
+    background-color: var(--light--opposite);
+    color: white;
+    transition: background-color 4s ease, color 4s ease-in;
+}
+
 .sections{
     width: 100%;
     height: 100%;
@@ -24,13 +49,20 @@ html, body{
     justify-content: flex-start;
 }
 
-.leftSection{
+.leftSection {
     height: 100%;
     width: 15%;
-    background-color: hsl(0, 0%, 95%);
+    background-color: var(--light-grey);
     display: flex;
     flex-direction: column;
+    transition: width 0.4s ease;
+    overflow: hidden;
 }
+
+.leftSection.hidden {
+    width: 0;
+}
+
 
 .slideBarNewChatHolder{
     display: flex;
@@ -63,7 +95,7 @@ html, body{
 }
 
 .slideBar img:hover{
-    background-color: rgba(0, 0, 0, 0.1);
+    background-color: var(--sliders-light-grey);
 }
 
 .newChat{
@@ -87,13 +119,13 @@ html, body{
 }
 
 .newChat img:hover{
-    background-color: rgba(0, 0, 0, 0.1);
+    background-color: var(--sliders-light-grey);
 }
 
 .breakBarHorizontal{
     position: absolute;
     width: 18%;
-    border: .2vmin solid rgba(0, 0, 0, 0.3);
+    border: .2vmin solid var(--sliders-light-grey);
     border-radius: 5vmin;
     top: 8vmin;
 }
@@ -136,7 +168,7 @@ html, body{
 }
 
 .models_:hover{
-    background-color: hsl(0, 0%, 90%);
+    background-color: var(--mode-chatHolder-light-grey);
 }
 
 
@@ -155,7 +187,7 @@ html, body{
     position: absolute;
     border-radius: 50%;
     transform: scale(0);
-    background-color: rgba(0, 0, 0, .1);
+    background-color: var(--ripple-grey-black);
     animation: ripple-animation .8s ease-out;
 }
 
@@ -174,7 +206,7 @@ html, body{
 .horizontalBar{
     width: 100%;
     height: .1vmax;
-    background-color: hsla(0, 0%, 0%, 0.4);
+    background-color: var(--ripple-grey-black);
 
 }
 
@@ -183,6 +215,7 @@ html, body{
     display: flex;
     flex-direction: column;
     border-radius: 1vmin;
+    overflow: hidden;
 }
 
 .chatHistory{
@@ -196,7 +229,7 @@ html, body{
 }
 
 .chatHistory:hover{
-    background-color: rgba(255, 255, 255, 0.5);
+    background-color: hsla(0, 0%, 100%, 0.5);
 }
 
 .chatDetails{
@@ -211,7 +244,7 @@ html, body{
     white-space: nowrap;
     text-overflow: ellipsis;
     color: hsla(0, 0%, 0%, 0.75);
-    filter: blur(.4vmin);
+    /* filter: blur(.4vmin); -------------------------------------------------------------------------------blur */
 }
 
 .whiteSheetContainer{
@@ -227,8 +260,8 @@ html, body{
 .chatMenuHolder{
     width: 15%;
     height: 100%;
-    background-color: hsl(0, 0%, 95%);
-    box-shadow: 0 0 3vmin 1vmin hsl(0, 0%, 95%);
+    background-color: var(--light-grey);
+    box-shadow: 0 0 3vmin 1vmin var(--light-grey);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -254,6 +287,7 @@ html, body{
     display: flex;
     justify-content: center;
     align-items: center;
+    display: none; /* -------------------------------------------------------------------------------------chatMenuOptions*/
 }
 
 .renameChat{
@@ -324,6 +358,7 @@ html, body{
     align-items: center;
     position: relative;
     top: 0;
+    box-shadow: 0 0 .5vmin .2vmin hsl(0, 0%, 80%);
 }
 
 .websiteLogoNightModeHolder{
@@ -345,6 +380,35 @@ html, body{
     display: flex;
     justify-content: flex-start;
     align-items: center;
+}
+
+.sliderHolder{
+    height: 100%;
+    width: 0;
+    display: flex;
+    margin-left: 1vmin;
+    justify-content: center;
+    align-items: center;
+    transition: opacity 0.4s ease, width 0.4s ease; 
+    opacity: 0;
+}
+
+.sliderHolder.show {
+    opacity: 1;
+    width: 4vmin;
+}
+
+.sliderHolder img{
+    width: 6vmin;
+    cursor: pointer;
+    user-select: none;
+    pointer-events: auto;
+    margin-left: 1vmin;
+    padding: 1vmin;
+    border-radius: 2vmin;
+}
+.sliderHolder:hover img{
+    background-color: var(--mode-chatHolder-light-grey)
 }
 
 .dayNightModeHolder img{
@@ -380,7 +444,7 @@ html, body{
 
 .shareChat{
     height: 10%;
-    border: .1vmin solid rgba(0, 0, 0, 0.3);
+    border: .1vmin solid var(--ripple-grey-black);
     border-radius: 6vmin;
     display: flex;
     overflow: hidden;
@@ -392,7 +456,7 @@ html, body{
 }
 
 .shareChat:hover{
-    background-color: hsl(0, 0%, 90%);
+    background-color: var(--mode-chatHolder-light-grey);
     transition: background-color .09s ease-out;
 }
 
@@ -521,7 +585,7 @@ html, body{
 .chatOfUser{
     display: flex;
     border-radius: 2vmin;
-    background-color: hsl(0, 0%, 90%);
+    background-color: var(--mode-chatHolder-light-grey);
     padding: 1vmin;
     align-items: flex-start;
     max-width: 70%;
@@ -609,7 +673,7 @@ html, body{
     align-items: center;
     position: relative;
     border-radius: 1vmin;
-    background-color: hsl(0,0%, 90%);
+    background-color: var(--response-holder);
 
 }
 
@@ -628,7 +692,7 @@ html, body{
     border: none;
     outline: none;
     font-size: 2.5vmin;
-    background-color: hsl(0,0%, 90%);
+    background-color: var(--response-holder);
     display: flex;
     overflow-y: auto;
     padding: 2vmin;
@@ -649,7 +713,7 @@ html, body{
     background-color: transparent;
     cursor: pointer;
     outline: none;
-    background-color: hsl(0, 0%, 94%);
+    background-color: var(--light-grey);
     display: flex;
     justify-content: center;
     align-items: center;
