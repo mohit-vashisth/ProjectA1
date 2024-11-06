@@ -244,7 +244,7 @@ body.dark-mode, .leftSection.dark-mode {
     white-space: nowrap;
     text-overflow: ellipsis;
     color: hsla(0, 0%, 0%, 0.75);
-    /* filter: blur(.4vmin); -------------------------------------------------------------------------------blur */
+    transition: filter .09s ease-in;
 }
 
 .whiteSheetContainer{
@@ -280,14 +280,15 @@ body.dark-mode, .leftSection.dark-mode {
 }
 
 .chatMenuOptions{
-    width: 100%;
+    width: 80%;
     height: 100%;
     position: absolute;
     border-radius: 1vmin;
     display: flex;
     justify-content: center;
+    cursor: pointer;
     align-items: center;
-    display: none; /* -------------------------------------------------------------------------------------chatMenuOptions*/
+    visibility: hidden;
 }
 
 .renameChat{
