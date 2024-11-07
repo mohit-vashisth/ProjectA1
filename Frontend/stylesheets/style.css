@@ -34,12 +34,12 @@ html, body{
 body.dark-mode, .leftSection.dark-mode {
     background-color: var(--light--opposite-body);
     color: white;
-    transition: background-color 4s ease, color 4s ease-in;
+    transition: background-color 10s ease, color 9s ease-in;
 }
 .leftSection.dark-mode {
     background-color: var(--light--opposite);
     color: white;
-    transition: background-color 4s ease, color 4s ease-in;
+    transition: background-color 10s ease, color 9s ease-in;
 }
 
 .sections{
@@ -244,7 +244,7 @@ body.dark-mode, .leftSection.dark-mode {
     white-space: nowrap;
     text-overflow: ellipsis;
     color: hsla(0, 0%, 0%, 0.75);
-    /* filter: blur(.4vmin); -------------------------------------------------------------------------------blur */
+    filter: blur(.4vmin);
 }
 
 .whiteSheetContainer{
@@ -287,7 +287,7 @@ body.dark-mode, .leftSection.dark-mode {
     display: flex;
     justify-content: center;
     align-items: center;
-    display: none; /* -------------------------------------------------------------------------------------chatMenuOptions*/
+    /* display: none; -------------------------------------------------------------------------------------chatMenuOptions */
 }
 
 .renameChat{
