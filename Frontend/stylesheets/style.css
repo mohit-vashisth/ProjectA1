@@ -47,6 +47,169 @@ body.dark-mode, .leftSection.dark-mode {
     height: 100%;
     display: flex;
     justify-content: flex-start;
+    flex-direction: column;
+}
+
+.leftRIghtContainer{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.loginInformationContainer{
+    width: 100dvw;
+    height: 100dvh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: hsla(0, 0%, 0%, 0.3);
+    position: absolute;
+    overflow: hidden;
+}
+
+.loginInformationHolder{
+    width:500px;
+    height:500px;
+    background-color: white;
+    border-radius: 1vmin;
+}
+
+.loginWelcomeTextCloseWindow{
+    width: 100%;
+    height: 10%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.welcomeText{
+    width: 80%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    margin-right: 19vmin;
+    font-weight: bolder;
+    user-select: none;
+}
+
+.closeWindow{
+    width: 20%;
+    height: 100%;
+    display: flex;
+    justify-content: flex-end;
+    align-items: start;
+
+}
+.closeWindow img{
+    width: 2.5vmin;
+    margin-top: .5vmin;
+    margin-right: .5vmin;
+    cursor: pointer;
+    z-index: 9999;
+}
+.emailPasswordContainer{
+    width: 100%;
+    height: 60%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-direction: column;
+    gap: 2vmin;
+}
+.emailInputHolder{
+    width: 100%;
+    height: 35%;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+}
+.emailInputHolder input{
+    width: 70%;
+    height: 5vmin;
+    border-radius: 2vmin;
+    border: none;
+    outline: none;
+    padding: 3vmin;
+    background-color: hsl(0, 0%, 85%);
+
+}
+.passwordInputHolder{
+    width: 100%;
+    height: 20%;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+}
+.passwordInputHolder input{
+    width: 70%;
+    height: 5vmin;
+    border-radius: 2vmin;
+    border: none;
+    outline: none;
+    padding: 3vmin;
+    background-color: hsl(0, 0%, 85%);
+
+}
+
+.loginFOrgotButtonHolder{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 5vmin;
+}
+
+.loginButton{
+    border: none;
+    border-radius: 1vmin;
+    cursor: pointer;
+    pointer-events: auto;
+    font-weight: bold;
+    padding: 2vmin 5vmin 2vmin 5vmin;
+}
+.forgotButton{
+    border: none;
+    border-radius: 1vmin;
+    cursor: pointer;
+    pointer-events: auto;
+    font-weight: bold;
+    padding: 2vmin 5vmin 2vmin 5vmin;
+}
+.loginButton:hover{
+background-color: hsl(0, 0%, 84%);
+transition: background-color .2s ease-in-out;
+}
+.forgotButton:hover{
+background-color: hsl(0, 0%, 84%);
+transition: background-color .2s ease-in-out;
+}
+
+.googleLoginSystem{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.googleLoginTemplate{
+    width: 40vmin;
+    padding: 2vmin 0vmin 2vmin 0vmin;
+    border: none;
+    border-radius: 10vmin;
+    cursor: pointer;
+    pointer-events: auto;
+    font-weight: bold;
+}
+.googleLoginTemplate:hover{
+    background-color: hsl(0, 0%, 84%);
+    transition: background-color .2s ease-in-out;
+}
+
+.googleLoginTemplate p{
+    width: 100%;
 }
 
 .leftSection {
