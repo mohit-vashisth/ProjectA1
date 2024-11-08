@@ -4,13 +4,14 @@
     --sliders-light-grey: rgba(0, 0, 0, 0.1);
     --mode-chatHolder-light-grey: hsl(0, 0%, 90%);
     --ripple-grey-black: hsla(0, 0%, 0%, 0.1);
+    --ripple-grey-black-opposite: hsla(0, 0%, 100%, 0.1);
     --response-holder: hsl(0,0%, 90%);
     --light--opposite: hsl(0, 0%, 15%);
     --light--opposite-body: hsl(0, 0%, 25%);
     --response-holder-opposite: hsl(0,0%, 10%);
     --ripple-grey-black-opposite: hsla(0, 0%, 100%, 0.1);
     --sliders-light-grey-opposite: rgba(255, 255, 255, 0.1);
-    --mode-chatHolder-light-grey-opposite: hsl(0, 0%, 10%);
+    --mode-chatHolder-light-grey-opposite: hsl(0, 0%, 35%);
 }
 
 * {
@@ -34,12 +35,91 @@ html, body{
 body.dark-mode, .leftSection.dark-mode {
     background-color: var(--light--opposite-body);
     color: white;
-    transition: background-color 10s ease, color 9s ease-in;
 }
 .leftSection.dark-mode {
     background-color: var(--light--opposite);
     color: white;
-    transition: background-color 10s ease, color 9s ease-in;
+}
+
+.slideBarIcon.dark-mode, .newChatLink img.dark-mode{
+    filter: invert(1);
+}
+
+.darkModeOn.dark-mode{
+    filter: invert(1);
+}
+
+.shareChat.dark-mode, .userLoginNow.dark-mode{
+    filter: invert(1);
+}
+
+.shareChat.dark-mode:hover{
+    background-color: hsla(0, 0%, 0%, 0.3);
+}
+
+
+.chatOfUser.dark-mode{
+    background-color: var(--mode-chatHolder-light-grey-opposite);
+}
+
+.chatMenuIcon.dark-mode{
+    filter: invert(1);
+}
+
+.chatDetails.dark-mode{
+    filter: invert(1);
+}
+
+.chatHistory.dark-mode:hover{
+    background-color: var(--sliders-light-grey-opposite);
+}
+
+.models_.dark-mode:hover{
+    background-color: var(--mode-chatHolder-light-grey-opposite);
+}
+
+.askModel_responseHolder.dark-mode{
+    background-color: var(--mode-chatHolder-light-grey-opposite);
+}
+
+.askModel_response.dark-mode{
+    background-color: var(--mode-chatHolder-light-grey-opposite);
+    color: white;
+}
+
+.microphoneHolder.dark-mode{
+    filter: invert(1);
+}
+
+.ripple.dark-mode{
+    background-color: var(--ripple-grey-black-opposite);
+}
+.websiteInfo.dark-mode{
+    filter: invert(1);
+}
+
+.reEditUserMessage.dark-mode{
+    filter: invert(1);
+}
+
+.reEditUserMessageHolder.dark-mode:hover{
+    background-color: var(--sliders-light-grey-opposite);
+}
+
+.imageOfModel img.dark-mode{
+    filter: invert(1);
+}
+
+.slideToRightBack.dark-mode{
+    filter: invert(1);
+}
+
+.slideToRightBack.dark-mode:hover{
+    background-color: var(--light--opposite-body);
+}
+
+.models_ img.dark-mode{
+    filter: invert(1);
 }
 
 .sections{
@@ -143,8 +223,14 @@ body.dark-mode, .leftSection.dark-mode {
     width: 100%;
     height: 35%;
     display: flex;
-    justify-content: center;
-    align-items: flex-end;
+    justify-content: flex-end;
+    flex-direction: column;
+    align-items: center;
+    gap: 2vmin;
+}
+
+.userNameSignUp{
+    font-size: 2vmin;
 }
 
 .userEmailInput{
@@ -164,15 +250,26 @@ body.dark-mode, .leftSection.dark-mode {
     background-color: hsl(0, 0%, 85%);
 
 }
+
 .passwordInputHolder{
     width: 100%;
-    height: 20%;
+    height: 35%;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 2vmin;
+    position: relative;
+}
+.passwordInputContainer{
+    width: 100%;
+    height: 35%;
     display: flex;
     justify-content: center;
     align-items: flex-start;
     position: relative;
 }
-.passwordInputHolder input{
+.passwordInputContainer input{
     width: 70%;
     height: 5vmin;
     border-radius: 2vmin;
@@ -449,6 +546,8 @@ transition: background-color .1s ease-in-out;
 
 .models_ img{
     width: 3vmin;
+    height: 2vmin;
+    min-width: 3vmin;
     border-radius: 5vmin;
 }
 
@@ -478,7 +577,7 @@ transition: background-color .1s ease-in-out;
 }
 
 .chatHistory:hover{
-    background-color: hsla(0, 0%, 100%, 0.3);
+    background-color: var(--sliders-light-grey);
 }
 
 .chatDetails{
@@ -493,7 +592,6 @@ transition: background-color .1s ease-in-out;
     white-space: nowrap;
     text-overflow: ellipsis;
     color: hsla(0, 0%, 0%, 0.75);
-    transition: filter .09s ease-in;
 }
 
 .chat_menu_holder{
@@ -511,6 +609,7 @@ transition: background-color .1s ease-in-out;
     justify-content: center;
     align-items: center;
     overflow: hidden;
+    transition: filter .09s ease-in;
 }
 .chatMenuImageHolder{
     width: 20%;
@@ -518,10 +617,9 @@ transition: background-color .1s ease-in-out;
     height: 100%;
     display: flex;
     justify-content: center;
-    box-shadow: 0 0 3vmin 2vmin var(--light-grey);
     align-items: center;
 }
-.chatMenuImageHolder img{
+.chatMenuIcon{
     width: 50%;
     visibility: hidden;
 }
@@ -540,6 +638,7 @@ transition: background-color .1s ease-in-out;
     cursor: pointer;
     align-items: center;
     visibility: hidden;
+    transition: visibility .09s ease-in;
 }
 
 .renameChat{
@@ -610,7 +709,6 @@ transition: background-color .1s ease-in-out;
     align-items: center;
     position: relative;
     top: 0;
-    box-shadow: 0 0 .5vmin .2vmin hsl(0, 0%, 80%);
 }
 
 .websiteLogoNightModeHolder{
@@ -788,6 +886,7 @@ transition: background-color .1s ease-in-out;
     gap: 3vmin;
 }
 
+
 .userChat_Holder{
     width: 100%;
     display: flex;
@@ -795,6 +894,9 @@ transition: background-color .1s ease-in-out;
     gap: 3vmin;
 }
 
+.userChat_Holder:hover .reEditUserMessageHolder{
+    display: flex;
+}
 .modelChatMainImageHolder{
     margin: 1vmin;
     display: flex;
@@ -810,7 +912,7 @@ transition: background-color .1s ease-in-out;
     padding-right: 1vmin;
 }
 .imageOfModel img   {
-    width: 4vmin;
+    width: 3vmin;
 }
 
 .chatOfModel{
@@ -819,12 +921,41 @@ transition: background-color .1s ease-in-out;
     justify-content: flex-start;
 }
 
+.reEditUserMessage{
+    width: 2vmin;
+    left: 28vmin;
+    top: 1vmin;
+    cursor: pointer;
+}
+
+.reEditUserMessageHolder{
+    width: 4vmin;
+    height: 4vmin;
+    left: 26vmin;
+    border-radius: 10vmin;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    position: absolute;
+    user-select: none;
+    display: none;
+}
+
+.reEditUserMessageHolder:hover{
+    background-color: rgba(0, 0, 0, 0.1);
+    transition: background-color .2s ease;
+
+}
+
 .userChatMainImageHolder{
     margin: 1vmin;
     display: flex;
     justify-content: flex-end;
+    gap: .5vmin;
     overflow-x: hidden;
     overflow-y: auto;
+    position: relative;
 }
 
 .imageOfUser{
