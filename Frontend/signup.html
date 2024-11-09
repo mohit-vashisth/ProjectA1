@@ -6,7 +6,7 @@
     <link rel="stylesheet" href="stylesheets/style.css">
     <title>ProjectA1: by 3R Minds</title>
 </head>
-<body>
+<body class="dark-mode">
     <div class="loginInformationContainer">
         <div class="loginInformationHolder">
             <div class="loginWelcomeTextCloseWindow">
@@ -27,24 +27,24 @@
                         <input class="userPasswordInput" type="password" placeholder="Password">
                         <div class="passwordShowHideAutoHolder">
                             <div class="showHidePassworContainer">
-                                <img class="ShowPassword" src="images/svgs/showpassword.svg" alt="show password">
-                                <img class="passwordHideAuto" src="images/svgs/hidepassword.svg" alt="hide password">
+                                <img class="ShowPassword" src="images/svgs/showpassword.svg" title="Show" alt="show password">
+                                <img class="passwordHideAuto" src="images/svgs/hidepassword.svg" title="Hide" alt="hide password">
                             </div>
                         </div>
                     </div>
-                    <div class="passwordInputContainer">
-                        <input class="userPasswordInput" type="password" placeholder="Confirm Password">
-                        <div class="passwordShowHideAutoHolder">
-                            <div class="showHidePassworContainer">
-                                <img class="ShowPassword" src="images/svgs/showpassword.svg" alt="show password">
-                                <img class="passwordHideAuto" src="images/svgs/hidepassword.svg" alt="hide password">
+                    <div class="confirmPasswordInputContainer">
+                        <input class="userConfirmPasswordInput" type="password" placeholder="Confirm Password">
+                        <div class="confirmPasswordShowHideAutoHolder">
+                            <div class="showHideConfirmPassworContainer">
+                                <img class="ShowConfirmPassword" src="images/svgs/showpassword.svg" title="Show" alt="show password">
+                                <img class="confirmPasswordHideAuto" src="images/svgs/hidepassword.svg" title="Hide" alt="hide password">
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="loginForgotButtonHolder">
-                    <button class="forgotButton">forgot password?</button>
-                    <button class="loginButton">login</button>
+                <div class="loginRegisterButtonHolder">
+                    <a class="existingUser" href="">Existing user?</a>
+                    <button class="loginButton">Create</button>
                 </div>
                 <div class="horizontalBarLoginGoogle">
                     <p>more ways</p>
@@ -58,7 +58,9 @@
             </div>
         </div>
     </div>
-    <script src="scripts/loginWdinwoCloseOpen.js"></script>
+    <script src="scripts/loginWindowOpenClose.js"></script>
     <script src="scripts/showHidePassword.js"></script>
+    <script src="scripts/showHideConfirmPassword.js"></script>
+    <script src="scripts/darkMode.js"></script>
 </body>
 </html>

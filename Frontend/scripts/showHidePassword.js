@@ -1,27 +1,26 @@
-const passwordInput = document.querySelector('.userPasswordInput');
-const showPasswordIcon = document.querySelector('.ShowPassword');
-const hidePasswordIcon = document.querySelector('.passwordHideAuto');
+const passwordInputs = document.querySelectorAll('.userPasswordInput, .userConfirmPasswordInput');
+const showPasswordIcons = document.querySelectorAll('.ShowPassword, .ShowConfirmPassword');
+const hidePasswordIcons = document.querySelectorAll('.passwordHideAuto, .confirmPasswordHideAuto');
 
-let hidePasswordTimeout;
-
-function showPassword() {
-    passwordInput.type = 'text';
-    showPasswordIcon.style.display = 'none';
-    hidePasswordIcon.style.display = 'inline';
-
-    hidePasswordTimeout = setTimeout(hidePassword, 2000);
+function togglePasswordVisibility(index, show) {
+    if (show) {
+        passwordInputs[index].type = 'text';
+        showPasswordIcons[index].style.display = 'none';
+        hidePasswordIcons[index].style.display = 'inline';
+        
+        setTimeout(() => togglePasswordVisibility(index, false), 3000);
+    } else {
+        passwordInputs[index].type = 'password';
+        showPasswordIcons[index].style.display = 'inline';
+        hidePasswordIcons[index].style.display = 'none';
+    }
 }
 
-function hidePassword() {
-    passwordInput.type = 'password';
-    showPasswordIcon.style.display = 'inline';
-    hidePasswordIcon.style.display = 'none';
-    
-    clearTimeout(hidePasswordTimeout);
-}
+showPasswordIcons.forEach((icon, index) => {
+    icon.addEventListener('click', () => togglePasswordVisibility(index, true));
+    hidePasswordIcons[index].style.display = 'none';
+});
 
-showPasswordIcon.addEventListener('click', showPassword);
-hidePasswordIcon.addEventListener('click', hidePassword);
-
-hidePasswordIcon.style.display = 'none';
-showPasswordIcon.style.display = 'inline';
+hidePasswordIcons.forEach((icon, index) => {
+    icon.addEventListener('click', () => togglePasswordVisibility(index, false));
+});

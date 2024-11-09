@@ -1,14 +1,29 @@
-document.querySelector('.dayNightModeHolder').addEventListener('click', function() {
-  document.body.classList.toggle('dark-mode');
-  
-  // Toggle class on each container that requires the dark mode effect
-  document.querySelectorAll('.sections, .imageOfModel img, .models_ img, .slideToRightBack, .reEditUserMessageHolder, .reEditUserMessage, .websiteInfo, .microphoneHolder, .askModel_responseHolder, .askModel_response, .models_, .chatDetails, .chatMenuIcon, .chatOfUser, .userLoginNow, .darkModeOn, .shareChat, .slideBarIcon, .newChatLink img, .leftSection, .rightSection, .models_, .chatHistory').forEach(element => {
-      element.classList.toggle('dark-mode');
-  });
+const dayNightModeHolder = document.querySelector('.dayNightModeHolder');
+const darkModeOffIcon = document.querySelector('.darkModeOff');
+const darkModeOnIcon = document.querySelector('.darkModeOn');
 
-  // Swap dark mode icons (optional)
-  document.querySelector('.darkModeOff').style.display = 
-      document.body.classList.contains('dark-mode') ? 'none' : 'block';
-  document.querySelector('.darkModeOn').style.display = 
-      document.body.classList.contains('dark-mode') ? 'block' : 'none';
-});
+function toggleDarkMode() {
+    const isDarkMode = document.body.classList.toggle('dark-mode');
+
+    document.querySelectorAll('.sections, .closeNowIcon, .googleLoginTemplate, .horizontalBarLoginGoogle, .userPasswordInput, .userConfirmPasswordInput, .existingUser, .loginInformationHolder, .userNameSignUp, .userEmailInput, .thumbUpHolder, .readTextHolder, .thumbDownHolder, .reGenerateHolder, .sliderHolder, .imageOfModel img, .models_ img, .slideToRightBack, .reEditUserMessageHolder, .reEditUserMessage, .websiteInfo, .microphoneHolder, .askModel_responseHolder, .askModel_response, .models_, .chatDetails, .chatMenuIcon, .chatOfUser, .userLoginNow, .darkModeOn, .shareChat, .slideBarIcon, .newChatLink img, .leftSection, .rightSection, .models_, .chatHistory')
+        .forEach(element => element.classList.toggle('dark-mode', isDarkMode));
+
+    darkModeOffIcon.style.display = isDarkMode ? 'none' : 'block';
+    darkModeOnIcon.style.display = isDarkMode ? 'block' : 'none';
+    localStorage.setItem('theme', isDarkMode ? 'dark' : 'light');
+}
+
+function loadTheme() {
+    const savedTheme = localStorage.getItem('theme');
+    const isDarkMode = savedTheme === 'dark';
+
+    document.body.classList.toggle('dark-mode', isDarkMode);
+    document.querySelectorAll('.sections, .thumbUpHolder, .readTextHolder, .thumbDownHolder, .reGenerateHolder, .sliderHolder, .imageOfModel img, .models_ img, .slideToRightBack, .reEditUserMessageHolder, .reEditUserMessage, .websiteInfo, .microphoneHolder, .askModel_responseHolder, .askModel_response, .models_, .chatDetails, .chatMenuIcon, .chatOfUser, .userLoginNow, .darkModeOn, .shareChat, .slideBarIcon, .newChatLink img, .leftSection, .rightSection, .models_, .chatHistory')
+        .forEach(element => element.classList.toggle('dark-mode', isDarkMode));
+
+    darkModeOffIcon.style.display = isDarkMode ? 'none' : 'block';
+    darkModeOnIcon.style.display = isDarkMode ? 'block' : 'none';
+}
+
+dayNightModeHolder.addEventListener('click', toggleDarkMode);
+window.onload = loadTheme;

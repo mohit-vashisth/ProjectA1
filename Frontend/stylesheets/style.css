@@ -1,14 +1,16 @@
-:root{
+:root {
+    /* Light Mode Colors */
     --footer-height: 30px;
     --light-grey: hsl(0, 0%, 95%);
     --sliders-light-grey: rgba(0, 0, 0, 0.1);
     --mode-chatHolder-light-grey: hsl(0, 0%, 90%);
     --ripple-grey-black: hsla(0, 0%, 0%, 0.1);
-    --ripple-grey-black-opposite: hsla(0, 0%, 100%, 0.1);
-    --response-holder: hsl(0,0%, 90%);
+    --response-holder: hsl(0, 0%, 90%);
+
+    /* Dark Mode Colors */
     --light--opposite: hsl(0, 0%, 15%);
     --light--opposite-body: hsl(0, 0%, 25%);
-    --response-holder-opposite: hsl(0,0%, 10%);
+    --response-holder-opposite: hsl(0, 0%, 10%);
     --ripple-grey-black-opposite: hsla(0, 0%, 100%, 0.1);
     --sliders-light-grey-opposite: rgba(255, 255, 255, 0.1);
     --mode-chatHolder-light-grey-opposite: hsl(0, 0%, 35%);
@@ -24,102 +26,116 @@
 *,
 *::before,
 *::after {
-  box-sizing: border-box;
+    box-sizing: border-box;
 }
 
-html, body{
+html, body {
     width: 100vw;
     height: 100vh;
 }
 
-body.dark-mode, .leftSection.dark-mode {
+/* Light Mode (default) */
+body {
+    background-color: var(--light-grey);
+    color: black;
+}
+
+.leftSection {
+    background-color: var(--mode-chatHolder-light-grey);
+}
+
+/* Dark Mode Styles */
+body.dark-mode {
     background-color: var(--light--opposite-body);
     color: white;
 }
-.leftSection.dark-mode {
+
+body.dark-mode .leftSection {
     background-color: var(--light--opposite);
     color: white;
 }
 
-.slideBarIcon.dark-mode, .newChatLink img.dark-mode{
+body.dark-mode .slideBarIcon,
+body.dark-mode .newChatLink img,
+body.dark-mode .darkModeOn,
+body.dark-mode .shareChat,
+body.dark-mode .userLoginNow,
+body.dark-mode .chatMenuIcon,
+body.dark-mode .chatDetails,
+body.dark-mode .microphoneHolder,
+body.dark-mode .websiteInfo,
+body.dark-mode .reEditUserMessage,
+body.dark-mode .imageOfModel img,
+body.dark-mode .slideToRightBack,
+body.dark-mode .models_ img,
+body.dark-mode .thumbUpHolder,
+body.dark-mode .readTextHolder,
+body.dark-mode .thumbDownHolder,
+body.dark-mode .existingUser,
+body.dark-mode .closeNowIcon,
+body.dark-mode .googleLoginTemplate,
+body.dark-mode .reGenerateHolder {
     filter: invert(1);
 }
 
-.darkModeOn.dark-mode{
-    filter: invert(1);
-}
-
-.shareChat.dark-mode, .userLoginNow.dark-mode{
-    filter: invert(1);
-}
-
-.shareChat.dark-mode:hover{
-    background-color: hsla(0, 0%, 0%, 0.3);
-}
-
-
-.chatOfUser.dark-mode{
+/* Additional Dark Mode Specific Backgrounds */
+body.dark-mode .chatOfUser {
     background-color: var(--mode-chatHolder-light-grey-opposite);
 }
 
-.chatMenuIcon.dark-mode{
-    filter: invert(1);
-}
-
-.chatDetails.dark-mode{
-    filter: invert(1);
-}
-
-.chatHistory.dark-mode:hover{
+body.dark-mode .chatHistory:hover,
+body.dark-mode .reEditUserMessageHolder:hover,
+body.dark-mode .models_ .dark-mode:hover {
     background-color: var(--sliders-light-grey-opposite);
 }
 
-.models_.dark-mode:hover{
+body.dark-mode .askModel_responseHolder,
+body.dark-mode .askModel_response,
+body.dark-mode .sliderHolder:hover img {
     background-color: var(--mode-chatHolder-light-grey-opposite);
 }
 
-.askModel_responseHolder.dark-mode{
-    background-color: var(--mode-chatHolder-light-grey-opposite);
-}
-
-.askModel_response.dark-mode{
-    background-color: var(--mode-chatHolder-light-grey-opposite);
+body.dark-mode .askModel_response {
     color: white;
 }
 
-.microphoneHolder.dark-mode{
-    filter: invert(1);
-}
-
-.ripple.dark-mode{
+body.dark-mode .ripple {
     background-color: var(--ripple-grey-black-opposite);
 }
-.websiteInfo.dark-mode{
-    filter: invert(1);
+
+body.dark-mode .models_.dark-mode:hover{
+    background-color: var(--mode-chatHolder-light-grey-opposite);
 }
 
-.reEditUserMessage.dark-mode{
-    filter: invert(1);
-}
-
-.reEditUserMessageHolder.dark-mode:hover{
+body.dark-mode .sliderHolder img:hover{
     background-color: var(--sliders-light-grey-opposite);
 }
 
-.imageOfModel img.dark-mode{
-    filter: invert(1);
+body.dark-mode .shareChat:hover{
+    background-color: var(--sliders-light-grey-opposite);
 }
 
-.slideToRightBack.dark-mode{
-    filter: invert(1);
-}
-
-.slideToRightBack.dark-mode:hover{
+body.dark-mode .loginInformationHolder{
     background-color: var(--light--opposite-body);
 }
+body.dark-mode .userNameSignUp{
+    background-color: var(--mode-chatHolder-light-grey);
+}
+body.dark-mode .userEmailInput{
+    background-color: var(--mode-chatHolder-light-grey);
+}
+body.dark-mode .userPasswordInput{
+    background-color: var(--mode-chatHolder-light-grey);
+}
+body.dark-mode .userConfirmPasswordInput{
+    background-color: var(--mode-chatHolder-light-grey);
+}
+body.dark-mode .horizontalBarLoginGoogle{
+    background-color: var(--mode-chatHolder-light-grey);
+}
 
-.models_ img.dark-mode{
-    filter: invert(1);
+body.dark-mode .horizontalBarLoginGoogle p{
+    background-color: var(--light--opposite-body);
 }
 
 .sections{
@@ -239,6 +255,9 @@ body.dark-mode, .leftSection.dark-mode {
 .userPasswordInput{
     font-size: 2vmin;
 }
+.userConfirmPasswordInput{
+    font-size: 2vmin;
+}
 
 .emailInputHolder input{
     width: 70%;
@@ -261,6 +280,7 @@ body.dark-mode, .leftSection.dark-mode {
     gap: 2vmin;
     position: relative;
 }
+
 .passwordInputContainer{
     width: 100%;
     height: 35%;
@@ -307,7 +327,55 @@ body.dark-mode, .leftSection.dark-mode {
     position: absolute;
 }
 
-.loginForgotButtonHolder{
+/* ____________________________________________________________________________________________ */
+.confirmPasswordInputContainer{
+    width: 100%;
+    height: 35%;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    position: relative;
+}
+.confirmPasswordInputContainer input{
+    width: 70%;
+    height: 5vmin;
+    border-radius: 2vmin;
+    border: none;
+    outline: none;
+    padding: 3vmin;
+    background-color: hsl(0, 0%, 85%);
+}
+
+.confirmPasswordShowHideAutoHolder{
+    width: 25vmin;
+    height: 4vmin;
+    position: absolute;
+    right: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 1vmin;
+}
+
+.showHideConfirmPassworContainer{
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.showHideConfirmPassworContainer img{
+    width: 3vmin;
+    user-select: none;
+    cursor: pointer;
+}
+
+.confirmPasswordHideAuto{
+    position: absolute;
+}
+/* ____________________________________________________________________________________________ */
+
+.loginRegisterButtonHolder{
     width: 100%;
     display: flex;
     justify-content: center;
@@ -325,12 +393,14 @@ body.dark-mode, .leftSection.dark-mode {
     padding: 1vmin 3vmin 1vmin 3vmin;
     font-size: 2vmin;
 }
-.forgotButton{
+.existingUser{
     border: none;
     cursor: pointer;
     pointer-events: auto;
     font-weight: bold;
     background: none;
+    color: black;
+    text-decoration: none;
     opacity: .6;
     user-select: none;
     font-size: 2vmin;
@@ -339,7 +409,7 @@ body.dark-mode, .leftSection.dark-mode {
 background-color: hsl(0, 0%, 84%);
 transition: background-color .1s ease-in-out;
 }
-.forgotButton:hover{
+.existingUser:hover{
     opacity: 1;
     transition: opacity .1s ease-in-out;
 }
@@ -361,6 +431,7 @@ transition: background-color .1s ease-in-out;
 }
 
 .googleLoginSystem{
+    margin-top: 1vmin;
     width: 100%;
     display: flex;
     justify-content: center;
@@ -757,8 +828,9 @@ transition: background-color .1s ease-in-out;
     padding: 1vmin;
     border-radius: 2vmin;
 }
+
 .sliderHolder:hover img{
-    background-color: var(--mode-chatHolder-light-grey)
+    background-color: var(--mode-chatHolder-light-grey);
 }
 
 .dayNightModeHolder img{
@@ -775,8 +847,33 @@ transition: background-color .1s ease-in-out;
 
 .websiteLogo{
     display: flex;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
+    position: relative;
+}
+
+.logo3LogoNameHolder{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.logo3Website{
+    position: absolute;
+    transform: translateY(.1vmin);
+    font-size: 4vmin;
+}
+
+.logoNameWebsite{
+    font-size: 4vmin;
+    margin-left: 2vmin;
+}
+
+.websiteTagLine{
+    font-size: 1.5vmin;
+    margin-left: 2.1vmin;
+    transform: translateY(-1vmin);
+    text-wrap: nowrap;
 }
 
 .darkModeOn{
@@ -819,6 +916,7 @@ transition: background-color .1s ease-in-out;
     font-weight: bolder;
     font-size: 2.3vmin;
     color: hsla(0, 0%, 0%, 0.6);
+    user-select: none;
 }
 
 .userLoginRegister{
@@ -918,6 +1016,7 @@ transition: background-color .1s ease-in-out;
 .chatOfModel{
     display: flex;
     align-items: flex-start;
+    flex-direction: column;
     justify-content: flex-start;
 }
 
@@ -975,6 +1074,73 @@ transition: background-color .1s ease-in-out;
     justify-content: flex-start;
 }
 
+.modelChatRegenerateLikeDislikeHolder{
+    width: 100%;
+    height: 3vmin;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.modelChatOptionsHolder{
+    width: 20%;
+    height: 100%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    display: none;
+}
+
+.modelChatMainImageHolder:hover .modelChatOptionsHolder{
+    display: flex;
+}
+
+.modelChatOptionsHolder img{
+    width: 2vmin;
+    cursor: pointer;
+}
+
+.thumbUpHolder{
+    width: 3vmin;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    border-radius: 1vmin;
+    align-items: center;
+    user-select: none;
+}
+.readTextHolder{
+    width: 3vmin;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    border-radius: 1vmin;
+    align-items: center;
+    user-select: none;
+}
+.thumbDownHolder{
+    width: 3vmin;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    border-radius: 1vmin;
+    align-items: center;
+    user-select: none;
+}
+.reGenerateHolder{
+    width: 3vmin;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    border-radius: 1vmin;
+    align-items: center;
+    user-select: none;
+}
+
+.thumbUpHolder:hover, .thumbDownHolder:hover, .readTextHolder:hover, .reGenerateHolder:hover{
+    background-color: var(--sliders-light-grey);
+}
+
 .askModel_TypeAreaBox_WebsiteInfo{
     width: 100%;
     height: 30vmin;
@@ -1016,6 +1182,7 @@ transition: background-color .1s ease-in-out;
     margin: .5vmin;
     opacity: .7;
     cursor: pointer;
+    user-select: none;
 }
 .websiteInfo img:hover{
     opacity: 1;
@@ -1037,6 +1204,7 @@ transition: background-color .1s ease-in-out;
 
 .microphoneHolder img{
     width: 4vmin;
+    user-select: none;
 }
 
 .askModel_responseHolderContainer{
@@ -1049,7 +1217,7 @@ transition: background-color .1s ease-in-out;
 }
 
 .askModel_responseHolder{
-    width: 70%;
+    width: 60%;
     min-height: 25%;
     display: flex;
     justify-content: center;
@@ -1105,4 +1273,5 @@ transition: background-color .1s ease-in-out;
 .askModel_button img{
     width: 4vmin;
     height: 4vmin;
+    user-select: none;
 }
