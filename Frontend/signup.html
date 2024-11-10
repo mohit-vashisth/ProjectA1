@@ -19,12 +19,12 @@
             </div>
             <div class="emailPasswordContainer">
                 <div class="emailInputHolder">
-                    <input class="userNameSignUp" type="text" placeholder="Enter Name">
-                    <input class="userEmailInput" type="email" placeholder="Email">
+                    <input class="userNameSignUp" id="userNameSignUpID" type="text" placeholder="Enter Name">
+                    <input class="userEmailInput" id="userEmailSignUpID" type="email" placeholder="Email">
                 </div>
                 <div class="passwordInputHolder">
                     <div class="passwordInputContainer">
-                        <input class="userPasswordInput" type="password" placeholder="Password">
+                        <input class="userPasswordInput" id="userPasswordInputID" type="password" placeholder="Password">
                         <div class="passwordShowHideAutoHolder">
                             <div class="showHidePassworContainer">
                                 <img class="ShowPassword" src="images/svgs/showpassword.svg" title="Show" alt="show password">
@@ -33,7 +33,7 @@
                         </div>
                     </div>
                     <div class="confirmPasswordInputContainer">
-                        <input class="userConfirmPasswordInput" type="password" placeholder="Confirm Password">
+                        <input class="userConfirmPasswordInput" id="userConfirmPasswordInputID" type="password" placeholder="Confirm Password">
                         <div class="confirmPasswordShowHideAutoHolder">
                             <div class="showHideConfirmPassworContainer">
                                 <img class="ShowConfirmPassword" src="images/svgs/showpassword.svg" title="Show" alt="show password">
@@ -42,9 +42,10 @@
                         </div>
                     </div>
                 </div>
+                <p id="errorMessage"></p>
                 <div class="loginRegisterButtonHolder">
-                    <a class="existingUser" href="">Existing user?</a>
-                    <button class="loginButton">Create</button>
+                    <a class="existingUser" href="loginPage.html">Existing user?</a>
+                    <button class="createButton">Create</button>
                 </div>
                 <div class="horizontalBarLoginGoogle">
                     <p>more ways</p>
@@ -58,9 +59,10 @@
             </div>
         </div>
     </div>
+    <script src="scripts/singup.js"></script>
     <script src="scripts/loginWindowOpenClose.js"></script>
     <script src="scripts/showHidePassword.js"></script>
     <script src="scripts/showHideConfirmPassword.js"></script>
     <script src="scripts/darkMode.js"></script>
 </body>
-</html>
+</html>c`
