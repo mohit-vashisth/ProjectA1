@@ -1,5 +1,4 @@
 :root {
-    /* Light Mode Colors */
     --footer-height: 30px;
     --light-grey: hsl(0, 0%, 95%);
     --sliders-light-grey: rgba(0, 0, 0, 0.1);
@@ -7,7 +6,6 @@
     --ripple-grey-black: hsla(0, 0%, 0%, 0.1);
     --response-holder: hsl(0, 0%, 90%);
 
-    /* Dark Mode Colors */
     --light--opposite: hsl(0, 0%, 15%);
     --light--opposite-body: hsl(0, 0%, 25%);
     --response-holder-opposite: hsl(0, 0%, 10%);
@@ -855,6 +853,7 @@ transition: background-color .1s ease-in-out;
     justify-content: flex-start;
     align-items: center;
     position: relative;
+    user-select: none;
 }
 
 .logo3LogoNameHolder{
@@ -896,8 +895,8 @@ transition: background-color .1s ease-in-out;
 
 .shareChat{
     height: 10%;
-    border: .1vmin solid var(--ripple-grey-black);
-    border-radius: 6vmin;
+    border: .2vmin solid var(--ripple-grey-black);
+    border-radius: 1vmin;
     display: flex;
     overflow: hidden;
     justify-content: flex-start;
@@ -942,7 +941,7 @@ transition: background-color .1s ease-in-out;
 }
 
 .userLoginNow img{
-    width: 3.5vmin;
+    width: 2.5vmin;
     opacity: .6;
     user-select: none;
 }
@@ -1173,6 +1172,7 @@ transition: background-color .1s ease-in-out;
     justify-content: center;
     align-items: center;
     font-size: 1.8vmin;
+    user-select: none;
 }
 
 .websiteInfo{
@@ -1265,7 +1265,7 @@ transition: background-color .1s ease-in-out;
 .askModel_button {
     padding: 1vmin;
     border: none;
-    border-radius: 10vmin;
+    border-radius: 1vmin;
     background-color: transparent;
     cursor: pointer;
     outline: none;
@@ -1273,6 +1273,7 @@ transition: background-color .1s ease-in-out;
     display: flex;
     justify-content: center;
     align-items: center;
+    opacity: .9;
 }
 
 .askModel_button img{
