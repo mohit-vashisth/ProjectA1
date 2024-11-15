@@ -1,0 +1,29 @@
+<!-- HTML -->
+<textarea id="inputArea" rows="5" cols="40" placeholder="Enter HTML content here..."></textarea>
+<button id="sendButton">Send</button>
+
+<!-- Response container where the HTML will be displayed -->
+<div id="responseNow"></div>
+
+<script>
+  const sendButton = document.getElementById('sendButton');
+  const inputArea = document.getElementById('inputArea');
+  const responseNow = document.getElementById('responseNow');
+
+  // Function to send and display the content from inputArea
+  function sendMessage() {
+    const message = inputArea.value; // Get raw HTML from the inputArea
+    
+    // Ensure the HTML is rendered correctly
+    responseNow.innerHTML = message; // Insert the raw HTML into responseNow
+
+    // Optional: Scroll to the latest message
+    responseNow.scrollTop = responseNow.scrollHeight;
+
+    // Clear the input area
+    inputArea.value = '';
+  }
+
+  // Send button click event
+  sendButton.addEventListener('click', sendMessage);
+</script>
