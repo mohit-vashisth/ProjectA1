@@ -5,7 +5,7 @@ const darkModeOnIcon = document.querySelector('.darkModeOn');
 function toggleDarkMode() {
     const isDarkMode = document.body.classList.toggle('dark-mode');
 
-    document.querySelectorAll('.sections, .closeNowIcon, .googleLoginTemplate, .horizontalBarLoginGoogle, .userPasswordInput, .userConfirmPasswordInput, .existingUser, .loginInformationHolder, .userNameSignUp, .userEmailInput, .thumbUpHolder, .readTextHolder, .thumbDownHolder, .reGenerateHolder, .sliderHolder, .imageOfModel img, .models_ img, .slideToRightBack, .reEditUserMessageHolder, .reEditUserMessage, .websiteInfo, .microphoneHolder, .askModel_responseHolder, .askModel_response, .models_, .chatDetails, .chatMenuIcon, .chatOfUser, .userLoginNow, .darkModeOn, .shareChat, .slideBarIcon, .newChatLink img, .leftSection, .rightSection, .models_, .chatHistory')
+    document.querySelectorAll('.sections, .toolkit_websiteInfo, .closeNowIcon, .googleLoginTemplate, .horizontalBarLoginGoogle, .userPasswordInput, .userConfirmPasswordInput, .existingUser, .loginInformationHolder, .userNameSignUp, .userEmailInput, .thumbUpHolder, .readTextHolder, .thumbDownHolder, .reGenerateHolder, .sliderHolder, .imageOfModel img, .models_ img, .slideToRightBack, .reEditUserMessageHolder, .reEditUserMessage, .websiteInfo, .microphoneHolder, .askModel_responseHolder, .askModel_response, .models_, .chatDetails, .chatMenuIcon, .chatOfUser, .userLoginNow, .darkModeOn, .shareChat, .slideBarIcon, .newChatLink img, .leftSection, .rightSection, .models_, .chatHistory')
         .forEach(element => element.classList.toggle('dark-mode', isDarkMode));
 
     darkModeOffIcon.style.display = isDarkMode ? 'none' : 'block';

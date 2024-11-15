@@ -32,7 +32,6 @@ html, body {
     height: 100vh;
 }
 
-/* Light Mode (default) */
 body {
     background-color: var(--light-grey);
     color: black;
@@ -42,13 +41,13 @@ body {
     background-color: var(--mode-chatHolder-light-grey);
 }
 
-/* Dark Mode Styles */
 body.dark-mode {
     background-color: var(--light--opposite-body);
     color: white;
 }
 
-body.dark-mode .leftSection {
+body.dark-mode .leftSection,
+body.dark-mode .toolkit_websiteInfo {
     background-color: var(--light--opposite);
     color: white;
 }
@@ -76,7 +75,6 @@ body.dark-mode .reGenerateHolder {
     filter: invert(1);
 }
 
-/* Additional Dark Mode Specific Backgrounds */
 body.dark-mode .chatOfUser {
     background-color: var(--mode-chatHolder-light-grey-opposite);
 }
@@ -970,6 +968,10 @@ transition: background-color .1s ease-in-out;
     margin: 0vmin 5vmin 0vmin 5vmin;
 }
 
+.rightLowerSectionItemsHolder:last-child .modelChat_responseContainer:last-child .modelChatOptionsHolder {
+    display: flex;
+}
+
 .modelChat_responseContainer{
     width: 100%;
     display: flex;
@@ -1008,7 +1010,7 @@ transition: background-color .1s ease-in-out;
 }
 
 .imageOfModel{
-    width: 5vmin;
+    width: 4vmin;
     height: 5vmin;
     user-select: none;
     padding-right: 1vmin;
@@ -1070,7 +1072,7 @@ transition: background-color .1s ease-in-out;
 
 .chatOfUser{
     display: flex;
-    border-radius: 2vmin;
+    border-radius: 1vmin;
     background-color: var(--mode-chatHolder-light-grey);
     padding: 1vmin;
     align-items: flex-start;
@@ -1087,7 +1089,7 @@ transition: background-color .1s ease-in-out;
 }
 
 .modelChatOptionsHolder{
-    width: 20%;
+    width: 10vmin;
     height: 100%;
     display: flex;
     justify-content: flex-start;
@@ -1175,24 +1177,62 @@ transition: background-color .1s ease-in-out;
     user-select: none;
 }
 
-.websiteInfo{
-    width: 2%;
-    height: 100%;
+.websiteInfo {
+    position: fixed;
+    bottom: .1vmin;
+    right: .1vmin;
     display: flex;
-    justify-content: flex-end;
+    flex-direction: column;
+    justify-content: center;
     align-items: center;
+    z-index: 999;
 }
-.websiteInfo img{
+
+.websiteInfo img {
     width: 3vmin;
     margin: .5vmin;
     opacity: .7;
     cursor: pointer;
     user-select: none;
 }
-.websiteInfo img:hover{
+
+.websiteInfo img:hover {
     opacity: 1;
     transition: opacity .1s ease-out;
 }
+
+.toolkit_websiteInfo {
+    position: absolute;
+    bottom: 100%;
+    right: 0;
+    width: 25vmin;
+    padding: 1vmin;
+    background-color: var(--mode-chatHolder-light-grey);
+    color: black;
+    font-weight: bolder;
+    border-radius: 5px;
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transition: opacity 0.1s ease, visibility 0.1s ease;
+}
+
+.toolkit_websiteInfo ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+.toolkit_websiteInfo li {
+    margin-bottom: 1.5vmin;
+}
+
+.websiteInfo:hover .toolkit_websiteInfo {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+}
+
 
 .microphoneHolder {
     position: absolute;
@@ -1208,8 +1248,12 @@ transition: background-color .1s ease-in-out;
 }
 
 .microphoneHolder img{
-    width: 4vmin;
+    width: 3vmin;
     user-select: none;
+    opacity: .6;
+}
+.microphoneHolder:hover>img{
+    opacity: 1;
 }
 
 .askModel_responseHolderContainer{
@@ -1263,21 +1307,23 @@ transition: background-color .1s ease-in-out;
 }
 
 .askModel_button {
+    width: 5vmin;
+    height: 5vmin;
     padding: 1vmin;
     border: none;
     border-radius: 1vmin;
-    background-color: transparent;
-    cursor: pointer;
+    cursor: not-allowed;
     outline: none;
     background-color: var(--light-grey);
     display: flex;
     justify-content: center;
     align-items: center;
-    opacity: .9;
+    opacity: .5;
 }
 
 .askModel_button img{
-    width: 4vmin;
-    height: 4vmin;
+    margin-top: .5vmin;
+    width: 2vmin;
+    height: 2vmin;
     user-select: none;
 }
