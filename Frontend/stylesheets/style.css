@@ -65,6 +65,7 @@ body.dark-mode .imageOfModel img,
 body.dark-mode .models_ img,
 body.dark-mode .thumbUpHolder,
 body.dark-mode .readTextHolder,
+body.dark-mode .filter1,
 body.dark-mode .thumbDownHolder,
 body.dark-mode .existingUser,
 body.dark-mode .closeNowIcon,
@@ -74,12 +75,6 @@ body.dark-mode .reGenerateHolder {
     filter: invert(1);
 }
 
-body.dark-mode .releaseNotesULLI>span{
- color: white;
-}
-body.dark-mode .releaseNotesULLI_Version>span{
- color: white;
-}
 body.dark-mode .chatOfUser {
     background-color: var(--mode-chatHolder-light-grey-opposite);
 }
@@ -89,16 +84,7 @@ body.dark-mode .slideToRightBack{
 }
 
 body.dark-mode .chatMenuOptions {
-    background-color: black;
-    color: white;
-    box-shadow: 0 0 .5vmin .2vmin rgba(255, 255, 255, 0.2);
-}
-body.dark-mode .toolkit_websiteInfo {
-    background-color: var(--light-grey);
-    box-shadow: 0 0 .5vmin .2vmin rgba(255, 255, 255, 0.2);
-}
-body.dark-mode .filter1 {
-    color: white;
+    background-color: rgba(83, 83, 83);
 }
 
 body.dark-mode .chatHistory:hover,
@@ -114,12 +100,6 @@ body.dark-mode .askModel_response {
 
 body.dark-mode .askModel_response {
     color: white;
-}
-body.dark-mode .renameChat:hover {
-    background-color: var(--sliders-light-grey-opposite);
-}
-body.dark-mode .deleteChat:hover {
-    background-color: var(--sliders-light-grey-opposite);
 }
 
 body.dark-mode .models_.dark-mode:hover{
@@ -706,8 +686,8 @@ transition: background-color .1s ease-in-out;
   
 .chatMenuOptions {
     position: fixed;
-    background-color: white;
-    box-shadow: 0 0 .5vmin .2vmin rgba(0, 0, 0, 0.2);
+    background-color: hsl(0, 0%, 95%);
+    box-shadow: 0 1.2vmin 2vmin -.2vmin rgba(0, 0, 0, .1), 0 .5vmin .7vmin -.5vmin rgba(0, 0, 0, .1);
     width: 15vmin;
     height: 10vmin;
     padding: .2vmin;
@@ -717,13 +697,25 @@ transition: background-color .1s ease-in-out;
     visibility: hidden;
     opacity: 0;
     transition: opacity 0.2s ease;
-    z-index: 10;
+    overflow: hidden;
+    z-index: 1000;
+}
+
+.chatMenuOptionItemsHolder{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    text-decoration: none;
+    list-style: none;
+    cursor: pointer;
 }
 
 .chatMenuOptions img {
-    width: 20px;
-    height: 20px;
-    cursor: pointer;
+    width: 3vmin;
+    height: 3vmin;
 }
 
 .hideChatMenu {
@@ -741,18 +733,20 @@ transition: background-color .1s ease-in-out;
     display: flex;
     font-size: 2vmin;
     border-radius: .5vmin;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
     font-weight: bold;
-    gap: .5vmin;
-    cursor: pointer;
-    color: hsla(156, 100%, 60%, 0.8);
+    gap: 1vmin;
+    user-select: none;
 }
-.renameChat:hover{
-    background-color: var(--sliders-light-grey);
-}
+
 .renameChat img{
     width: 2.5vmin;
+    margin-left: 1vmin;
+}
+
+.renameChat:hover{
+    background-color: var(--sliders-light-grey);
 }
 
 .deleteChat{
@@ -761,19 +755,20 @@ transition: background-color .1s ease-in-out;
     display: flex;
     font-size: 2vmin;
     border-radius: .5vmin;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
     font-weight: bold;
-    gap: .5vmin;
-    cursor: pointer;
-    color: hsla(0, 100%, 60%, 0.8);
+    gap: 1vmin;
+    user-select: none;
 }
-.deleteChat:hover{
-    background-color: var(--sliders-light-grey);
 
-}
 .deleteChat img{
     width: 2.5vmin;
+    margin-left: 1vmin;
+}
+
+.deleteChat:hover{
+    background-color: var(--sliders-light-grey);
 }
 
 
@@ -1059,33 +1054,6 @@ transition: background-color .1s ease-in-out;
     justify-content: flex-start;
 }
 
-.reEditUserMessage{
-    width: 2vmin;
-    left: 28vmin;
-    top: 1vmin;
-    cursor: pointer;
-}
-
-.reEditUserMessageHolder{
-    width: 4vmin;
-    height: 4vmin;
-    left: 26vmin;
-    border-radius: 10vmin;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    cursor: pointer;
-    position: absolute;
-    user-select: none;
-    display: none;
-}
-
-.reEditUserMessageHolder:hover{
-    background-color: rgba(0, 0, 0, 0.1);
-    transition: background-color .2s ease;
-
-}
-
 .userChatMainImageHolder{
     margin: 1vmin;
     display: flex;
@@ -1221,14 +1189,88 @@ transition: background-color .1s ease-in-out;
 }
 
 .websiteInfo {
-    position: fixed;
-    bottom: 1vmin;
-    right: 1vmin;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+}
+.aboutWebsite_toolkitHolder {
+    position: relative;
+    display: flex;
+    margin-bottom: .5vmin;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
     z-index: 999;
+}
+
+.aboutWebsiteToolKitContainer{
+    width: 25vmin;
+    height: 20vmin;
+    position: absolute;
+    top: -20vmin;
+    left: -23vmin;
+    border-radius: 1vmin;
+    box-shadow: 0 1.2vmin 2vmin -.2vmin rgba(0, 0, 0, .1), 0 .5vmin .7vmin -.5vmin rgba(0, 0, 0, .1);
+    background-color: var(--sliders-light-grey-opposite);
+    visibility: hidden;
+    opacity: 0;
+    transition: visibility .1s ease, opacity .1s ease;
+
+}
+
+.activeWebsiteInfo{
+    visibility: visible;
+    opacity: 1;
+    transition: visibility .1s ease, opacity .1s ease;
+}
+
+.websiteInfoUL{
+    width: 100%;
+    height: 100%;
+    text-decoration: none;
+    list-style: none;
+    font-weight: 600;
+    font-size: 2vmin;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-direction: column;
+}
+.websiteInfoUL>li{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+.websiteInfoImgHolder{
+    cursor: pointer;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    user-select: none;
+    gap: 1vmin;
+    border-radius: 1vmin;
+}
+.websiteInfoImgHolder:hover{
+    background-color: var(--sliders-light-grey);
+}
+.websiteInfoVersion{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: flex-start;
+    margin-left: 4.5vmin;
+    align-items: center;
+    user-select: none;
+    gap: 1vmin;
+}
+
+.filter1{
+    margin-left: 1vmin;
 }
 
 .websiteInfo img {
@@ -1242,38 +1284,6 @@ transition: background-color .1s ease-in-out;
 
 .websiteInfo img:hover {
     opacity: 1;
-}
-
-.toolkit_websiteInfo {
-    position: absolute;
-    bottom: 110%;
-    right: 0;
-    width: 25vmin;
-    padding: 1vmin;
-    background-color: var(--response-holder);
-    font-weight: bold;
-    border-radius: 5px;
-    opacity: 0;
-    visibility: hidden;
-    pointer-events: none;
-    transition: opacity 0.2s ease, visibility 0.2s ease;
-    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
-}
-
-
-.releaseNotesULLI, .releaseNotesULLI_Version {
-    font-size: 2vmin;
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
-    text-wrap: nowrap;
-    margin-left: 1vmin;
-}
-
-.websiteInfo:hover .toolkit_websiteInfo {
-    opacity: 1;
-    visibility: visible;
-    pointer-events: auto;
 }
 
 .microphoneHolder {

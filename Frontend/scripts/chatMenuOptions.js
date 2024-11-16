@@ -5,10 +5,18 @@ chatMenuOptions.classList.add('hideChatMenu');
 chatMenuOptions.style.visibility = 'hidden';
 chatMenuOptions.style.opacity = '0';
 
+function convertPxToVmin(pxValue) {
+    const vmin = Math.min(window.innerWidth, window.innerHeight);
+    return (pxValue / vmin) * 100; 
+}
+
 function showChatMenu(event) {
     chatMenuOptions.classList.remove('hideChatMenu');
-    chatMenuOptions.style.left = `${event.clientX}px`;
-    chatMenuOptions.style.top = `${event.clientY + 20}px`;
+    const leftInVmin = convertPxToVmin(event.clientX);
+    const topInVmin = convertPxToVmin(event.clientY + 20);
+    
+    chatMenuOptions.style.left = `${leftInVmin}vmin`;
+    chatMenuOptions.style.top = `${topInVmin}vmin`;
     chatMenuOptions.style.visibility = 'visible';
     chatMenuOptions.style.opacity = '1';
 }

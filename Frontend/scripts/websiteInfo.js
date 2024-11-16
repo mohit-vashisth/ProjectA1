@@ -1,6 +1,15 @@
-document.querySelector('.websiteInfo').addEventListener('mouseenter', () => {
-  const toolkit = document.querySelector('.toolkit_websiteInfo');
-  // toolkit.querySelector('li:nth-child(1)').textContent = "Release Notes: v1.0";
-  // toolkit.querySelector('li:nth-child(2)').textContent = "Credits: John Doe";
-  // toolkit.querySelector('li:nth-child(3)').textContent = "Version: 1.0.0";
+const websiteHolderIcon = document.querySelector('.aboutWebsite_toolkitHolder');
+const websiteInfoDisplayPopup = document.querySelector('.aboutWebsiteToolKitContainer');
+
+websiteHolderIcon.addEventListener('click', function (event) {
+  event.stopPropagation();
+  websiteInfoDisplayPopup.classList.toggle('activeWebsiteInfo');
+});
+
+document.addEventListener('click', function () {
+  websiteInfoDisplayPopup.classList.remove('activeWebsiteInfo');
+});
+
+websiteInfoDisplayPopup.addEventListener('click', function (event) {
+  event.stopPropagation();
 });
