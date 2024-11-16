@@ -46,8 +46,7 @@ body.dark-mode {
     color: white;
 }
 
-body.dark-mode .leftSection,
-body.dark-mode .toolkit_websiteInfo {
+body.dark-mode .leftSection{
     background-color: var(--light--opposite);
     color: white;
 }
@@ -75,6 +74,12 @@ body.dark-mode .reGenerateHolder {
     filter: invert(1);
 }
 
+body.dark-mode .releaseNotesULLI>span{
+ color: white;
+}
+body.dark-mode .releaseNotesULLI_Version>span{
+ color: white;
+}
 body.dark-mode .chatOfUser {
     background-color: var(--mode-chatHolder-light-grey-opposite);
 }
@@ -87,6 +92,13 @@ body.dark-mode .chatMenuOptions {
     background-color: black;
     color: white;
     box-shadow: 0 0 .5vmin .2vmin rgba(255, 255, 255, 0.2);
+}
+body.dark-mode .toolkit_websiteInfo {
+    background-color: var(--light-grey);
+    box-shadow: 0 0 .5vmin .2vmin rgba(255, 255, 255, 0.2);
+}
+body.dark-mode .filter1 {
+    color: white;
 }
 
 body.dark-mode .chatHistory:hover,
@@ -852,7 +864,6 @@ transition: background-color .1s ease-in-out;
 
 .sliderHolder img{
     width: 6vmin;
-    cursor: pointer;
     user-select: none;
     padding: 1vmin;
 }
@@ -1211,8 +1222,8 @@ transition: background-color .1s ease-in-out;
 
 .websiteInfo {
     position: fixed;
-    bottom: .1vmin;
-    right: .1vmin;
+    bottom: 1vmin;
+    right: 1vmin;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -1222,41 +1233,41 @@ transition: background-color .1s ease-in-out;
 
 .websiteInfo img {
     width: 3vmin;
-    margin: .5vmin;
-    opacity: .7;
+    margin: 0.5vmin;
+    opacity: 0.7;
     cursor: pointer;
     user-select: none;
+    transition: opacity 0.2s ease-out;
 }
 
 .websiteInfo img:hover {
     opacity: 1;
-    transition: opacity .1s ease-out;
 }
 
 .toolkit_websiteInfo {
     position: absolute;
-    bottom: 100%;
+    bottom: 110%;
     right: 0;
     width: 25vmin;
     padding: 1vmin;
-    background-color: var(--mode-chatHolder-light-grey);
-    color: black;
-    font-weight: bolder;
+    background-color: var(--response-holder);
+    font-weight: bold;
     border-radius: 5px;
     opacity: 0;
     visibility: hidden;
     pointer-events: none;
-    transition: opacity 0.1s ease, visibility 0.1s ease;
+    transition: opacity 0.2s ease, visibility 0.2s ease;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
 }
 
-.toolkit_websiteInfo ul {
-    list-style-type: none;
-    padding: 0;
-    margin: 0;
-}
 
-.toolkit_websiteInfo li {
-    margin-bottom: 1.5vmin;
+.releaseNotesULLI, .releaseNotesULLI_Version {
+    font-size: 2vmin;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    text-wrap: nowrap;
+    margin-left: 1vmin;
 }
 
 .websiteInfo:hover .toolkit_websiteInfo {
@@ -1264,7 +1275,6 @@ transition: background-color .1s ease-in-out;
     visibility: visible;
     pointer-events: auto;
 }
-
 
 .microphoneHolder {
     position: absolute;
@@ -1320,6 +1330,7 @@ transition: background-color .1s ease-in-out;
 
 .askModel_response{
     width: 100%;
+    height: 7vmin;
     max-height: 25vmin;
     border: none;
     outline: none;
