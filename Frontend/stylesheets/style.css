@@ -876,11 +876,13 @@ transition: background-color .1s ease-in-out;
 }
 
 .websiteLogo{
+    width: 25vmin;
     display: flex;
     justify-content: flex-start;
     align-items: center;
     position: relative;
     user-select: none;
+    overflow: hidden;
 }
 
 .logo3LogoNameHolder{
@@ -889,10 +891,39 @@ transition: background-color .1s ease-in-out;
     flex-direction: column;
 }
 
+.taglineWebsiteMainTextHolder{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+}
+
 .logo3Website{
     position: absolute;
     transform: translateY(.1vmin);
     font-size: 4vmin;
+}
+
+.textContainer{
+    position: relative;
+    width: 100%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    overflow: hidden;
+    transform: translateY(-1vmin);
+}
+
+.cursor {
+    font-size: 1.5vmin;
+    margin-left: 2px;
+    animation: blink-cursor 0.8s step-end infinite;
+}
+
+@keyframes blink-cursor {
+    50% {
+        opacity: 0;
+    }
 }
 
 .logoNameWebsite{
@@ -901,9 +932,9 @@ transition: background-color .1s ease-in-out;
 }
 
 .websiteTagLine{
+    display: inline-block;
     font-size: 1.5vmin;
     margin-left: 2.1vmin;
-    transform: translateY(-1vmin);
     text-wrap: nowrap;
 }
 
