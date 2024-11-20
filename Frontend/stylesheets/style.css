@@ -14,6 +14,28 @@
     --mode-chatHolder-light-grey-opposite: hsl(0, 0%, 35%);
 }
 
+/* Ensure custom scrollbars */
+
+/* Custom Scrollbar Styles for WebKit Browsers (e.g., Brave, Chrome) */
+::-webkit-scrollbar {
+    width: 6px; /* Enforces thin scrollbar width */
+    height: 6px; /* For horizontal scrollbars */
+}
+
+::-webkit-scrollbar-thumb {
+    background: hsla(0, 0%, 100%, 0.4); /* Color of the scrollbar thumb */
+    border-radius: 3px; /* Rounded edges */
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #888; /* Lighter gray on hover */
+}
+
+::-webkit-scrollbar-track {
+    background: hsl(0, 0%, 25%); /* Scrollbar track background */
+}
+
+
 * {
     padding: 0;
     margin: 0;
