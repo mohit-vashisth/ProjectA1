@@ -20,13 +20,13 @@
 }
 
 ::-webkit-scrollbar {
-  width: 6px;
-  height: 6px;
+  width: 1vmin;
+  height: 1vmin;
 }
 
 ::-webkit-scrollbar-thumb {
   background: hsla(0, 0%, 100%, 0.4);
-  border-radius: 3px;
+  border-radius: .3vmin;
 }
 
 ::-webkit-scrollbar-thumb:hover {

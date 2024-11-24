@@ -417,6 +417,7 @@ body.dark-mode .shareChat:hover{
     height: 8%;
     display: flex;
     align-items: center;
+    overflow: hidden;
     position: relative;
     top: 0;
 }
@@ -623,8 +624,6 @@ body.dark-mode .shareChat:hover{
     display: flex;
     flex-direction: column;
     margin: 0vmin 5vmin 0vmin 5vmin;
-    overflow-x: hidden;
-    overflow-y: auto;
 }
 
 .rightLowerSectionItemsHolder:last-child .modelChat_responseContainer:last-child .modelChatOptionsHolder {
@@ -636,13 +635,32 @@ body.dark-mode .shareChat:hover{
     display: flex;
     flex-direction: column;
     font-size: 20px;
-    word-break: break-word;
+    opacity: 0;
+    animation: appear 0.5s forwards;
 }
 .userChat_responseContainer{
     width: 100%;
     display: flex;
     flex-direction: column;
     font-size: 20px;
+    opacity: 0;
+    animation: appear 0.5s forwards;
+}
+
+@keyframes appear {
+    0% {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.modelChat_responseNow{
+    width: 100%;
+    height: 100%;
     word-break: break-word;
 }
 
@@ -683,7 +701,7 @@ body.dark-mode .shareChat:hover{
     align-items: flex-start;
     flex-direction: column;
     justify-content: flex-start;
-    animation: appear 0.5s forwards;
+    overflow-wrap: break-word;
 }
 
 .userChatMainImageHolder{
@@ -712,19 +730,6 @@ body.dark-mode .shareChat:hover{
     justify-content: flex-start;
     word-wrap: break-word;
     overflow-wrap: break-word;
-    opacity: 0;
-    animation: appear 0.5s forwards;
-}
-
-@keyframes appear {
-    0% {
-        opacity: 0;
-        transform: translateY(10px);
-    }
-    100% {
-        opacity: 1;
-        transform: translateY(0);
-    }
 }
 
 .responseNow {

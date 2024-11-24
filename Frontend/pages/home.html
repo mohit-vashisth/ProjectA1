@@ -4,14 +4,20 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description"
-        content="ProjectA1 - Convert spoken language into real-time text and translate it for pronunciation in another language." />
-        <link rel="stylesheet" href="/Frontend/stylesheets/utils.css" />
-    <link rel="stylesheet" href="/Frontend/stylesheets/home.css" />
+    <meta name="description" content="ProjectA1 - Convert spoken language into real-time text and translate it for pronunciation in another language." />
+    <meta name="keywords" content="real-time translation, voice-to-text, ProjectA1, AI chatbot" />
+    <meta name="author" content="3R Minds" />
+    <meta name="robots" content="index, follow" />
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; font-src 'self';">
+    <link rel="preload" href="/Frontend/stylesheets/utils.min.css" as="style" />
+    <link rel="preload" href="/Frontend/images/svgs/slidebarLeft.svg" as="image" />
+    <link rel="preload" href="/Frontend/scripts/darkMode.min.js" as="script" />
+    <link rel="stylesheet" href="/Frontend/stylesheets/utils.min.css" />
+    <link rel="stylesheet" href="/Frontend/stylesheets/home.min.css" />
     <title>ProjectA1: By 3R Minds</title>
 </head>
 <body class="dark-mode">
-    <div class="sections">
+    <div class="sections" role="main">
         <div class="leftRIghtContainer">
             <div class="leftSection">
                 <div class="slideBarNewChatHolder">
@@ -73,7 +79,7 @@
             <div class="rightSection">
                 <div class="rightSectionItemsHolder">
                     <div class="rightUpperLowerSectionItemsContainer">
-                        <div class="upperRightSectionItemsHolder">
+                        <div class="upperRightSectionItemsHolder" role="navigation">
                             <div class="websiteLogoNightModeHolder">
                                 <div class="sliderHolder">
                                     <img class="slideToRightBack" src="/Frontend/images/svgs/slidebarRight.svg" title="Slide" alt="slide bar">
@@ -123,7 +129,7 @@
                                                 <img src="/Frontend/images/svgs/voiceClone.svg" alt="model logo" />
                                             </div>
                                             <div class="chatOfModel">
-                                                <span class="modelChat_responseNow">modelChatMainImageHoldermodelChatMainImageHoldermodelChatMainImageHoldermodelChatMainImageHoldermodelChatMainImageHoldermodelChatMainImageHoldermodelChatMainImageHoldermodelChatMainImageHoldermodelChatMainImageHoldermodelChatMainImageHoldermodelChatMainImageHoldermodelChatMainImageHoldermodelChatMainImageHoldermodelChatMainImageHoldermodelChatMainImageHoldermodelChatMainImageHoldermodelChatMainImageHoldermodelChatMainImageHoldermodelChatMainImageHoldermodelChatMainImageHoldermodelChatMainImageHoldermodelChatMainImageHoldermodelChatMainImageHoldermodelChatMainImageHoldermodelChatMainImageHoldermodelChatMainImageHoldermodelChatMainImageHoldermodelChatMainImageHoldermodelChatMainImageHoldermodelChatMainImageHoldermodelChatMainImageHoldermodelChatMainImageHoldermodelChatMainImageHoldermodelChatMainImageHoldermodelChatMainImageHoldermodelChatMainImageHoldermodelChatMainImageHoldermodelChatMainImageHoldermodelChatMainImageHoldermodelChatMainImageHoldermodelChatMainImageHoldermodelChatMainImageHoldermodelChatMainImageHoldermodelChatMainImageHoldermodelChatMainImageHoldermodelChatMainImageHoldermodelChatMainImageHoldermodelChatMainImageHoldermodelChatMainImageHoldermodelChatMainImageHoldermodelChatMainImageHoldermodelChatMainImageHolder</span>
+                                                <span class="modelChat_responseNow"></span>
                                                 <div class="modelChatRegenerateLikeDislikeHolder">
                                                     <div class="modelChatOptionsHolder">
                                                         <div class="readTextHolder">
@@ -164,7 +170,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="modelNotice_websiteInfo_infoContainer">
+                        <div class="modelNotice_websiteInfo_infoContainer" role="contentinfo">
                             <div class="modelNotice">
                                 This is an experimental project, Project A1; it is important to note that, like humans, it may also produce errors.
                             </div>
@@ -206,13 +212,13 @@
             </div>
         </div>
     </div>
-    <script src="/Frontend/scripts/darkMode.js"></script>
-    <!-- <script src="/Frontend/scripts/disableDeveloperTools.js"></script> -->
-    <script src="/Frontend/scripts/screenSlider.js"></script>
-    <script src="/Frontend/scripts/chatMenuOptions.js"></script>
-    <script src="/Frontend/scripts/getInputTextForModel.js"></script>
-    <script src="/Frontend/scripts/websiteInfo.js"></script>
-    <script src="/Frontend/scripts/dragIconsSvg.js"></script>
-    <!-- <script src="/Frontend/scripts/randomLink.js"></script> -->
+    <script src="/Frontend/scripts/darkMode.min.js" defer></script>
+    <!-- <script src="/Frontend/scripts/disableDeveloperTools.min.js" defer></script> -->
+    <script src="/Frontend/scripts/dragIconsSvg.min.js" defer></script>
+    <script src="/Frontend/scripts/screenSlider.min.js" defer></script>
+    <script src="/Frontend/scripts/chatMenuOptions.min.js" defer></script>
+    <script src="/Frontend/scripts/getInputTextForModel.min.js" defer></script>
+    <script src="/Frontend/scripts/websiteInfo.min.js" defer></script>
+    <script src="/Frontend/scripts/randomLink.min.js" defer></script>
 </body>
 </html>
