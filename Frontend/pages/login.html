@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="stylesheets/style.css">
+    <link rel="stylesheet" href="/Frontend/stylesheets/utils.css">
+    <link rel="stylesheet" href="/Frontend/stylesheets/login.css">
     <title>ProjectA1: by 3R Minds</title>
 </head>
 <body class="dark-mode">
@@ -14,7 +15,7 @@
                     <p>Login</p>
                 </div>
                 <div class="closeWindow">
-                    <img class="closeNowIcon" src="images/svgs/cross.svg" alt="" width="10px">
+                    <img class="closeNowIcon" src="/Frontend/images/svgs/cross.svg" alt="" width="10px">
                 </div>
             </div>
             <div class="emailPasswordContainer">
@@ -26,15 +27,15 @@
                         <input class="userPasswordInput" id="userPasswordInputID" type="password" placeholder="Password">
                         <div class="passwordShowHideAutoHolder">
                             <div class="showHidePassworContainer">
-                                <img class="ShowPassword" src="images/svgs/showpassword.svg" title="Show" alt="show password">
-                                <img class="passwordHideAuto" src="images/svgs/hidepassword.svg" title="Hide" alt="hide password">
+                                <img class="ShowPassword" src="/Frontend/images/svgs/showpassword.svg" title="Show" alt="show password">
+                                <img class="passwordHideAuto" src="/Frontend/images/svgs/hidepassword.svg" title="Hide" alt="hide password">
                             </div>
                         </div>
                     </div>
                 </div>
                 <p id="errorMessageLogin"></p>
-                <div class="loginRegisterButtonHolder">
-                    <button class="createButton">Login</button>
+                <div class="loginButtonHolder">
+                    <button class="loginButton">Login</button>
                 </div>
                 <div class="horizontalBarLoginGoogle">
                     <p>more ways</p>
@@ -42,16 +43,17 @@
             </div>
             <div class="googleLoginSystem">
                 <div class="googleIconButtonHolder">
-                    <img src="images/svgs/googleLogin.svg" alt="google icon">
+                    <img src="/Frontend/images/svgs/googleLogin.svg" alt="google icon">
                     <p class="googleLoginTemplate">Login with Google</p>
                 </div>
             </div>
         </div>
     </div>
-    <script src="scripts/singup.js"></script>
-    <script src="scripts/loginWindowOpenClose.js"></script>
-    <script src="scripts/showHidePassword.js"></script>
-    <script src="scripts/showHideConfirmPassword.js"></script>
-    <script src="scripts/darkMode.js"></script>
+    <script src="/Frontend/scripts/singup.js"></script>
+    <script src="/Frontend/scripts/loginWindowOpenClose.js"></script>
+    <script src="/Frontend/scripts/showHidePassword.js"></script>
+    <script src="/Frontend/scripts/showHideConfirmPassword.js"></script>
+    <script src="/Frontend/scripts/darkMode.js"></script>
+    <script src="/Frontend/scripts/disableDeveloperTools.js"></script>
 </body>
 </html>
