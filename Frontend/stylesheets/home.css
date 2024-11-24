@@ -41,7 +41,6 @@ body.dark-mode .chatMenuOptions {
 }
 
 body.dark-mode .chatHistory:hover,
-body.dark-mode .reEditUserMessageHolder:hover,
 body.dark-mode .models_ .dark-mode:hover {
     background-color: var(--sliders-light-grey-opposite);
 }
@@ -624,6 +623,8 @@ body.dark-mode .shareChat:hover{
     display: flex;
     flex-direction: column;
     margin: 0vmin 5vmin 0vmin 5vmin;
+    overflow-x: hidden;
+    overflow-y: auto;
 }
 
 .rightLowerSectionItemsHolder:last-child .modelChat_responseContainer:last-child .modelChatOptionsHolder {
@@ -634,11 +635,15 @@ body.dark-mode .shareChat:hover{
     width: 100%;
     display: flex;
     flex-direction: column;
+    font-size: 20px;
+    word-break: break-word;
 }
 .userChat_responseContainer{
     width: 100%;
     display: flex;
     flex-direction: column;
+    font-size: 20px;
+    word-break: break-word;
 }
 
 .modelChat_Holder{
@@ -656,9 +661,6 @@ body.dark-mode .shareChat:hover{
     gap: 3vmin;
 }
 
-.userChat_Holder:hover .reEditUserMessageHolder{
-    display: flex;
-}
 .modelChatMainImageHolder{
     margin: 1vmin;
     display: flex;
@@ -724,14 +726,6 @@ body.dark-mode .shareChat:hover{
         transform: translateY(0);
     }
 }
-
-.chatOfUser:nth-child(1) {
-    animation-delay: 0.2s;
-}
-.chatOfUser:nth-child(2) {
-    animation-delay: 0.4s;
-}
-
 
 .responseNow {
     display: block;
