@@ -8,7 +8,6 @@ body.dark-mode .leftSection{
 }
 
 body.dark-mode .slideBarIcon,
-body.dark-mode .newChatLink img,
 body.dark-mode .darkModeOn,
 body.dark-mode .shareChat,
 body.dark-mode .userLoginNow,
@@ -107,7 +106,7 @@ body.dark-mode .shareChat:hover{
     width: 100%;
     display: flex;
     height: 7vmin;
-    justify-content: space-between;
+    justify-content: flex-start;
     align-items: center;
 }
 
@@ -130,30 +129,6 @@ body.dark-mode .shareChat:hover{
     background-color: var(--sliders-light-grey);
 }
 
-.newChat{
-    display: flex;
-    align-items: center;
-}
-.newChatLink{
-    width: 8vmin;
-    height: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-.newChat img{
-    width: 5vmin;
-    cursor: pointer;
-    user-select: none;
-    pointer-events: auto;
-    padding: 1vmin;
-    border-radius: 1.5vmin;
-}
-
-.newChat img:hover{
-    background-color: var(--sliders-light-grey);
-}
-
 .breakBarHorizontal{
     position: absolute;
     width: 18%;
@@ -162,7 +137,7 @@ body.dark-mode .shareChat:hover{
     top: 8vmin;
 }
 
-.modelsChatHolder{
+.chatItemsContainerNew{
     width: 100%;
     height: 100vh;
     max-height: 2000vmin;
@@ -170,50 +145,31 @@ body.dark-mode .shareChat:hover{
     box-sizing: border-box;
 }
 
-
-.modelsContainer {
+.newChatButtonContainer{
     width: 100%;
-    max-height: 25vmin;
-    overflow-x: hidden;
-    overflow-y: auto;
-    padding: .5vmin;
-    box-sizing: border-box;
     display: flex;
-    flex-direction: column;
-    gap: 1vmin;
-}
-
-.models_ {
-    display: flex;
-    justify-content: flex-start;
+    justify-content: center;
     align-items: center;
-    border-radius: 1vmin;
-    font-weight: bold;
-    height: 4vmin;
-    font-size: 2vmin;
-    cursor: pointer;
-    position: relative;
-    user-select: none;
-    text-wrap: nowrap;
-    overflow: hidden;
+    margin-bottom: 2vmin;
 }
-
-.models_:hover{
-    background-color: var(--ripple-grey-black);
-}
-
-.models_ img{
-    width: 3vmin;
-    height: 2vmin;
-    min-width: 3vmin;
-    border-radius: 5vmin;
-}
-
-.horizontalBar{
+.newChatButtonLeftSection{
     width: 100%;
-    height: .1vmax;
-    background-color: var(--ripple-grey-black);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: hsl(0, 0%, 97%);
+    font-size: 2.5vmin;
+    font-weight: 600;
+    padding: 1vmin;
+    border-radius: 1vmin;
+    cursor: pointer;
+    text-decoration: none;
+    color: black;
+}
 
+.newChatButtonLeftSection:hover{
+    background-color: hsl(0, 0%, 100%);
+    transition: background-color .1s step-start;
 }
 
 .chatContainer{
