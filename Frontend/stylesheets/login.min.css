@@ -1,4 +1,5 @@
-body.dark-mode .closeNowIcon{
+body.dark-mode .closeNowIcon,
+body.dark-mode .googleLoginTemplate{
   filter: invert(1);
 }
 
