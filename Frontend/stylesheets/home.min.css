@@ -1,71 +1,5 @@
-:root {
-    --footer-height: 30px;
-    --light-grey: hsl(0, 0%, 95%);
-    --sliders-light-grey: rgba(0, 0, 0, 0.1);
-    --mode-chatHolder-light-grey: hsl(0, 0%, 90%);
-    --ripple-grey-black: hsla(0, 0%, 0%, 0.1);
-    --response-holder: hsl(0, 0%, 90%);
-
-    --light--opposite: hsl(0, 0%, 15%);
-    --light--opposite-body: hsl(0, 0%, 25%);
-    --response-holder-opposite: hsl(0, 0%, 10%);
-    --ripple-grey-black-opposite: hsla(0, 0%, 100%, 0.1);
-    --sliders-light-grey-opposite: rgba(255, 255, 255, 0.1);
-    --mode-chatHolder-light-grey-opposite: hsl(0, 0%, 35%);
-}
-
-/* Ensure custom scrollbars */
-
-/* Custom Scrollbar Styles for WebKit Browsers (e.g., Brave, Chrome) */
-::-webkit-scrollbar {
-    width: 6px; /* Enforces thin scrollbar width */
-    height: 6px; /* For horizontal scrollbars */
-}
-
-::-webkit-scrollbar-thumb {
-    background: hsla(0, 0%, 100%, 0.4); /* Color of the scrollbar thumb */
-    border-radius: 3px; /* Rounded edges */
-}
-
-::-webkit-scrollbar-thumb:hover {
-    background: #888; /* Lighter gray on hover */
-}
-
-::-webkit-scrollbar-track {
-    background: hsl(0, 0%, 25%); /* Scrollbar track background */
-}
-
-
-* {
-    padding: 0;
-    margin: 0;
-    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-    box-sizing: border-box;
-}
-
-*,
-*::before,
-*::after {
-    box-sizing: border-box;
-}
-
-html, body {
-    width: 100vw;
-    height: 100vh;
-}
-
-body {
-    background-color: var(--light-grey);
-    color: black;
-}
-
 .leftSection {
     background-color: var(--mode-chatHolder-light-grey);
-}
-
-body.dark-mode {
-    background-color: var(--light--opposite-body);
-    color: white;
 }
 
 body.dark-mode .leftSection{
@@ -89,10 +23,7 @@ body.dark-mode .thumbUpHolder,
 body.dark-mode .readTextHolder,
 body.dark-mode .filter1,
 body.dark-mode .thumbDownHolder,
-body.dark-mode .existingUser,
-body.dark-mode .closeNowIcon,
 body.dark-mode .horizontalBar,
-body.dark-mode .googleLoginTemplate,
 body.dark-mode .reGenerateHolder {
     filter: invert(1);
 }
@@ -110,7 +41,6 @@ body.dark-mode .chatMenuOptions {
 }
 
 body.dark-mode .chatHistory:hover,
-body.dark-mode .reEditUserMessageHolder:hover,
 body.dark-mode .models_ .dark-mode:hover {
     background-color: var(--sliders-light-grey-opposite);
 }
@@ -136,29 +66,6 @@ body.dark-mode .shareChat:hover{
     background-color: var(--sliders-light-grey);
 }
 
-body.dark-mode .loginInformationHolder{
-    background-color: var(--light--opposite-body);
-}
-body.dark-mode .userNameSignUp{
-    background-color: var(--mode-chatHolder-light-grey);
-}
-body.dark-mode .userEmailInput{
-    background-color: var(--mode-chatHolder-light-grey);
-}
-body.dark-mode .userPasswordInput{
-    background-color: var(--mode-chatHolder-light-grey);
-}
-body.dark-mode .userConfirmPasswordInput{
-    background-color: var(--mode-chatHolder-light-grey);
-}
-body.dark-mode .horizontalBarLoginGoogle{
-    background-color: var(--mode-chatHolder-light-grey);
-}
-
-body.dark-mode .horizontalBarLoginGoogle p{
-    background-color: var(--light--opposite-body);
-}
-
 .sections{
     width: 100%;
     height: 100%;
@@ -173,324 +80,6 @@ body.dark-mode .horizontalBarLoginGoogle p{
     display: flex;
     justify-content: center;
     align-items: center;
-}
-
-.loginInformationContainer{
-    width: 100dvw;
-    height: 100dvh;
-    background-color: hsla(0, 0%, 0%, 0.3);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    position: absolute;
-    overflow: hidden;
-    backdrop-filter: blur(10px);
-}
-
-.loginInformationHolder{
-    width: 60vmin;
-    height: 80vmin;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: center;
-    background-color: white;
-    border-radius: 1vmin;
-}
-
-.loginWelcomeTextCloseWindow{
-    width: 100%;
-    height: 10%;
-    display: flex;
-    justify-content: center;
-    align-items: flex-end;
-}
-
-.welcomeText{
-    width: 80%;
-    height: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: flex-end;
-    font-weight: bolder;
-    user-select: none;
-}
-
-.welcomeText p{
-    width: 75%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 5vmin;
-    text-wrap: nowrap;
-}
-
-.closeWindow{
-    width: 20%;
-    height: 100%;
-    display: flex;
-    justify-content: flex-end;
-    align-items: start;
-
-}
-.closeWindow img{
-    width: 2.5vmin;
-    margin-top: .5vmin;
-    margin-right: .5vmin;
-    cursor: pointer;
-    user-select: none;
-    opacity: .6;
-}
-.closeWindow img:hover{
-    opacity: 1;
-    transition: opacity .2s ease;
-}
-
-.emailPasswordContainer{
-    width: 100%;
-    height: 60%;
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    flex-direction: column;
-    position: relative;
-    gap: 2vmin;
-}
-
-.emailInputHolder{
-    width: 100%;
-    height: 35%;
-    display: flex;
-    justify-content: flex-end;
-    flex-direction: column;
-    align-items: center;
-    gap: 2vmin;
-}
-
-.userNameSignUp{
-    font-size: 2vmin;
-}
-
-.userEmailInput{
-    font-size: 2vmin;
-}
-.userPasswordInput{
-    font-size: 2vmin;
-}
-.userConfirmPasswordInput{
-    font-size: 2vmin;
-}
-
-.emailInputHolder input{
-    width: 70%;
-    height: 5vmin;
-    border-radius: 2vmin;
-    border: none;
-    outline: none;
-    padding: 3vmin;
-    background-color: hsl(0, 0%, 85%);
-
-}
-
-.passwordInputHolder{
-    width: 100%;
-    height: 35%;
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 2vmin;
-    position: relative;
-}
-
-#errorMessage{
-    position: absolute;
-    bottom: 9vmin;
-    font-size: 2vmin;
-    color: red;
-}
-
-.passwordInputContainer{
-    width: 100%;
-    height: 35%;
-    display: flex;
-    justify-content: center;
-    align-items: flex-start;
-    position: relative;
-}
-.passwordInputContainer input{
-    width: 70%;
-    height: 5vmin;
-    border-radius: 2vmin;
-    border: none;
-    outline: none;
-    padding: 3vmin;
-    background-color: hsl(0, 0%, 85%);
-}
-
-.passwordShowHideAutoHolder{
-    width: 25vmin;
-    height: 4vmin;
-    position: absolute;
-    right: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-top: 1vmin;
-}
-
-.showHidePassworContainer{
-    position: relative;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.showHidePassworContainer img{
-    width: 3vmin;
-    user-select: none;
-    cursor: pointer;
-}
-
-.passwordHideAuto{
-    position: absolute;
-}
-
-.confirmPasswordInputContainer{
-    width: 100%;
-    height: 35%;
-    display: flex;
-    justify-content: center;
-    align-items: flex-start;
-    position: relative;
-}
-.confirmPasswordInputContainer input{
-    width: 70%;
-    height: 5vmin;
-    border-radius: 2vmin;
-    border: none;
-    outline: none;
-    padding: 3vmin;
-    background-color: hsl(0, 0%, 85%);
-}
-
-.confirmPasswordShowHideAutoHolder{
-    width: 25vmin;
-    height: 4vmin;
-    position: absolute;
-    right: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-top: 1vmin;
-}
-
-.showHideConfirmPassworContainer{
-    position: relative;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.showHideConfirmPassworContainer img{
-    width: 3vmin;
-    user-select: none;
-    cursor: pointer;
-}
-
-.confirmPasswordHideAuto{
-    position: absolute;
-}
-
-.loginRegisterButtonHolder{
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 1vmin;
-}
-
-.createButton{
-    border: none;
-    border-radius: 1vmin;
-    cursor: pointer;
-    pointer-events: auto;
-    font-weight: bold;
-    user-select: none;
-    padding: 1vmin 3vmin 1vmin 3vmin;
-    font-size: 2vmin;
-}
-.existingUser{
-    border: none;
-    cursor: pointer;
-    pointer-events: auto;
-    font-weight: bold;
-    background: none;
-    color: black;
-    text-decoration: none;
-    opacity: .6;
-    user-select: none;
-    font-size: 2vmin;
-}
-.createButton:hover{
-background-color: hsl(0, 0%, 84%);
-transition: background-color .1s ease-in-out;
-}
-.existingUser:hover{
-    opacity: 1;
-    transition: opacity .1s ease-in-out;
-}
-
-.horizontalBarLoginGoogle{
-    width: 70%;
-    height: .1vmin;
-    background-color: rgba(0, 0, 0, 0.2);
-    position: relative;
-}
-.horizontalBarLoginGoogle p{
-    position: absolute;
-    top: -1.5vmin;
-    right: 15vmin;
-    font-size: 2.1vmin;
-    background-color: white;
-    padding: 0 1vmin 0 1vmin;
-    user-select: none;
-}
-
-.googleLoginSystem{
-    margin-top: 1vmin;
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    user-select: none;
-}
-
-.googleIconButtonHolder{
-    width: 40vmin;
-    padding: 1.3vmin 0vmin 1.3vmin 0vmin;
-    border-radius: 10vmin;
-    background-color: hsl(0, 0%, 95%);
-    cursor: pointer;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 1vmin;
-}
-
-.googleIconButtonHolder img{
-    width: 3vmin;
-}
-
-.googleLoginTemplate{
-    font-size: 2.5vmin;
-    background: none;
-    outline: none;
-    border: none;
-}
-.googleIconButtonHolder:hover{
-    background-color: hsl(0, 0%, 93%);
-    transition: background-color .1s ease;
 }
 
 .leftSection {
@@ -827,8 +416,8 @@ transition: background-color .1s ease-in-out;
     width: 100%;
     height: 8%;
     display: flex;
-    overflow: hidden;
     align-items: center;
+    overflow: hidden;
     position: relative;
     top: 0;
 }
@@ -936,18 +525,6 @@ transition: background-color .1s ease-in-out;
     transform: translateY(-1vmin);
 }
 
-.cursor {
-    font-size: 1.5vmin;
-    margin-left: 2px;
-    animation: blink-cursor 0.8s step-end infinite;
-}
-
-@keyframes blink-cursor {
-    50% {
-        opacity: 0;
-    }
-}
-
 .logoNameWebsite{
     font-size: 4vmin;
     margin-left: 2vmin;
@@ -975,9 +552,9 @@ transition: background-color .1s ease-in-out;
 
 .shareChat{
     border: .2vmin solid var(--ripple-grey-black);
+    position: relative;
     border-radius: 10vmin;
     display: flex;
-    overflow: hidden;
     justify-content: flex-start;
     align-items: center;
     padding: 1vmin;
@@ -1057,11 +634,34 @@ transition: background-color .1s ease-in-out;
     width: 100%;
     display: flex;
     flex-direction: column;
+    font-size: 20px;
+    opacity: 0;
+    animation: appear 0.5s forwards;
 }
 .userChat_responseContainer{
     width: 100%;
     display: flex;
     flex-direction: column;
+    font-size: 20px;
+    opacity: 0;
+    animation: appear 0.5s forwards;
+}
+
+@keyframes appear {
+    0% {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.modelChat_responseNow{
+    width: 100%;
+    height: 100%;
+    word-break: break-word;
 }
 
 .modelChat_Holder{
@@ -1079,15 +679,11 @@ transition: background-color .1s ease-in-out;
     gap: 3vmin;
 }
 
-.userChat_Holder:hover .reEditUserMessageHolder{
-    display: flex;
-}
 .modelChatMainImageHolder{
     margin: 1vmin;
     display: flex;
     justify-content: flex-start;
-    overflow-x: hidden;
-    overflow-y: auto;
+    overflow: hidden;
 }
 
 .imageOfModel{
@@ -1105,6 +701,7 @@ transition: background-color .1s ease-in-out;
     align-items: flex-start;
     flex-direction: column;
     justify-content: flex-start;
+    overflow-wrap: break-word;
 }
 
 .userChatMainImageHolder{
@@ -1112,8 +709,7 @@ transition: background-color .1s ease-in-out;
     display: flex;
     justify-content: flex-end;
     gap: .5vmin;
-    overflow-x: hidden;
-    overflow-y: auto;
+    overflow: hidden;
     position: relative;
 }
 
@@ -1124,7 +720,7 @@ transition: background-color .1s ease-in-out;
     padding-right: 1vmin;
 }
 
-.chatOfUser{
+.chatOfUser {
     display: flex;
     border-radius: 1vmin;
     background-color: var(--mode-chatHolder-light-grey);

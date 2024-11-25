@@ -1,0 +1,258 @@
+body.dark-mode .closeNowIcon,
+body.dark-mode .googleLoginTemplate{
+  filter: invert(1);
+}
+
+body.dark-mode .horizontalBarLoginGoogle{
+  background-color: var(--mode-chatHolder-light-grey);
+}
+
+body.dark-mode .horizontalBarLoginGoogle p{
+  background-color: var(--light--opposite-body);
+}
+
+
+body.dark-mode .userEmailInput{
+  background-color: var(--mode-chatHolder-light-grey);
+}
+
+body.dark-mode .loginInformationHolder{
+  background-color: var(--light--opposite-body);
+}
+.loginInformationContainer{
+  width: 100dvw;
+  height: 100dvh;
+  background-color: hsla(0, 0%, 0%, 0.3);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  overflow: hidden;
+  backdrop-filter: blur(10px);
+}
+
+.loginInformationHolder{
+  width: 60vmin;
+  height: 80vmin;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  background-color: white;
+  border-radius: 1vmin;
+}
+
+.loginWelcomeTextCloseWindow{
+  width: 100%;
+  height: 10%;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+}
+.welcomeText{
+  width: 80%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  font-weight: bolder;
+  user-select: none;
+}
+
+.welcomeText p{
+  width: 75%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 5vmin;
+  text-wrap: nowrap;
+}
+
+.closeWindow{
+  width: 20%;
+  height: 100%;
+  display: flex;
+  justify-content: flex-end;
+  align-items: start;
+
+}
+.closeWindow img{
+  width: 2.5vmin;
+  margin-top: .5vmin;
+  margin-right: .5vmin;
+  cursor: pointer;
+  user-select: none;
+  opacity: .6;
+}
+.closeWindow img:hover{
+  opacity: 1;
+  transition: opacity .2s ease;
+}
+.emailPasswordContainer{
+  width: 100%;
+  height: 60%;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  flex-direction: column;
+  position: relative;
+  gap: 2vmin;
+}
+
+.emailInputHolder{
+  width: 100%;
+  height: 35%;
+  display: flex;
+  justify-content: flex-end;
+  flex-direction: column;
+  align-items: center;
+  gap: 2vmin;
+}
+
+.emailInputHolder input{
+  width: 70%;
+  height: 5vmin;
+  border-radius: 2vmin;
+  border: none;
+  outline: none;
+  padding: 3vmin;
+  background-color: hsl(0, 0%, 85%);
+
+}
+
+.userEmailInput{
+  font-size: 2vmin;
+}
+
+.passwordInputHolder{
+  width: 100%;
+  height: 35%;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 2vmin;
+  position: relative;
+}
+
+.passwordInputContainer{
+  width: 100%;
+  height: 35%;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  position: relative;
+}
+.passwordInputContainer input{
+  width: 70%;
+  height: 5vmin;
+  border-radius: 2vmin;
+  border: none;
+  outline: none;
+  padding: 3vmin;
+  background-color: hsl(0, 0%, 85%);
+}
+
+.passwordShowHideAutoHolder{
+  width: 25vmin;
+  height: 4vmin;
+  position: absolute;
+  right: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 1vmin;
+}
+
+.showHidePassworContainer{
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.showHidePassworContainer img{
+  width: 3vmin;
+  user-select: none;
+  cursor: pointer;
+}
+
+.passwordHideAuto{
+  position: absolute;
+}
+
+.loginButtonHolder{
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1vmin;
+}
+
+.loginButton{
+  border: none;
+  border-radius: 1vmin;
+  cursor: pointer;
+  pointer-events: auto;
+  font-weight: bold;
+  user-select: none;
+  padding: 1vmin 3vmin 1vmin 3vmin;
+  font-size: 2vmin;
+}
+
+.loginButton:hover{
+  background-color: hsl(0, 0%, 84%);
+  transition: background-color .1s ease-in-out;
+}
+
+.horizontalBarLoginGoogle{
+  width: 70%;
+  height: .1vmin;
+  background-color: rgba(0, 0, 0, 0.2);
+  position: relative;
+}
+.horizontalBarLoginGoogle p{
+  position: absolute;
+  top: -1.5vmin;
+  right: 15vmin;
+  font-size: 2.1vmin;
+  background-color: white;
+  padding: 0 1vmin 0 1vmin;
+  user-select: none;
+}
+
+.googleLoginSystem{
+  margin-top: 1vmin;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  user-select: none;
+}
+
+.googleIconButtonHolder{
+  width: 40vmin;
+  padding: 1.3vmin 0vmin 1.3vmin 0vmin;
+  border-radius: 10vmin;
+  background-color: hsl(0, 0%, 95%);
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1vmin;
+}
+
+.googleIconButtonHolder img{
+  width: 3vmin;
+}
+
+.googleLoginTemplate{
+  font-size: 2.5vmin;
+  background: none;
+  outline: none;
+  border: none;
+}
+.googleIconButtonHolder:hover{
+  background-color: hsl(0, 0%, 93%);
+  transition: background-color .1s ease;
+}

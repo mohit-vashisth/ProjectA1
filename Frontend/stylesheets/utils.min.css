@@ -1,0 +1,68 @@
+:root {
+  --light-grey: hsl(0, 0%, 95%);
+  --sliders-light-grey: rgba(0, 0, 0, 0.1);
+  --mode-chatHolder-light-grey: hsl(0, 0%, 90%);
+  --ripple-grey-black: hsla(0, 0%, 0%, 0.1);
+  --response-holder: hsl(0, 0%, 90%);
+
+  --light--opposite: hsl(0, 0%, 15%);
+  --light--opposite-body: hsl(0, 0%, 25%);
+  --response-holder-opposite: hsl(0, 0%, 10%);
+  --ripple-grey-black-opposite: hsla(0, 0%, 100%, 0.1);
+  --sliders-light-grey-opposite: rgba(255, 255, 255, 0.1);
+  --mode-chatHolder-light-grey-opposite: hsl(0, 0%, 35%);
+
+
+
+  /* new dark-mode v1.1.0 20/05/2025
+  --new--body-rightSection--: hsl(222, 80%, 11%);
+  --new--body-leftSection--: hsl(215, 28%, 17%); */
+}
+
+::-webkit-scrollbar {
+  width: 1vmin;
+  height: 1vmin;
+}
+
+::-webkit-scrollbar-thumb {
+  background: hsla(0, 0%, 100%, 0.4);
+  border-radius: .3vmin;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #888;
+}
+
+::-webkit-scrollbar-track {
+  background: hsl(0, 0%, 25%);
+}
+
+
+* {
+  padding: 0;
+  margin: 0;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  box-sizing: border-box;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html, body {
+  width: 100vw;
+  height: 100vh;
+}
+
+body {
+  background-color: var(--light-grey);
+  color: black;
+}
+
+
+body.dark-mode {
+  background-color: var(--light--opposite-body);
+  color: white;
+}
