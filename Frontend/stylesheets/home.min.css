@@ -8,54 +8,24 @@ body.dark-mode .rightSection{
 }
 
 body.dark-mode .slideBarIcon,
+body.dark-mode .userChatRenameDeleteToolKit img,
+body.dark-mode .settingsIconHolder img,
 body.dark-mode .darkModeOn,
 body.dark-mode .shareChat,
-body.dark-mode .userLoginNow,
 body.dark-mode .microphoneHolder,
 body.dark-mode .websiteInfo,
 body.dark-mode .reEditUserMessage,
 body.dark-mode .imageOfModel img,
 body.dark-mode .models_ img,
+body.dark-mode .websiteInfo span,
 body.dark-mode .thumbUpHolder,
 body.dark-mode .readTextHolder,
 body.dark-mode .filter1,
 body.dark-mode .thumbDownHolder,
 body.dark-mode .horizontalBar,
-body.dark-mode .reGenerateHolder {
-    filter: invert(1);
-}
-
-body.dark-mode .chatOfUser {
-    background-color: var(--mode-chatHolder-light-grey-opposite);
-}
-
+body.dark-mode .reGenerateHolder,
 body.dark-mode .slideToRightBack{
     filter: invert(1);
-}
-
-body.dark-mode .models_ .dark-mode:hover {
-    background-color: var(--sliders-light-grey-opposite);
-}
-
-body.dark-mode .askModel_responseHolder,
-body.dark-mode .askModel_response {
-    background-color: var(--mode-chatHolder-light-grey-opposite);
-}
-
-body.dark-mode .askModel_response {
-    color: white;
-}
-
-body.dark-mode .models_.dark-mode:hover{
-    background-color: var(--mode-chatHolder-light-grey-opposite);
-}
-
-body.dark-mode .sliderHolder:hover{
-    background-color: var(--sliders-light-grey-opposite);
-}
-
-body.dark-mode .shareChat:hover{
-    background-color: var(--sliders-light-grey);
 }
 
 .sections{
@@ -79,6 +49,7 @@ body.dark-mode .shareChat:hover{
     width: 15%;
     display: flex;
     justify-content: space-between;
+    background-color: var(--new--body-leftSection-light--);
     align-items: center;
     flex-direction: column;
     transition: width 0.4s ease;
@@ -133,6 +104,7 @@ body.dark-mode .shareChat:hover{
 }
 
 .chatItemsContainerNew{
+    position: relative;
     width: 100%;
     height: 93%;
     display: flex;
@@ -200,36 +172,134 @@ body.dark-mode .shareChat:hover{
     display: flex;
     justify-content: flex-start;
     align-items: flex-start;
-    border-radius: .5vmin;
+    border-radius: 1vmin;
     cursor: pointer;
+    border: .1vmin solid white;
+    overflow: hidden;
 }
 
-.userChatHere{
-    width: 85%;
-    height: 100%;
-    background-color: white;
-    color: black;
-    font-weight: 600;
+.settingsUserLoginAboutWebsiteContainer{
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 15vmin;
     display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.settingsUserLoginAboutWebsiteHolder{
+    width: 99%;
+    height: 99%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: .5vmin;
+}
+
+.userLoginOptionsContainer{
+    width: 100%;
+    height: 33%;
+    display: flex;
+    font-weight: bolder;
+    font-size: 1.8vmin;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.settingsOptionsContainer{
+    width: 100%;
+    height: 33%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+.settingsOptionsContainer span{
+    font-size: 2vmin;
+    font-weight: 600;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.settingsIconHolder{
+    width: 4vmin;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    user-select: none;
+}
+
+.settingsIconHolder img{
+    width: 2.5vmin;
+}
+
+.aboutOurWebsiteContainer{
+    width: 100%;
+    height: 33%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+
+.userChatHere{
+    position: relative;
+    width: 85%;
+    max-width: 85%;
+    height: 100%;
+    display: flex;
+    border-radius: .4vmin;
     align-items: center;
     justify-content: flex-start;
-    border-radius: .5vmin;
+    overflow: hidden;
 }
 .userChatHere span{
-    margin-left: .5vmin;
+    margin-left: 1vmin;
+    font-size: 2vmin;
+    text-wrap: nowrap;
+    user-select: none;
 }
+
+.vcChatHolder{
+    width: 4.5vmin;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--new--body-rightSection-light--);
+}
+.vcChatHolder span{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2.5vmin;
+    margin-right: .5vmin;
+    font-weight: 600;
+    color: black;
+}
+
 .userChatRenameDeleteToolKit{
     position: absolute;
     width: 14%;
     height: 100%;
     top: 0;
     right: 0;
-    background-color: white;
     display: flex;
     align-items: center;
     justify-content: center;
     font-size: 3vmin;
     border-radius: .5vmin;
+}
+.userChatRenameDeleteToolKit img{
+    width: 2.5vmin;
+    user-select: none;
 }
 
 .rightSection{
@@ -237,6 +307,7 @@ body.dark-mode .shareChat:hover{
     height: 100%;
     overflow: hidden;
     display: flex;
+    background-color: var(--new--body-rightSection-light--);
     justify-content: center;
     align-items: center;
 }
@@ -426,33 +497,52 @@ body.dark-mode .shareChat:hover{
     user-select: none;
 }
 
-.userLoginRegister{
-    padding: 2vmin;
-    height: 80%;
-    margin-right: 2vmin;
+.userLoginRegisterButtonContainer{
+    width: 100%;
+    height: 100%;
     display: flex;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
+    gap: .5vmin;
+    margin: 0 .5vmin 0 .5vmin;
 }
 
 .userLoginNow{
-    width: 60%;
+    width: 100%;
     height: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
+    border: none;
+    border-radius: 1vmin;
+    background-color: var(--new--body-rightSection-light--);
+}
+.userRegisterNow{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: none;
+    border-radius: 1vmin;
+    background-color: var(--new--body-rightSection-light--);
 }
 
-.userLoginNow img{
+.userLoginNowImgolder{
+    width: 3vmin;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-bottom: 10vmin;
+}
+
+.userLoginNowImgolder img{
     width: 2.5vmin;
     opacity: .6;
     user-select: none;
 }
 
-.userLoginNow img:hover{
-    opacity: 1;
-    transition: opacity .2s ease-out;
-}
 
 .lowerRightSectionHolder{
     width: 100%;
@@ -685,12 +775,16 @@ body.dark-mode .shareChat:hover{
 }
 
 .websiteInfo {
+    width: 100%;
+    height: 100%;
     display: flex;
-    flex-direction: column;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
 }
+
 .aboutWebsite_toolkitHolder {
+    width: 100%;
+    height: 100%;
     position: relative;
     display: flex;
     margin-bottom: .5vmin;
@@ -701,18 +795,17 @@ body.dark-mode .shareChat:hover{
 }
 
 .aboutWebsiteToolKitContainer{
-    width: 25vmin;
+    width: 20vmin;
     height: 20vmin;
     position: absolute;
     top: -20vmin;
-    left: -23vmin;
+    left: 1vmin;
     border-radius: 1vmin;
     box-shadow: 0 1.2vmin 2vmin -.2vmin rgba(0, 0, 0, .1), 0 .5vmin .7vmin -.5vmin rgba(0, 0, 0, .1);
     background-color: var(--sliders-light-grey-opposite);
     visibility: hidden;
     opacity: 0;
     transition: visibility .1s ease, opacity .1s ease;
-
 }
 
 .activeWebsiteInfo{
@@ -769,18 +862,28 @@ body.dark-mode .shareChat:hover{
     margin-left: 1vmin;
 }
 
-.websiteInfo img {
-    width: 3vmin;
-    margin: 0.5vmin;
-    opacity: 0.7;
-    cursor: pointer;
-    user-select: none;
-    transition: opacity 0.2s ease-out;
+.websiteInfoIconHolder {
+    width: 4vmin;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.websiteInfoIconHolder img {
+    width: 2.5vmin;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.websiteInfo span {
+    height: 100%;
+    font-size: 2vmin;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    font-weight: 600;
 }
 
-.websiteInfo img:hover {
-    opacity: 1;
-}
 
 .microphoneHolder {
     position: absolute;
