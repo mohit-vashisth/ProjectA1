@@ -6,56 +6,54 @@ body.dark-mode .rightSection{
     background-color: var(--new--body-rightSection--);
     color: white;
 }
-
-body.dark-mode .slideBarIcon,
-body.dark-mode .darkModeOn,
-body.dark-mode .shareChat,
-body.dark-mode .userLoginNow,
-body.dark-mode .microphoneHolder,
-body.dark-mode .websiteInfo,
-body.dark-mode .reEditUserMessage,
-body.dark-mode .imageOfModel img,
-body.dark-mode .models_ img,
-body.dark-mode .thumbUpHolder,
-body.dark-mode .readTextHolder,
-body.dark-mode .filter1,
-body.dark-mode .thumbDownHolder,
-body.dark-mode .horizontalBar,
-body.dark-mode .reGenerateHolder {
-    filter: invert(1);
+body.dark-mode .settingsUserLoginAboutWebsiteContainer{
+    background-color: var(--new--body-leftSection--);
+    color: white;
 }
-
-body.dark-mode .chatOfUser {
-    background-color: var(--mode-chatHolder-light-grey-opposite);
-}
-
-body.dark-mode .slideToRightBack{
-    filter: invert(1);
-}
-
-body.dark-mode .models_ .dark-mode:hover {
-    background-color: var(--sliders-light-grey-opposite);
-}
-
-body.dark-mode .askModel_responseHolder,
-body.dark-mode .askModel_response {
-    background-color: var(--mode-chatHolder-light-grey-opposite);
-}
-
-body.dark-mode .askModel_response {
+body.dark-mode .checkAndValidateChatOptionsToStart{
+    background-color: var(--new--body-rightSection--);
     color: white;
 }
 
-body.dark-mode .models_.dark-mode:hover{
-    background-color: var(--mode-chatHolder-light-grey-opposite);
+body.dark-mode .settingsOptionsContainer:hover{
+    background-color: var(--left-1shadow-hover--);
+    transition: background-color .1s ease;
 }
 
-body.dark-mode .sliderHolder:hover{
-    background-color: var(--sliders-light-grey-opposite);
+body.dark-mode .aboutOurWebsiteContainer:hover{
+    background-color: var(--left-1shadow-hover--);
+    transition: background-color .1s ease;
 }
 
-body.dark-mode .shareChat:hover{
-    background-color: var(--sliders-light-grey);
+body.dark-mode .slideBarIcon,
+body.dark-mode .userChatRenameDeleteToolKit img,
+body.dark-mode .settingsIconHolder img,
+body.dark-mode .darkModeOn,
+body.dark-mode .shareChat,
+body.dark-mode .microphoneHolder,
+body.dark-mode .websiteInfo,
+body.dark-mode .reEditUserMessage,
+body.dark-mode .models_ img,
+body.dark-mode .websiteInfo span,
+body.dark-mode .imageOfModelVoiceToTeXTButtonToChat img,
+body.dark-mode .thumbUpHolderVoiceToTeXTButtonToChat,
+body.dark-mode .readTextHolderVoiceToTeXTButtonToChat,
+body.dark-mode .thumbDownHolderVoiceToTeXTButtonToChat,
+body.dark-mode .reGenerateHolderVoiceToTeXTButtonToChat,
+body.dark-mode .imageOfModelVoiceCloningButtonToChat img,
+body.dark-mode .thumbUpHolderVoiceCloningButtonToChat,
+body.dark-mode .readTextHolderVoiceCloningButtonToChat,
+body.dark-mode .thumbDownHolderVoiceCloningButtonToChat,
+body.dark-mode .reGenerateHolderVoiceCloningButtonToChat,
+body.dark-mode .imageOfModelRealTimeTranslatorButtonToChat img,
+body.dark-mode .thumbUpHolderRealTimeTranslatorButtonToChat,
+body.dark-mode .readTextHolderRealTimeTranslatorButtonToChat,
+body.dark-mode .thumbDownHolderRealTimeTranslatorButtonToChat,
+body.dark-mode .reGenerateHolderRealTimeTranslatorButtonToChat,
+body.dark-mode .filter1,
+body.dark-mode .horizontalBar,
+body.dark-mode .slideToRightBack{
+    filter: invert(1);
 }
 
 .sections{
@@ -79,6 +77,7 @@ body.dark-mode .shareChat:hover{
     width: 15%;
     display: flex;
     justify-content: space-between;
+    background-color: var(--new--body-leftSection-light--);
     align-items: center;
     flex-direction: column;
     transition: width 0.4s ease;
@@ -133,6 +132,7 @@ body.dark-mode .shareChat:hover{
 }
 
 .chatItemsContainerNew{
+    position: relative;
     width: 100%;
     height: 93%;
     display: flex;
@@ -183,6 +183,7 @@ body.dark-mode .shareChat:hover{
     align-items: center;
     flex-direction: column;
     overflow-y: auto;
+    margin-bottom: 15.5vmin;
 }
 .userChatHolder{
     width: 90%;
@@ -196,40 +197,164 @@ body.dark-mode .shareChat:hover{
 .userChatItemsContainer{
     position: relative;
     width: 100%;
-    height: 4vmin;
+    height: 3.5vmin;
     display: flex;
     justify-content: flex-start;
     align-items: flex-start;
-    border-radius: .5vmin;
+    border-radius: 1vmin;
     cursor: pointer;
+    overflow: hidden;
+
+}
+
+.chatMenuOptionIcon{
+    opacity: 0;
+    pointer-events: none;
+}
+.userChatItemsContainer:hover .chatMenuOptionIcon{
+    opacity: 1;
+    pointer-events: auto;
+    transition: opacity .1s ease;
+}
+
+.settingsUserLoginAboutWebsiteContainer{
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 15vmin;
+    display: flex;
+    justify-content: center;
+    background-color: var(--new--body-leftSection-light--);
+    align-items: center;
+}
+
+.settingsUserLoginAboutWebsiteHolder{
+    width: 99%;
+    height: 99%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: .5vmin;
+}
+
+.userLoginOptionsContainer{
+    width: 100%;
+    height: 33%;
+    display: flex;
+    font-weight: bolder;
+    font-size: 1.8vmin;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.settingsOptionsContainer{
+    width: 100%;
+    height: 33%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    cursor: pointer;
+}
+.settingsOptionsContainer:hover{
+    background-color: var(--left-1shadow-hover-light--);
+    transition: background-color .1s ease;
+}
+
+.settingsOptionsContainer span{
+    font-size: 2vmin;
+    font-weight: 600;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.settingsIconHolder{
+    width: 4vmin;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    user-select: none;
+}
+
+.settingsIconHolder img{
+    width: 2.5vmin;
+}
+
+.aboutOurWebsiteContainer{
+    width: 100%;
+    height: 33%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    cursor: pointer;
+}
+.aboutOurWebsiteContainer:hover{
+    background-color: var(--left-1shadow-hover-light--);
+    transition: background-color .1s ease;
 }
 
 .userChatHere{
+    position: relative;
     width: 85%;
+    max-width: 85%;
     height: 100%;
-    background-color: white;
-    color: black;
-    font-weight: 600;
     display: flex;
+    border-radius: .4vmin;
     align-items: center;
     justify-content: flex-start;
-    border-radius: .5vmin;
+    overflow: hidden;
 }
 .userChatHere span{
-    margin-left: .5vmin;
+    margin-left: 1vmin;
+    font-size: 2vmin;
+    text-wrap: nowrap;
+    user-select: none;
 }
+
+.vcChatHolder{
+    width: 4.5vmin;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--new--body-rightSection-light--);
+    opacity: .9;
+}
+.userChatItemsContainer:hover .vcChatHolder{
+    opacity: 1;
+    transition: opacity .1s ease;
+}
+.vcChatHolder span{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2.5vmin;
+    margin-right: .5vmin;
+    font-weight: 600;
+    color: black;
+}
+
 .userChatRenameDeleteToolKit{
     position: absolute;
     width: 14%;
     height: 100%;
     top: 0;
     right: 0;
-    background-color: white;
     display: flex;
     align-items: center;
     justify-content: center;
     font-size: 3vmin;
     border-radius: .5vmin;
+}
+.userChatRenameDeleteToolKit img{
+    width: 2.5vmin;
+    user-select: none;
 }
 
 .rightSection{
@@ -237,6 +362,7 @@ body.dark-mode .shareChat:hover{
     height: 100%;
     overflow: hidden;
     display: flex;
+    background-color: var(--new--body-rightSection-light--);
     justify-content: center;
     align-items: center;
 }
@@ -426,35 +552,73 @@ body.dark-mode .shareChat:hover{
     user-select: none;
 }
 
-.userLoginRegister{
-    padding: 2vmin;
-    height: 80%;
-    margin-right: 2vmin;
+.userLoginRegisterButtonContainer{
+    width: 100%;
+    height: 100%;
     display: flex;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
+    gap: .5vmin;
+    margin: 0 .5vmin 0 .5vmin;
 }
 
 .userLoginNow{
-    width: 60%;
+    width: 100%;
     height: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
+    border: none;
+    border-radius: 1vmin;
+    background-color: var(--new--body-rightSection-light--);
+    cursor: pointer;
+    font-weight: 600;
+    opacity: .9;
 }
 
-.userLoginNow img{
+.userLoginNow:hover{
+    opacity: 1;
+    transition: opacity .1s ease;
+}
+
+.userRegisterNow{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: none;
+    border-radius: 1vmin;
+    background-color: var(--new--body-rightSection-light--);
+    cursor: pointer;
+    font-weight: 600;
+    opacity: .9;
+}
+
+.userRegisterNow:hover{
+    opacity: 1;
+    transition: opacity .1s ease;
+}
+
+
+.userLoginNowImgolder{
+    width: 3vmin;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-bottom: 10vmin;
+}
+
+.userLoginNowImgolder img{
     width: 2.5vmin;
     opacity: .6;
     user-select: none;
 }
 
-.userLoginNow img:hover{
-    opacity: 1;
-    transition: opacity .2s ease-out;
-}
 
 .lowerRightSectionHolder{
+    position: relative;
     width: 100%;
     height: 92%;
     display: flex;
@@ -465,19 +629,23 @@ body.dark-mode .shareChat:hover{
     overflow-y: auto;
 }
 
-.rightLowerSectionItemsHolder{
+/* ________________________________________________________________________________________________________ */
+/* contatainer 1 rightLowerSectionItemsHolderVoiceCloningButtonToChat*/
+.rightLowerSectionItemsHolderVoiceCloningButtonToChat{
+    position: relative;
     width: 1000px;
     max-height: 20000vmin;
     display: flex;
     flex-direction: column;
     margin: 0vmin 5vmin 0vmin 5vmin;
-}
-
-.rightLowerSectionItemsHolder:last-child .modelChat_responseContainer:last-child .modelChatOptionsHolder {
     display: flex;
 }
 
-.modelChat_responseContainer{
+.rightLowerSectionItemsHolderVoiceCloningButtonToChat:last-child .modelChat_responseContainerVoiceCloningButtonToChat:last-child .modelChatOptionsHolderVoiceCloningButtonToChat {
+    display: flex;
+}
+
+.userChat_responseContainerVoiceCloningButtonToChat{
     width: 100%;
     display: flex;
     flex-direction: column;
@@ -485,7 +653,178 @@ body.dark-mode .shareChat:hover{
     opacity: 0;
     animation: appear 0.5s forwards;
 }
-.userChat_responseContainer{
+
+.userChat_HolderVoiceCloningButtonToChat{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 3vmin;
+}
+
+.userChatMainImageHolderVoiceCloningButtonToChat{
+    margin: 1vmin;
+    display: flex;
+    justify-content: flex-end;
+    gap: .5vmin;
+    overflow: hidden;
+    position: relative;
+}
+
+
+.chatOfUserVoiceCloningButtonToChat{
+    display: flex;
+    border-radius: 1vmin;
+    background-color: var(--mode-chatHolder-light-grey);
+    padding: 1vmin;
+    align-items: flex-start;
+    max-width: 70%;
+    justify-content: flex-start;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+}
+
+
+.responseNowVoiceCloningButtonToChat{
+    display: block;
+    white-space: normal;
+    overflow: hidden;
+    white-space: pre-wrap;
+    text-overflow: ellipsis;
+}
+
+.modelChat_responseContainerVoiceCloningButtonToChat{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    font-size: 20px;    
+    opacity: 0;
+    animation: appear 0.5s forwards;
+}
+
+.modelChat_HolderVoiceCloningButtonToChat{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 3vmin;
+}
+
+.modelChatMainImageHolderVoiceCloningButtonToChat{
+    margin: 1vmin;
+    display: flex;
+    justify-content: flex-start;
+    overflow: hidden;
+}
+
+.modelChatMainImageHolderVoiceCloningButtonToChat:hover .modelChatOptionsHolderVoiceCloningButtonToChat{
+    display: flex;
+}
+
+.imageOfModelVoiceCloningButtonToChat{
+    width: 4vmin;
+    height: 5vmin;
+    user-select: none;
+    padding-right: 1vmin;
+}
+.imageOfModelVoiceCloningButtonToChat img   {
+    width: 3vmin;
+}
+
+.chatOfModelVoiceCloningButtonToChat{
+    display: flex;
+    align-items: flex-start;
+    flex-direction: column;
+    justify-content: flex-start;
+    overflow-wrap: break-word;
+}
+
+.modelChat_responseNowVoiceCloningButtonToChat{
+    width: 100%;
+    height: 100%;
+    word-break: break-word;
+}
+
+.modelChatRegenerateLikeDislikeHolderVoiceCloningButtonToChat{
+    width: 100%;
+    height: 3vmin;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.modelChatOptionsHolderVoiceCloningButtonToChat{
+    width: 10vmin;
+    height: 100%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    display: none;
+}
+
+.modelChatOptionsHolderVoiceCloningButtonToChat img{
+    width: 2vmin;
+    cursor: pointer;
+}
+
+
+.thumbUpHolderVoiceCloningButtonToChat{
+    width: 3vmin;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    border-radius: 1vmin;
+    align-items: center;
+    user-select: none;
+}
+.readTextHolderVoiceCloningButtonToChat{
+    width: 3vmin;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    border-radius: 1vmin;
+    align-items: center;
+    user-select: none;
+}
+.thumbDownHolderVoiceCloningButtonToChat{
+    width: 3vmin;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    border-radius: 1vmin;
+    align-items: center;
+    user-select: none;
+}
+.reGenerateHolderVoiceCloningButtonToChat{
+    width: 3vmin;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    border-radius: 1vmin;
+    align-items: center;
+    user-select: none;
+}
+
+.thumbUpHolderVoiceCloningButtonToChat:hover, .thumbDownHolderVoiceCloningButtonToChat:hover, .readTextHolderVoiceCloningButtonToChat:hover, .reGenerateHolderVoiceCloningButtonToChat:hover{
+    background-color: var(--sliders-light-grey);
+}
+
+/* ________________________________________________________________________________________________________ */
+
+/* Container 2  rightLowerSectionItemsHolderRealTimeTranslatorButtonToChat*/
+.rightLowerSectionItemsHolderRealTimeTranslatorButtonToChat{
+    position: relative;
+    width: 1000px;
+    max-height: 20000vmin;
+    display: flex;
+    flex-direction: column;
+    margin: 0vmin 5vmin 0vmin 5vmin;
+    display: none;
+}
+
+.rightLowerSectionItemsHolderRealTimeTranslatorButtonToChat:last-child .modelChat_responseContainerRealTimeTranslatorButtonToChat:last-child .modelChatOptionsHolderRealTimeTranslatorButtonToChat {
+    display: flex;
+}
+
+.userChat_responseContainerRealTimeTranslatorButtonToChat{
     width: 100%;
     display: flex;
     flex-direction: column;
@@ -493,6 +832,342 @@ body.dark-mode .shareChat:hover{
     opacity: 0;
     animation: appear 0.5s forwards;
 }
+
+.userChat_HolderRealTimeTranslatorButtonToChat{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 3vmin;
+}
+
+.userChatMainImageHolderRealTimeTranslatorButtonToChat{
+    margin: 1vmin;
+    display: flex;
+    justify-content: flex-end;
+    gap: .5vmin;
+    overflow: hidden;
+    position: relative;
+}
+
+
+.chatOfUserRealTimeTranslatorButtonToChat{
+    display: flex;
+    border-radius: 1vmin;
+    background-color: var(--mode-chatHolder-light-grey);
+    padding: 1vmin;
+    align-items: flex-start;
+    max-width: 70%;
+    justify-content: flex-start;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+}
+
+
+.responseNowRealTimeTranslatorButtonToChat{
+    display: block;
+    white-space: normal;
+    overflow: hidden;
+    white-space: pre-wrap;
+    text-overflow: ellipsis;
+}
+
+.modelChat_responseContainerRealTimeTranslatorButtonToChat{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    font-size: 20px;    
+    opacity: 0;
+    animation: appear 0.5s forwards;
+}
+
+.modelChat_HolderRealTimeTranslatorButtonToChat{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 3vmin;
+}
+
+.modelChatMainImageHolderRealTimeTranslatorButtonToChat{
+    margin: 1vmin;
+    display: flex;
+    justify-content: flex-start;
+    overflow: hidden;
+}
+
+.modelChatMainImageHolderRealTimeTranslatorButtonToChat:hover .modelChatOptionsHolderRealTimeTranslatorButtonToChat{
+    display: flex;
+}
+
+.imageOfModelRealTimeTranslatorButtonToChat{
+    width: 4vmin;
+    height: 5vmin;
+    user-select: none;
+    padding-right: 1vmin;
+}
+.imageOfModelRealTimeTranslatorButtonToChat img   {
+    width: 3vmin;
+}
+
+.chatOfModelRealTimeTranslatorButtonToChat{
+    display: flex;
+    align-items: flex-start;
+    flex-direction: column;
+    justify-content: flex-start;
+    overflow-wrap: break-word;
+}
+
+.modelChat_responseNowRealTimeTranslatorButtonToChat{
+    width: 100%;
+    height: 100%;
+    word-break: break-word;
+}
+
+.modelChatRegenerateLikeDislikeHolderRealTimeTranslatorButtonToChat{
+    width: 100%;
+    height: 3vmin;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.modelChatOptionsHolderRealTimeTranslatorButtonToChat{
+    width: 10vmin;
+    height: 100%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    display: none;
+}
+
+.modelChatOptionsHolderRealTimeTranslatorButtonToChat img{
+    width: 2vmin;
+    cursor: pointer;
+}
+
+
+.thumbUpHolderRealTimeTranslatorButtonToChat{
+    width: 3vmin;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    border-radius: 1vmin;
+    align-items: center;
+    user-select: none;
+}
+.readTextHolderRealTimeTranslatorButtonToChat{
+    width: 3vmin;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    border-radius: 1vmin;
+    align-items: center;
+    user-select: none;
+}
+.thumbDownHolderRealTimeTranslatorButtonToChat{
+    width: 3vmin;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    border-radius: 1vmin;
+    align-items: center;
+    user-select: none;
+}
+.reGenerateHolderRealTimeTranslatorButtonToChat{
+    width: 3vmin;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    border-radius: 1vmin;
+    align-items: center;
+    user-select: none;
+}
+
+.thumbUpHolderRealTimeTranslatorButtonToChat:hover, .thumbDownHolderRealTimeTranslatorButtonToChat:hover, .readTextHolderRealTimeTranslatorButtonToChat:hover, .reGenerateHolderRealTimeTranslatorButtonToChat:hover{
+    background-color: var(--sliders-light-grey);
+}
+
+
+/* ________________________________________________________________________________________________________ */
+
+/* Container 3  rightLowerSectionItemsHolderVoiceToTeXTButtonToChat*/
+
+.rightLowerSectionItemsHolderVoiceToTeXTButtonToChat{
+    position: relative;
+    width: 1000px;
+    max-height: 20000vmin;
+    display: flex;
+    flex-direction: column;
+    margin: 0vmin 5vmin 0vmin 5vmin;
+    display: none;
+}
+
+.rightLowerSectionItemsHolderVoiceToTeXTButtonToChat:last-child .modelChat_responseContainerVoiceToTeXTButtonToChat:last-child .modelChatOptionsHolderVoiceToTeXTButtonToChat {
+    display: flex;
+}
+
+.userChat_responseContainerVoiceToTeXTButtonToChat{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    font-size: 20px;
+    opacity: 0;
+    animation: appear 0.5s forwards;
+}
+
+.userChat_HolderVoiceToTeXTButtonToChat{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 3vmin;
+}
+
+.userChatMainImageHolderVoiceToTeXTButtonToChat{
+    margin: 1vmin;
+    display: flex;
+    justify-content: flex-end;
+    gap: .5vmin;
+    overflow: hidden;
+    position: relative;
+}
+
+
+.chatOfUserVoiceToTeXTButtonToChat{
+    display: flex;
+    border-radius: 1vmin;
+    background-color: var(--mode-chatHolder-light-grey);
+    padding: 1vmin;
+    align-items: flex-start;
+    max-width: 70%;
+    justify-content: flex-start;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+}
+
+
+.responseNowVoiceToTeXTButtonToChat{
+    display: block;
+    white-space: normal;
+    overflow: hidden;
+    white-space: pre-wrap;
+    text-overflow: ellipsis;
+}
+
+.modelChat_responseContainerVoiceToTeXTButtonToChat{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    font-size: 20px;    
+    opacity: 0;
+    animation: appear 0.5s forwards;
+}
+
+.modelChat_HolderVoiceToTeXTButtonToChat{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 3vmin;
+}
+
+.modelChatMainImageHolderVoiceToTeXTButtonToChat{
+    margin: 1vmin;
+    display: flex;
+    justify-content: flex-start;
+    overflow: hidden;
+}
+
+.modelChatMainImageHolderVoiceToTeXTButtonToChat:hover .modelChatOptionsHolderVoiceToTeXTButtonToChat{
+    display: flex;
+}
+
+.imageOfModelVoiceToTeXTButtonToChat{
+    width: 4vmin;
+    height: 5vmin;
+    user-select: none;
+    padding-right: 1vmin;
+}
+.imageOfModelVoiceToTeXTButtonToChat img   {
+    width: 3vmin;
+}
+
+.chatOfModelVoiceToTeXTButtonToChat{
+    display: flex;
+    align-items: flex-start;
+    flex-direction: column;
+    justify-content: flex-start;
+    overflow-wrap: break-word;
+}
+
+.modelChat_responseNowVoiceToTeXTButtonToChat{
+    width: 100%;
+    height: 100%;
+    word-break: break-word;
+}
+
+.modelChatRegenerateLikeDislikeHolderVoiceToTeXTButtonToChat{
+    width: 100%;
+    height: 3vmin;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.modelChatOptionsHolderVoiceToTeXTButtonToChat{
+    width: 10vmin;
+    height: 100%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    display: none;
+}
+
+.modelChatOptionsHolderVoiceToTeXTButtonToChat img{
+    width: 2vmin;
+    cursor: pointer;
+}
+
+
+.thumbUpHolderVoiceToTeXTButtonToChat{
+    width: 3vmin;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    border-radius: 1vmin;
+    align-items: center;
+    user-select: none;
+}
+.readTextHolderVoiceToTeXTButtonToChat{
+    width: 3vmin;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    border-radius: 1vmin;
+    align-items: center;
+    user-select: none;
+}
+.thumbDownHolderVoiceToTeXTButtonToChat{
+    width: 3vmin;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    border-radius: 1vmin;
+    align-items: center;
+    user-select: none;
+}
+.reGenerateHolderVoiceToTeXTButtonToChat{
+    width: 3vmin;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    border-radius: 1vmin;
+    align-items: center;
+    user-select: none;
+}
+
+.thumbUpHolderVoiceToTeXTButtonToChat:hover, .thumbDownHolderVoiceToTeXTButtonToChat:hover, .readTextHolderVoiceToTeXTButtonToChat:hover, .reGenerateHolderVoiceToTeXTButtonToChat:hover{
+    background-color: var(--sliders-light-grey);
+}
+
+/* ________________________________________________________________________________________________________ */
 
 @keyframes appear {
     0% {
@@ -505,153 +1180,11 @@ body.dark-mode .shareChat:hover{
     }
 }
 
-.modelChat_responseNow{
-    width: 100%;
-    height: 100%;
-    word-break: break-word;
-}
-
-.modelChat_Holder{
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    gap: 3vmin;
-}
-
-
-.userChat_Holder{
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    gap: 3vmin;
-}
-
-.modelChatMainImageHolder{
-    margin: 1vmin;
-    display: flex;
-    justify-content: flex-start;
-    overflow: hidden;
-}
-
-.imageOfModel{
-    width: 4vmin;
-    height: 5vmin;
-    user-select: none;
-    padding-right: 1vmin;
-}
-.imageOfModel img   {
-    width: 3vmin;
-}
-
-.chatOfModel{
-    display: flex;
-    align-items: flex-start;
-    flex-direction: column;
-    justify-content: flex-start;
-    overflow-wrap: break-word;
-}
-
-.userChatMainImageHolder{
-    margin: 1vmin;
-    display: flex;
-    justify-content: flex-end;
-    gap: .5vmin;
-    overflow: hidden;
-    position: relative;
-}
-
 .imageOfUser{
     width: 5vmin;
     height: 5vmin;
     user-select: none;
     padding-right: 1vmin;
-}
-
-.chatOfUser {
-    display: flex;
-    border-radius: 1vmin;
-    background-color: var(--mode-chatHolder-light-grey);
-    padding: 1vmin;
-    align-items: flex-start;
-    max-width: 70%;
-    justify-content: flex-start;
-    word-wrap: break-word;
-    overflow-wrap: break-word;
-}
-
-.responseNow {
-    display: block;
-    white-space: normal;
-    overflow: hidden;
-    white-space: pre-wrap;
-    text-overflow: ellipsis;
-}
-
-.modelChatRegenerateLikeDislikeHolder{
-    width: 100%;
-    height: 3vmin;
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
-}
-
-.modelChatOptionsHolder{
-    width: 10vmin;
-    height: 100%;
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
-    display: none;
-}
-
-.modelChatMainImageHolder:hover .modelChatOptionsHolder{
-    display: flex;
-}
-
-.modelChatOptionsHolder img{
-    width: 2vmin;
-    cursor: pointer;
-}
-
-.thumbUpHolder{
-    width: 3vmin;
-    height: 100%;
-    display: flex;
-    justify-content: center;
-    border-radius: 1vmin;
-    align-items: center;
-    user-select: none;
-}
-.readTextHolder{
-    width: 3vmin;
-    height: 100%;
-    display: flex;
-    justify-content: center;
-    border-radius: 1vmin;
-    align-items: center;
-    user-select: none;
-}
-.thumbDownHolder{
-    width: 3vmin;
-    height: 100%;
-    display: flex;
-    justify-content: center;
-    border-radius: 1vmin;
-    align-items: center;
-    user-select: none;
-}
-.reGenerateHolder{
-    width: 3vmin;
-    height: 100%;
-    display: flex;
-    justify-content: center;
-    border-radius: 1vmin;
-    align-items: center;
-    user-select: none;
-}
-
-.thumbUpHolder:hover, .thumbDownHolder:hover, .readTextHolder:hover, .reGenerateHolder:hover{
-    background-color: var(--sliders-light-grey);
 }
 
 .askModel_TypeAreaBox_WebsiteInfo{
@@ -674,6 +1207,41 @@ body.dark-mode .shareChat:hover{
     align-items: center;
 }
 
+.checkAndValidateChatOptionsToStart{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: var(--new--body-rightSection-light--);
+    z-index: 1500;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.checkAndValidateChatOptionsHolder{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 2vmin;
+}
+
+.chatButton{
+    width: 20vmin;
+    height: 6vmin;
+    border-radius: 1vmin;
+    outline: none;
+    cursor: pointer;
+    opacity: .9;
+    font-weight: bold;
+    font-size: 2vmin;
+}
+.chatButton:hover{
+    opacity: 1;
+    transition: opacity .1s ease;
+}
+
 .modelNotice{
     width: 98%;
     height: 100%;
@@ -685,12 +1253,16 @@ body.dark-mode .shareChat:hover{
 }
 
 .websiteInfo {
+    width: 100%;
+    height: 100%;
     display: flex;
-    flex-direction: column;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
 }
+
 .aboutWebsite_toolkitHolder {
+    width: 100%;
+    height: 100%;
     position: relative;
     display: flex;
     margin-bottom: .5vmin;
@@ -701,18 +1273,17 @@ body.dark-mode .shareChat:hover{
 }
 
 .aboutWebsiteToolKitContainer{
-    width: 25vmin;
+    width: 20vmin;
     height: 20vmin;
     position: absolute;
     top: -20vmin;
-    left: -23vmin;
+    left: 1vmin;
     border-radius: 1vmin;
     box-shadow: 0 1.2vmin 2vmin -.2vmin rgba(0, 0, 0, .1), 0 .5vmin .7vmin -.5vmin rgba(0, 0, 0, .1);
     background-color: var(--sliders-light-grey-opposite);
     visibility: hidden;
     opacity: 0;
     transition: visibility .1s ease, opacity .1s ease;
-
 }
 
 .activeWebsiteInfo{
@@ -769,18 +1340,28 @@ body.dark-mode .shareChat:hover{
     margin-left: 1vmin;
 }
 
-.websiteInfo img {
-    width: 3vmin;
-    margin: 0.5vmin;
-    opacity: 0.7;
-    cursor: pointer;
-    user-select: none;
-    transition: opacity 0.2s ease-out;
+.websiteInfoIconHolder {
+    width: 4vmin;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.websiteInfoIconHolder img {
+    width: 2.5vmin;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.websiteInfo span {
+    height: 100%;
+    font-size: 2vmin;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    font-weight: 600;
 }
 
-.websiteInfo img:hover {
-    opacity: 1;
-}
 
 .microphoneHolder {
     position: absolute;

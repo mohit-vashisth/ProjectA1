@@ -35,14 +35,74 @@
                 </div>
                 <div class="chatItemsContainerNew">
                     <div class="newChatButtonContainer">
-                        <a href="" class="newChatButtonLeftSection">New Chat</a>
+                        <a href="" class="newChatButtonLeftSection" id="newChatButton">New Chat</a>
                     </div>
                     <div class="userChatListContainer">
                         <div class="userChatHolder">
                             <div class="userChatItemsContainer">
-                                <div class="userChatHere"><span>VC_new-voice</span></div>
+                                <div class="userChatHere">
+                                    <div class="vcChatHolder"><span>VC</span></div>
+                                    <span>VC_new-voice</span>
+                                </div>
                                 <div class="userChatRenameDeleteToolKit">
-                                    <img src="/Frontend/images/svgs/dot3Menu.svg" alt="" width="20px">
+                                    <img class="chatMenuOptionIcon" src="/Frontend/images/svgs/dot3Menu.svg" alt="">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="settingsUserLoginAboutWebsiteContainer">
+                        <div class="settingsUserLoginAboutWebsiteHolder">
+                            <div class="userLoginOptionsContainer">
+                                <div class="userLoginRegisterButtonContainer">
+                                    <button class="userLoginNow" href="signup.html">
+                                        <span>Login</span>
+                                    </button>
+                                    <button class="userRegisterNow" href="signup.html">
+                                        <span>Register</span>
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="settingsOptionsContainer">
+                                <div class="settingsIconHolder">
+                                    <img src="/Frontend/images/svgs/settings.svg" alt="">
+                                </div>
+                                <span>Settings</span>
+                            </div>
+                            <div class="aboutOurWebsiteContainer">
+                                <div class="aboutWebsite_toolkitHolder">
+                                    <div class="websiteInfo">
+                                        <div class="websiteInfoIconHolder">
+                                            <img src="/Frontend/images/svgs/aboutWebsite.svg" title="About" alt="">
+                                        </div>
+                                        <span>About</span>
+                                    </div>
+                                    <div class="aboutWebsiteToolKitContainer">
+                                            <ul class="websiteInfoUL">
+                                                <li>
+                                                    <div class="websiteInfoImgHolder">
+                                                        <img class="filter1" src="/Frontend/images/svgs/releaseNotes.svg" alt="">
+                                                        <span>Release Notes</span>
+                                                    </div>
+                                                </li>
+                                                <li>
+                                                    <div class="websiteInfoImgHolder">
+                                                        <img class="filter1" src="/Frontend/images/svgs/releaseNotes.svg" alt="">
+                                                        <span>Credits</span>
+                                                    </div>
+                                                </li>
+                                                <li>
+                                                    <div class="websiteInfoImgHolder">
+                                                        <img class="filter1" src="/Frontend/images/svgs/releaseNotes.svg" alt="">
+                                                        <span>Privacy & Policy</span>
+                                                    </div>
+                                                </li>
+                                                <li>
+                                                    <div class="websiteInfoVersion">
+                                                        <span>Version 1.0.0</span>
+                                                    </div>
+                                                </li>
+                                            </ul>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -77,44 +137,124 @@
                                 <div class="shareChat">
                                     <img src="/Frontend/images/svgs/shareChat.svg" alt="">
                                 </div>
-                                <div class="userLoginRegister">
-                                    <a class="userLoginNow" href="signup.html">
-                                        <img src="/Frontend/images/svgs/user.svg" title="user" alt="" />
-                                    </a>
-                                </div>
                             </div>
                         </div>
                         <div class="lowerRightSectionHolder" role="main">
-                            <div class="rightLowerSectionItemsHolder">
-                                <article class="userChat_responseContainer">
-                                    <div class="userChat_Holder">
-                                        <div class="userChatMainImageHolder">
-                                            <div class="chatOfUser">
-                                                <div class="responseNow">Hey! what is your name? can you tell me what is this projectA1 about? is it free or paid?</div>
+                            <!-- <div class="checkAndValidateChatOptionsToStart">
+                                <div class="checkAndValidateChatOptionsHolder">
+                                    <button class="chatButton voiceCloningButton">Voice Cloning</button>
+                                    <button class="chatButton realTimeTranslatorButton">Real-Time Translator</button>
+                                    <button class="chatButton voiceToTeXTButton">Voice to Text</button>
+                                </div>
+                            </div> -->
+                            <div class="rightLowerSectionItemsHolderVoiceCloningButtonToChat">
+                                <article class="userChat_responseContainerVoiceCloningButtonToChat">
+                                    <div class="userChat_HolderVoiceCloningButtonToChat">
+                                        <div class="userChatMainImageHolderVoiceCloningButtonToChat">
+                                            <div class="chatOfUserVoiceCloningButtonToChat">
+                                                <div class="responseNowVoiceCloningButtonToChat">Voice Cloning Model here</div>
                                             </div>
                                         </div>
                                     </div>  
                                 </article>
-                                <article class="modelChat_responseContainer">
-                                    <div class="modelChat_Holder">
-                                        <div class="modelChatMainImageHolder">
-                                            <div class="imageOfModel">
+                                <article class="modelChat_responseContainerVoiceCloningButtonToChat">
+                                    <div class="modelChat_HolderVoiceCloningButtonToChat">
+                                        <div class="modelChatMainImageHolderVoiceCloningButtonToChat">
+                                            <div class="imageOfModelVoiceCloningButtonToChat">
                                                 <img src="/Frontend/images/svgs/voiceClone.svg" alt="model logo" />
                                             </div>
-                                            <div class="chatOfModel">
-                                                <span class="modelChat_responseNow"></span>
-                                                <div class="modelChatRegenerateLikeDislikeHolder">
-                                                    <div class="modelChatOptionsHolder">
-                                                        <div class="readTextHolder">
+                                            <div class="chatOfModelVoiceCloningButtonToChat">
+                                                <span class="modelChat_responseNowVoiceCloningButtonToChat"></span>
+                                                <div class="modelChatRegenerateLikeDislikeHolderVoiceCloningButtonToChat">
+                                                    <div class="modelChatOptionsHolderVoiceCloningButtonToChat">
+                                                        <div class="readTextHolderVoiceCloningButtonToChat">
                                                             <img src="/Frontend/images/svgs/volume.svg" title="Read Text" alt="">
                                                         </div>
-                                                        <div class="thumbUpHolder">
+                                                        <div class="thumbUpHolderVoiceCloningButtonToChat">
                                                             <img src="/Frontend/images/svgs/thumbup.svg" title="Like" alt="">
                                                         </div>
-                                                        <div class="thumbDownHolder">
+                                                        <div class="thumbDownHolderVoiceCloningButtonToChat">
                                                             <img src="/Frontend/images/svgs/thumbdown.svg" title="Dislike" alt="">
                                                         </div>
-                                                        <div class="reGenerateHolder">
+                                                        <div class="reGenerateHolderVoiceCloningButtonToChat">
+                                                            <img src="/Frontend/images/svgs/reload.svg" title="Regenerate" alt="">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>  
+                                </article>
+                            </div>
+                            <div class="rightLowerSectionItemsHolderRealTimeTranslatorButtonToChat">
+                                <article class="userChat_responseContainerRealTimeTranslatorButtonToChat">
+                                    <div class="userChat_HolderRealTimeTranslatorButtonToChat">
+                                        <div class="userChatMainImageHolderRealTimeTranslatorButtonToChat">
+                                            <div class="chatOfUserRealTimeTranslatorButtonToChat">
+                                                <div class="responseNowRealTimeTranslatorButtonToChat">Real time Translator model here</div>
+                                            </div>
+                                        </div>
+                                    </div>  
+                                </article>
+                                <article class="modelChat_responseContainerRealTimeTranslatorButtonToChat">
+                                    <div class="modelChat_HolderRealTimeTranslatorButtonToChat">
+                                        <div class="modelChatMainImageHolderRealTimeTranslatorButtonToChat">
+                                            <div class="imageOfModelRealTimeTranslatorButtonToChat">
+                                                <img src="/Frontend/images/svgs/voiceClone.svg" alt="model logo" />
+                                            </div>
+                                            <div class="chatOfModelRealTimeTranslatorButtonToChat">
+                                                <span class="modelChat_responseNowRealTimeTranslatorButtonToChat"></span>
+                                                <div class="modelChatRegenerateLikeDislikeHolderRealTimeTranslatorButtonToChat">
+                                                    <div class="modelChatOptionsHolderRealTimeTranslatorButtonToChat">
+                                                        <div class="readTextHolderRealTimeTranslatorButtonToChat">
+                                                            <img src="/Frontend/images/svgs/volume.svg" title="Read Text" alt="">
+                                                        </div>
+                                                        <div class="thumbUpHolderRealTimeTranslatorButtonToChat">
+                                                            <img src="/Frontend/images/svgs/thumbup.svg" title="Like" alt="">
+                                                        </div>
+                                                        <div class="thumbDownHolderRealTimeTranslatorButtonToChat">
+                                                            <img src="/Frontend/images/svgs/thumbdown.svg" title="Dislike" alt="">
+                                                        </div>
+                                                        <div class="reGenerateHolderRealTimeTranslatorButtonToChat">
+                                                            <img src="/Frontend/images/svgs/reload.svg" title="Regenerate" alt="">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>  
+                                </article>
+                            </div>
+                            <div class="rightLowerSectionItemsHolderVoiceToTeXTButtonToChat">
+                                <article class="userChat_responseContainerVoiceToTeXTButtonToChat">
+                                    <div class="userChat_HolderVoiceToTeXTButtonToChat">
+                                        <div class="userChatMainImageHolderVoiceToTeXTButtonToChat">
+                                            <div class="chatOfUserVoiceToTeXTButtonToChat">
+                                                <div class="responseNowVoiceToTeXTButtonToChat">Hey! what is your name? can you tell me what is this projectA1 about? is it free or paid?</div>
+                                            </div>
+                                        </div>
+                                    </div>  
+                                </article>
+                                <article class="modelChat_responseContainerVoiceToTeXTButtonToChat">
+                                    <div class="modelChat_HolderVoiceToTeXTButtonToChat">
+                                        <div class="modelChatMainImageHolderVoiceToTeXTButtonToChat">
+                                            <div class="imageOfModelVoiceToTeXTButtonToChat">
+                                                <img src="/Frontend/images/svgs/voiceClone.svg" alt="model logo" />
+                                            </div>
+                                            <div class="chatOfModelVoiceToTeXTButtonToChat">
+                                                <span class="modelChat_responseNowVoiceToTeXTButtonToChat"></span>
+                                                <div class="modelChatRegenerateLikeDislikeHolderVoiceToTeXTButtonToChat">
+                                                    <div class="modelChatOptionsHolderVoiceToTeXTButtonToChat">
+                                                        <div class="readTextHolderVoiceToTeXTButtonToChat">
+                                                            <img src="/Frontend/images/svgs/volume.svg" title="Read Text" alt="">
+                                                        </div>
+                                                        <div class="thumbUpHolderVoiceToTeXTButtonToChat">
+                                                            <img src="/Frontend/images/svgs/thumbup.svg" title="Like" alt="">
+                                                        </div>
+                                                        <div class="thumbDownHolderVoiceToTeXTButtonToChat">
+                                                            <img src="/Frontend/images/svgs/thumbdown.svg" title="Dislike" alt="">
+                                                        </div>
+                                                        <div class="reGenerateHolderVoiceToTeXTButtonToChat">
                                                             <img src="/Frontend/images/svgs/reload.svg" title="Regenerate" alt="">
                                                         </div>
                                                     </div>
@@ -147,38 +287,7 @@
                             <div class="modelNotice" role="contentinfo">
                                 This is an experimental project, Project A1; it is important to note that, like humans, it may also produce errors.
                             </div>
-                            <div class="aboutWebsite_toolkitHolder">
-                                <div class="websiteInfo">
-                                    <img src="/Frontend/images/svgs/aboutWebsite.svg" title="About" alt="">
-                                </div>
-                                <div class="aboutWebsiteToolKitContainer">
-                                    <ul class="websiteInfoUL">
-                                        <li>
-                                            <div class="websiteInfoImgHolder">
-                                                <img class="filter1" src="/Frontend/images/svgs/releaseNotes.svg" alt="">
-                                                <span>Release Notes</span>
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <div class="websiteInfoImgHolder">
-                                                <img class="filter1" src="/Frontend/images/svgs/releaseNotes.svg" alt="">
-                                                <span>Credits</span>
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <div class="websiteInfoImgHolder">
-                                                <img class="filter1" src="/Frontend/images/svgs/releaseNotes.svg" alt="">
-                                                <span>Privacy & Policy</span>
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <div class="websiteInfoVersion">
-                                                <span>Version 1.0.0</span>
-                                            </div>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
+                            
                         </div>
                     </div>
                 </div>
@@ -190,7 +299,9 @@
     <script src="/Frontend/scripts/dragIconsSvg.min.js"></script>
     <script src="/Frontend/scripts/screenSlider.min.js"></script>
     <script src="/Frontend/scripts/chatMenuOptions.min.js"></script>
-    <script src="/Frontend/scripts/getInputTextForModel.min.js"></script>
+    <script src="/Frontend/scripts/model.VC.min.js"></script>
+    <script src="/Frontend/scripts/model.RTT.min.js"></script>
+    <script src="/Frontend/scripts/model.VTT.min.js"></script>
     <script src="/Frontend/scripts/websiteInfo.min.js"></script>
     <script src="/Frontend/scripts/randomLink.min.js"></script>
 </body>

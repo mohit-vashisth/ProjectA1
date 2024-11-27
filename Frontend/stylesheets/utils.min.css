@@ -1,6 +1,12 @@
 :root {
   --new--body-leftSection--: hsl(215, 50%, 17%);
   --new--body-rightSection--: hsl(222, 80%, 11%);
+  --new--body-rightSection-light--: white;
+  --new--body-leftSection-light--: hsl(0, 0%, 95%);
+  --left-1shadow-hover--: hsl(222, 80%, 8%);
+  --right-1shadow-hover--: hsl(215, 50%, 14%);
+  --left-1shadow-hover-light--: white;
+  --right-1shadow-hover-light--: hsl(0, 0%, 95%);
 }
 
 ::-webkit-scrollbar {
