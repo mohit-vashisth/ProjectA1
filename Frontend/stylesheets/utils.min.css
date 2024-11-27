@@ -1,22 +1,6 @@
 :root {
-  --light-grey: hsl(0, 0%, 95%);
-  --sliders-light-grey: rgba(0, 0, 0, 0.1);
-  --mode-chatHolder-light-grey: hsl(0, 0%, 90%);
-  --ripple-grey-black: hsla(0, 0%, 0%, 0.1);
-  --response-holder: hsl(0, 0%, 90%);
-
-  --light--opposite: hsl(0, 0%, 15%);
-  --light--opposite-body: hsl(0, 0%, 25%);
-  --response-holder-opposite: hsl(0, 0%, 10%);
-  --ripple-grey-black-opposite: hsla(0, 0%, 100%, 0.1);
-  --sliders-light-grey-opposite: rgba(255, 255, 255, 0.1);
-  --mode-chatHolder-light-grey-opposite: hsl(0, 0%, 35%);
-
-
-
-  /* new dark-mode v1.1.0 20/05/2025
+  --new--body-leftSection--: hsl(215, 50%, 17%);
   --new--body-rightSection--: hsl(222, 80%, 11%);
-  --new--body-leftSection--: hsl(215, 28%, 17%); */
 }
 
 ::-webkit-scrollbar {
@@ -54,6 +38,7 @@
 html, body {
   width: 100vw;
   height: 100vh;
+  overflow: hidden;
 }
 
 body {

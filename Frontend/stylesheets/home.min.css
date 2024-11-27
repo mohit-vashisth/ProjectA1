@@ -1,19 +1,16 @@
-.leftSection {
-    background-color: var(--mode-chatHolder-light-grey);
-}
-
 body.dark-mode .leftSection{
-    background-color: var(--light--opposite);
+    background-color: var(--new--body-leftSection--);
+    color: white;
+}
+body.dark-mode .rightSection{
+    background-color: var(--new--body-rightSection--);
     color: white;
 }
 
 body.dark-mode .slideBarIcon,
-body.dark-mode .newChatLink img,
 body.dark-mode .darkModeOn,
 body.dark-mode .shareChat,
 body.dark-mode .userLoginNow,
-body.dark-mode .chatMenuIcon,
-body.dark-mode .chatDetails,
 body.dark-mode .microphoneHolder,
 body.dark-mode .websiteInfo,
 body.dark-mode .reEditUserMessage,
@@ -36,11 +33,6 @@ body.dark-mode .slideToRightBack{
     filter: invert(1);
 }
 
-body.dark-mode .chatMenuOptions {
-    background-color: rgba(83, 83, 83);
-}
-
-body.dark-mode .chatHistory:hover,
 body.dark-mode .models_ .dark-mode:hover {
     background-color: var(--sliders-light-grey-opposite);
 }
@@ -86,6 +78,8 @@ body.dark-mode .shareChat:hover{
     height: 100%;
     width: 15%;
     display: flex;
+    justify-content: space-between;
+    align-items: center;
     flex-direction: column;
     transition: width 0.4s ease;
 }
@@ -96,8 +90,9 @@ body.dark-mode .shareChat:hover{
 
 
 .slideBarNewChatHolder{
-    display: flex;
     width: 100%;
+    height: 7%;
+    display: flex;
     justify-content: center; 
     align-items: center;
     overflow: hidden;
@@ -107,7 +102,7 @@ body.dark-mode .shareChat:hover{
     width: 100%;
     display: flex;
     height: 7vmin;
-    justify-content: space-between;
+    justify-content: flex-start;
     align-items: center;
 }
 
@@ -121,36 +116,11 @@ body.dark-mode .shareChat:hover{
     cursor: pointer;
     user-select: none;
     pointer-events: auto;
-    margin-left: 1vmin;
     padding: 1vmin;
     border-radius: 2vmin;
 }
 
 .slideBar img:hover{
-    background-color: var(--sliders-light-grey);
-}
-
-.newChat{
-    display: flex;
-    align-items: center;
-}
-.newChatLink{
-    width: 8vmin;
-    height: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-.newChat img{
-    width: 5vmin;
-    cursor: pointer;
-    user-select: none;
-    pointer-events: auto;
-    padding: 1vmin;
-    border-radius: 1.5vmin;
-}
-
-.newChat img:hover{
     background-color: var(--sliders-light-grey);
 }
 
@@ -162,226 +132,105 @@ body.dark-mode .shareChat:hover{
     top: 8vmin;
 }
 
-.modelsChatHolder{
+.chatItemsContainerNew{
     width: 100%;
-    height: 100vh;
-    max-height: 2000vmin;
-    padding: 1vmin;
-    box-sizing: border-box;
-}
-
-
-.modelsContainer {
-    width: 100%;
-    max-height: 25vmin;
-    overflow-x: hidden;
-    overflow-y: auto;
-    padding: .5vmin;
-    box-sizing: border-box;
-    display: flex;
-    flex-direction: column;
-    gap: 1vmin;
-}
-
-.models_ {
+    height: 93%;
     display: flex;
     justify-content: flex-start;
     align-items: center;
+    flex-direction: column;
+    max-height: 2000vmin;
+    box-sizing: border-box;
+    overflow-y: auto;
+}
+
+.newChatButtonContainer{
+    width: 90%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 2vmin;
+}
+.newChatButtonLeftSection{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: hsl(0, 0%, 97%);
+    font-size: 2.5vmin;
+    font-weight: 600;
+    padding: 1vmin;
     border-radius: 1vmin;
-    font-weight: bold;
-    height: 4vmin;
-    font-size: 2vmin;
     cursor: pointer;
-    position: relative;
+    text-decoration: none;
+    color: black;
     user-select: none;
     text-wrap: nowrap;
-    overflow: hidden;
 }
 
-.models_:hover{
-    background-color: var(--ripple-grey-black);
+.newChatButtonLeftSection:hover{
+    background-color: hsl(0, 0%, 100%);
+    transition: background-color .1s step-start;
 }
 
-.models_ img{
-    width: 3vmin;
-    height: 2vmin;
-    min-width: 3vmin;
-    border-radius: 5vmin;
-}
 
-.horizontalBar{
+.userChatListContainer{
     width: 100%;
-    height: .1vmax;
-    background-color: var(--ripple-grey-black);
-
-}
-
-.chatContainer{
-    width: 100%;
+    height: auto;
+    max-height: 10000vmin;
     display: flex;
-    flex-direction: column;
-    border-radius: 1vmin;
-}
-
-.chatHistory{
-    height: 5vmin;
-    display: flex;
-    align-items: center;
     justify-content: flex-start;
-    border-radius: 1vmin;
-    cursor: pointer;
+    align-items: center;
+    flex-direction: column;
+    overflow-y: auto;
+}
+.userChatHolder{
+    width: 90%;
+    height: auto;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-direction: column;
+    gap: .5vmin;
+}
+.userChatItemsContainer{
     position: relative;
-}
-
-.chatHistory:hover{
-    background-color: var(--sliders-light-grey);
-}
-
-.chatDetails{
     width: 100%;
-    max-width: 100%;
     height: 4vmin;
-    font-size: 2.5vmin;
-    margin-left: 1vmin;
     display: flex;
     justify-content: flex-start;
-    align-items: center;
-    border-radius: 1vmin;
-    white-space: nowrap;
-    text-overflow: ellipsis;
-    color: hsla(0, 0%, 0%, 0.75);
-}
-
-.chat_menu_holder{
-    width: 100%;
-    height: 100%;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.chatDetailsHolder{
-    width: 80%;
-    height: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    overflow: hidden;
-    transition: filter .09s ease-in;
-}
-.chatMenuImageHolder{
-    width: 20%;
-    border-radius: 1vmin;
-    height: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.chatMenuOptionsNewContainer{
-    width: 100%;
-    height: 5vmin;
-    display: flex;
-    position: relative;
-    overflow: hidden;
-}
-
-.chatMenuIcon{
-    width: 50%;
-    visibility: hidden;
-}
-  
-.chatHistory:hover .chatMenuImageHolder img {
-    visibility: visible;
-}
-  
-.chatMenuOptions {
-    position: fixed;
-    background-color: hsl(0, 0%, 95%);
-    box-shadow: 0 1.2vmin 2vmin -.2vmin rgba(0, 0, 0, .1), 0 .5vmin .7vmin -.5vmin rgba(0, 0, 0, .1);
-    width: 15vmin;
-    height: 10vmin;
-    padding: .2vmin;
-    border-radius: 1vmin;
-    display: flex;
-    flex-direction: column;
-    visibility: hidden;
-    opacity: 0;
-    transition: opacity 0.2s ease;
-    overflow: hidden;
-    z-index: 1000;
-}
-
-.chatMenuOptionItemsHolder{
-    width: 100%;
-    height: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    text-decoration: none;
-    list-style: none;
+    align-items: flex-start;
+    border-radius: .5vmin;
     cursor: pointer;
 }
 
-.chatMenuOptions img {
-    width: 3vmin;
-    height: 3vmin;
-}
-
-.hideChatMenu {
-    display: none;
-}
-
-.chatMenuIcon {
-    cursor: pointer;
-}
-
-
-.renameChat{
-    width: 100%;
-    height: 50%;
+.userChatHere{
+    width: 85%;
+    height: 100%;
+    background-color: white;
+    color: black;
+    font-weight: 600;
     display: flex;
-    font-size: 2vmin;
-    border-radius: .5vmin;
-    justify-content: flex-start;
     align-items: center;
-    font-weight: bold;
-    gap: 1vmin;
-    user-select: none;
+    justify-content: flex-start;
+    border-radius: .5vmin;
 }
-
-.renameChat img{
-    width: 2.5vmin;
-    margin-left: 1vmin;
+.userChatHere span{
+    margin-left: .5vmin;
 }
-
-.renameChat:hover{
-    background-color: var(--sliders-light-grey);
-}
-
-.deleteChat{
-    width: 100%;
-    height: 50%;
+.userChatRenameDeleteToolKit{
+    position: absolute;
+    width: 14%;
+    height: 100%;
+    top: 0;
+    right: 0;
+    background-color: white;
     display: flex;
-    font-size: 2vmin;
-    border-radius: .5vmin;
-    justify-content: flex-start;
     align-items: center;
-    font-weight: bold;
-    gap: 1vmin;
-    user-select: none;
+    justify-content: center;
+    font-size: 3vmin;
+    border-radius: .5vmin;
 }
-
-.deleteChat img{
-    width: 2.5vmin;
-    margin-left: 1vmin;
-}
-
-.deleteChat:hover{
-    background-color: var(--sliders-light-grey);
-}
-
 
 .rightSection{
     width: 100%;
@@ -446,7 +295,6 @@ body.dark-mode .shareChat:hover{
 .sliderHolder{
     height: 100%;
     display: flex;
-    margin-left: 1vmin;
     justify-content: center;
     align-items: center;
     transition: opacity 0.4s ease, width 0.4s ease; 
@@ -460,7 +308,6 @@ body.dark-mode .shareChat:hover{
     cursor: pointer;
     user-select: none;
     pointer-events: auto;
-    margin-left: 1vmin;
     padding: 1vmin;
     border-radius: 2vmin;
 }
