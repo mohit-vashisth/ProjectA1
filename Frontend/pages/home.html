@@ -8,7 +8,17 @@
     <meta name="keywords" content="real-time translation, voice-to-text, ProjectA1, AI chatbot" />
     <meta name="author" content="3R Minds" />
     <meta name="robots" content="index, follow" />
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; font-src 'self';">
+    
+    <!-- Updated CSP -->
+    <meta http-equiv="Content-Security-Policy" content="
+        default-src 'self'; 
+        script-src 'self'; 
+        style-src 'self'; 
+        img-src 'self' data:; 
+        font-src 'self'; 
+        connect-src 'self'; 
+        object-src 'none'; 
+        frame-ancestors 'none';">
 
     <link rel="preload" href="/Frontend/stylesheets/utils.min.css" as="style" />
     <link rel="preload" href="/Frontend/images/svgs/slidebarLeft.svg" as="image" />
@@ -16,12 +26,14 @@
     <link rel="stylesheet" href="/Frontend/stylesheets/utils.min.css" />
     <link rel="stylesheet" href="/Frontend/stylesheets/home.min.css" />
 
-    <script src="/Frontend/scripts/darkMode.js" defer></script>
-    <script src="/Frontend/scripts/disableDeveloperTools.js" defer></script>
+    <script src="/Frontend/scripts/darkMode.min.js" defer></script>
+    <!-- <script src="/Frontend/scripts/disableDeveloperTools.min.js" defer></script> -->
     <script src="/Frontend/scripts/dragIconsSvg.js" defer></script>
+    <script src="/Frontend/scripts/associatedChatVcRttVttt.min.js" defer></script>
 
     <title>ProjectA1: By 3R Minds</title>
 </head>
+
 <body class="dark-mode">
     <div class="sections">
         <div class="leftRIghtContainer">
@@ -39,7 +51,7 @@
                     </div>
                     <div class="userChatListContainer">
                         <div class="userChatHolder">
-                            <div class="userChatItemsContainer">
+                            <!-- <div class="userChatItemsContainer">
                                 <div class="userChatHere">
                                     <div class="vcChatHolder"><span>VC</span></div>
                                     <span>VC_new-voice</span>
@@ -47,7 +59,7 @@
                                 <div class="userChatRenameDeleteToolKit">
                                     <img class="chatMenuOptionIcon" src="/Frontend/images/svgs/dot3Menu.svg" alt="">
                                 </div>
-                            </div>
+                            </div> -->
                         </div>
                     </div>
                     <div class="settingsUserLoginAboutWebsiteContainer">
@@ -140,13 +152,13 @@
                             </div>
                         </div>
                         <div class="lowerRightSectionHolder" role="main">
-                            <!-- <div class="checkAndValidateChatOptionsToStart">
+                            <div class="checkAndValidateChatOptionsToStart">
                                 <div class="checkAndValidateChatOptionsHolder">
                                     <button class="chatButton voiceCloningButton">Voice Cloning</button>
                                     <button class="chatButton realTimeTranslatorButton">Real-Time Translator</button>
                                     <button class="chatButton voiceToTeXTButton">Voice to Text</button>
                                 </div>
-                            </div> -->
+                            </div>
                             <div class="rightLowerSectionItemsHolderVoiceCloningButtonToChat">
                                 <article class="userChat_responseContainerVoiceCloningButtonToChat">
                                     <div class="userChat_HolderVoiceCloningButtonToChat">
@@ -294,15 +306,14 @@
             </div>
         </div>
     </div>
-    <script src="/Frontend/scripts/darkMode.min.js"></script>
-    <!-- <script src="/Frontend/scripts/disableDeveloperTools.min.js"></script> -->
-    <script src="/Frontend/scripts/dragIconsSvg.min.js"></script>
-    <script src="/Frontend/scripts/screenSlider.min.js"></script>
-    <script src="/Frontend/scripts/chatMenuOptions.min.js"></script>
-    <script src="/Frontend/scripts/model.VC.min.js"></script>
-    <script src="/Frontend/scripts/model.RTT.min.js"></script>
-    <script src="/Frontend/scripts/model.VTT.min.js"></script>
-    <script src="/Frontend/scripts/websiteInfo.min.js"></script>
-    <script src="/Frontend/scripts/randomLink.min.js"></script>
+    <script src="/Frontend/scripts/darkMode.min.js" defer></script>
+    <script src="/Frontend/scripts/dragIconsSvg.min.js"defer></script>
+    <script src="/Frontend/scripts/screenSlider.min.js"defer></script>
+    <script src="/Frontend/scripts/chatMenuOptions.min.js"defer></script>
+    <script src="/Frontend/scripts/model.VC.min.js"defer></script>
+    <script src="/Frontend/scripts/model.RTT.min.js"defer></script>
+    <script src="/Frontend/scripts/model.VTT.min.js"defer></script>
+    <script src="/Frontend/scripts/websiteInfo.min.js"defer></script>
+    <script src="/Frontend/scripts/randomLink.min.js"defer></script>
 </body>
 </html>
