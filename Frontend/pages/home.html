@@ -51,7 +51,7 @@
                     </div>
                     <div class="userChatListContainer">
                         <div class="userChatHolder">
-                            <!-- <div class="userChatItemsContainer">
+                            <div class="userChatItemsContainer">
                                 <div class="userChatHere">
                                     <div class="vcChatHolder"><span>VC</span></div>
                                     <span>VC_new-voice</span>
@@ -59,7 +59,7 @@
                                 <div class="userChatRenameDeleteToolKit">
                                     <img class="chatMenuOptionIcon" src="/Frontend/images/svgs/dot3Menu.svg" alt="">
                                 </div>
-                            </div> -->
+                            </div>
                         </div>
                     </div>
                     <div class="settingsUserLoginAboutWebsiteContainer">
@@ -150,15 +150,22 @@
                                     <img src="/Frontend/images/svgs/shareChat.svg" alt="">
                                 </div>
                             </div>
+                            <div class="shareChatPopupHolder">
+                                <div class="shareChatLinkPopupHolder">
+                                    <span>Share public link to chat</span>
+                                    <div class="inputAreaWithLinkHolder"></div>
+                                    <div class="copyShareChatLinkButton"></div>
+                                </div>
+                            </div>
                         </div>
                         <div class="lowerRightSectionHolder" role="main">
-                            <div class="checkAndValidateChatOptionsToStart">
+                            <!-- <div class="checkAndValidateChatOptionsToStart">
                                 <div class="checkAndValidateChatOptionsHolder">
                                     <button class="chatButton voiceCloningButton">Voice Cloning</button>
                                     <button class="chatButton realTimeTranslatorButton">Real-Time Translator</button>
                                     <button class="chatButton voiceToTeXTButton">Voice to Text</button>
                                 </div>
-                            </div>
+                            </div> -->
                             <div class="rightLowerSectionItemsHolderVoiceCloningButtonToChat">
                                 <article class="userChat_responseContainerVoiceCloningButtonToChat">
                                     <div class="userChat_HolderVoiceCloningButtonToChat">
@@ -278,28 +285,17 @@
                             </div>
                         </div>
                     </div>
-                    <div class="askModel_TypeAreaBox_WebsiteInfo">
-                        <div class="askModel_responseHolderContainer">
-                            <div class="askModel_responseHolder">
-                                <div class="microphoneHolder">
-                                    <img src="/Frontend/images/svgs/microphone.svg" title="Microphone" alt="">
-                                </div>
-                                <div class="askModel_">
-                                    <textarea class="askModel_response" placeholder="Ask ProjectA1"></textarea>
-                                    <div class="enterText_askModel"></div>
-                                </div>
-                                <div class="askModel_buttonHolder">
-                                    <button class="askModel_button" title="Send">
-                                        <img src="/Frontend/images/svgs/sendButton.svg" alt="send">
-                                    </button>
+                    <div class="inputVoiceMicrophoneNoticeHolder">
+                        <div class="microphoneItemContainer">
+                            <div class="microphoneHolder">
+                                <div class="rotatingBackground"></div>
+                                <div class="microphoneHere">
+                                    <img class="inputMicrophone" src="/Frontend/images/svgs/microphone.svg" alt="">
                                 </div>
                             </div>
                         </div>
-                        <div class="modelNotice_websiteInfo_infoContainer">
-                            <div class="modelNotice" role="contentinfo">
-                                This is an experimental project, Project A1; it is important to note that, like humans, it may also produce errors.
-                            </div>
-                            
+                        <div class="noticeAboutWebsiteContainer">
+                            <span>This is an experimental project, Project A1; it is important to note that, like humans, it may also produce errors.</span>
                         </div>
                     </div>
                 </div>
@@ -315,5 +311,7 @@
     <script src="/Frontend/scripts/model.VTT.min.js"defer></script>
     <script src="/Frontend/scripts/websiteInfo.min.js"defer></script>
     <script src="/Frontend/scripts/randomLink.min.js"defer></script>
+    <script src="/Frontend/scripts/microphone.js"defer></script>
+    <script src="/Frontend/scripts/shareChat.js"defer></script>
 </body>
 </html>

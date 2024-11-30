@@ -14,6 +14,10 @@ body.dark-mode .checkAndValidateChatOptionsToStart{
     background-color: var(--new--body-rightSection--);
     color: white;
 }
+body.dark-mode .microphoneHere{
+    background-color: var(--new--body-rightSection--);
+    color: white;
+}
 
 body.dark-mode .settingsOptionsContainer:hover{
     background-color: var(--left-1shadow-hover--);
@@ -29,8 +33,8 @@ body.dark-mode .slideBarIcon,
 body.dark-mode .userChatRenameDeleteToolKit img,
 body.dark-mode .settingsIconHolder img,
 body.dark-mode .darkModeOn,
+body.dark-mode .inputMicrophone,
 body.dark-mode .shareChat,
-body.dark-mode .microphoneHolder,
 body.dark-mode .websiteInfo,
 body.dark-mode .reEditUserMessage,
 body.dark-mode .models_ img,
@@ -369,13 +373,13 @@ body.dark-mode .slideToRightBack{
 }
 
 .rightSectionItemsHolder{
+    position: relative;
     width: 100%;
     height: 100%;
     display: flex;
     justify-content: flex-start;
     align-items: center;
     flex-direction: column;
-    position: relative;
 }
 
 .rightUpperLowerSectionItemsContainer{
@@ -393,7 +397,6 @@ body.dark-mode .slideToRightBack{
     height: 8%;
     display: flex;
     align-items: center;
-    overflow: hidden;
     position: relative;
     top: 0;
 }
@@ -525,31 +528,55 @@ body.dark-mode .slideToRightBack{
 }
 
 .shareChat{
-    border: .2vmin solid var(--ripple-grey-black);
+    border: .1vmin solid var(--border-universal-light--);
     position: relative;
     border-radius: 10vmin;
     display: flex;
     justify-content: flex-start;
     align-items: center;
+    margin-right: 1vmin;
     padding: 1vmin;
-    gap: 1vmin;
     cursor: pointer;
 }
 
 .shareChat:hover{
-    background-color: var(--sliders-light-grey);
+    background-color: var(--new--body-leftSection-light--);
     transition: background-color .09s ease-out;
+}
+
+.shareChatPopupHolder{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, 120%);
+    width: 60vmin;
+    height: 25vmin;
+    background-color: var(--new--body-leftSection-light--);
+    border-radius: 1vmin;
+    z-index: 1;
+    display: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.shareChatLinkPopupHolder{
+    width: 98%;
+    height: 95%;
+    background-color: var(--new--body-rightSection-light--);
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+}
+.shareChatLinkPopupHolder span{
+    width: 100%;
+    text-align: start;
+    font-size: 2.5vmin;
+    margin-left: 1vmin;
 }
 
 .shareChat img{
     width: 2vmin;
-    user-select: none;
-}
-
-.shareChat span{
-    font-weight: bolder;
-    font-size: 2.3vmin;
-    color: hsla(0, 0%, 0%, 0.6);
     user-select: none;
 }
 
@@ -1188,26 +1215,6 @@ body.dark-mode .slideToRightBack{
     padding-right: 1vmin;
 }
 
-.askModel_TypeAreaBox_WebsiteInfo{
-    width: 100%;
-    height: 30vmin;
-    max-height: 30vmin;
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
-    flex-direction: column;
-    overflow: hidden;
-    position: absolute;
-    bottom: 0;
-}
-
-.modelNotice_websiteInfo_infoContainer{
-    width: 100%;
-    height: 10%;
-    display: flex;
-    align-items: center;
-}
-
 .checkAndValidateChatOptionsToStart{
     position: absolute;
     width: 100%;
@@ -1363,98 +1370,74 @@ body.dark-mode .slideToRightBack{
     font-weight: 600;
 }
 
+.inputVoiceMicrophoneNoticeHolder{
+    width: 95%;
+    height: 20vmin;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
 
+.microphoneItemContainer{
+    width: 80%;
+    height: 85%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 .microphoneHolder {
-    position: absolute;
-    left: 0;
-    bottom: 0;
-    padding: 1vmin;
-    margin: 1vmin;
-    cursor: pointer;
-    border-radius: 10vmin;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.microphoneHolder img{
-    width: 3vmin;
-    user-select: none;
-    opacity: .6;
-}
-.microphoneHolder:hover>img{
-    opacity: 1;
-}
-
-.askModel_responseHolderContainer{
-    width: 100%;
-    height: 25vmin;
-    max-height: 30vmin;
-    display: flex;
-    justify-content: center;
-    align-items: flex-end;
-}
-
-.askModel_responseHolder{
-    width: 60%;
-    min-height: 25%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
     position: relative;
-    border-radius: 1vmin;
-    background-color: var(--response-holder);
-
-}
-
-.askModel_{
-    width: 85%;
-    overflow-x: hidden;
-    overflow-y: auto;
-    display: flex;
-    justify-content: center;
-    align-items: flex-end;
-}
-
-.askModel_response{
-    width: 100%;
-    height: 7vmin;
-    max-height: 25vmin;
-    border: none;
-    outline: none;
-    font-size: 2.5vmin;
-    background-color: var(--response-holder);
-    display: flex;
-    overflow-y: auto;
-    padding: 2vmin;
-    resize: none;
-}
-
-.askModel_buttonHolder{
-    position: absolute;
-    right: 0;
-    bottom: 0;
-    margin: 1vmin;
-}
-
-.askModel_button {
-    width: 5vmin;
-    height: 5vmin;
-    padding: 1vmin;
-    border: none;
-    border-radius: 1vmin;
-    cursor: not-allowed;
-    outline: none;
-    background-color: var(--light-grey);
+    width: 8vmin;
+    height: 8vmin;
     display: flex;
     justify-content: center;
     align-items: center;
-    opacity: .5;
+    cursor: pointer;
+    transition: transform 0.5s ease-in-out;
 }
 
-.askModel_button img{
-    margin-top: .5vmin;
-    width: 2vmin;
-    height: 2vmin;
-    user-select: none;
+.rotatingBackground {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    background-size: 400% 400%;
+    background: conic-gradient(from 0deg, #4285F4, #34A853, #FBBC05, #DB4437);
+    animation: animateGradient 2s linear infinite; /* Continuous rotation */
+  }
+  
+  @keyframes animateGradient {
+    0% {
+      background: conic-gradient(from 0deg, #4285F4, #34A853, #FBBC05, #DB4437);
+    }
+    100% {
+      background: conic-gradient(from 360deg, #4285F4, #34A853, #FBBC05, #DB4437);
+    }
+  }
+  
+  
+
+.microphoneHere {
+    position: absolute;
+    width: 7vmin;
+    height: 7vmin;
+    display: flex;
+    border-radius: 10vmin;
+    justify-content: center;
+    align-items: center;
+    background-color: white;
+    z-index: 1;
+}
+
+.inputMicrophone {
+    width: 3vmin;
+}
+
+.noticeAboutWebsiteContainer{
+    width: 100%;
+    height: 15%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
