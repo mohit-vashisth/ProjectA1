@@ -29,7 +29,61 @@ body.dark-mode .aboutOurWebsiteContainer:hover{
     transition: background-color .1s ease;
 }
 
+body.dark-mode .newChatButtonLeftSection:hover{
+    box-shadow: 0 .1vmin .5vmin white;
+    box-shadow: 0 .1vmin .5vmin white;
+    transition: box-shadow 0.1s ease;
+}
+
+body.dark-mode .userChatItemsContainer:hover{
+    border-color: var(--left-1shadow-hover-light--);
+    box-shadow: 0 .1vmin .5vmin hsla(0, 0%, 100%, 0.2);
+    transition: box-shadow 0.1s ease, border-color 0.1s ease;
+}
+
+body.dark-mode .userLoginNow:hover{
+    border-color: var(--left-1shadow-hover-light--);
+    box-shadow: 0 .1vmin .5vmin hsla(0, 0%, 100%, .5);
+    transition: box-shadow 0.1s ease, border-color 0.1s ease;
+}
+body.dark-mode .userRegisterNow:hover{
+    border-color: var(--left-1shadow-hover-light--);
+    box-shadow: 0 .1vmin .5vmin hsla(0, 0%, 100%, .5);
+    transition: box-shadow 0.1s ease, border-color 0.1s ease;
+}
+
+body.dark-mode .slideBar:hover{
+    background-color: var(--left-1shadow-hover--);
+}
+body.dark-mode .sliderHolder.show:hover {
+    background-color: var(--right-1shadow-hover--);
+}
+
+body.dark-mode .shareChatPopupHolder{
+    background-color: var(--new--body-leftSection--);
+}
+body.dark-mode .shareChatLinkPopupHolder{
+    background-color: var(--new--body-rightSection--);
+}
+body.dark-mode .shareChatLinkPopupHolder span{
+    color: white;
+}
+body.dark-mode .labelShareRadio{
+    color: white;
+    opacity: .8;
+}
+body.dark-mode input[type="radio"]:checked + label {
+    border-color: var(--left-1shadow-hover-light--);
+    opacity: 1;
+    font-weight: bold;
+    box-shadow: 0 .1vmin .5vmin rgba(23, 48, 87, 0.5);
+}
+body.dark-mode .leftSectionChatLoaderAnimation {
+    background-color: var(--new--body-leftSection--);
+}
+
 body.dark-mode .slideBarIcon,
+body.dark-mode .microPhoneToolkitHolder,
 body.dark-mode .userChatRenameDeleteToolKit img,
 body.dark-mode .settingsIconHolder img,
 body.dark-mode .darkModeOn,
@@ -55,6 +109,7 @@ body.dark-mode .readTextHolderRealTimeTranslatorButtonToChat,
 body.dark-mode .thumbDownHolderRealTimeTranslatorButtonToChat,
 body.dark-mode .reGenerateHolderRealTimeTranslatorButtonToChat,
 body.dark-mode .filter1,
+body.dark-mode .horizontalBar,
 body.dark-mode .horizontalBar,
 body.dark-mode .slideToRightBack{
     filter: invert(1);
@@ -110,21 +165,22 @@ body.dark-mode .slideToRightBack{
 }
 
 .slideBar{
-    display: flex;
-    align-items: center;
+    width: 6vmin;
+    height: 6vmin;
+    cursor: pointer;
+    user-select: none;
+    pointer-events: auto;
+    border-radius: 2vmin;
 }
 
 .slideBar img{
     width: 6vmin;
     cursor: pointer;
-    user-select: none;
-    pointer-events: auto;
     padding: 1vmin;
-    border-radius: 2vmin;
 }
 
-.slideBar img:hover{
-    background-color: var(--sliders-light-grey);
+.slideBar:hover{
+    background-color: var(--left-1shadow-hover-light--);
 }
 
 .breakBarHorizontal{
@@ -175,6 +231,9 @@ body.dark-mode .slideToRightBack{
 .newChatButtonLeftSection:hover{
     background-color: hsl(0, 0%, 100%);
     transition: background-color .1s step-start;
+    border-color: var(--left-1shadow-hover-light--);
+    box-shadow: 0 .1vmin .5vmin rgba(0, 0, 0, 0.2);
+    transition: box-shadow 0.3s ease, border-color 0.3s ease, background-color 0.3s ease;
 }
 
 
@@ -209,7 +268,11 @@ body.dark-mode .slideToRightBack{
     border-radius: 1vmin;
     cursor: pointer;
     overflow: hidden;
-
+}
+.userChatItemsContainer:hover{
+    border-color: var(--left-1shadow-hover-light--);
+    box-shadow: 0 .1vmin .5vmin rgba(0, 0, 0, 0.2);
+    transition: box-shadow 0.3s ease, border-color 0.3s ease;
 }
 
 .chatMenuOptionIcon{
@@ -242,6 +305,7 @@ body.dark-mode .slideToRightBack{
     align-items: center;
     flex-direction: column;
     gap: .5vmin;
+    user-select: none;
 }
 
 .userLoginOptionsContainer{
@@ -252,6 +316,7 @@ body.dark-mode .slideToRightBack{
     font-size: 1.8vmin;
     justify-content: flex-start;
     align-items: center;
+
 }
 
 .settingsOptionsContainer{
@@ -442,7 +507,7 @@ body.dark-mode .slideToRightBack{
     border-radius: 2vmin;
 }
 .sliderHolder.show:hover {
-    background-color: var(--sliders-light-grey);
+    background-color: var(--right-1shadow-hover-light--);
 }
 
 .sliderHolder img{
@@ -548,14 +613,13 @@ body.dark-mode .slideToRightBack{
     position: absolute;
     top: 50%;
     left: 50%;
-    transform: translate(-50%, 120%);
+    transform: translate(-50%, 90%);
     width: 60vmin;
-    height: 25vmin;
+    height: 30vmin;
     background-color: var(--new--body-leftSection-light--);
     border-radius: 1vmin;
     z-index: 1;
     display: none;
-    display: flex;
     justify-content: center;
     align-items: center;
 }
@@ -565,19 +629,100 @@ body.dark-mode .slideToRightBack{
     height: 95%;
     background-color: var(--new--body-rightSection-light--);
     display: flex;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: flex-start;
+    flex-direction: column;
 }
 .shareChatLinkPopupHolder span{
     width: 100%;
+    height: 5vmin;
     text-align: start;
     font-size: 2.5vmin;
-    margin-left: 1vmin;
+    margin-left: 1.5vmin;
+    margin-top: 1vmin;
+    user-select: none;
 }
+
+.inputAreaWithLinkHolder{
+    display: flex;
+    justify-content: center;
+}
+
+.labelShareRadio {
+    width: 25vmin;
+    height: 5vmin;
+    display: block;
+    position: relative;
+    border: .3vmin solid #ccc;
+    border-radius: 1vmin;
+    margin-left: 3vmin;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center ;
+    font-size: 2.5vmin;
+    color: #333;
+  }
+
+  label:hover {
+    border-color: var(--left-1shadow-hover-light--);
+    box-shadow: 0 .1vmin .5vmin rgba(0, 0, 0, 0.1);
+    transition: box-shadow 0.3s ease, border-color 0.3s ease;
+  }
+
+  input[type="radio"] {
+    display: none;
+  }
+
+  input[type="radio"]:checked + label {
+    border-color: var(--left-1shadow-hover-light--);
+    font-weight: bold;
+    box-shadow: 0 .1vmin .5vmin rgba(23, 48, 87, 0.5);
+  }
 
 .shareChat img{
     width: 2vmin;
     user-select: none;
+}
+
+.copyShareChatLinkButton{
+    position: relative;
+    width: 100%;
+    height: 50%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.shareChatLink{
+    width: 70%;
+    height: 5vmin;
+    border-radius: 1vmin;
+    border: none;
+    outline: none;
+    padding: 1vmin;
+    font-size: 2.5vmin;
+    margin-left: 3vmin;
+    background-color: var(--new--body-leftSection-light--);
+}
+
+.copyTextButton{
+    position: absolute;
+    width: 25%;
+    height: 5vmin;
+    right: 3vmin;
+    font-size: 2vmin;
+    font-weight: bold;
+    border: none;
+    border-radius: 1vmin;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--new--body-leftSection-light--);
+}
+.copyTextButton:hover{
+    background-color: white;
 }
 
 .userLoginRegisterButtonContainer{
@@ -603,10 +748,15 @@ body.dark-mode .slideToRightBack{
     font-weight: 600;
     opacity: .9;
 }
+.userLoginNow span{
+    font-size: 2vmin;
+}
 
 .userLoginNow:hover{
     opacity: 1;
-    transition: opacity .1s ease;
+    border-color: var(--left-1shadow-hover-light--);
+    box-shadow: 0 .2vmin .5vmin rgba(0, 0, 0, 0.1);
+    transition: box-shadow 0.3s ease, border-color 0.3s ease, opacity .1s ease;
 }
 
 .userRegisterNow{
@@ -623,9 +773,15 @@ body.dark-mode .slideToRightBack{
     opacity: .9;
 }
 
+.userRegisterNow span{
+    font-size: 2vmin;
+}
+
 .userRegisterNow:hover{
     opacity: 1;
-    transition: opacity .1s ease;
+    border-color: var(--left-1shadow-hover-light--);
+    box-shadow: 0 .2vmin .5vmin rgba(0, 0, 0, 0.1);
+    transition: box-shadow 0.3s ease, border-color 0.3s ease, opacity .1s ease;
 }
 
 
@@ -1288,7 +1444,7 @@ body.dark-mode .slideToRightBack{
     left: 1vmin;
     border-radius: 1vmin;
     box-shadow: 0 1.2vmin 2vmin -.2vmin rgba(0, 0, 0, .1), 0 .5vmin .7vmin -.5vmin rgba(0, 0, 0, .1);
-    background-color: var(--sliders-light-grey-opposite);
+    background-color: var(--new--body-leftSection-light--);
     visibility: hidden;
     opacity: 0;
     transition: visibility .1s ease, opacity .1s ease;
@@ -1430,14 +1586,95 @@ body.dark-mode .slideToRightBack{
     z-index: 1;
 }
 
-.inputMicrophone {
-    width: 3vmin;
+@keyframes vibrate {
+    0% { transform: scale(1); }
+    10% { transform: scale(0.95); }
+    20% { transform: scale(1.05); }
+    30% { transform: scale(1.1); }
+    40% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+    60% { transform: scale(1.1); }
+    70% { transform: scale(1.05); }
+    80% { transform: scale(1.08); }
+    90% { transform: scale(1.02); }
+    100% { transform: scale(1); }
 }
 
+.microphoneHere.vibrating {
+    animation: vibrate 2s linear infinite;
+  }
+
+.inputMicrophone {
+    width: 3vmin;
+    user-select: none;
+}
+
+.microPhoneToolkitHolder {
+    position: absolute;
+    width: 10vmin;
+    height: 2vmin;
+    transform: translateY(5.5vmin);
+    border: .1vmin solid hsla(0, 0%, 0%, 0.1);
+    border-radius: .3vmin;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    user-select: none;
+    pointer-events: none;
+    display: none;
+    transform: scale(0.7) translate(0, 7.5vmin);
+}
+
+.microPhoneToolkitHolder span{
+    color: hsla(0, 0%, 0%, 0.7);
+    font-weight: bolder;
+    font-size: .8vmin;
+    text-wrap: nowrap;
+}
 .noticeAboutWebsiteContainer{
     width: 100%;
     height: 15%;
     display: flex;
     justify-content: center;
     align-items: center;
+    z-index: 1;
 }
+.noticeAboutWebsiteContainer span{
+    user-select: none;
+    font-size: 2vmin;
+}
+
+
+.leftSectionChatLoaderAnimation{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--new--body-leftSection-light--);
+    z-index: 1;
+    display: none;
+}
+
+
+.chat-loader {
+    width: 50px;
+    height: 50px;
+    border: 5px solid #f3f3f3; /* Light gray border */
+    border-top: 5px solid #3498db; /* Blue border for rotation */
+    border-radius: 50%; /* Makes it circular */
+    animation: spin 1s linear infinite; /* Smooth spinning animation */
+    display: none; /* Initially hidden */
+    margin: auto; /* Centers the loader */
+  }
+  
+  @keyframes spin {
+    0% {
+      transform: rotate(0deg); /* Start point */
+    }
+    100% {
+      transform: rotate(360deg); /* Full rotation */
+    }
+  }
+  

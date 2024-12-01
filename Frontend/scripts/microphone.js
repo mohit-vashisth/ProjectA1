@@ -1,12 +1,18 @@
 const microphoneHolder = document.querySelector(".microphoneHolder");
 const rotatingBackground = document.querySelector(".rotatingBackground");
-
-let rotation = 0;  // Rotation angle for background
-let rotationSpeed = 360;  // Initial rotation speed
+const microphone = document.querySelector('.microphoneHere');
+const microPhoneToolkitHolder = document.querySelector('.microPhoneToolkitHolder');
+const microPhoneActivateSound = document.querySelector('.microPhoneActivateSound');
+const microPhoneDeactivateSound = document.querySelector('.microPhoneDeactivateSound');
+let isMicrophoneActive = false;
+let rotation = 0;
+let rotationSpeed = 360;
 let isAnimating = false;
 let speedChangeTimeout = null;
+let openMicrophoneTimeout = null;
+microPhoneActivateSound.volume = 0.3;
+microPhoneDeactivateSound.volume = 0.3;
 
-// Start the animation of rotating background
 function animateRotation() {
   const currentTime = Date.now();
   let lastTime = currentTime;
@@ -20,7 +26,7 @@ function animateRotation() {
     lastTime = now;
 
     rotation += rotationSpeed * deltaTime;
-    rotatingBackground.style.transform = `rotate(${rotation % 360}deg)`; // Continuous rotation
+    rotatingBackground.style.transform = `rotate(${rotation % 360}deg)`;
 
     requestAnimationFrame(update);
   }
@@ -28,12 +34,10 @@ function animateRotation() {
   requestAnimationFrame(update);
 }
 
-// Stop the background rotation animation
 function stopAnimation() {
   isAnimating = false;
 }
 
-// Gradually change the rotation speed over a given duration
 function graduallyChangeSpeed(targetSpeed, duration) {
   if (speedChangeTimeout) clearTimeout(speedChangeTimeout);
 
@@ -48,41 +52,69 @@ function graduallyChangeSpeed(targetSpeed, duration) {
       currentStep++;
       speedChangeTimeout = setTimeout(step, stepDuration);
     } else {
-      rotationSpeed = targetSpeed; // Reached target speed
+      rotationSpeed = targetSpeed;
     }
   }
 
   step();
 }
 
-// Function to open the microphone, change animation speed, and start rotating
+function playSound(audioElement) {
+  if (audioElement) {
+    if (!audioElement.paused) {
+      audioElement.pause();
+      audioElement.currentTime = 0;
+    }
+    audioElement.play();
+  }
+}
+
 function openMicrophone() {
   microphoneHolder.style.transform = "translateY(-30vmin) scale(2.5)";
-  graduallyChangeSpeed(60, 5000); // Gradually slow down the rotation speed to 60 over 5 seconds
+  graduallyChangeSpeed(60, 5000);
   if (!isAnimating) animateRotation();
+
+  if (openMicrophoneTimeout) clearTimeout(openMicrophoneTimeout);
+
+  openMicrophoneTimeout = setTimeout(() => {
+    microphone.classList.add("vibrating");
+    microPhoneToolkitHolder.style.display = 'flex';
+
+    if (!isMicrophoneActive) {
+      isMicrophoneActive = true;
+      playSound(microPhoneActivateSound);
+    }
+  }, 1500);
 }
 
-// Function to close the microphone, keep the rotation running, but reset scale and position
 function closeMicrophone() {
   microphoneHolder.style.transform = "translateY(0) scale(1)";
-  graduallyChangeSpeed(360, 2000); // Gradually reset speed back to 360 over 2 seconds
-  // Don't stop the animation, so rotation continues running
+  graduallyChangeSpeed(360, 2000);
+  microphone.classList.remove("vibrating");
+  microPhoneToolkitHolder.style.display = 'none';
+
+  // Cancel any pending openMicrophone timeout
+  if (openMicrophoneTimeout) clearTimeout(openMicrophoneTimeout);
+
+  if (isMicrophoneActive) {
+    isMicrophoneActive = false;
+    setTimeout(() => {
+      playSound(microPhoneDeactivateSound);
+    }, 500);
+  }
 }
 
-// Event listener to open the microphone when clicked
 microphoneHolder.addEventListener("click", function (event) {
-  event.stopPropagation(); // Prevent the event from propagating to the document
+  event.stopPropagation();
   openMicrophone();
 });
 
-// Event listener to close the microphone when clicked outside
 document.addEventListener("click", function (event) {
   if (!microphoneHolder.contains(event.target)) {
     closeMicrophone();
   }
 });
 
-// Start the rotation animation immediately when the page loads
 window.addEventListener("load", function () {
-  if (!isAnimating) animateRotation(); // Start the rotation on page load
+  if (!isAnimating) animateRotation();
 });
