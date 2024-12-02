@@ -133,7 +133,7 @@ body.dark-mode .slideToRightBack{
 
 .leftSection {
     height: 100%;
-    width: 15%;
+    width: 0;
     display: flex;
     justify-content: space-between;
     background-color: var(--new--body-leftSection-light--);
@@ -602,6 +602,7 @@ body.dark-mode .slideToRightBack{
     margin-right: 1vmin;
     padding: 1vmin;
     cursor: pointer;
+    display: none;
 }
 
 .shareChat:hover{
@@ -1533,6 +1534,7 @@ body.dark-mode .slideToRightBack{
     justify-content: center;
     align-items: center;
     flex-direction: column;
+    display: none;
 }
 
 .microphoneItemContainer{
