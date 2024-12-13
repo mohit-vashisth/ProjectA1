@@ -8,7 +8,17 @@
     <meta name="keywords" content="real-time translation, voice-to-text, ProjectA1, AI chatbot" />
     <meta name="author" content="3R Minds" />
     <meta name="robots" content="index, follow" />
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; font-src 'self';">
+    
+    <!-- Updated CSP -->
+    <meta http-equiv="Content-Security-Policy" content="
+        default-src 'self'; 
+        script-src 'self'; 
+        style-src 'self'; 
+        img-src 'self' data:; 
+        font-src 'self'; 
+        connect-src 'self'; 
+        object-src 'none'; 
+        frame-ancestors 'none';">
 
     <link rel="preload" href="/Frontend/stylesheets/utils.min.css" as="style" />
     <link rel="preload" href="/Frontend/images/svgs/slidebarLeft.svg" as="image" />
@@ -16,12 +26,14 @@
     <link rel="stylesheet" href="/Frontend/stylesheets/utils.min.css" />
     <link rel="stylesheet" href="/Frontend/stylesheets/home.min.css" />
 
-    <script src="/Frontend/scripts/darkMode.js" defer></script>
-    <script src="/Frontend/scripts/disableDeveloperTools.js" defer></script>
+    <script src="/Frontend/scripts/darkMode.min.js" defer></script>
+    <!-- <script src="/Frontend/scripts/disableDeveloperTools.min.js" defer></script> -->
     <script src="/Frontend/scripts/dragIconsSvg.js" defer></script>
+    <script src="/Frontend/scripts/associatedChatVcRttVttt.min.js" defer></script>
 
     <title>ProjectA1: By 3R Minds</title>
 </head>
+
 <body class="dark-mode">
     <div class="sections">
         <div class="leftRIghtContainer">
@@ -34,6 +46,9 @@
                     </div>
                 </div>
                 <div class="chatItemsContainerNew">
+                    <div class="leftSectionChatLoaderAnimation">
+                        <div class="chat-loader" id="chatLoader"></div>
+                    </div>
                     <div class="newChatButtonContainer">
                         <a href="" class="newChatButtonLeftSection" id="newChatButton">New Chat</a>
                     </div>
@@ -77,31 +92,31 @@
                                         <span>About</span>
                                     </div>
                                     <div class="aboutWebsiteToolKitContainer">
-                                            <ul class="websiteInfoUL">
-                                                <li>
-                                                    <div class="websiteInfoImgHolder">
-                                                        <img class="filter1" src="/Frontend/images/svgs/releaseNotes.svg" alt="">
-                                                        <span>Release Notes</span>
-                                                    </div>
-                                                </li>
-                                                <li>
-                                                    <div class="websiteInfoImgHolder">
-                                                        <img class="filter1" src="/Frontend/images/svgs/releaseNotes.svg" alt="">
-                                                        <span>Credits</span>
-                                                    </div>
-                                                </li>
-                                                <li>
-                                                    <div class="websiteInfoImgHolder">
-                                                        <img class="filter1" src="/Frontend/images/svgs/releaseNotes.svg" alt="">
-                                                        <span>Privacy & Policy</span>
-                                                    </div>
-                                                </li>
-                                                <li>
-                                                    <div class="websiteInfoVersion">
-                                                        <span>Version 1.0.0</span>
-                                                    </div>
-                                                </li>
-                                            </ul>
+                                        <ul class="websiteInfoUL">
+                                            <li>
+                                                <div class="websiteInfoImgHolder">
+                                                    <img class="filter1" src="/Frontend/images/svgs/releaseNotes.svg" alt="">
+                                                    <span>Release Notes</span>
+                                                </div>
+                                            </li>
+                                            <li>
+                                                <div class="websiteInfoImgHolder">
+                                                    <img class="filter1" src="/Frontend/images/svgs/releaseNotes.svg" alt="">
+                                                    <span>Credits</span>
+                                                </div>
+                                            </li>
+                                            <li>
+                                                <div class="websiteInfoImgHolder">
+                                                    <img class="filter1" src="/Frontend/images/svgs/releaseNotes.svg" alt="">
+                                                    <span>Privacy & Policy</span>
+                                                </div>
+                                            </li>
+                                            <li>
+                                                <div class="websiteInfoVersion">
+                                                    <span>Version 1.0.0</span>
+                                                </div>
+                                            </li>
+                                        </ul>
                                     </div>
                                 </div>
                             </div>
@@ -138,15 +153,34 @@
                                     <img src="/Frontend/images/svgs/shareChat.svg" alt="">
                                 </div>
                             </div>
+                            <div class="shareChatPopupHolder">
+                                <div class="shareChatLinkPopupHolder">
+                                    <span>Share public link to chat</span>
+                                    <div class="inputAreaWithLinkHolder">
+                                        <div class="shareEntireChatRadioButtonHolder">
+                                            <input type="radio" id="entireChat" name="shareOption" value="entireChat">
+                                            <label class="labelShareRadio" for="entireChat">Share Entire Chat</label>
+                                        </div>
+                                        <div class="shareThisChatRadioButtonHolder">
+                                            <input type="radio" id="thisResponse" name="shareOption" value="thisResponse">
+                                            <label class="labelShareRadio" for="thisResponse">Share This Response</label>
+                                        </div>
+                                    </div>
+                                    <div class="copyShareChatLinkButton">
+                                        <input class="shareChatLink" type="text">
+                                        <button class="copyTextButton">Generate Link</button>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                         <div class="lowerRightSectionHolder" role="main">
-                            <!-- <div class="checkAndValidateChatOptionsToStart">
+                            <div class="checkAndValidateChatOptionsToStart">
                                 <div class="checkAndValidateChatOptionsHolder">
                                     <button class="chatButton voiceCloningButton">Voice Cloning</button>
                                     <button class="chatButton realTimeTranslatorButton">Real-Time Translator</button>
                                     <button class="chatButton voiceToTeXTButton">Voice to Text</button>
                                 </div>
-                            </div> -->
+                            </div>
                             <div class="rightLowerSectionItemsHolderVoiceCloningButtonToChat">
                                 <article class="userChat_responseContainerVoiceCloningButtonToChat">
                                     <div class="userChat_HolderVoiceCloningButtonToChat">
@@ -266,43 +300,38 @@
                             </div>
                         </div>
                     </div>
-                    <div class="askModel_TypeAreaBox_WebsiteInfo">
-                        <div class="askModel_responseHolderContainer">
-                            <div class="askModel_responseHolder">
-                                <div class="microphoneHolder">
-                                    <img src="/Frontend/images/svgs/microphone.svg" title="Microphone" alt="">
+                    <div class="inputVoiceMicrophoneNoticeHolder">
+                        <div class="microphoneItemContainer">
+                            <div class="microphoneHolder">
+                                <div class="rotatingBackground"></div>
+                                <div class="microphoneHere">
+                                    <img class="inputMicrophone" src="/Frontend/images/svgs/microphone.svg" alt="">
                                 </div>
-                                <div class="askModel_">
-                                    <textarea class="askModel_response" placeholder="Ask ProjectA1"></textarea>
-                                    <div class="enterText_askModel"></div>
-                                </div>
-                                <div class="askModel_buttonHolder">
-                                    <button class="askModel_button" title="Send">
-                                        <img src="/Frontend/images/svgs/sendButton.svg" alt="send">
-                                    </button>
+                                <div class="microPhoneToolkitHolder">
+                                    <span>Microphone is Activated</span>
+                                    <audio class="microPhoneActivateSound" src="/Frontend/audios/microphone_2.wav" preload="auto"></audio>
+                                    <audio class="microPhoneDeactivateSound" src="/Frontend/audios/microphone_1.wav" preload="auto"></audio>
                                 </div>
                             </div>
                         </div>
-                        <div class="modelNotice_websiteInfo_infoContainer">
-                            <div class="modelNotice" role="contentinfo">
-                                This is an experimental project, Project A1; it is important to note that, like humans, it may also produce errors.
-                            </div>
-                            
+                        <div class="noticeAboutWebsiteContainer">
+                            <span>This is an experimental project, Project A1; it is important to note that, like humans, it may also produce errors.</span>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    <script src="/Frontend/scripts/darkMode.min.js"></script>
-    <!-- <script src="/Frontend/scripts/disableDeveloperTools.min.js"></script> -->
-    <script src="/Frontend/scripts/dragIconsSvg.min.js"></script>
-    <script src="/Frontend/scripts/screenSlider.min.js"></script>
-    <script src="/Frontend/scripts/chatMenuOptions.min.js"></script>
-    <script src="/Frontend/scripts/model.VC.min.js"></script>
-    <script src="/Frontend/scripts/model.RTT.min.js"></script>
-    <script src="/Frontend/scripts/model.VTT.min.js"></script>
-    <script src="/Frontend/scripts/websiteInfo.min.js"></script>
-    <script src="/Frontend/scripts/randomLink.min.js"></script>
+    <script src="/Frontend/scripts/darkMode.min.js" defer></script>
+    <script src="/Frontend/scripts/dragIconsSvg.min.js"defer></script>
+    <script src="/Frontend/scripts/screenSlider.min.js"defer></script>
+    <script src="/Frontend/scripts/chatMenuOptions.min.js"defer></script>
+    <script src="/Frontend/scripts/model.VC.min.js"defer></script>
+    <script src="/Frontend/scripts/model.RTT.min.js"defer></script>
+    <script src="/Frontend/scripts/model.VTT.min.js"defer></script>
+    <script src="/Frontend/scripts/websiteInfo.min.js"defer></script>
+    <script src="/Frontend/scripts/randomLink.min.js"defer></script>
+    <script src="/Frontend/scripts/microphone.js"defer></script>
+    <script src="/Frontend/scripts/shareChat.js"defer></script>
 </body>
 </html>
