@@ -22,7 +22,7 @@ function animateRotation() {
     if (!isAnimating) return;
 
     const now = Date.now();
-    const deltaTime = (now - lastTime) / 1000;
+    const deltaTime = (now - lastTime) / 3000;
     lastTime = now;
 
     rotation += rotationSpeed * deltaTime;
@@ -41,7 +41,7 @@ function stopAnimation() {
 function graduallyChangeSpeed(targetSpeed, duration) {
   if (speedChangeTimeout) clearTimeout(speedChangeTimeout);
 
-  const steps = 5;
+  const steps = 10;
   const stepDuration = duration / steps;
   const speedStep = (targetSpeed - rotationSpeed) / steps;
   let currentStep = 0;
@@ -93,7 +93,6 @@ function closeMicrophone() {
   microphone.classList.remove("vibrating");
   microPhoneToolkitHolder.style.display = 'none';
 
-  // Cancel any pending openMicrophone timeout
   if (openMicrophoneTimeout) clearTimeout(openMicrophoneTimeout);
 
   if (isMicrophoneActive) {

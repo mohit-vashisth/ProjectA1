@@ -6,6 +6,10 @@ body.dark-mode .rightSection{
     background-color: var(--new--body-rightSection--);
     color: white;
 }
+body.dark-mode .aboutWebsiteToolKitContainer{
+    background-color: var(--new--body-rightSection--);
+    color: white;
+}
 body.dark-mode .settingsUserLoginAboutWebsiteContainer{
     background-color: var(--new--body-leftSection--);
     color: white;
@@ -55,7 +59,7 @@ body.dark-mode .userRegisterNow:hover{
 body.dark-mode .slideBar:hover{
     background-color: var(--left-1shadow-hover--);
 }
-body.dark-mode .sliderHolder.show:hover {
+body.dark-mode .sliderHolder:hover {
     background-color: var(--right-1shadow-hover--);
 }
 
@@ -141,11 +145,6 @@ body.dark-mode .slideToRightBack{
     flex-direction: column;
     transition: width 0.4s ease;
 }
-
-.leftSection.hidden {
-    width: 0;
-}
-
 
 .slideBarNewChatHolder{
     width: 100%;
@@ -496,7 +495,7 @@ body.dark-mode .slideToRightBack{
     opacity: 0;
 }
 
-.sliderHolder.show {
+.sliderHolder {
     opacity: 1;
     width: 6vmin;
     height: 6vmin;
@@ -506,15 +505,17 @@ body.dark-mode .slideToRightBack{
     padding: 1vmin;
     border-radius: 2vmin;
 }
-.sliderHolder.show:hover {
-    background-color: var(--right-1shadow-hover-light--);
-}
 
 .sliderHolder img{
     width: 6vmin;
     user-select: none;
     padding: 1vmin;
 }
+
+.sliderHolder img:hover {
+    background-color: var(--right-1shadow-hover-light--);
+}
+
 
 .dayNightModeHolder img{
     width: 4vmin;
