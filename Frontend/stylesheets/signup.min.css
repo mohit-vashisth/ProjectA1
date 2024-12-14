@@ -1,319 +1,390 @@
-body.dark-mode .existingUser,
-body.dark-mode .googleLoginTemplate,
-body.dark-mode .closeNowIcon{
-  filter: invert(1);
+:root {
+  --color-bg1: rgb(108, 0, 162);
+  --color-bg2: rgb(0, 17, 82);
+  --color1: 18, 113, 255;
+  --color2: 221, 74, 255;
+  --color3: 100, 220, 255;
+  --color4: 200, 50, 50;
+  --color5: 180, 180, 50;
+  --color-interactive: 140, 100, 255;
+  --circle-size: 80%;
+  --blending: hard-light;
 }
 
-body.dark-mode .leftSection{
-  background-color:white;
-  color: black;
-}
-body.dark-mode .userPasswordInput{
-  background-color: var(--mode-chatHolder-light-grey);
-}
-body.dark-mode .userConfirmPasswordInput{
-  background-color: var(--mode-chatHolder-light-grey);
-}
-body.dark-mode .horizontalBarLoginGoogle{
-  background-color: var(--mode-chatHolder-light-grey);
-}
-
-body.dark-mode .horizontalBarLoginGoogle p{
-  background-color: var(--light--opposite-body);
-}
-
-body.dark-mode .userEmailInput{
-  background-color: var(--mode-chatHolder-light-grey);
-}
-
-body.dark-mode .userNameSignUp{
-  background-color: var(--mode-chatHolder-light-grey);
-}
-
-body.dark-mode .loginInformationHolder{
-  background-color: var(--light--opposite-body);
-}
-
-.loginInformationContainer{
-  width: 100dvw;
-  height: 100dvh;
-  background-color: hsla(0, 0%, 0%, 0.3);
+.mainFormSection{
+  position: absolute;
+  width: 100%;
+  height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
-  position: absolute;
-  overflow: hidden;
-  backdrop-filter: blur(10px);
+  z-index: 100;
 }
 
-.loginInformationHolder{
+@keyframes moveInCircle {
+  0% {
+    transform: rotate(0deg);
+  }
+  50% {
+    transform: rotate(180deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+@keyframes moveVertical {
+  0% {
+    transform: translateY(-50%);
+  }
+  50% {
+    transform: translateY(50%);
+  }
+  100% {
+    transform: translateY(-50%);
+  }
+}
+@keyframes moveHorizontal {
+  0% {
+    transform: translateX(-50%) translateY(-10%);
+  }
+  50% {
+    transform: translateX(50%) translateY(10%);
+  }
+  100% {
+    transform: translateX(-50%) translateY(-10%);
+  }
+}
+
+.gradientBackground{
+  width: 100vw;
+  height: 100vh;
+  position: absolute;
+  overflow: hidden;
+  background: linear-gradient(40deg, var(--color-bg1), var(--color-bg2));
+  top: 0;
+  left: 0;
+}
+
+.gradientBackground svg {
+  display: none;
+}
+
+.gradientContainer {
+  filter: url(#goo) blur(4vmin);
+  width: 100%;
+  height: 100%;
+}
+
+.g1 {
+  position: absolute;
+  background: radial-gradient(circle at center, rgba(var(--color1), 0.8) 0, rgba(var(--color1), 0) 50%) no-repeat;
+  mix-blend-mode: var(--blending);
+  width: var(--circle-size);
+  height: var(--circle-size);
+  top: calc(50% - var(--circle-size) / 2);
+  left: calc(50% - var(--circle-size) / 2);
+  transform-origin: calc(50%+60vmin);
+  animation: moveInCircle 20s reverse infinite;
+  opacity: 1;
+}
+
+.g2 {
+  position: absolute;
+  background: radial-gradient(circle at center, rgba(var(--color2), 0.8) 0, rgba(var(--color2), 0) 50%) no-repeat;
+  mix-blend-mode: var(--blending);
+  width: var(--circle-size);
+  height: var(--circle-size);
+  top: calc(50% - var(--circle-size) / 2);
+  left: calc(50% - var(--circle-size) / 2);
+  transform-origin: calc(50% - 60vmin);
+  animation: moveInCircle 20s reverse infinite;
+  opacity: 1;
+}
+
+.g3 {
+  position: absolute;
+  background: radial-gradient(circle at center, rgba(var(--color3), 0.8) 0, rgba(var(--color3), 0) 50%) no-repeat;
+  mix-blend-mode: var(--blending);
+  width: var(--circle-size);
+  height: var(--circle-size);
+  top: calc(50% - var(--circle-size) / 2 + 40vmin);
+  left: calc(50% - var(--circle-size) / 2 + 60vmin);
+  transform-origin: calc(50% - 40vmin);
+  animation: moveVertical 40s reverse infinite;
+  opacity: 1;
+}
+
+.g4 {
+  position: absolute;
+  background: radial-gradient(circle at center, rgba(var(--color4), 0.8) 0, rgba(var(--color4), 0) 50%) no-repeat;
+  mix-blend-mode: var(--blending);
+  width: var(--circle-size);
+  height: var(--circle-size);
+  top: calc(50% - var(--circle-size) / 2);
+  left: calc(50% - var(--circle-size) / 2);
+  transform-origin: calc(50% - 20vmin);
+  animation: moveHorizontal 40s reverse infinite;
+  opacity: 0.7;
+}
+
+.g5 {
+  position: absolute;
+  background: radial-gradient(circle at center, rgba(var(--color5), 0.8) 0, rgba(var(--color5), 0) 50%) no-repeat;
+  mix-blend-mode: var(--blending);
+  width: calc(var(--circle-size) * 2);
+  height: calc(var(--circle-size) * 2);
+  top: calc(50% - var(--circle-size));
+  left: calc(50% - var(--circle-size));
+  transform-origin: calc(50% - 80vmin) calc(50% + 20vmin);
+  animation: moveInCircle 20s ease infinite;
+  opacity: 1;
+}
+
+.interactiveCircle{
+  position: absolute;
+  background: radial-gradient(circle at center, rgba(var(--color-interactive), 0.8) 0, rgba(var(--color-interactive), 0) 50%) no-repeat;
+  mix-blend-mode: var(--blending);
+  width: 100%;
+  height: 100%;
+  top: -50%;
+  left: -50%;
+  opacity: 0.7;
+}
+.mainLoginContainerFormContainer{
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  flex-direction: column;
+  gap: 5vmin;
+}
+
+.companyLogoContainer{
+  color: white;
+  font-size: 7vmin;
+  font-weight: bolder;
+  user-select: none;
+}
+.companyLogoContainerSpan3{
+  display: inline-flex;
+  transform: translate(.5vmin, 2vmin);
+}
+
+.signUpFormHereContainer{
   width: 60vmin;
   height: 80vmin;
   display: flex;
-  flex-direction: column;
   justify-content: flex-start;
   align-items: center;
-  background-color: white;
+  flex-direction: column;
+  border: .3vmin solid white;
   border-radius: 1vmin;
+  background-color: hsla(0, 0%, 100%, 0.05);
 }
 
-.loginWelcomeTextCloseWindow{
+form{
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  flex-direction: column;
+}
+
+.heading{
+  width: 100%;
+  height: 10%;
+  display: flex;
+  color: white;
+  justify-content: center;
+  align-items: center;
+  font-size: 3.5vmin;
+  font-weight: bolder;
+}
+
+.nameEmailContainer{
+  width: 100%;
+  height: 20%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.nameContainer, .emailContainer{
+  position: relative;
+  width: 70%;
+  height: 40%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-bottom: .3vmin solid hsl(0, 0%, 90%);
+}
+.nameContainer img, .emailContainer img{
+  filter: invert(1);
+}
+.icon img{
+  position: absolute;
+  width: 2.5vmin;
+  height: 2.5vmin;
+  right: 0;
+  top: 50%;
+  transform: translate(0, -50%);
+}
+
+.nameContainer input, .emailContainer input{
+  width: 100%;
+  height: 70%;
+  border: none;
+  outline: none;
+  font-size: 2.5vmin;
+  background: transparent;
+  padding: 1vmin;
+  padding-right: 4vmin;
+  color: white;
+}
+.nameContainer input::placeholder, .emailContainer input::placeholder{
+  color: hsl(0, 0%, 90%);
+}
+
+
+/* ----------------------------------------password container */
+.passwordConfirmPasswordContainer{
+  width: 100%;
+  height: 20%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.passwordContainer, .confirmPasswordContainer{
+  position: relative;
+  width: 70%;
+  height: 40%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-bottom: .3vmin solid hsl(0, 0%, 90%);
+}
+.passwordContainer img, .confirmPasswordContainer img{
+  filter: invert(1);
+}
+
+.passwordContainer input, .confirmPasswordContainer input{
+  width: 100%;
+  height: 70%;
+  border: none;
+  outline: none;
+  font-size: 2.5vmin;
+  background: transparent;
+  padding: 1vmin;
+  padding-right: 4vmin;
+  color: white;
+}
+.passwordContainer input::placeholder, .confirmPasswordContainer input::placeholder{
+  color: hsl(0, 0%, 90%);
+}
+
+.passwordConfirmPasswordContainerP{
   width: 100%;
   height: 10%;
   display: flex;
   justify-content: center;
-  align-items: flex-end;
-}
-
-.welcomeText{
-  width: 80%;
-  height: 100%;
-  display: flex;
   align-items: center;
-  justify-content: flex-end;
+  font-size: 1.5vmin;
   font-weight: bolder;
-  user-select: none;
+  color: white;
 }
 
-.welcomeText p{
-  width: 75%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-size: 5vmin;
-  text-wrap: nowrap;
-}
-
-.closeWindow{
-  width: 20%;
-  height: 100%;
-  display: flex;
-  justify-content: flex-end;
-  align-items: start;
-
-}
-.closeWindow img{
-  width: 2.5vmin;
-  margin-top: .5vmin;
-  margin-right: .5vmin;
-  cursor: pointer;
-  user-select: none;
-  opacity: .6;
-}
-.closeWindow img:hover{
-  opacity: 1;
-  transition: opacity .2s ease;
-}
-
-.emailPasswordContainer{
+.ButtonsAndGoogleLoginContainer{
   width: 100%;
-  height: 60%;
+  height: 20%;
   display: flex;
-  justify-content: space-around;
+  justify-content: flex-start;
   align-items: center;
   flex-direction: column;
-  position: relative;
-  gap: 2vmin;
 }
 
-.emailInputHolder{
+.signinForgotPasswordContainer{
   width: 100%;
-  height: 35%;
-  display: flex;
-  justify-content: flex-end;
-  flex-direction: column;
-  align-items: center;
-  gap: 2vmin;
-}
-
-.userNameSignUp{
-  font-size: 2vmin;
-}
-
-.userEmailInput{
-  font-size: 2vmin;
-}
-.userPasswordInput{
-  font-size: 2vmin;
-}
-.userConfirmPasswordInput{
-  font-size: 2vmin;
-}
-
-.emailInputHolder input{
-  width: 70%;
-  height: 5vmin;
-  border-radius: 2vmin;
-  border: none;
-  outline: none;
-  padding: 3vmin;
-  background-color: hsl(0, 0%, 85%);
-
-}
-
-.passwordInputHolder{
-  width: 100%;
-  height: 35%;
-  display: flex;
-  justify-content: center;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 2vmin;
-  position: relative;
-}
-
-#errorMessage{
-  position: absolute;
-  bottom: 9vmin;
-  font-size: 2vmin;
-  color: red;
-}
-
-.passwordInputContainer{
-  width: 100%;
-  height: 35%;
-  display: flex;
-  justify-content: center;
-  align-items: flex-start;
-  position: relative;
-}
-.passwordInputContainer input{
-  width: 70%;
-  height: 5vmin;
-  border-radius: 2vmin;
-  border: none;
-  outline: none;
-  padding: 3vmin;
-  background-color: hsl(0, 0%, 85%);
-}
-
-.passwordShowHideAutoHolder{
-  width: 25vmin;
-  height: 4vmin;
-  position: absolute;
-  right: 0;
+  height: 50%;
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-top: 1vmin;
+  gap: 10vmin;
 }
 
-.showHidePassworContainer{
-  position: relative;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.showHidePassworContainer img{
-  width: 3vmin;
-  user-select: none;
-  cursor: pointer;
-}
-
-.passwordHideAuto{
-  position: absolute;
-}
-
-.confirmPasswordInputContainer{
-  width: 100%;
-  height: 35%;
-  display: flex;
-  justify-content: center;
-  align-items: flex-start;
-  position: relative;
-}
-.confirmPasswordInputContainer input{
-  width: 70%;
-  height: 5vmin;
-  border-radius: 2vmin;
-  border: none;
-  outline: none;
-  padding: 3vmin;
-  background-color: hsl(0, 0%, 85%);
-}
-
-.confirmPasswordShowHideAutoHolder{
-  width: 25vmin;
-  height: 4vmin;
-  position: absolute;
-  right: 0;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-top: 1vmin;
-}
-
-.showHideConfirmPassworContainer{
-  position: relative;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.showHideConfirmPassworContainer img{
-  width: 3vmin;
-  user-select: none;
-  cursor: pointer;
-}
-
-.confirmPasswordHideAuto{
-  position: absolute;
-}
-
-.loginRegisterButtonHolder{
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 1vmin;
-}
-
-.createButton{
-  border: none;
-  border-radius: 1vmin;
-  cursor: pointer;
-  pointer-events: auto;
-  font-weight: bold;
-  user-select: none;
-  padding: 1vmin 3vmin 1vmin 3vmin;
-  font-size: 2vmin;
-}
-.existingUser{
-  border: none;
-  cursor: pointer;
-  pointer-events: auto;
-  font-weight: bold;
-  background: none;
-  color: black;
+.signinButton{
+  font-size: 2.5vmin;
+  font-weight: bolder;
+  color: white;
   text-decoration: none;
-  opacity: .6;
-  user-select: none;
-  font-size: 2vmin;
+  background: transparent;
+  border: none;
+  outline: none;
 }
-.createButton:hover{
-background-color: hsl(0, 0%, 84%);
-transition: background-color .1s ease-in-out;
+.signinButton a{
+  color: white;
+  text-decoration: none;
+  background: transparent;
 }
-.existingUser:hover{
-  opacity: 1;
-  transition: opacity .1s ease-in-out;
+.signinButton a:hover{
+  text-decoration: underline;
+  text-underline-offset: .5vmin;
+  text-decoration-color: rgb(255, 255, 255);
+  cursor: pointer;
 }
 
-.horizontalBarLoginGoogle{
-  width: 70%;
-  height: .1vmin;
-  background-color: rgba(0, 0, 0, 0.2);
-  position: relative;
+.continueLoginContainer{
+  width: 100%;
+  height: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
-.horizontalBarLoginGoogle p{
-  position: absolute;
-  top: -1.5vmin;
-  right: 15vmin;
+
+.continueLoginButton{
+  width: 15vmin;
+  height: 5vmin;
+  padding: 1vmin;
+  background: var(--new--body-leftSection-light--);
+  border: none;
+  border-radius: 1.5vmin;
+  outline: none;
+  font-size: 2.5vmin;
+  font-weight: bolder;
+  color: black;
+  cursor: pointer;
+  margin-bottom: 1vmin;
+}
+
+.horizontalBarLoginGoogle {
+  width: 70%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: .5vmin;
+  margin: 1vmin 0;
+}
+
+.horizontalBarLoginGoogle::before,
+.horizontalBarLoginGoogle::after {
+  content: "";
+  flex: 1;
+  height: 0.2vmin;
+  background-color: rgba(255, 255, 255, 0.4);
+}
+
+.horizontalBarLoginGoogle p {
   font-size: 2.1vmin;
-  background-color: white;
-  padding: 0 1vmin 0 1vmin;
+  padding: 0 1vmin;
+  margin: 0;
   user-select: none;
+  white-space: nowrap;
+  background: transparent;
+  color: white;
 }
 
 .googleLoginSystem{
@@ -346,8 +417,9 @@ transition: background-color .1s ease-in-out;
   background: none;
   outline: none;
   border: none;
+  color: black;
 }
-.googleIconButtonHolder:hover{
+.googleIconButtonHolder:hover, .continueLoginButton:hover{
   background-color: hsl(0, 0%, 93%);
   transition: background-color .1s ease;
 }

@@ -5,67 +5,89 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/Frontend/stylesheets/utils.min.css">
     <link rel="stylesheet" href="/Frontend/stylesheets/signup.min.css">
-    <title>ProjectA1: by 3R Minds</title>
+    <title>3R Minds - sign up</title>
 </head>
 <body class="dark-mode">
-    <div class="loginInformationContainer">
-        <div class="loginInformationHolder">
-            <div class="loginWelcomeTextCloseWindow">
-                <div class="welcomeText">
-                    <p>Sign up</p>
-                </div>
-                <div class="closeWindow">
-                    <img class="closeNowIcon" src="/Frontend/images/svgs/cross.svg" alt="" width="10px">
-                </div>
+    <section class="gradientBackground">
+        <div class="gradient-bg">
+            <svg xmlns="http://www.w3.org/2000/svg">
+              <defs>
+                <filter id="goo">
+                  <feGaussianBlur in="SourceGraphic" stdDeviation="10" result="blur" />
+                  <feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 18 -8" result="goo" />
+                  <feBlend in="SourceGraphic" in2="goo" />
+                </filter>
+              </defs>
+            </svg>
+          </div>
+        <div class="gradientContainer">
+            <div class="g1"></div>
+            <div class="g2"></div>
+            <div class="g3"></div>
+            <div class="g4"></div>
+            <div class="g5"></div>
+            <div class="interactiveCircle"></div>
+        </div>
+    </section>
+    <section class="mainFormSection">
+        <div class="mainLoginContainerFormContainer">
+            <div class="companyLogoContainer">
+                <div class="companyLogoContainerSpan3">3</div>R Minds - sign up
             </div>
-            <div class="emailPasswordContainer">
-                <div class="emailInputHolder">
-                    <input class="userNameSignUp" id="userNameSignUpID" type="text" placeholder="Enter Name">
-                    <input class="userEmailInput" id="userEmailSignUpID" type="email" placeholder="Email">
-                </div>
-                <div class="passwordInputHolder">
-                    <div class="passwordInputContainer">
-                        <input class="userPasswordInput" id="userPasswordInputID" type="password" placeholder="Password">
-                        <div class="passwordShowHideAutoHolder">
-                            <div class="showHidePassworContainer">
-                                <img class="ShowPassword" src="/Frontend/images/svgs/showpassword.svg" title="Show" alt="show password">
-                                <img class="passwordHideAuto" src="/Frontend/images/svgs/hidepassword.svg" title="Hide" alt="hide password">
-                            </div>
+            <div class="signUpFormHereContainer">
+                <form action="">
+                    <div class="heading">
+                        we do care about your privacy
+                    </div>
+                    <div class="nameEmailContainer">
+                        <div class="nameContainer">
+                            <span class="icon"><img src="/Frontend/images/svgs/user.svg" alt=""></span>
+                            <input type="text" placeholder="Name">
+                        </div>
+                        <div class="emailContainer">
+                            <span class="icon"><img src="/Frontend/images/svgs/mail.svg" width="20px" alt=""></span>
+                            <input type="email" placeholder="Email">
                         </div>
                     </div>
-                    <div class="confirmPasswordInputContainer">
-                        <input class="userConfirmPasswordInput" id="userConfirmPasswordInputID" type="password" placeholder="Confirm Password">
-                        <div class="confirmPasswordShowHideAutoHolder">
-                            <div class="showHideConfirmPassworContainer">
-                                <img class="ShowConfirmPassword" src="/Frontend/images/svgs/showpassword.svg" title="Show" alt="show password">
-                                <img class="confirmPasswordHideAuto" src="/Frontend/images/svgs/hidepassword.svg" title="Hide" alt="hide password">
-                            </div>
+                    <div class="passwordConfirmPasswordContainer">
+                        <div class="passwordContainer">
+                            <span class="icon"><img src="/Frontend/images/svgs/showpassword.svg" width="20px" alt=""></span>
+                            <input type="password" placeholder="Password">
+                        </div>
+                        <div class="confirmPasswordContainer">
+                            <span class="icon"><img src="/Frontend/images/svgs/showpassword.svg" width="20px" alt=""></span>
+                            <input type="password" placeholder="Confirm Password">
+                        </div>
+                        <p class="passwordConfirmPasswordContainerP">Password and Confirm Password must be same</p>
+                    </div>
+                    <div class="ButtonsAndGoogleLoginContainer">
+                        <div class="continueLoginContainer">
+                            <button class="continueLoginButton">Continue</button>
+                        </div>
+                        <div class="signinForgotPasswordContainer">
+                            <div class="signinButton">Already have an account? <a href="">click here</a></div>
                         </div>
                     </div>
-                </div>
-                <p id="errorMessage"></p>
-                <div class="loginRegisterButtonHolder">
-                    <a class="existingUser" href="login.html">Existing user?</a>
-                    <button class="createButton">Create</button>
-                </div>
-                <div class="horizontalBarLoginGoogle">
-                    <p>more ways</p>
-                </div>
-            </div>
-            <div class="googleLoginSystem">
-                <div class="googleIconButtonHolder">
-                    <img src="/Frontend/images/svgs/googleLogin.svg" alt="google icon">
-                    <p class="googleLoginTemplate">Login with Google</p>
-                </div>
+                    <div class="horizontalBarLoginGoogle">
+                        <p>more ways</p>
+                    </div>
+                    <div class="googleLoginSystem">
+                        <div class="googleIconButtonHolder">
+                            <img src="/Frontend/images/svgs/googleLogin.svg" alt="google icon">
+                            <p class="googleLoginTemplate">Login with Google</p>
+                        </div>
+                    </div>
+                </form>
             </div>
         </div>
-    </div>
+    </section>
     <script src="/Frontend/scripts/darkMode.min.js"></script>
     <script src="/Frontend/scripts/singup.min.js"></script>
     <script src="/Frontend/scripts/loginWindowOpenClose.min.js"></script>
     <script src="/Frontend/scripts/showHidePassword.min.js"></script>
     <script src="/Frontend/scripts/showHideConfirmPassword.min.js"></script>
-    <script src="/Frontend/scripts/disableDeveloperTools.min.js"></script>
+    <!-- <script src="/Frontend/scripts/disableDeveloperTools.min.js"></script> -->
     <script type="module" src="/Frontend/scripts/signup.js"></script>
+    <script type="module" src="/Frontend/scripts/signupLoginCSSAnimation.js"></script>
 </body>
 </html>
