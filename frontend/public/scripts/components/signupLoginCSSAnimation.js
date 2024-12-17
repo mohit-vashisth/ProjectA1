@@ -1,3 +1,7 @@
+const closeAnimationHolder = document.querySelector(".CloseAnimationHolder");
+const openAnimationHolder = document.querySelector(".openAnimationHolder");
+const gs = document.querySelectorAll(".g1, .g2, .g3, .g4, .g5, .interactiveCircle");
+
 let curX = 0;
 let curY = 0;
 let tgX = 0;
@@ -27,4 +31,21 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     move();
+});
+
+
+closeAnimationHolder.addEventListener("click", () => {
+    gs.forEach(g => {
+        g.style.visibility = "hidden";
+    });
+    openAnimationHolder.style.visibility = "visible";
+    closeAnimationHolder.style.visibility = "hidden";
+});
+
+openAnimationHolder.addEventListener("click", () => {
+    gs.forEach(g => {
+        g.style.visibility = "visible";
+    });
+    openAnimationHolder.style.visibility = "hidden";
+    closeAnimationHolder.style.visibility = "visible";
 });

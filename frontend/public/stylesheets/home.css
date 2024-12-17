@@ -137,7 +137,7 @@ body.dark-mode .slideToRightBack{
 
 .leftSection {
     height: 100%;
-    width: 0;
+    width: 20%;
     display: flex;
     justify-content: space-between;
     background-color: var(--new--body-leftSection-light--);
@@ -510,6 +510,7 @@ body.dark-mode .slideToRightBack{
     width: 6vmin;
     user-select: none;
     padding: 1vmin;
+    display: none;
 }
 
 .sliderHolder img:hover {
