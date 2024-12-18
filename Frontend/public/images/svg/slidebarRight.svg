@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="128" height="128" fill="none" viewBox="0 0 128 128" id="sidebar">
+  <rect width="97" height="97" x="15" y="16" stroke="#000" stroke-width="7" rx="27"></rect>
+  <path stroke="#000" stroke-linecap="round" stroke-width="7" d="M46 17L46 112"></path>
+  <path stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="7" d="M73 79L74.9027 77.6569C79.2802 74.5669 83.2134 70.8912 86.5923 66.7326V66.7326C87.4125 65.7231 87.4125 64.2769 86.5923 63.2674V63.2674C83.2134 59.1088 79.2802 55.4331 74.9027 52.3431L73 51"></path>
+</svg>
