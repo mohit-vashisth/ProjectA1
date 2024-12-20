@@ -3,8 +3,6 @@ const voiceToTeXTButton = document.querySelector('.voiceToTeXTButton');
 const realTimeTranslatorButton = document.querySelector('.realTimeTranslatorButton');
 const shareChat = document.querySelector('.shareChat');
 const inputVoiceMicrophoneNoticeHolder = document.querySelector('.inputVoiceMicrophoneNoticeHolder');
-const leftSection = document.querySelector('.leftSection');
-const chatLoader = document.getElementById("chatLoader");
 const leftSectionChatLoaderAnimation = document.querySelector(".leftSectionChatLoaderAnimation");
 const buttonsContainer = document.querySelector('.checkAndValidateChatOptionsToStart');
 const chatContainerVoiceCloning = document.querySelector('.rightLowerSectionItemsHolderVoiceCloningButtonToChat');
@@ -12,14 +10,6 @@ const chatContainerVoiceToText = document.querySelector('.rightLowerSectionItems
 const chatContainerRealTimeTranslator = document.querySelector('.rightLowerSectionItemsHolderRealTimeTranslatorButtonToChat');
 const chatContainerTemplateParent = document.querySelector('.userChatHolder');
 
-function showLoader() {
-  chatLoader.style.display = "block";
-  leftSectionChatLoaderAnimation.style.display = "flex";
-}
-function hideLoader() {
-  chatLoader.style.display = "none";
-  leftSectionChatLoaderAnimation.style.display = "none";
-}
 function chatTemplate(message = 'Default message') {
   const chatItem = document.createElement('div');
   chatItem.classList.add('userChatItemsContainer');
@@ -30,7 +20,7 @@ function chatTemplate(message = 'Default message') {
       <span>${message}</span>
     </div>
     <div class="userChatRenameDeleteToolKit">
-      <img class="chatMenuOptionIcon" src="/Frontend/images/svgs/dot3Menu.svg" alt="">
+      <img class="chatMenuOptionIcon" src="/Frontend/public/images/svgs/dot3Menu.svg" alt="">
     </div>
   `;
 
@@ -50,12 +40,7 @@ voiceCloningButton.addEventListener('click', function () {
   chatContainerVoiceCloning.style.display = 'flex';
   shareChatDisplay();
   microPhoneDisplay();
-  leftSection.style.width = '15%';
   chatTemplate('Voice Cloning activated');
-  showLoader(); 
-  setTimeout(() => {
-    hideLoader();
-  }, 500);
 });
 
 voiceToTeXTButton.addEventListener('click', function () {
@@ -63,12 +48,7 @@ voiceToTeXTButton.addEventListener('click', function () {
   chatContainerVoiceToText.style.display = 'flex';
   shareChatDisplay();
   microPhoneDisplay()
-  leftSection.style.width = '15%';
   chatTemplate('Voice-to-Text activated');
-  showLoader();
-  setTimeout(() => {
-    hideLoader();
-  }, 500);
 });
 
 realTimeTranslatorButton.addEventListener('click', function () {
@@ -76,10 +56,5 @@ realTimeTranslatorButton.addEventListener('click', function () {
   chatContainerRealTimeTranslator.style.display = 'flex';
   shareChatDisplay();
   microPhoneDisplay();
-  leftSection.style.width = '15%';
   chatTemplate('Real-Time Translator activated');
-  showLoader();
-  setTimeout(() => {
-    hideLoader();
-  }, 500);
 });

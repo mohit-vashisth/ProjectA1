@@ -9,7 +9,7 @@
     <meta name="author" content="3R Minds" />
     <meta name="robots" content="index, follow" />
     
-    <!-- Updated CSP -->
+    <!-- Updated CSP -->    
     <meta http-equiv="Content-Security-Policy" content="
         default-src 'self'; 
         script-src 'self'; 
@@ -17,19 +17,21 @@
         img-src 'self' data:; 
         font-src 'self'; 
         connect-src 'self'; 
-        object-src 'none'; 
+        object-src 'none';
         frame-ancestors 'none';">
 
-    <link rel="preload" href="/Frontend/stylesheets/utils.min.css" as="style" />
-    <link rel="preload" href="/Frontend/images/svgs/slidebarLeft.svg" as="image" />
-    <link rel="preload" href="/Frontend/scripts/darkMode.min.js" as="script" />
-    <link rel="stylesheet" href="/Frontend/stylesheets/utils.min.css" />
-    <link rel="stylesheet" href="/Frontend/stylesheets/home.min.css" />
+    <link rel="preload" href="/frontend/public/stylesheets/utils.css" as="style" />
+    <link rel="preload" href="/frontend/public/images/svg/slidebarLeft.svg" as="image" />
+    <link rel="preload" href="/frontend/public/scripts/components/darkMode.js" as="script" />
+    <link rel="preload" href="/frontend/src/javascript/home.js" as="script" />
+    <link rel="stylesheet" href="/frontend/public/stylesheets/utils.css" />
+    <link rel="stylesheet" href="/frontend/public/stylesheets/home.css" />
 
-    <script src="/Frontend/scripts/darkMode.min.js" defer></script>
-    <!-- <script src="/Frontend/scripts/disableDeveloperTools.min.js" defer></script> -->
-    <script src="/Frontend/scripts/dragIconsSvg.js" defer></script>
-    <script src="/Frontend/scripts/associatedChatVcRttVttt.min.js" defer></script>
+    <script src="/frontend/public/scripts/components/darkMode.js" defer></script>
+    <!-- <script src="/frontend/public/scripts/components/disableDeveloperTools.js" defer></script> -->
+    <script src="/frontend/public/scripts/components/dragIconsSvg.js" defer></script>
+    <script src="/frontend/public/scripts/models/associatedChatVcRttVttt.js" defer></script>
+    <script src="/frontend/src/javascript/home.js" defer></script>
 
     <title>ProjectA1: By 3R Minds</title>
 </head>
@@ -41,14 +43,11 @@
                 <div class="slideBarNewChatHolder">
                     <div class="chatSlideContainer">
                         <div class="slideBar">
-                            <img class="slideBarIcon" src="/Frontend/images/svgs/slidebarLeft.svg" title="Slide" alt="SlideBar" />
+                            <img class="slideBarIcon" src="/frontend/public/images/svg/slidebarLeft.svg" title="Slide" alt="SlideBar" />
                         </div>
                     </div>
                 </div>
                 <div class="chatItemsContainerNew">
-                    <div class="leftSectionChatLoaderAnimation">
-                        <div class="chat-loader" id="chatLoader"></div>
-                    </div>
                     <div class="newChatButtonContainer">
                         <a href="" class="newChatButtonLeftSection" id="newChatButton">New Chat</a>
                     </div>
@@ -60,7 +59,7 @@
                                     <span>VC_new-voice</span>
                                 </div>
                                 <div class="userChatRenameDeleteToolKit">
-                                    <img class="chatMenuOptionIcon" src="/Frontend/images/svgs/dot3Menu.svg" alt="">
+                                    <img class="chatMenuOptionIcon" src="/frontend/public/images/svg/dot3Menu.svg" alt="">
                                 </div>
                             </div>
                         </div>
@@ -79,7 +78,7 @@
                             </div>
                             <div class="settingsOptionsContainer">
                                 <div class="settingsIconHolder">
-                                    <img src="/Frontend/images/svgs/settings.svg" alt="">
+                                    <img src="/frontend/public/images/svg/settings.svg" alt="">
                                 </div>
                                 <span>Settings</span>
                             </div>
@@ -87,7 +86,7 @@
                                 <div class="aboutWebsite_toolkitHolder">
                                     <div class="websiteInfo">
                                         <div class="websiteInfoIconHolder">
-                                            <img src="/Frontend/images/svgs/aboutWebsite.svg" title="About" alt="">
+                                            <img src="/frontend/public/images/svg/aboutWebsite.svg" title="About" alt="">
                                         </div>
                                         <span>About</span>
                                     </div>
@@ -95,19 +94,19 @@
                                         <ul class="websiteInfoUL">
                                             <li>
                                                 <div class="websiteInfoImgHolder">
-                                                    <img class="filter1" src="/Frontend/images/svgs/releaseNotes.svg" alt="">
+                                                    <img class="filter1" src="/frontend/public/images/svg/releaseNotes.svg" alt="">
                                                     <span>Release Notes</span>
                                                 </div>
                                             </li>
                                             <li>
                                                 <div class="websiteInfoImgHolder">
-                                                    <img class="filter1" src="/Frontend/images/svgs/releaseNotes.svg" alt="">
+                                                    <img class="filter1" src="/frontend/public/images/svg/releaseNotes.svg" alt="">
                                                     <span>Credits</span>
                                                 </div>
                                             </li>
                                             <li>
                                                 <div class="websiteInfoImgHolder">
-                                                    <img class="filter1" src="/Frontend/images/svgs/releaseNotes.svg" alt="">
+                                                    <img class="filter1" src="/frontend/public/images/svg/releaseNotes.svg" alt="">
                                                     <span>Privacy & Policy</span>
                                                 </div>
                                             </li>
@@ -130,7 +129,7 @@
                         <div class="upperRightSectionItemsHolder" role="navigation">
                             <div class="websiteLogoNightModeHolder">
                                 <div class="sliderHolder">
-                                    <img class="slideToRightBack" src="/Frontend/images/svgs/slidebarRight.svg" title="Slide" alt="slide bar">
+                                    <img class="slideToRightBack" src="/frontend/public/images/svg/slidebarRight.svg" title="Slide" alt="slide bar">
                                 </div>
                                 <div class="websiteLogo">
                                     <span class="logo3Website"><strong>3</strong></span>
@@ -144,13 +143,13 @@
                                     </div>
                                 </div>
                                 <div class="dayNightModeHolder">
-                                    <img class="darkModeOff" src="/Frontend/images/svgs/darkModeOff.svg" title="Dark OFF" alt="dark mode" />
-                                    <img class="darkModeOn" src="/Frontend/images/svgs/darkModeOn.svg" title="Dark ON"" alt="dark mode" />
+                                    <img class="darkModeOff" src="/frontend/public/images/svg/darkModeOff.svg" title="Dark OFF" alt="dark mode" />
+                                    <img class="darkModeOn" src="/frontend/public/images/svg/darkModeOn.svg" title="Dark ON"" alt="dark mode" />
                                 </div>
                             </div>
                             <div class="shareChatLoginHolder">
                                 <div class="shareChat">
-                                    <img src="/Frontend/images/svgs/shareChat.svg" alt="">
+                                    <img src="/frontend/public/images/svg/shareChat.svg" alt="">
                                 </div>
                             </div>
                             <div class="shareChatPopupHolder">
@@ -195,23 +194,23 @@
                                     <div class="modelChat_HolderVoiceCloningButtonToChat">
                                         <div class="modelChatMainImageHolderVoiceCloningButtonToChat">
                                             <div class="imageOfModelVoiceCloningButtonToChat">
-                                                <img src="/Frontend/images/svgs/voiceClone.svg" alt="model logo" />
+                                                <img src="/frontend/public/images/svg/voiceClone.svg" alt="model logo" />
                                             </div>
                                             <div class="chatOfModelVoiceCloningButtonToChat">
                                                 <span class="modelChat_responseNowVoiceCloningButtonToChat"></span>
                                                 <div class="modelChatRegenerateLikeDislikeHolderVoiceCloningButtonToChat">
                                                     <div class="modelChatOptionsHolderVoiceCloningButtonToChat">
                                                         <div class="readTextHolderVoiceCloningButtonToChat">
-                                                            <img src="/Frontend/images/svgs/volume.svg" title="Read Text" alt="">
+                                                            <img src="/frontend/public/images/svg/volume.svg" title="Read Text" alt="">
                                                         </div>
                                                         <div class="thumbUpHolderVoiceCloningButtonToChat">
-                                                            <img src="/Frontend/images/svgs/thumbup.svg" title="Like" alt="">
+                                                            <img src="/frontend/public/images/svg/thumbup.svg" title="Like" alt="">
                                                         </div>
                                                         <div class="thumbDownHolderVoiceCloningButtonToChat">
-                                                            <img src="/Frontend/images/svgs/thumbdown.svg" title="Dislike" alt="">
+                                                            <img src="/frontend/public/images/svg/thumbdown.svg" title="Dislike" alt="">
                                                         </div>
                                                         <div class="reGenerateHolderVoiceCloningButtonToChat">
-                                                            <img src="/Frontend/images/svgs/reload.svg" title="Regenerate" alt="">
+                                                            <img src="/frontend/public/images/svg/reload.svg" title="Regenerate" alt="">
                                                         </div>
                                                     </div>
                                                 </div>
@@ -234,23 +233,23 @@
                                     <div class="modelChat_HolderRealTimeTranslatorButtonToChat">
                                         <div class="modelChatMainImageHolderRealTimeTranslatorButtonToChat">
                                             <div class="imageOfModelRealTimeTranslatorButtonToChat">
-                                                <img src="/Frontend/images/svgs/voiceClone.svg" alt="model logo" />
+                                                <img src="/frontend/public/images/svg/voiceClone.svg" alt="model logo" />
                                             </div>
                                             <div class="chatOfModelRealTimeTranslatorButtonToChat">
                                                 <span class="modelChat_responseNowRealTimeTranslatorButtonToChat"></span>
                                                 <div class="modelChatRegenerateLikeDislikeHolderRealTimeTranslatorButtonToChat">
                                                     <div class="modelChatOptionsHolderRealTimeTranslatorButtonToChat">
                                                         <div class="readTextHolderRealTimeTranslatorButtonToChat">
-                                                            <img src="/Frontend/images/svgs/volume.svg" title="Read Text" alt="">
+                                                            <img src="/frontend/public/images/svg/volume.svg" title="Read Text" alt="">
                                                         </div>
                                                         <div class="thumbUpHolderRealTimeTranslatorButtonToChat">
-                                                            <img src="/Frontend/images/svgs/thumbup.svg" title="Like" alt="">
+                                                            <img src="/frontend/public/images/svg/thumbup.svg" title="Like" alt="">
                                                         </div>
                                                         <div class="thumbDownHolderRealTimeTranslatorButtonToChat">
-                                                            <img src="/Frontend/images/svgs/thumbdown.svg" title="Dislike" alt="">
+                                                            <img src="/frontend/public/images/svg/thumbdown.svg" title="Dislike" alt="">
                                                         </div>
                                                         <div class="reGenerateHolderRealTimeTranslatorButtonToChat">
-                                                            <img src="/Frontend/images/svgs/reload.svg" title="Regenerate" alt="">
+                                                            <img src="/frontend/public/images/svg/reload.svg" title="Regenerate" alt="">
                                                         </div>
                                                     </div>
                                                 </div>
@@ -273,23 +272,23 @@
                                     <div class="modelChat_HolderVoiceToTeXTButtonToChat">
                                         <div class="modelChatMainImageHolderVoiceToTeXTButtonToChat">
                                             <div class="imageOfModelVoiceToTeXTButtonToChat">
-                                                <img src="/Frontend/images/svgs/voiceClone.svg" alt="model logo" />
+                                                <img src="/frontend/public/images/svg/voiceClone.svg" alt="model logo" />
                                             </div>
                                             <div class="chatOfModelVoiceToTeXTButtonToChat">
                                                 <span class="modelChat_responseNowVoiceToTeXTButtonToChat"></span>
                                                 <div class="modelChatRegenerateLikeDislikeHolderVoiceToTeXTButtonToChat">
                                                     <div class="modelChatOptionsHolderVoiceToTeXTButtonToChat">
                                                         <div class="readTextHolderVoiceToTeXTButtonToChat">
-                                                            <img src="/Frontend/images/svgs/volume.svg" title="Read Text" alt="">
+                                                            <img src="/frontend/public/images/svg/volume.svg" title="Read Text" alt="">
                                                         </div>
                                                         <div class="thumbUpHolderVoiceToTeXTButtonToChat">
-                                                            <img src="/Frontend/images/svgs/thumbup.svg" title="Like" alt="">
+                                                            <img src="/frontend/public/images/svg/thumbup.svg" title="Like" alt="">
                                                         </div>
                                                         <div class="thumbDownHolderVoiceToTeXTButtonToChat">
-                                                            <img src="/Frontend/images/svgs/thumbdown.svg" title="Dislike" alt="">
+                                                            <img src="/frontend/public/images/svg/thumbdown.svg" title="Dislike" alt="">
                                                         </div>
                                                         <div class="reGenerateHolderVoiceToTeXTButtonToChat">
-                                                            <img src="/Frontend/images/svgs/reload.svg" title="Regenerate" alt="">
+                                                            <img src="/frontend/public/images/svg/reload.svg" title="Regenerate" alt="">
                                                         </div>
                                                     </div>
                                                 </div>
@@ -305,33 +304,32 @@
                             <div class="microphoneHolder">
                                 <div class="rotatingBackground"></div>
                                 <div class="microphoneHere">
-                                    <img class="inputMicrophone" src="/Frontend/images/svgs/microphone.svg" alt="">
+                                    <img class="inputMicrophone" src="/frontend/public/images/svg/microphone.svg" alt="">
                                 </div>
                                 <div class="microPhoneToolkitHolder">
                                     <span>Microphone is Activated</span>
-                                    <audio class="microPhoneActivateSound" src="/Frontend/audios/microphone_2.wav" preload="auto"></audio>
-                                    <audio class="microPhoneDeactivateSound" src="/Frontend/audios/microphone_1.wav" preload="auto"></audio>
+                                    <audio class="microPhoneActivateSound" src="/frontend/public/audio/notifications/microphone_2.wav" preload="auto"></audio>
+                                    <audio class="microPhoneDeactivateSound" src="/frontend/public/audio/notifications/microphone_1.wav" preload="auto"></audio>
                                 </div>
                             </div>
                         </div>
                         <div class="noticeAboutWebsiteContainer">
-                            <span>This is an experimental project, Project A1; it is important to note that, like humans, it may also produce errors.</span>
+                            <span>An innovative initiative by 3r Minds, Project A1 is an experimental AI project, designed to push boundaries. Like humans, it may produce errors.</span>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    <script src="/Frontend/scripts/darkMode.min.js" defer></script>
-    <script src="/Frontend/scripts/dragIconsSvg.min.js"defer></script>
-    <script src="/Frontend/scripts/screenSlider.min.js"defer></script>
-    <script src="/Frontend/scripts/chatMenuOptions.min.js"defer></script>
-    <script src="/Frontend/scripts/model.VC.min.js"defer></script>
-    <script src="/Frontend/scripts/model.RTT.min.js"defer></script>
-    <script src="/Frontend/scripts/model.VTT.min.js"defer></script>
-    <script src="/Frontend/scripts/websiteInfo.min.js"defer></script>
-    <script src="/Frontend/scripts/randomLink.min.js"defer></script>
-    <script src="/Frontend/scripts/microphone.js"defer></script>
-    <script src="/Frontend/scripts/shareChat.js"defer></script>
+    <script src="/frontend/public/scripts/components/darkMode.js" defer></script>
+    <script src="/frontend/public/scripts/components/dragIconsSvg.js"defer></script>
+    <script src="/frontend/public/scripts/utils/screenSlider.js"defer></script>
+    <script src="/frontend/public/scripts/utils/chatMenuOptions.js"defer></script>
+    <script src="/frontend/public/scripts/models/modelVC.js"defer></script>
+    <script src="/frontend/public/scripts/models/modelRTT.js"defer></script>
+    <script src="/frontend/public/scripts/models/modelVTT.js"defer></script>
+    <script src="/frontend/public/scripts/components/websiteInfo.js"defer></script>
+    <script src="/frontend/public/scripts/utils/microphone.js"defer></script>
+    <script src="/frontend/public/scripts/utils/shareChat.js"defer></script>
 </body>
 </html>

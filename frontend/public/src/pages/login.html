@@ -3,13 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/Frontend/stylesheets/utils.min.css">
-    <link rel="stylesheet" href="/Frontend/stylesheets/signup.min.css">
-    <title>3R Minds - sign up</title>
+    <link rel="stylesheet" href="/frontend/public/stylesheets/utils.css">
+    <link rel="stylesheet" href="/frontend/public/stylesheets/login.css">
+    <title>3R Minds - Login</title>
 </head>
 <body class="dark-mode">
-    <section class="gradientBackground">
-        <div class="gradient-bg">
+    <section class="gradientBackground" id="lazyGradient">
+        <div class="gradient-bg lazy-load-content" style="display: none;">
             <svg xmlns="http://www.w3.org/2000/svg">
               <defs>
                 <filter id="goo">
@@ -19,8 +19,8 @@
                 </filter>
               </defs>
             </svg>
-          </div>
-        <div class="gradientContainer">
+        </div>
+        <div class="gradientContainer lazy-load-content" style="display: none;">
             <div class="g1"></div>
             <div class="g2"></div>
             <div class="g3"></div>
@@ -32,40 +32,37 @@
     <section class="mainFormSection">
         <div class="mainLoginContainerFormContainer">
             <div class="companyLogoContainer">
-                <div class="companyLogoContainerSpan3">3</div>R Minds - sign up
+                <div class="companyLogoContainerSpan3">3</div>R Minds - Login
+                <div class="CloseAnimationHolder">Turn off Animation</div>
+                <div class="openAnimationHolder">Turn on Animation</div>
             </div>
             <div class="signUpFormHereContainer">
                 <form action="">
                     <div class="heading">
-                        we do care about your privacy
+                        We are glad to see you back
                     </div>
                     <div class="nameEmailContainer">
-                        <div class="nameContainer">
-                            <span class="icon"><img src="/Frontend/images/svgs/user.svg" alt=""></span>
-                            <input type="text" placeholder="Name">
-                        </div>
                         <div class="emailContainer">
-                            <span class="icon"><img src="/Frontend/images/svgs/mail.svg" width="20px" alt=""></span>
+                            <span class="icon"><img src="/frontend/public/images/svg/mail.svg" width="20px" alt=""></span>
                             <input type="email" placeholder="Email">
                         </div>
                     </div>
                     <div class="passwordConfirmPasswordContainer">
                         <div class="passwordContainer">
-                            <span class="icon"><img src="/Frontend/images/svgs/showpassword.svg" width="20px" alt=""></span>
-                            <input type="password" placeholder="Password">
+                            <span class="icon">
+                                <img class="ShowPassword" src="/frontend/public/images/svg/showpassword.svg" width="20px" alt="">
+                                <img class="passwordHideAuto" src="/frontend/public/images/svg/hidepassword.svg" width="20px" alt="">
+                            </span>
+                            <input class="userPasswordInput" type="password" placeholder="Password">
                         </div>
-                        <div class="confirmPasswordContainer">
-                            <span class="icon"><img src="/Frontend/images/svgs/showpassword.svg" width="20px" alt=""></span>
-                            <input type="password" placeholder="Confirm Password">
-                        </div>
-                        <p class="passwordConfirmPasswordContainerP">Password and Confirm Password must be same</p>
+                        <p class="passwordConfirmPasswordContainerP">check password before continuing</p>
                     </div>
                     <div class="ButtonsAndGoogleLoginContainer">
                         <div class="continueLoginContainer">
                             <button class="continueLoginButton">Continue</button>
                         </div>
                         <div class="signinForgotPasswordContainer">
-                            <div class="signinButton">Already have an account? <a href="">click here</a></div>
+                            <div class="signinButton">Don't have an account? <a href="signup.html">click here</a></div>
                         </div>
                     </div>
                     <div class="horizontalBarLoginGoogle">
@@ -73,7 +70,7 @@
                     </div>
                     <div class="googleLoginSystem">
                         <div class="googleIconButtonHolder">
-                            <img src="/Frontend/images/svgs/googleLogin.svg" alt="google icon">
+                            <img src="/frontend/public/images/svg/googleLogin.svg" alt="google icon">
                             <p class="googleLoginTemplate">Login with Google</p>
                         </div>
                     </div>
@@ -81,13 +78,13 @@
             </div>
         </div>
     </section>
-    <script src="/Frontend/scripts/darkMode.min.js"></script>
-    <script src="/Frontend/scripts/singup.min.js"></script>
-    <script src="/Frontend/scripts/loginWindowOpenClose.min.js"></script>
-    <script src="/Frontend/scripts/showHidePassword.min.js"></script>
-    <script src="/Frontend/scripts/showHideConfirmPassword.min.js"></script>
-    <!-- <script src="/Frontend/scripts/disableDeveloperTools.min.js"></script> -->
-    <script type="module" src="/Frontend/scripts/signup.js"></script>
-    <script type="module" src="/Frontend/scripts/signupLoginCSSAnimation.js"></script>
+    <script src="/frontend/public/scripts/components/darkMode.js"></script>
+    <script src="/frontend/public/scripts/utils/signup.js"></script>
+    <script src="/frontend/public/scripts/utils/showHidePassword.js"></script>
+    <script src="/frontend/public/scripts/utils/showHideConfirmPassword.js"></script>
+    <!-- <script src="/frontend/public/scripts/components/disableDeveloperTools.js"></script> -->
+    <script type="module" src="/frontend/public/scripts/utils/signup.js"></script>
+    <script type="module" src="/frontend/public/scripts/components/signupLoginCSSAnimation.js"></script>
+    <script src="/frontend/public/scripts/components/lazyLoading.js"></script>
 </body>
 </html>

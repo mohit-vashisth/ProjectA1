@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="public/stylesheets/utils.css">
+    <link rel="preload" href="src/css/index.css" as="style">
+    <link rel="stylesheet" href="src/css/index.css">
+    <title>Welcome to 3R Minds</title>
+</head>
+<body>
+    <div class="noticeForOfficialWebsite">
+        <div class="noticeForOfficialWebsiteHeading">
+            <div class="noticeForOfficialWebsiteHeadingText">
+                <h1>🌐 Coming Soon: The Official Website of 3R Minds 🌐</h1>
+            </div>
+            <div class="horizontalLine"></div>
+            <div class="noticeForOfficialWebsiteContent">
+                <div class="noticeForOfficialWebsiteContentHeading">
+                    <p>We are thrilled to announce that the official website of 3R Minds will be launched and pinned here shortly. As we continue to innovate and expand, this platform will serve as a gateway to our vision, values, and services on a global scale.</p>
+                    <p>Stay connected for the official unveiling, and get ready to experience excellence redefined. 🚀</p>
+                </div>
+                <div class="projectA1-container">
+                    <p>Discover <strong>Project A1</strong>, our cutting-edge AI-powered chatbot interface designed to redefine user interaction. With features like:</p>
+                    <ul class="features">
+                        <li>🌍 <strong>Real-time Translation</strong></li>
+                        <li>🎙️ <strong>Voice Cloning</strong></li>
+                        <li>🔄 <strong>Text-to-Voice & Voice-to-Text</strong></li>
+                    </ul>
+                    <p>Project A1 blends innovation with simplicity to deliver an unparalleled experience. Be among the first to try it and witness the future of AI communication!</p>
+                    <p><strong>Stay tuned. The revolution begins here. 🚀</strong></p>
+                    <button id="exploreProjectA1">Explore Project A1</button>
+                </div>
+            </div>
+        </div>
+        <div class="about3rMinds">
+            <div class="about3rMindsHeading">
+                <h1>About 3R Minds</h1>
+            </div>
+            <div class="about3rMindsContent">
+                <p>Welcome to <strong>3r Minds</strong>, a pioneering force in AI-driven innovation. At the heart of our vision lies <strong>Project A1</strong>, an experimental AI-powered platform designed to redefine communication. By blending cutting-edge technology with human-like interaction, we aim to revolutionize user experiences across multiple domains. Our mission is to create intuitive, adaptive, and intelligent solutions that are both accessible and scalable. While Project A1 is in its early stages, it reflects our commitment to pushing the boundaries of AI. Join us on this exciting journey and witness the future of communication, powered by 3r Minds.</p>
+            </div>
+            <div class="contactUs">
+                <h2>Get In Touch</h2>
+                <p>We'd love to hear from you! Whether you have questions, feedback, or simply want to connect, reach out to us and our team will get back to you as soon as possible.</p>
+                <p>For more information or inquiries, email us at <a href="mailto:mohitnarayanvashisth2703@gmail.com">mohitnarayanvashisth2703@gmail.com</a>.</p>
+                <button id="openChatbot">Contact Us</button>
+            </div>
+            <!-- Chatbot Modal -->
+            <div id="chatbotModal" class="modal">
+                <div class="modal-content">
+                    <span class="closeBtn">&times;</span>
+                    <div class="chatbot">
+                        <!-- Chatbot Messages -->
+                        <div class="chatbot-messages">
+                            <div class="message bot-message">Hi! How can I help you today?</div>
+                            <!-- Preloaded Questions (User Messages as buttons) -->
+                            <button class="message user-message">What is Project A1?</button>
+                            <button class="message user-message">Tell me about 3R Minds.</button>
+                            <button class="message user-message">How can I get started?</button>
+                            <button class="message user-message">Do you provide customer support?</button>
+                            <button class="message user-message">What technologies are used in Project A1?</button>
+                            <button class="message user-message">Can I use Project A1 for free?</button>
+                            <button class="message user-message">How do I contact customer support?</button>
+                            <button class="message user-message">Can I collaborate with 3R Minds?</button>
+                            <button class="message user-message">What are the system requirements?</button>
+                            <button class="message user-message">How secure is Project A1?</button>
+                        </div>
+                        <!-- User Input -->
+                        <input type="text" id="chatInput" placeholder="Type your message here..." />
+                        <button id="sendMessage" class="sendBtn">Send</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="src/javascript/index.js" defer></script>
+</body>
+</html>
