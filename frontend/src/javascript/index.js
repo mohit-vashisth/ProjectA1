@@ -1,85 +1,96 @@
+const openChatbotBtn = document.getElementById("openChatbot");
+const chatbotModal = document.getElementById("chatbotModal");
+const closeBtn = document.getElementsByClassName("closeBtn")[0];
+const sendMessageBtn = document.getElementById("sendMessage");
+const chatInput = document.getElementById("chatInput");
+const chatbotMessages = document.querySelector(".botResponses");
+
 const exploreProjectA1 = document.getElementById("exploreProjectA1");
 
 exploreProjectA1.addEventListener("click", () => {
     window.location.href = "src/pages/signup.html";
 });
 
-// model
-// Get elements
-const openChatbotBtn = document.getElementById("openChatbot");
-const chatbotModal = document.getElementById("chatbotModal");
-const closeBtn = document.getElementsByClassName("closeBtn")[0];
-const sendMessageBtn = document.getElementById("sendMessage");
-const chatInput = document.getElementById("chatInput");
-const chatbotMessages = document.querySelector(".chatbot-messages");
-
-// Predefined questions for quick replies
 const predefinedQuestions = [
-    "What is Project A1?",
-    "Tell me about 3R Minds.",
-    "How can I get started?",
-    "Do you provide customer support?",
-    "What technologies are used in Project A1?",
-    "Can I use Project A1 for free?",
-    "How do I contact customer support?",
-    "Can I collaborate with 3R Minds?",
-    "What are the system requirements?",
-    "How secure is Project A1?"
+    "how can i get started with project a1?",
+    "what is 3r minds, and what does it do?",
+    "is project a1 available for free?",
+    "what are the benefits of the paid version of project a1?",
+    "does project a1 offer customer support?",
+    "can i request a refund for the paid version of project a1?",
+    "how secure is project a1?",
+    "what career opportunities are available at 3r minds?",
 ];
 
-// Open the chatbot modal when "Contact Us" button is clicked
+const predefinedAnswers = [
+    "You can get started by signing up with your Gmail account or logging in if you already have an account. Our website provides step-by-step guidance for a smooth onboarding process.",
+    "3R Minds is an emerging company founded with a vision to create innovative AI-driven solutions that are practical, engaging, and fun to use.",
+    "Yes, Project A1 is currently free for all users. You also get access to the latest AI models and updates at no additional cost.",
+    "The paid version of Project A1 includes advanced voice features, additional customization options, and enhanced access to premium AI functionalities.",
+    "At the moment, we provide static customer support via email and FAQs. However, we plan to introduce live customer support in the near future.",
+    "3R Minds values its customers and guarantees a 100% refund if you are unsatisfied with the paid version of Project A1.",
+    "Project A1 prioritizes user data security. We do not sell or share any user data. For more information, please refer to our Privacy Policy.",
+    "3R Minds is a newly established company founded by three college friends. It offers open career opportunities for talented individuals passionate about AI and technology.",
+];
+
 openChatbotBtn.addEventListener("click", () => {
-    chatbotModal.style.display = "flex";  // Show the modal
+    chatbotModal.style.display = "flex";
 });
 
-// Close the chatbot modal
 closeBtn.addEventListener("click", () => {
-    chatbotModal.style.display = "none";  // Hide the modal
+    chatbotModal.style.display = "none";
 });
 
-// Display the preloaded questions when user clicks a button
-const questionButtons = document.querySelectorAll(".user-message");
-questionButtons.forEach((button) => {
-    button.addEventListener("click", () => {
-        const userMessage = button.textContent;
-        addMessage(userMessage, "user");  // Display user message
-        chatInput.value = "";  // Clear input box
+function findQuestionIndex(userMessage) {
+    const formattedMessage = userMessage.trim().toLowerCase();
+    return predefinedQuestions.findIndex(
+        (question) => question === formattedMessage
+    );
+}
 
-        // Simulate bot response (can later be replaced with actual AI logic)
+document.querySelectorAll(".user-message").forEach((button) => {
+    button.addEventListener("click", () => {
+        const userMessage = button.textContent.trim();
+        addMessage(userMessage, "user");
+
         setTimeout(() => {
-            const botResponse = `You asked about: ${userMessage}`;
-            addMessage(botResponse, "bot");  // Display bot message
-        }, 1000);  // Simulate delay
+            const questionIndex = findQuestionIndex(userMessage);
+            const botResponse =
+                questionIndex >= 0
+                    ? predefinedAnswers[questionIndex]
+                    : "Sorry, I don't have an answer for that question.";
+            addMessage(botResponse, "bot");
+        }, 1000);
     });
 });
 
-// Function to add message to chat
+sendMessageBtn.addEventListener("click", () => {
+    const userMessage = chatInput.value.trim();
+    if (userMessage !== "") {
+        addMessage(userMessage, "user");
+        chatInput.value = "";
+
+        setTimeout(() => {
+            const questionIndex = findQuestionIndex(userMessage);
+            const botResponse =
+                questionIndex >= 0
+                    ? predefinedAnswers[questionIndex]
+                    : "Sorry, I don't have an answer for that. Could you rephrase?";
+            addMessage(botResponse, "bot");
+        }, 1000);
+    }
+});
+
 function addMessage(message, sender) {
     const messageDiv = document.createElement("div");
     messageDiv.classList.add("message", `${sender}-message`);
     messageDiv.textContent = message;
     chatbotMessages.appendChild(messageDiv);
-    chatbotMessages.scrollTop = chatbotMessages.scrollHeight;  // Scroll to bottom
+    chatbotMessages.scrollTop = chatbotMessages.scrollHeight;
 }
 
-// Send button functionality for custom messages
-sendMessageBtn.addEventListener("click", () => {
-    const userMessage = chatInput.value.trim();
-    if (userMessage !== "") {
-        addMessage(userMessage, "user");  // Display user message
-        chatInput.value = "";  // Clear input box
-
-        // Simulate bot response (can later be replaced with actual AI logic)
-        setTimeout(() => {
-            const botResponse = `You said: ${userMessage}`;
-            addMessage(botResponse, "bot");  // Display bot message
-        }, 1000);  // Simulate delay
-    }
-});
-
-// Close modal on clicking outside
 window.onclick = (event) => {
     if (event.target === chatbotModal) {
-        chatbotModal.style.display = "none";  // Hide the modal
+        chatbotModal.style.display = "none";
     }
 };

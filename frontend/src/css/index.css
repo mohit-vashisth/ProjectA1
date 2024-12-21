@@ -338,22 +338,42 @@ html,body{
 .modal-content {
     background-color: #1e1e1e;
     color: white;
-    padding: 20px;
+    padding: 2vmin;
     width: 80%;
-    max-width: 600px;
-    border-radius: 10px;
+    height: 80%;
+    border-radius: 1vmin;
     position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: self-start;
+    flex-direction: column;
+}
+
+.marginLeft{
+    font-size: 2.5vmin;
+    margin-left: 2vmin;
 }
 
 /* Close Button */
 .closeBtn {
     color: white;
-    font-size: 30px;
-    font-weight: bold;
+    font-size: 3vmin;
+    font-weight: bolder;
     position: absolute;
     top: -8px;
     right: 4px;
     cursor: pointer;
+    margin: 1vmin;
+}
+
+.chatbot{
+    width: 100%;
+    height: 100%;
+    padding: 2vmin;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    justify-content: space-between;
 }
 
 .closeBtn:hover,
@@ -363,11 +383,34 @@ html,body{
     cursor: pointer;
 }
 
+.inputSendButtonHolder{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.botResponses{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+}
+
 /* Chatbot Messages */
 .chatbot-messages {
-    max-height: 300px;
+    width: 100%;
+    max-height: 620px;
     overflow-y: auto;
-    margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: end;
+}
+
+.askButtonsHolder{
+    width: 100%;
+    margin-bottom: 10vmin;
 }
 
 /* Bot Messages */
@@ -377,7 +420,7 @@ html,body{
     border-radius: 8px;
     padding: 10px 20px;
     margin: 10px 0;
-    font-size: 16px;
+    font-size: 20px;
     max-width: 70%;
     text-align: left;
     box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);

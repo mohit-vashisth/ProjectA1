@@ -50,25 +50,26 @@
             <div id="chatbotModal" class="modal">
                 <div class="modal-content">
                     <span class="closeBtn">&times;</span>
+                    <div class="marginLeft">Help and Support</div>
                     <div class="chatbot">
-                        <!-- Chatbot Messages -->
                         <div class="chatbot-messages">
-                            <div class="message bot-message">Hi! How can I help you today?</div>
-                            <!-- Preloaded Questions (User Messages as buttons) -->
-                            <button class="message user-message">What is Project A1?</button>
-                            <button class="message user-message">Tell me about 3R Minds.</button>
-                            <button class="message user-message">How can I get started?</button>
-                            <button class="message user-message">Do you provide customer support?</button>
-                            <button class="message user-message">What technologies are used in Project A1?</button>
-                            <button class="message user-message">Can I use Project A1 for free?</button>
-                            <button class="message user-message">How do I contact customer support?</button>
-                            <button class="message user-message">Can I collaborate with 3R Minds?</button>
-                            <button class="message user-message">What are the system requirements?</button>
-                            <button class="message user-message">How secure is Project A1?</button>
+                            <div class="askButtonsHolder">
+                                <button class="message user-message">How can I get started with Project A1?</button>
+                                <button class="message user-message">What is 3R Minds, and what does it do?</button>
+                                <button class="message user-message">Is Project A1 available for free?</button>
+                                <button class="message user-message">What are the benefits of the paid version of Project A1?</button>
+                                <button class="message user-message">Does Project A1 offer customer support?</button>
+                                <button class="message user-message">Can I request a refund for the paid version of Project A1?</button>
+                                <button class="message user-message">How secure is Project A1?</button>
+                                <button class="message user-message">What career opportunities are available at 3R Minds?</button>
+                            </div>
+                            <div class="botResponses"></div>
                         </div>
                         <!-- User Input -->
-                        <input type="text" id="chatInput" placeholder="Type your message here..." />
-                        <button id="sendMessage" class="sendBtn">Send</button>
+                        <div class="inputSendButtonHolder">
+                            <input type="text" id="chatInput" placeholder="Type your message here..." />
+                            <button id="sendMessage" class="sendBtn">Send</button>
+                        </div>
                     </div>
                 </div>
             </div>
