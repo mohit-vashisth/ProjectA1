@@ -43,19 +43,19 @@
                     </div>
                     <div class="nameEmailContainer">
                         <div class="emailContainer">
-                            <span class="icon"><img src="/frontend/assets/images/svg/mail.svg" width="20px" alt=""></span>
-                            <input type="email" placeholder="Email">
+                            <span class="icon"><img src="/frontend/assets/images/svg/mail.svg" alt=""></span>
+                            <input class="userLoginEmail" type="email" placeholder="Email">
                         </div>
                     </div>
                     <div class="passwordConfirmPasswordContainer">
                         <div class="passwordContainer">
                             <span class="icon">
-                                <img class="ShowPassword" src="/frontend/assets/images/svg/showpassword.svg" width="20px" alt="">
-                                <img class="passwordHideAuto" src="/frontend/assets/images/svg/hidepassword.svg" width="20px" alt="">
+                                <img class="ShowPassword" src="/frontend/assets/images/svg/showpassword.svg" alt="">
+                                <img class="passwordHideAuto" src="/frontend/assets/images/svg/hidepassword.svg" alt="">
                             </span>
                             <input class="userPasswordInput" type="password" placeholder="Password">
                         </div>
-                        <p class="passwordConfirmPasswordContainerP">check password before continuing</p>
+                        <p class="passwordConfirmPasswordContainerP"></p>
                     </div>
                     <div class="ButtonsAndGoogleLoginContainer">
                         <div class="continueLoginContainer">
@@ -78,12 +78,11 @@
             </div>
         </div>
     </section>
-    <script src="/frontend/js/pages/signup.js"></script>
-    <script src="/frontend/public/scripts/utils/showHidePassword.js"></script>
-    <script src="/frontend/public/scripts/utils/showHideConfirmPassword.js"></script>
-    <!-- <script src="/frontend/public/scripts/components/disableDeveloperTools.js"></script> -->
-    <script type="module" src="/frontend/public/scripts/utils/signup.js"></script>
-    <script type="module" src="/frontend/public/scripts/components/signupLoginCSSAnimation.js"></script>
-    <script src="/frontend/public/scripts/components/lazyLoading.js"></script>
+    <script src="/frontend/js/utils/showHidePassword.js"></script>
+    <script src="/frontend/js/utils/showHideConfirmPassword.js"></script>
+    <!-- <script src="/frontend/js/utils/disableDeveloperTools.js"></script> -->
+    <script type="module" src="/frontend/js/utils/signupLoginCSSAnimation.js"></script>
+    <script src="/frontend/js/utils/lazyLoading.js"></script>
+    <script src="/frontend/js/pages/login.js"></script>
 </body>
 </html>

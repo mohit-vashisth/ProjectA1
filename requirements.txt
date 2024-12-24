@@ -1,9 +1,0 @@
-fastapi>=0.68.0
-uvicorn>=0.15.0
-motor>=2.5.1
-beanie>=1.11.0
-pydantic>=2.0.0
-python-jose[cryptography]
-passlib[bcrypt]
-python-multipart
-python-dotenv>=0.19.0 
