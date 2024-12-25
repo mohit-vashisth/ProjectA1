@@ -1,0 +1,372 @@
+:root {
+    --color-bg1: rgb(108, 0, 162);
+    --color-bg2: rgb(0, 17, 82);
+    --color1: 18, 113, 255;
+    --color2: 221, 74, 255;
+    --color3: 100, 220, 255;
+    --color4: 200, 50, 50;
+    --color5: 180, 180, 50;
+    --color-interactive: 140, 100, 255;
+    --circle-size: 80%;
+    --blending: hard-light;
+}
+
+.lazy-loaded {
+    animation: fadeIn 1s ease-in-out;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+.mainFormSection {
+    position: absolute;
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 100;
+}
+
+@keyframes moveInCircle {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    50% {
+        transform: rotate(180deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes moveVertical {
+    0% {
+        transform: translateY(-50%);
+    }
+
+    50% {
+        transform: translateY(50%);
+    }
+
+    100% {
+        transform: translateY(-50%);
+    }
+}
+
+@keyframes moveHorizontal {
+    0% {
+        transform: translateX(-50%) translateY(-10%);
+    }
+
+    50% {
+        transform: translateX(50%) translateY(10%);
+    }
+
+    100% {
+        transform: translateX(-50%) translateY(-10%);
+    }
+}
+
+.gradientBackground {
+    width: 100vw;
+    height: 100vh;
+    position: absolute;
+    overflow: hidden;
+    background: var(--new--body-rightSection--);
+    top: 0;
+    left: 0;
+}
+
+.gradientBackground svg {
+    display: none;
+}
+
+.gradientContainer {
+    filter: url(#goo) blur(4vmin);
+    width: 100%;
+    height: 100%;
+}
+
+.g1 {
+    position: absolute;
+    background: radial-gradient(circle at center, rgba(var(--color1), 0.8) 0, rgba(var(--color1), 0) 50%) no-repeat;
+    mix-blend-mode: var(--blending);
+    width: var(--circle-size);
+    height: var(--circle-size);
+    top: calc(5% - var(--circle-size) / 3);
+    left: calc(50% - var(--circle-size) / 3);
+    transform-origin: calc(50%+60vmin);
+    animation: moveInCircle 40s reverse infinite;
+    opacity: 1;
+}
+
+.g2 {
+    position: absolute;
+    background: radial-gradient(circle at center, rgba(var(--color2), 0.8) 0, rgba(var(--color2), 0) 50%) no-repeat;
+    mix-blend-mode: var(--blending);
+    width: var(--circle-size);
+    height: var(--circle-size);
+    top: calc(80% - var(--circle-size) / 3);
+    left: calc(20% - var(--circle-size) / 3);
+    transform-origin: calc(50% - 60vmin);
+    animation: moveInCircle 40s reverse infinite;
+    opacity: 1;
+}
+
+.g3 {
+    position: absolute;
+    background: radial-gradient(circle at center, rgba(var(--color3), 0.8) 0, rgba(var(--color3), 0) 50%) no-repeat;
+    mix-blend-mode: var(--blending);
+    width: var(--circle-size);
+    height: var(--circle-size);
+    top: calc(50% - var(--circle-size) / 2 + 40vmin);
+    left: calc(50% - var(--circle-size) / 2 + 60vmin);
+    transform-origin: calc(50% - 40vmin);
+    animation: moveVertical 60s reverse infinite;
+    opacity: 1;
+}
+
+.g4 {
+    position: absolute;
+    background: radial-gradient(circle at center, rgba(var(--color4), 0.8) 0, rgba(var(--color4), 0) 50%) no-repeat;
+    mix-blend-mode: var(--blending);
+    width: var(--circle-size);
+    height: var(--circle-size);
+    top: calc(8 0% - var(--circle-size) / 2);
+    left: calc(50% - var(--circle-size) / 2);
+    transform-origin: calc(50% - 20vmin);
+    animation: moveHorizontal 60s reverse infinite;
+    opacity: 0.7;
+}
+
+
+.interactiveCircle {
+    position: absolute;
+    background: radial-gradient(circle at center, rgba(var(--color-interactive), 0.8) 0, rgba(var(--color-interactive), 0) 50%) no-repeat;
+    mix-blend-mode: var(--blending);
+    width: 100%;
+    height: 100%;
+    top: -50%;
+    left: -50%;
+    opacity: 0.7;
+}
+
+.mainLoginContainerFormContainer {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 5vmin;
+}
+
+.companyLogoContainer {
+    color: white;
+    font-size: 7vmin;
+    font-weight: bolder;
+    user-select: none;
+}
+
+.companyLogoContainerSpan3 {
+    display: inline-flex;
+    transform: translate(.5vmin, 2vmin);
+}
+
+.verifyUserContainer {
+    width: 60vmin;
+    height: 40vmin;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-direction: column;
+    border: .3vmin solid white;
+    border-radius: 1vmin;
+    background-color: hsla(0, 0%, 100%, 0.2);
+    margin-bottom: 10vmin;
+}
+
+form {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-direction: column;
+}
+
+.userVerifyInput {
+    width: 100%;
+    height: 25%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.userVerifyNow {
+    position: relative;
+    width: 70%;
+    height: 40%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-bottom: .3vmin solid hsl(0, 0%, 90%);
+}
+
+.userVerifyNow img {
+    filter: invert(1);
+}
+
+.icon img {
+    position: absolute;
+    width: 2.5vmin;
+    height: 2.5vmin;
+    right: 0;
+    top: 50%;
+    transform: translate(0, -50%);
+}
+
+.userVerifyNow input {
+    width: 100%;
+    height: 70%;
+    border: none;
+    outline: none;
+    font-size: 2.5vmin;
+    background: transparent;
+    padding: 1vmin;
+    padding-right: 4vmin;
+    color: white;
+}
+
+.userVerifyNow input::placeholder {
+    color: hsl(0, 0%, 90%);
+}
+
+.CloseAnimationHolder {
+    position: absolute;
+    right: 0;
+    top: 0;
+    background: transparent;
+    border: none;
+    outline: none;
+    font-size: 2.5vmin;
+    font-weight: bolder;
+    color: white;
+    cursor: pointer;
+    padding: 1vmin;
+    opacity: 0.9;
+}
+
+.CloseAnimationHolder:hover {
+    opacity: 1;
+}
+
+.openAnimationHolder {
+    position: absolute;
+    right: 0;
+    top: 0;
+    background: transparent;
+    border: none;
+    outline: none;
+    font-size: 2.5vmin;
+    font-weight: bolder;
+    color: white;
+    cursor: pointer;
+    padding: 1vmin;
+    opacity: 0.9;
+    visibility: hidden;
+}
+
+.openAnimationHolder:hover {
+    opacity: 1;
+}
+
+/* CAPTCHA Styling */
+.captchaContainer {
+    margin: 15px 0;
+    display: flex;
+    justify-content: space-between; /* Aligns the elements inside the container */
+    align-items: center;
+    width: 100%; /* Ensures it takes full width of the parent container */
+}
+
+.captchaCode {
+    font-weight: bold;
+    font-size: 2.5vmin;
+    color: #333;
+    padding: 1vmin;
+    background-color: #f0f0f0;
+    border: 1px solid #ccc;
+    border-radius: 1vmin;
+    max-width: 90%;
+    word-wrap: break-word;
+}
+
+.refreshCaptcha {
+    margin-left: 10px;
+    padding: 10px 15px;
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    max-width: 35%; /* Prevents the button from growing too wide */
+}
+
+.refreshCaptcha:hover {
+    background-color: #0056b3;
+}
+
+.captchaInput {
+    margin-top: 10px;
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+/* Ensure the form and container maintain responsive behavior */
+.verifyUserContainer {
+    width: 60vmin;
+    max-width: 90%; /* Prevents overflowing on smaller screens */
+    height: auto; /* Adjusts height based on content */
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-direction: column;
+    border: .3vmin solid white;
+    border-radius: 1vmin;
+    background-color: hsla(0, 0%, 100%, 0.2);
+    padding: 20px;
+    margin-bottom: 10vmin;
+}
+
+.userVerifyInput {
+    width: 100%;
+    height: auto; /* Adjusts height dynamically */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 10px; /* Adds space between CAPTCHA elements */
+}
+
+form {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+}
