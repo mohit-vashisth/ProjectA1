@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/frontend/css/utils/utils.css">
+    <link rel="stylesheet" href="/frontend/css/pages/verifyUser.css">
+    <title>3R Minds - Login</title>
+</head>
+<body class="dark-mode">
+    <section class="gradientBackground" id="lazyGradient">
+        <div class="gradient-bg lazy-load-content" style="display: none;">
+            <svg xmlns="http://www.w3.org/2000/svg">
+              <defs>
+                <filter id="goo">
+                  <feGaussianBlur in="SourceGraphic" stdDeviation="10" result="blur" />
+                  <feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 18 -8" result="goo" />
+                  <feBlend in="SourceGraphic" in2="goo" />
+                </filter>
+              </defs>
+            </svg>
+        </div>
+        <div class="gradientContainer lazy-load-content" style="display: none;">
+            <div class="g1"></div>
+            <div class="g2"></div>
+            <div class="g3"></div>
+            <div class="g4"></div>
+            <div class="g5"></div>
+            <div class="interactiveCircle"></div>
+        </div>
+    </section>
+    <section class="mainFormSection">
+        <div class="mainLoginContainerFormContainer">
+            <div class="companyLogoContainer">
+                <div class="companyLogoContainerSpan3">Verify User</div>
+                <div class="CloseAnimationHolder">Turn off Animation</div>
+                <div class="openAnimationHolder">Turn on Animation</div>
+            </div>
+            <div class="verifyUserContainer">
+                <form action="/verify" method="POST">
+                    <div class="userVerifyInput">
+                        <!-- CAPTCHA Section -->
+                        <div class="captchaContainer">
+                            <span class="captchaCode" id="captchaCode">{{ captcha_code }}</span>
+                            <button type="button" class="refreshCaptcha" onclick="refreshCaptcha()">Refresh</button>
+                        </div>
+                        <input 
+                            class="captchaInput" 
+                            type="text" 
+                            name="captcha" 
+                            placeholder="Enter CAPTCHA" 
+                            required>
+                    </div>
+                    <button type="submit" class="submitButton">Submit</button>
+                </form>
+            </div>
+        </div>
+    </section>
+    <script src="/frontend/js/pages/verifyUser.js"></script>
+    <script src="/frontend/js/utils/showHidePassword.js"></script>
+    <script src="/frontend/js/utils/showHideConfirmPassword.js"></script>
+    <script type="module" src="/frontend/js/utils/signupLoginCSSAnimation.js"></script>
+    <script src="/frontend/js/utils/lazyLoading.js"></script>
+    <script src="/frontend/js/pages/login.js"></script>
+</body>
+</html>

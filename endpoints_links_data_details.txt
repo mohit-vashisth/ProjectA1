@@ -1,2 +1,0 @@
-index.js: https://projecta1.3rminds.com
-
