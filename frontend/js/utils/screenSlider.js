@@ -1,18 +1,18 @@
-function slider() {
-    const leftSection = document.querySelector('.leftSection');
-    const slideToLeft = document.querySelector('.slideBarIcon');
-    const slideToRight = document.querySelector('.slideToRightBack');
+const slideBar = document.querySelector('.slider');
+const leftSection = document.querySelector('.leftMain');
+const rightSection = document.querySelector('.rightMain');
 
-  slideToLeft.addEventListener('click', function() {
-    leftSection.style.width = '0';
-    slideToRight.style.display = 'flex';
-  });
-
-  slideToRight.addEventListener('click', function() {
-    leftSection.style.width = '20%';
-    slideToRight.style.display = 'none';
-  });
-
+function chatSlider(sliderIcon, leftElement, rightElement) {
+  slideBar.addEventListener('click', function(){
+    if(leftElement.style.width != '0%'){
+      leftElement.style.width = '0%';
+      rightElement.style.width = '100%';
+    }
+    else{
+      leftElement.style.width = '15%';
+      rightElement.style.width = '85%';
+    }
+  })
 }
 
-slider();
+chatSlider(slideBar, leftSection, rightSection);

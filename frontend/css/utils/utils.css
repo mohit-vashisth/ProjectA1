@@ -1,13 +1,9 @@
 :root {
-  --new--body-leftSection--: hsl(215, 50%, 17%);
-  --new--body-rightSection--: hsl(222, 80%, 11%);
-  --new--body-rightSection-light--: white;
-  --new--body-leftSection-light--: hsl(0, 0%, 95%);
-  --left-1shadow-hover--: hsl(222, 80%, 8%);
-  --right-1shadow-hover--: hsl(215, 50%, 14%);
-  --left-1shadow-hover-light--: white;
-  --right-1shadow-hover-light--: hsl(0, 0%, 95%);
-  --border-universal-light--: grey;
+  --new--body-leftSection--: #151515;
+  --button--: #393c42;
+  --buttonHover--: #42464d;
+  --new--body-rightSection--: #0a0a0a;
+  --border-universal--: rgba(255, 255, 255, 0.3);
 }
 
 ::-webkit-scrollbar {
@@ -49,12 +45,10 @@ html, body {
 }
 
 body {
-  background-color: var(--light-grey);
-  color: black;
+  background-color: var(--new--body-rightSection--);
+  color: white;
 }
 
-
-body.dark-mode {
-  background-color: var(--light--opposite-body);
-  color: white;
+.filter{
+  filter: invert(1);
 }

@@ -19,308 +19,120 @@
         connect-src 'self'; 
         object-src 'none';
         frame-ancestors 'none';">
-
-    <link rel="preload" href="/frontend/css/utils/utils.css" as="style" />
-    <link rel="preload" href="/frontend/assets/images/svg/slidebarLeft.svg" as="image" />
-    <link rel="preload" href="/frontend/js/utils/darkMode.js" as="script" />
-    <link rel="preload" href="/frontend/js/pages/projectA1.js" as="script" />
+        <link rel="preload" href="/frontend/css/utils/utils.css" as="style" />
+        <link rel="preload" href="/frontend/assets/images/svg/slidebarLeft.svg" as="image" />
+        <link rel="preload" href="/frontend/js/utils/darkMode.js" as="script" />
+        <link rel="preload" href="/frontend/js/pages/projectA1.js" as="script" />
     <link rel="stylesheet" href="/frontend/css/utils/utils.css" />
     <link rel="stylesheet" href="/frontend/css/pages/projectA1.css" />
-
+    
     <script src="/frontend/js/utils/darkMode.js" defer></script>
     <!-- <script src="/frontend/js/utils/disableDeveloperTools.js" defer></script> -->
     <script src="/frontend/js/utils/dragIconsSvg.js" defer></script>
     <script src="/frontend/js/models/associatedChatVcRttVttt.js" defer></script>
     <script src="/frontend/js/pages/projectA1.js" defer></script>
-
+    
     <title>ProjectA1: By 3R Minds</title>
 </head>
 
-<body class="dark-mode">
-    <div class="sections">
-        <div class="leftRIghtContainer">
-            <div class="leftSection">
-                <div class="slideBarNewChatHolder">
-                    <div class="chatSlideContainer">
-                        <div class="slideBar">
-                            <img class="slideBarIcon" src="/frontend/assets/images/svg/slidebarLeft.svg" title="Slide" alt="SlideBar" />
-                        </div>
+<body>
+    <div class="root">
+        <section class="leftMain">
+            <div class="sliderButtonsChats">
+                <div class="slider">
+                    <div class="slide">
+                        <img class="filter" src="/frontend/assets/images/svg/slidebarLeft.svg" alt="">
                     </div>
                 </div>
-                <div class="chatItemsContainerNew">
-                    <div class="newChatButtonContainer">
-                        <a href="" class="newChatButtonLeftSection" id="newChatButton">New Chat</a>
+                <div class="chatVoiceButtons">
+                    <div class="newChatButton">
+                        <button class="newChat">New Chat</button>
                     </div>
-                    <div class="userChatListContainer">
-                        <div class="userChatHolder">
-                            <div class="userChatItemsContainer">
-                                <div class="userChatHere">
-                                    <div class="vcChatHolder"><span>VC</span></div>
-                                    <span>VC_new-voice</span>
-                                </div>
-                                <div class="userChatRenameDeleteToolKit">
-                                    <img class="chatMenuOptionIcon" src="/frontend/assets/images/svg/dot3Menu.svg" alt="">
-                                </div>
-                            </div>
+                    <div class="addVoiceButton">
+                        <div class="addVoice">
+                            <img class="filter" src="/frontend/assets/images/svg/microphone.svg" alt="">
+                            <span>Create Voice Clone</span>
                         </div>
-                    </div>
-                    <div class="settingsUserLoginAboutWebsiteContainer">
-                        <div class="settingsUserLoginAboutWebsiteHolder">
-                            <div class="userLoginOptionsContainer">
-                                <div class="userLoginRegisterButtonContainer">
-                                    <button class="userLoginNow">
-                                        <span>Login</span>
-                                    </button>
-                                    <button class="userRegisterNow">
-                                        <span>Register</span>
-                                    </button>
+                        <div class="addVoicePopup100VH">
+                            <div class="addvoicePopup">
+                                <div class="backVoicePopup">
+                                    <img class="filter" src="/frontend/assets/images/svg/slidebarLeft.svg" alt="">
                                 </div>
-                            </div>
-                            <div class="settingsOptionsContainer">
-                                <div class="settingsIconHolder">
-                                    <img src="/frontend/assets/images/svg/settings.svg" alt="">
+                                <div class="closeVoicePopup">
+                                    <img class="filter" src="/frontend/assets/images/svg/cross.svg" alt="">
                                 </div>
-                                <span>Settings</span>
-                            </div>
-                            <div class="aboutOurWebsiteContainer">
-                                <div class="aboutWebsite_toolkitHolder">
-                                    <div class="websiteInfo">
-                                        <div class="websiteInfoIconHolder">
-                                            <img src="/frontend/assets/images/svg/aboutWebsite.svg" title="About" alt="">
-                                        </div>
-                                        <span>About</span>
+                                <div class="voicePopup">
+                                    <div class="voiceHeading">
+                                        <span>How would you like to clone your voice?</span>
                                     </div>
-                                    <div class="aboutWebsiteToolKitContainer">
-                                        <ul class="websiteInfoUL">
-                                            <li>
-                                                <div class="websiteInfoImgHolder">
-                                                    <img class="filter1" src="/frontend/assets/images/svg/releaseNotes.svg" alt="">
-                                                    <span>Release Notes</span>
+                                    <div class="addVoiceOptions">
+                                        <div class="popupOptionBox">
+                                            <div class="voiceBox voiceBox1">
+                                                <div class="recImg">
+                                                    <img src="/frontend/assets/images/svg/voiceClone.svg" alt="">
                                                 </div>
-                                            </li>
-                                            <li>
-                                                <div class="websiteInfoImgHolder">
-                                                    <img class="filter1" src="/frontend/assets/images/svg/releaseNotes.svg" alt="">
-                                                    <span>Credits</span>
+                                                <div class="recTitle">
+                                                    <p><strong>Instant</strong></p>
+                                                    <span>Only 30 seconds of audio needed.</span>
                                                 </div>
-                                            </li>
-                                            <li>
-                                                <div class="websiteInfoImgHolder">
-                                                    <img class="filter1" src="/frontend/assets/images/svg/releaseNotes.svg" alt="">
-                                                    <span>Privacy & Policy</span>
-                                                </div>
-                                            </li>
-                                            <li>
-                                                <div class="websiteInfoVersion">
-                                                    <span>Version 1.0.0</span>
-                                                </div>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="rightSection">
-                <div class="rightSectionItemsHolder">
-                    <div class="rightUpperLowerSectionItemsContainer">
-                        <div class="upperRightSectionItemsHolder" role="navigation">
-                            <div class="websiteLogoNightModeHolder">
-                                <div class="sliderHolder">
-                                    <img class="slideToRightBack" src="/frontend/assets/images/svg/slidebarRight.svg" title="Slide" alt="slide bar">
-                                </div>
-                                <div class="websiteLogo">
-                                    <span class="logo3Website"><strong>3</strong></span>
-                                    <div class="taglineWebsiteMainTextHolder">
-                                        <div class="logo3LogoNameHolder">
-                                            <span class="logoNameWebsite"><strong>R Minds</strong></span>
+                                            </div>
                                         </div>
-                                        <div class="textContainer">
-                                            <span class="websiteTagLine">Innovating AI, Fueling Imagination</span>
+                                        <div class="popupOptionBox">
+                                            <div class="voiceBox voiceBox2">
+                                                <div class="addFileImg">
+                                                    <img src="/frontend/assets/images/svg/real-time.svg" alt="">
+                                                </div>
+                                                <div class="Fileheading">
+                                                    <p><strong>Premium</strong></p>
+                                                    <span>Upgrade now for just ₹29 and unlock advanced features instantly!</span>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="dayNightModeHolder">
-                                    <img class="darkModeOff" src="/frontend/assets/images/svg/darkModeOff.svg" title="Dark OFF" alt="dark mode" />
-                                    <img class="darkModeOn" src="/frontend/assets/images/svg/darkModeOn.svg" title="Dark ON"" alt="dark mode" />
-                                </div>
-                            </div>
-                            <div class="shareChatLoginHolder">
-                                <div class="shareChat">
-                                    <img src="/frontend/assets/images/svg/shareChat.svg" alt="">
-                                </div>
-                            </div>
-                            <div class="shareChatPopupHolder">
-                                <div class="shareChatLinkPopupHolder">
-                                    <span>Share public link to chat</span>
-                                    <div class="inputAreaWithLinkHolder">
-                                        <div class="shareEntireChatRadioButtonHolder">
-                                            <input type="radio" id="entireChat" name="shareOption" value="entireChat">
-                                            <label class="labelShareRadio" for="entireChat">Share Entire Chat</label>
-                                        </div>
-                                        <div class="shareThisChatRadioButtonHolder">
-                                            <input type="radio" id="thisResponse" name="shareOption" value="thisResponse">
-                                            <label class="labelShareRadio" for="thisResponse">Share This Response</label>
-                                        </div>
+                                <div class="addInputLanguage">
+                                    <div class="defineInputLangText">
+                                        <span><strong>Define Input Language</strong></span>
                                     </div>
-                                    <div class="copyShareChatLinkButton">
-                                        <input class="shareChatLink" type="text">
-                                        <button class="copyTextButton">Generate Link</button>
+                                    <select id="languageDropdown" class="language-select">
+                                    </select>
+                                    <div class="nextButtonVoice">
+                                        <button class="nextButtonV">Continue</button>
+                                    </div>
+                                    <div class="voiceNotice">
+                                        <span>Currently, your voice clone supports both <strong>Hindi</strong> and <strong>English</strong> languages. It will perform optimally in the language it was recorded in.</span>
                                     </div>
                                 </div>
-                            </div>
-                        </div>
-                        <div class="lowerRightSectionHolder" role="main">
-                            <div class="checkAndValidateChatOptionsToStart">
-                                <div class="checkAndValidateChatOptionsHolder">
-                                    <button class="chatButton voiceCloningButton">Voice Cloning</button>
-                                    <button class="chatButton realTimeTranslatorButton">Real-Time Translator</button>
-                                    <button class="chatButton voiceToTeXTButton">Voice to Text</button>
+                                <div class="recordHere">
+                                    <div class="upperVoiceContainer">
+                                        <div class="recordText">
+                                            <p><strong>Record Here</strong></p>
+                                        </div>
+                                        <div class="recordingAnimation"></div>
+                                        <div class="recordingTime">0:00</div>
+                                        <audio class="audio-player" controls download></audio>
+                                    </div>
+                                    <div class="optionsContainer">
+                                        <div class="controls">
+                                            <button class="startButton">Start</button>
+                                            <button class="stopButton" disabled>Stop</button>
+                                            <button class="resetButton" disabled>Reset</button>
+                                        </div>
+                                        <div class="saveDownload">
+                                            <button class="saveButton" disabled>Save</button>
+                                            <button class="downloadButton" disabled>Download</button>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
-                            <div class="rightLowerSectionItemsHolderVoiceCloningButtonToChat">
-                                <article class="userChat_responseContainerVoiceCloningButtonToChat">
-                                    <div class="userChat_HolderVoiceCloningButtonToChat">
-                                        <div class="userChatMainImageHolderVoiceCloningButtonToChat">
-                                            <div class="chatOfUserVoiceCloningButtonToChat">
-                                                <div class="responseNowVoiceCloningButtonToChat">Voice Cloning Model here</div>
-                                            </div>
-                                        </div>
-                                    </div>  
-                                </article>
-                                <article class="modelChat_responseContainerVoiceCloningButtonToChat">
-                                    <div class="modelChat_HolderVoiceCloningButtonToChat">
-                                        <div class="modelChatMainImageHolderVoiceCloningButtonToChat">
-                                            <div class="imageOfModelVoiceCloningButtonToChat">
-                                                <img src="/frontend/assets/images/svg/voiceClone.svg" alt="model logo" />
-                                            </div>
-                                            <div class="chatOfModelVoiceCloningButtonToChat">
-                                                <span class="modelChat_responseNowVoiceCloningButtonToChat"></span>
-                                                <div class="modelChatRegenerateLikeDislikeHolderVoiceCloningButtonToChat">
-                                                    <div class="modelChatOptionsHolderVoiceCloningButtonToChat">
-                                                        <div class="readTextHolderVoiceCloningButtonToChat">
-                                                            <img src="/frontend/assets/images/svg/volume.svg" title="Read Text" alt="">
-                                                        </div>
-                                                        <div class="thumbUpHolderVoiceCloningButtonToChat">
-                                                            <img src="/frontend/assets/images/svg/thumbup.svg" title="Like" alt="">
-                                                        </div>
-                                                        <div class="thumbDownHolderVoiceCloningButtonToChat">
-                                                            <img src="/frontend/assets/images/svg/thumbdown.svg" title="Dislike" alt="">
-                                                        </div>
-                                                        <div class="reGenerateHolderVoiceCloningButtonToChat">
-                                                            <img src="/frontend/assets/images/svg/reload.svg" title="Regenerate" alt="">
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>  
-                                </article>
-                            </div>
-                            <div class="rightLowerSectionItemsHolderRealTimeTranslatorButtonToChat">
-                                <article class="userChat_responseContainerRealTimeTranslatorButtonToChat">
-                                    <div class="userChat_HolderRealTimeTranslatorButtonToChat">
-                                        <div class="userChatMainImageHolderRealTimeTranslatorButtonToChat">
-                                            <div class="chatOfUserRealTimeTranslatorButtonToChat">
-                                                <div class="responseNowRealTimeTranslatorButtonToChat">Real time Translator model here</div>
-                                            </div>
-                                        </div>
-                                    </div>  
-                                </article>
-                                <article class="modelChat_responseContainerRealTimeTranslatorButtonToChat">
-                                    <div class="modelChat_HolderRealTimeTranslatorButtonToChat">
-                                        <div class="modelChatMainImageHolderRealTimeTranslatorButtonToChat">
-                                            <div class="imageOfModelRealTimeTranslatorButtonToChat">
-                                                <img src="/frontend/assets/images/svg/voiceClone.svg" alt="model logo" />
-                                            </div>
-                                            <div class="chatOfModelRealTimeTranslatorButtonToChat">
-                                                <span class="modelChat_responseNowRealTimeTranslatorButtonToChat"></span>
-                                                <div class="modelChatRegenerateLikeDislikeHolderRealTimeTranslatorButtonToChat">
-                                                    <div class="modelChatOptionsHolderRealTimeTranslatorButtonToChat">
-                                                        <div class="readTextHolderRealTimeTranslatorButtonToChat">
-                                                            <img src="/frontend/assets/images/svg/volume.svg" title="Read Text" alt="">
-                                                        </div>
-                                                        <div class="thumbUpHolderRealTimeTranslatorButtonToChat">
-                                                            <img src="/frontend/assets/images/svg/thumbup.svg" title="Like" alt="">
-                                                        </div>
-                                                        <div class="thumbDownHolderRealTimeTranslatorButtonToChat">
-                                                            <img src="/frontend/assets/images/svg/thumbdown.svg" title="Dislike" alt="">
-                                                        </div>
-                                                        <div class="reGenerateHolderRealTimeTranslatorButtonToChat">
-                                                            <img src="/frontend/assets/images/svg/reload.svg" title="Regenerate" alt="">
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>  
-                                </article>
-                            </div>
-                            <div class="rightLowerSectionItemsHolderVoiceToTeXTButtonToChat">
-                                <article class="userChat_responseContainerVoiceToTeXTButtonToChat">
-                                    <div class="userChat_HolderVoiceToTeXTButtonToChat">
-                                        <div class="userChatMainImageHolderVoiceToTeXTButtonToChat">
-                                            <div class="chatOfUserVoiceToTeXTButtonToChat">
-                                                <div class="responseNowVoiceToTeXTButtonToChat">Hey! what is your name? can you tell me what is this projectA1 about? is it free or paid?</div>
-                                            </div>
-                                        </div>
-                                    </div>  
-                                </article>
-                                <article class="modelChat_responseContainerVoiceToTeXTButtonToChat">
-                                    <div class="modelChat_HolderVoiceToTeXTButtonToChat">
-                                        <div class="modelChatMainImageHolderVoiceToTeXTButtonToChat">
-                                            <div class="imageOfModelVoiceToTeXTButtonToChat">
-                                                <img src="/frontend/assets/images/svg/voiceClone.svg" alt="model logo" />
-                                            </div>
-                                            <div class="chatOfModelVoiceToTeXTButtonToChat">
-                                                <span class="modelChat_responseNowVoiceToTeXTButtonToChat"></span>
-                                                <div class="modelChatRegenerateLikeDislikeHolderVoiceToTeXTButtonToChat">
-                                                    <div class="modelChatOptionsHolderVoiceToTeXTButtonToChat">
-                                                        <div class="readTextHolderVoiceToTeXTButtonToChat">
-                                                            <img src="/frontend/assets/images/svg/volume.svg" title="Read Text" alt="">
-                                                        </div>
-                                                        <div class="thumbUpHolderVoiceToTeXTButtonToChat">
-                                                            <img src="/frontend/assets/images/svg/thumbup.svg" title="Like" alt="">
-                                                        </div>
-                                                        <div class="thumbDownHolderVoiceToTeXTButtonToChat">
-                                                            <img src="/frontend/assets/images/svg/thumbdown.svg" title="Dislike" alt="">
-                                                        </div>
-                                                        <div class="reGenerateHolderVoiceToTeXTButtonToChat">
-                                                            <img src="/frontend/assets/images/svg/reload.svg" title="Regenerate" alt="">
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>  
-                                </article>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="inputVoiceMicrophoneNoticeHolder">
-                        <div class="microphoneItemContainer">
-                            <div class="microphoneHolder">
-                                <div class="rotatingBackground"></div>
-                                <div class="microphoneHere">
-                                    <img class="inputMicrophone" src="/frontend/assets/images/svg/microphone.svg" alt="">
-                                </div>
-                                <div class="microPhoneToolkitHolder">
-                                    <span>Microphone is Activated</span>
-                                    <audio class="microPhoneActivateSound" src="/frontend/public/audio/notifications/microphone_2.wav" preload="auto"></audio>
-                                    <audio class="microPhoneDeactivateSound" src="/frontend/public/audio/notifications/microphone_1.wav" preload="auto"></audio>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="noticeAboutWebsiteContainer">
-                            <span>An innovative initiative by 3r Minds, Project A1 is an experimental AI project, designed to push boundaries. Like humans, it may produce errors.</span>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
+        </section>
+        <section class="rightMain"></section>
     </div>
+    
     <script src="/frontend/js/utils/darkMode.js" defer></script>
     <script src="/frontend/js/utils/dragIconsSvg.js"defer></script>
     <script src="/frontend/js/utils/screenSlider.js"defer></script>
@@ -331,5 +143,6 @@
     <script src="/frontend/js/utils/websiteInfo.js"defer></script>
     <script src="/frontend/js/utils/microphone.js"defer></script>
     <script src="/frontend/js/utils/shareChat.js"defer></script>
+    <script src="/frontend/js/utils/addVoicePopup.js"defer></script>
 </body>
 </html>
