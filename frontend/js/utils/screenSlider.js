@@ -9,8 +9,8 @@ function chatSlider(sliderIcon, leftElement, rightElement) {
       rightElement.style.width = '100%';
     }
     else{
-      leftElement.style.width = '15%';
-      rightElement.style.width = '85%';
+      leftElement.style.width = '13%';
+      rightElement.style.width = '87%';
     }
   })
 }

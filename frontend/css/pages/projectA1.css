@@ -5,43 +5,48 @@
 }
 
 .leftMain{
-    width: 15%;
+    position: relative;
+    width: 13%;
     height: 100%;
     border-right: .1vmin solid var(--border-universal--);
     background: var(--new--body-leftSection--);
     display: flex;
     transition: all .2s;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-direction: column;
 }
 
 .sliderButtonsChats{
     width: 100%;
-    height: 30%;
+    height: 20%;
     display: flex;
     flex-direction: column;
 }
 
 .slider{
     width: 100%;
-    min-height: 5vmin;
+    min-height: 3vmin;
 }
 
 
 .slide{
     position: fixed;
-    top: .5vmin;
-    left: .5vmin;
+    top: 1vmin;
+    left: 1vmin;
     width: 4vmin;
-    border: .2vmin solid var(--border-universal--);
-    border-radius: 1.5vmin;
+    cursor: pointer;
 }
 .slide img{
-    width: 3.5vmin;
+    width: 2.5vmin;
 }
 
-.chatVoiceButtons{
+.chatVoiceButtons {
     width: 100%;
-    height: calc(100% - 5vmin);
+    height: calc(100% - 3vmin);
     display: flex;
+    max-height: 17vmin;
     justify-content: center;
     align-items: center;
     flex-direction: column;
@@ -52,15 +57,15 @@
     height: 50%;
     display: flex;
     justify-content: center;
-    align-items: center;
+    align-items: flex-end;
 }
 
 .newChat{
     position: relative;
     width: 90%;
-    height: 50%;
+    height: 60%;
     border-radius: 1vmin;
-    font-size: 2.5vmin;
+    font-size: 2vmin;
     font-weight: bold;
     background-color: var(--button--);
     color: white;
@@ -69,6 +74,7 @@
     border: .1vmin solid rgba(255, 255, 255, 0.2);
     text-wrap: nowrap;
     overflow: hidden;
+    margin: 1vmin;
 }
 
 .newChat:hover{
@@ -81,19 +87,13 @@
     height: 50%;
     display: flex;
     justify-content: center;
-    align-items: center;
+    align-items: flex-start;
+
 }
 
-.addVoiceButton{
-    width: 90%;
-    height: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: flex-start;
-}
 .addVoice{
     width: 90%;
-    height: 40%;
+    height: 80%;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -102,6 +102,7 @@
     border-radius: 1.5vmin;
     cursor: pointer;
     gap: .5vmin;
+    overflow: hidden;
 }
 .addVoice:hover{
     border: .3vmin solid var(--border-universal--);
@@ -109,7 +110,12 @@
 
 .addVoice span{
     font-weight: bold;
-    font-size: 2vmin;
+    font-size: 1.5vmin;
+    text-wrap: nowrap;
+}
+
+.addVoice img{
+    width: 2vmin;
 }
 
 .addVoicePopup100VH{
@@ -119,11 +125,10 @@
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    display: flex;
     justify-content: center;
     align-items: center;
     background-color: rgba(0, 0, 0, 0.2);
-    /* display: none; */
+    display: none;
 }
 .addvoicePopup{
     position: relative;
@@ -143,7 +148,6 @@
     display: flex;
     flex-direction: column;
     overflow: hidden;
-    /* display: none; */
 }
 
 .voiceHeading{
@@ -170,6 +174,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    z-index: 501;
 }
 
 .closeVoicePopup img{
@@ -187,7 +192,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    z-index: 100;
+    z-index: 500;
     display: none;
 }
 
@@ -401,7 +406,6 @@
     text-align: center;
     opacity: .7;
 }
-/* ------------------------------------------------------- */
 
 
 .recordHere{
@@ -426,13 +430,13 @@
     font-size: 2.5vmin;
 }
 
-recordingAnimation {
+.recordingAnimation {
     width: 50px;
     height: 50px;
     border-radius: 50%;
     background: red;
     animation: pulse 1s infinite;
-    display: none; /* Hide initially */
+    display: none;
 }
 
 @keyframes pulse {
@@ -523,11 +527,668 @@ recordingAnimation {
     background-color: #7f8c8d;
 }
 
+.userSection{
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 20%;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    flex-direction: column;
+}
 
+.userHere{
+    width: 90%;
+    height: 30%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 1vmin;
+}
+
+.user {
+    position: relative;
+    width: 90%;
+    height: 100%;
+    background-color: var(--extra-dark-user--);
+    border-radius: 1vmin;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    z-index: 1;
+}
+
+
+.userInfo{
+    width: 75%;
+    height: 100%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.userImg{
+    width: 40%;
+    height: 100%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.img{
+    width: 70%;
+    height: 60%;
+    border-radius: 20vmin;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: .5vmin;
+    overflow: hidden;
+    background-color: white;
+    color: black;
+    font-weight: bold;
+    font-size: 2.5vmin;
+}
+
+.userName{
+    width: 65%;
+    height: 100%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.userName span{
+    text-wrap: nowrap;
+    overflow: hidden;
+}
+
+.userLogout{
+    width: 25%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.logoutImg{
+    width: 70%;
+    height: 70%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+.logoutImg img{
+    cursor: pointer;
+    transition: all .1s;
+}
+.logoutImg img:hover{
+    opacity: .8;
+}
+
+.aboutWebsite{
+    width: 90%;
+    height: 30%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.about{
+    width: 90%;
+    height: 70%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    background-color: var(--extra-dark-user--);
+    border-radius: 1vmin;
+    gap: .5vmin;
+    cursor: pointer;
+    overflow: hidden;
+}
+
+.about:hover{
+    opacity: .8;
+}
+.about img{
+    width: 2.5vmin;
+    margin-left: 1vmin;
+}
+
+.logoutPopupContainer {
+    position: absolute;
+    width: 20vmin;
+    height: 10vmin;
+    background-color: var(--new--body-rightSection--);
+    border-radius: 1vmin;
+    border: .2vmin solid var(--border-universal--);
+    top: -4vmin;
+    right: -22vmin;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: column;
+    display: none;
+}
+.logoutPopupContainer span{
+    font-size: 2vmin;
+    margin-top: .5vmin;
+}
+
+.logoutPopupContainer::before, .logoutPopupContainer::after {
+    content: "";
+    position: absolute;
+    width: 2vmin;
+    height: 2vmin;
+    background-color: var(--new--body-rightSection--);
+    border-left: .2vmin solid var(--border-universal--);
+    border-bottom: .2vmin solid var(--border-universal--);
+    transform: rotate(45deg);
+    top: 70%;
+    left: -1vmin;
+    transform: translateY(-50%) rotate(45deg);
+}
+
+.logoutConfirmButton{
+    width: 100%;
+    height: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 2vmin;
+}
+
+.logoutConfirmButton button{
+    width: 35%;
+    height: 60%;
+    border-radius: .7vmin;
+    font-size: 2vmin;
+    font-weight: bold;
+    cursor: pointer;
+    border: none;
+    transition: all .05s;
+}
+
+.logoutConfirmButton button:hover{
+    opacity: .9;
+}
+
+.aboutWebsitePopupContainer{
+    position: absolute;
+    width: 20vmin;
+    height: 25vmin;
+    background-color: var(--new--body-rightSection--);
+    border-radius: 1vmin;
+    border: .2vmin solid var(--border-universal--);
+    top: -8vmin;
+    right: -22vmin;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: column;
+    display: none;
+}
+
+.aboutWebsitePopupContainer::before, .aboutWebsitePopupContainer::after {
+    content: "";
+    position: absolute;
+    width: 2vmin;
+    height: 2vmin;
+    background-color: var(--new--body-rightSection--);
+    border-left: .2vmin solid var(--border-universal--);
+    border-bottom: .2vmin solid var(--border-universal--);
+    transform: rotate(45deg);
+    top: 72%;
+    left: -1vmin;
+    transform: translateY(-50%) rotate(45deg);
+}
+
+.aboutWpopup{
+    width: 90%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.aboutWItems{
+    width: 90%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    flex-direction: column;
+    cursor: pointer;
+    list-style: none;
+}
+
+.aboutWItems li{
+    font-weight: bold;
+    font-size: 1.5vmin;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    border-radius: 1vmin;
+}
+.aboutWItems li span{
+margin-left: 1vmin;
+}
+.aboutWItems li:hover{
+    background-color: var(--new--body-leftSection--);
+}
+
+.chatsSection{
+    width: 100%;
+    height: 60%;
+    max-height: 5.5%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow-y: auto;
+    transition: all .5s;
+}
+
+
+.chatsSection.openChatListDisplay {
+    max-height: 30%;
+}
+
+.chatsHistory{
+    position: relative;
+    width: 80%;
+    height: 100%;
+    max-height: 100%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    flex-direction: column;
+    background-color: var(--new--body-leftSection--);
+    border-radius: 1vmin;
+    overflow: hidden;
+    opacity: .8;
+}
+
+.recentChats{
+    position: absolute;
+    width: 100%;
+    height: 5.5vmin;
+    border-radius: 1vmin;
+    background-color: var(--new--body-leftSection--);
+}
+
+.recentChatsButton{
+    width: 100%;
+    height: 5.5vmin;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    background-color: var(--new--body-leftSection--);
+    cursor: pointer;
+    border-radius: 1vmin;
+    padding-top: 2vmin;
+    padding-bottom: 2vmin;
+    transition: all .3s;
+}
+
+.recentChatsButton:hover{
+    background-color: var(--button--);
+}
+
+.recentChatsButton.openChatList{
+    background-color: var(--button--);
+}
+
+.imgTextRecentChatsButton{
+    width: 80%;
+    height: 100%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.imgTextRecentChatsButton img{
+    width: 4vmin;
+}
+.imgTextRecentChatsButton span{
+    text-wrap: nowrap;
+}
+
+.dropdownRecentChats{
+    width: 20%;
+    height: 100%;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.dropdownRecentChats img{
+    width: 1.5vmin;
+    margin-right: 1vmin;
+    transform: rotate(180deg);
+}
+
+.chatsHistoryHereNow {
+    width: 100%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    background-color: var(--button--);
+    border-radius: .5vmin;
+    flex-direction: column;
+    gap: 1vmin;
+    margin-top: 3vmin;
+    list-style: none;
+    overflow: hidden;
+}
+
+.chatHereDiv{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 1vmin;
+    overflow-y: auto;
+}
+
+
+.chatsHistoryHereNow li:first-child{
+    margin-top: 2vmin;
+}
+.chatsHistoryHereNow li{
+    width: 100%;
+    height: 100%;
+    padding: 1.2vmin 0vmin;
+    cursor: pointer;
+    border-radius: 1vmin;
+}
+.chatsHistoryHereNow li span{
+    margin-left: 1vmin;
+}
+.chatsHistoryHereNow li:hover{
+    font-weight: bolder;
+    opacity: 1;
+    background-color: var(--buttonHover--);
+}
+
+.storageSection{
+    width: 100%;
+    height: 5%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 1vmin;
+}
+
+.storageAudios{
+    width: 80%;
+    height: 100%;
+    border-radius: 1vmin;
+    opacity: .8;
+    cursor: pointer;
+ }
+
+.storageAudios:hover{
+    background-color: var(--button--);
+}
+.storageAudios.storageActive{
+    background-color: var(--button--);
+}
+
+.storageIconText{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    padding: .5vmin;
+    gap: .5vmin;
+    overflow: hidden;
+}
+
+
+.storageIconText img{
+    width: 3vmin;
+    overflow: hidden;
+}
+
+.storageIconText span{
+    text-wrap: nowrap;
+}
+
+.storagePopup{
+    position: fixed;
+    width: 80vmin;
+    height: 80vmin;
+    background-color: var(--new--body-rightSection--);
+    border: .2vmin solid var(--border-universal--);
+    top: 50%;
+    right: 50%;
+    transform: translate(50%, -50%);
+    border-radius: 1vmin;
+    display: none;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+}
+
+.storagePopupText{
+    width: 100%;
+    height: 5%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.storagePopupText span{
+    margin-left: 2vmin;
+    font-size: 2vmin;
+    border-bottom: .2vmin solid var(--border-universal--);
+}
+
+.searchChatsContainer{
+    width: 100%;
+    height: 95%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.searchChats{
+    width: 100%;
+    height: 10%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.searchNow{
+    position: relative;
+    width: 50%;
+    height: 80%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    margin-left: 2vmin;
+}
+
+.searchNow img{
+    position: absolute;
+    width: 2.5vmin;
+    margin-left: 1vmin;
+}
+
+.searchInput{
+    width: 100%;
+    height: 100%;
+    background-color: var(--new--body-rightSection--);
+    color: white;
+    border: none;
+    outline: transparent;
+    font-size: 2vmin;
+    padding: 0 4vmin;
+    border-bottom: .2vmin solid var(--border-universal--);
+}
+
+.searchInput:focus{
+    border-bottom: .2vmin solid white;
+}
+
+.chatsListPopup{
+    position: relative;
+    width: 100%;
+    height: 90%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-direction: column;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+.selectDeleteChats{
+    position: fixed;
+    width: 95%;
+    height: 5%;
+    display: flex;
+    background-color: var(--new--body-rightSection--);
+}
+
+.selectAllChats{
+    width: 50%;
+    height: 100%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    margin-left: 1.5vmin;
+}
+
+.deleteChats{
+    width: 50%;
+    height: 100%;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.deleteChatButton{
+    width: 30%;
+    height: 100%;
+    border: none;
+    border-radius: 1vmin;
+    color: white;
+    cursor: pointer;
+    font-size: 2vmin;
+    font-weight: bold;
+    background-color: #E53935;
+}
+
+.deleteChatButton:hover{
+    opacity: .9;
+}
+
+.checkboxSelect {
+    appearance: none;
+    width: 2vmin;
+    height: 2vmin;
+    border: .2vmin solid var(--border-universal--);
+    border-radius: 0.2vmin;
+    display: inline-block;
+    position: relative;
+    cursor: pointer;
+    outline: none;
+    background-color: transparent;
+}
+
+.checkboxSelect:checked {
+    background-color: var(--border-universal--);
+    border-color: rgba(255, 255, 255, 0.7);
+}
+
+.customLabel {
+    display: flex;
+    align-items: center;
+    font-size: 1.5vmin;
+    cursor: pointer;
+    gap: 1vmin;
+    user-select: none;
+}
+
+
+.chatsList {
+    width: 100%;
+    height: auto;
+    margin-top: 4.5vmin;
+}
+
+.chatList {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5vmin;
+}
+
+.chatList li {
+    width: 97%;
+    height: 100%;
+    cursor: pointer;
+    border-radius: 1vmin;
+    padding: 1vmin;
+    display: flex;
+    align-items: center;
+    gap: 1vmin;
+    margin-left: 1.3vmin;
+}
+
+.chatList li:hover {
+    background-color: var(--new--body-leftSection--);
+}
+.chatList li span{
+    padding: .5vmin;
+    font-size: 1.5vmin;
+}
+
+.chatCheckbox {
+    appearance: none;
+    width: 2vmin;
+    height: 2vmin;
+    border: 0.2vmin solid var(--border-universal--);
+    border-radius: 0.2vmin;
+    cursor: pointer;
+    background-color: transparent;
+    display: inline-block;
+}
+
+.chatCheckbox:checked {
+    background-color: var(--border-universal--);
+    border-color: rgba(255, 255, 255, 0.7);
+}
+
+.chatName {
+    font-size: 1.5vmin;
+    color: white;
+    flex: 1;
+}
 
 /* -------------------------------------------Right Section -------------------------------*/
 .rightMain{
-    width: 85%;
+    width: 87%;
     height: 100%;
+    display: flex;
     transition: all .2s;
+}
+
+.upperRight{
+    width: 100%;
+    height: 8%;
+    background-color: var(--new--body-leftSection--);
 }
