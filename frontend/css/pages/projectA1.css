@@ -37,6 +37,7 @@
     left: 1vmin;
     width: 4vmin;
     cursor: pointer;
+    z-index: 10;
 }
 .slide img{
     width: 2.5vmin;
@@ -129,6 +130,7 @@
     align-items: center;
     background-color: rgba(0, 0, 0, 0.2);
     display: none;
+    z-index: 100;
 }
 .addvoicePopup{
     position: relative;
@@ -603,6 +605,7 @@
 .userName span{
     text-wrap: nowrap;
     overflow: hidden;
+    font-size: 1.5vmin;
 }
 
 .userLogout{
@@ -625,6 +628,7 @@
 .logoutImg img{
     cursor: pointer;
     transition: all .1s;
+    width: 2.5vmin;
 }
 .logoutImg img:hover{
     opacity: .8;
@@ -657,6 +661,9 @@
 .about img{
     width: 2.5vmin;
     margin-left: 1vmin;
+}
+.about span{
+    font-size: 1.5vmin;
 }
 
 .logoutPopupContainer {
@@ -731,6 +738,7 @@
     align-items: center;
     flex-direction: column;
     display: none;
+    z-index: 10;
 }
 
 .aboutWebsitePopupContainer::before, .aboutWebsitePopupContainer::after {
@@ -748,16 +756,17 @@
 }
 
 .aboutWpopup{
-    width: 90%;
+    width: 100%;
     height: 100%;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
     align-items: center;
+    z-index: 1;
 }
 
 .aboutWItems{
-    width: 90%;
+    width: 100%;
     height: 100%;
     display: flex;
     justify-content: center;
@@ -858,6 +867,7 @@ margin-left: 1vmin;
 }
 .imgTextRecentChatsButton span{
     text-wrap: nowrap;
+    font-size: 1.5vmin;
 }
 
 .dropdownRecentChats{
@@ -866,12 +876,12 @@ margin-left: 1vmin;
     display: flex;
     justify-content: flex-end;
     align-items: center;
+    transform: rotate(180deg);
 }
 
 .dropdownRecentChats img{
     width: 1.5vmin;
     margin-right: 1vmin;
-    transform: rotate(180deg);
 }
 
 .chatsHistoryHereNow {
@@ -962,6 +972,7 @@ margin-left: 1vmin;
 
 .storageIconText span{
     text-wrap: nowrap;
+    font-size: 1.5vmin;
 }
 
 .storagePopup{
@@ -978,6 +989,7 @@ margin-left: 1vmin;
     flex-direction: column;
     align-items: flex-start;
     justify-content: flex-start;
+    z-index: 10;
 }
 
 .storagePopupText{
@@ -1181,14 +1193,279 @@ margin-left: 1vmin;
 
 /* -------------------------------------------Right Section -------------------------------*/
 .rightMain{
+    position: relative;
     width: 87%;
     height: 100%;
     display: flex;
     transition: all .2s;
+    justify-content: flex-end;
 }
 
 .upperRight{
-    width: 100%;
+    position: fixed;
+    width: 87%;
     height: 8%;
+    top: 0;
+    right: 0;
     background-color: var(--new--body-leftSection--);
+    display: flex;
+    align-items: center;
+    transition: al .2s;
+}
+
+.webSiteName{
+    width: 50%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    user-select: none;
+    margin-left: 5vmin;
+}
+
+.webSiteName span{
+    width: auto;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    font-size: 3vmin;
+    margin-left: 1vmin;
+    font-weight: bolder;
+}
+
+.webSiteName li{
+    width: auto;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    font-size: 1.5vmin;
+    margin-left: 1vmin;
+    margin-top: .6vmin;
+    font-weight: bolder;
+    opacity: .7;
+    text-align: center;
+}
+
+.exportAudios{
+    width: 50%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+.exportAudioNow{
+    position: relative;
+    width: 50%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    margin-right: 2vmin;
+}
+
+.export{
+    width: 30%;
+    height: 45%;
+    border: none;
+    border-radius: .8vmin;
+    outline: transparent;
+    background-color: var(--button--);
+    color: white;
+    cursor: pointer;
+    font-size: 1.5vmin;
+    font-weight: bold;
+}
+
+.export:hover{
+    opacity: .9;
+}
+
+.exportOptionsPopup{
+    position: absolute;
+    width: 15vmin;
+    height: 10vmin;
+    background-color: var(--new--body-rightSection--);
+    border: .2vmin solid var(--border-universal--);
+    top: 8vmin;
+    display: flex;
+    border-radius: 1vmin;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    display: none;
+}
+
+.exportOptionsPopup div{
+    width: 100%;
+    height: 50%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    border-radius: 1vmin;
+    z-index: 1;
+    user-select: none;
+    cursor: pointer;
+}
+.exportOptionsPopup div:hover{
+    background-color: var(--new--body-leftSection--);
+}
+.exportOptionsPopup div span{
+    font-size: 1.5vmin;
+    margin-left: 1vmin;
+}
+.exportOptionsPopup::before, .exportOptionsPopup::after{
+    position: absolute;
+    content: '';
+    width: 2vmin;
+    height: 2vmin;
+    background-color: var(--new--body-rightSection--);
+    border-left: .2vmin solid var(--border-universal--);
+    border-top: .2vmin solid var(--border-universal--);
+    transform: rotate(45deg);
+    top: -1vmin;
+    right: 5vmin;
+}
+
+.audioFileName{
+    width: 50%;
+    height: 60%;
+    border-right: .2vmin solid var(--border-universal--);
+    margin-right: .5vmin;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.fileName{
+    width: 50%;
+    height: 80%;
+    margin-right: .5vmin;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    user-select: none;
+}
+
+.fileName span{
+    font-size: 1.5vmin;
+    cursor: pointer;
+    text-wrap: nowrap;
+    max-width: 10vmin;
+    overflow: hidden;
+}
+
+.fileNameEdit{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    display: none;
+}
+
+.fileNameEdit input{
+    border: none;
+    width: 95%;
+    height: 80%;
+    outline: transparent;
+    padding: 1vmin;
+    font-size: 2vmin;
+    background-color: var(--button--);
+    color: white;
+    border-bottom: .2vmin solid var(--border-universal--);
+    border-radius: 1vmin;
+}
+
+.lowerRight {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    align-items: flex-end;
+    background-color: var(--new--body-rightSection--);
+}
+
+.lowerItemsContainer {
+    width: 100%;
+    height: 92%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.generateTextContainer {
+    width: 100%;
+    height: 100%;
+    display: flex;
+}
+
+.generateText {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+}
+
+.generateParaInput {
+    width: 80%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+.dynamicTextarea {
+    min-width: 50%;
+    min-height: 30%;
+    max-width: 90%;
+    max-height: 100%;
+    padding: 10px;
+    font-size: 1.2rem;
+    line-height: 1.5;
+    background-color: var(--new--body-leftSection--);
+    border: .2vmin solid var(--border-universal--);
+    color: white;
+    border-radius: 1vmin;
+    box-shadow: 0 4px 6px rgba(255, 255, 255, 0.1);
+    outline: transparent;
+    transition: box-shadow 0.3s ease, border-color 0.3s ease;
+}
+
+.dynamicTextarea:focus {
+    border-color: #6a00ff;
+    box-shadow: 0 4px 8px rgba(91, 0, 219, 0.6);
+}
+
+.generateParaButton{
+    width: 20%;
+    height: 20%;
+    background-color: var(--new--body-leftSection--);
+    border-radius: 2vmin;
+}
+
+.speechButton{
+    width: 100%;
+    height: 80%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.generateNow{
+    width: 70%;
+    height: 40%;
+    border: .2vmin solid var(--border-universal--);
+    outline: transparent;
+    border-radius: 1vmin;
+    font-size: 1.8vmin;
+    font-weight: bold;
+    color: white;
+    background-color: #6358e2;
+    cursor: pointer;
+    user-select: none;
+}
+
+.generateNow:hover{
+    opacity: .9;
 }
