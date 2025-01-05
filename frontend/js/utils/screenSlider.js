@@ -1,21 +1,35 @@
 const slideBar = document.querySelector('.slider');
 const leftSection = document.querySelector('.leftMain');
 const rightSection = document.querySelector('.rightMain');
-const upperRight = document.querySelector('.upperRight');
 
-function chatSlider(sliderIcon, leftElement, rightElement, navBar) {
-  slideBar.addEventListener('click', function(){
-    if(leftElement.style.width != '0%'){
-      leftElement.style.width = '0%';
-      rightElement.style.width = '100%';
-      navBar.style.width = '100%';
-    }
-    else{
-      leftElement.style.width = '13%';
-      rightElement.style.width = '87%';
-      navBar.style.width = '87%';
-    }
-  })
+function slider() {
+  if (slideBar && leftSection && rightSection) {
+    slideBar.addEventListener('click', function () {
+      if (window.matchMedia('(max-width: 768px)').matches) {
+        if (leftSection.style.width !== "50%") {
+          leftSection.style.width = "50%";
+          rightSection.style.filter = "blur(5px)";
+          rightSection.style.pointerEvents = "none";
+        } else {
+          leftSection.style.width = "0%";
+          rightSection.style.filter = "blur(0px)";
+          rightSection.style.pointerEvents = "auto";
+        }
+      }
+    });
+
+    document.addEventListener('click', function (event) {
+      if (window.matchMedia('(max-width: 768px)').matches) {
+        if (leftSection.style.width !== "0%" && 
+            !leftSection.contains(event.target) && 
+            event.target !== slideBar) {
+          leftSection.style.width = "0%";
+          rightSection.style.filter = "blur(0px)";
+          rightSection.style.pointerEvents = "auto";
+        }
+      }
+    });
+  }
 }
 
-chatSlider(slideBar, leftSection, rightSection, upperRight);
+slider();

@@ -41,12 +41,15 @@
             <div class="sliderButtonsChats">
                 <div class="slider">
                     <div class="slide">
-                        <img class="filter" src="/frontend/assets/images/svg/slidebarLeft.svg" alt="">
+                        <img class="filter" src="/frontend/assets/images/svg/hamburger.svg" alt="">
                     </div>
                 </div>
                 <div class="chatVoiceButtons">
                     <div class="newChatButton">
-                        <button class="newChat">New Chat</button>
+                        <button class="newChat">
+                            <strong>+</strong>
+                            <span>New Speech</span>
+                        </button>
                     </div>
                     <div class="addVoiceButton">
                         <div class="addVoice">
@@ -299,21 +302,36 @@
                 </div>
             </div>
             <div class="lowerRight">
-                <div class="lowerItemsContainer">
-                    <div class="generateTextContainer">
-                        <div class="generateText">
-                            <div class="generateParaInput">
-                                <textarea class="dynamicTextarea" placeholder="type here..."></textarea>
-                            </div>
-                            <div class="generateParaButton">
-                                <div class="speechButton">
-                                    <button class="generateNow">Generate speech</button>
-                                </div>
-                            </div>
-                        </div>
+                <div class="speechGenerateContainer">
+                    <div class="textInputSection">
+                        <label for="inputText">Add Speech</label>
+                        <textarea id="inputText" placeholder="Type here..."></textarea>
                     </div>
+                    <div class="voiceOptions">
+                    <!-- Pre-Available Voices -->
+                    <div>
+                        <input type="radio" id="preAvailable" name="voice" checked />
+                        <label for="preAvailable">Pre-Available Voices</label>
+                        <select id="preAvailableDropdown">
+                        <option>jenny ~ English</option>
+                        <option>sam ~ English</option>
+                        <option>Naveen ~ Hindi</option>
+                        </select>
+                    </div>
+                    <!-- Use Your Own Voice -->
+                    <div>
+                        <input type="radio" id="useOwnVoice" name="voice" />
+                        <label for="useOwnVoice">Use Your Own Voice</label>
+                        <select id="useOwnVoiceDropdown" disabled>
+                        <option>Voice 1</option>
+                        <option>Voice 2</option>
+                        <option>Voice 3</option>
+                        </select>
+                    </div>
+                    </div>
+                    <button class="generateSpeechBtn">Generate Speech</button>
                 </div>
-            </div>
+              </div>
         </section>
     </div>
     <script src="/frontend/js/utils/dragIconsSvg.js"defer></script>
@@ -332,5 +350,6 @@
     <script src="/frontend/js/utils/storagePopup.js"defer></script>
     <script src="/frontend/js/utils/fileRenameExport.js"defer></script>
     <script src="/frontend/js/utils/textAreaInput.js"defer></script>
+    <script src="/frontend/js/utils/chooseVoiceOptions.js"defer></script>
 </body>
 </html>

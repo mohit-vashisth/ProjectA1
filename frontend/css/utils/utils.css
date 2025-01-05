@@ -1,6 +1,7 @@
 :root {
   --new--body-leftSection--: #151515;
   --button--: #393c42;
+  --buttonNew--: rgb(99,88,225);
   --buttonHover--: #42464d;
   --new--body-rightSection--: #0a0a0a;
   --border-universal--: rgba(255, 255, 255, 0.3);
