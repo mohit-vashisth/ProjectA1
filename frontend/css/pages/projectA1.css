@@ -147,27 +147,35 @@
     flex-direction: column;
     overflow: hidden;
 }
-
-.voicePopup{
+/*  voice poppup */
+.voicePopup {
     width: 100%;
     height: 100%;
     display: flex;
     flex-direction: column;
-    overflow: hidden;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(145deg, #1f1f1f, #282828);
+    backdrop-filter: blur(5px);
+    border-radius: 2vmin;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
 }
 
-.voiceHeading{
-    position: relative;
-    width: 100%;
-    height: 20%;
+.voiceHeading {
+    width: 90%;
+    height: 15%;
     display: flex;
     justify-content: center;
     align-items: center;
+    border-radius: 1vmin;
+    margin-bottom: 2vmin;
 }
 
-.voiceHeading span{
-    font-size: 2.5vmin;
+
+.voiceHeading span {
+    font-size: 3vmin;
     font-weight: bold;
+    color: #FFFFFF;
 }
 
 .closeVoicePopup{
@@ -208,10 +216,12 @@
     cursor: pointer;
 }
 
-.addVoiceOptions{
-    width: 100%;
-    height: 80%;
+.addVoiceOptions {
+    width: 90%;
+    height: 75%;
     display: flex;
+    justify-content: space-between;
+    gap: 2vmin;
     align-items: center;
 }
 
@@ -222,17 +232,34 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    transition: transform 0.1s ease, box-shadow 0.1s ease;
+}
+
+.popupOptionBox:hover {
+    transform: scale(1.05);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
 }
 
 .voiceBox {
-    width: 85%;
+    width: 100%;
     height: 100%;
-    background-color: var(--new--body-leftSection--);
     border-radius: 2vmin;
+    background-color: var(--buttonNew--);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
     cursor: pointer;
     overflow: hidden;
     position: relative;
-    transition: transform 0.3s ease;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}
+.voiceBox:hover {
+    opacity: 0.9;
+}
+
+.voiceBox2 {
+    background: linear-gradient(135deg, #FEB47B, #FF7E5F);
 }
 
 .voiceBox2::before {
@@ -262,7 +289,7 @@
     opacity: .8;
 }
 
-.recImg {
+.recImg, .addFileImg {
     width: 100%;
     height: 50%;
     display: flex;
@@ -270,59 +297,38 @@
     align-items: flex-end;
 }
 
-.recImg img {
-    width: 5vmin;
+
+.recImg img, .addFileImg img {
+    width: 6vmin;
 }
 
-.recTitle {
-    width: 100%;
-    height: 50%;
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
-    flex-direction: column;
-}
-
-.recTitle p {
-    margin-top: .5vmin;
+.recTitle p, .Fileheading p {
     font-size: 2.5vmin;
+    font-weight: bold;
+    margin: 0.5vmin 0;
+    color: #FFFFFF;
 }
+
 
 .recTitle span {
     margin-top: .5vmin;
     text-align: center;
+    opacity: .8;
 }
 
-
-.addFileImg{
-    width: 100%;
-    height: 50%;
-    display: flex;
-    justify-content: center;
-    align-items: flex-end;
-}
-
-.addFileImg img{
-    width: 5vmin;
-}
-
-.Fileheading{
+.Fileheading, .recTitle{
     width: 100%;
     height: 50%;
     display: flex;
     justify-content: flex-start;
     align-items: center;
     flex-direction: column;
-}
-
-.Fileheading p {
-    margin-top: .5vmin;
-    font-size: 2.5vmin;
 }
 
 .Fileheading span {
     margin-top: .5vmin;
     text-align: center;
+    opacity: .8;
 }
 
 .addInputLanguage {
@@ -333,98 +339,66 @@
     align-items: center;
     flex-direction: column;
     display: none;
+    background: linear-gradient(145deg, #1f1f1f, #282828);
+    border-radius: 1vmin;
+    box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.4);
+    padding: 2vmin;
 }
 
-.defineInputLangText{
+
+.defineInputLangText {
     width: 100%;
-    height: 25%;
+    height: 20%;
     display: flex;
     justify-content: center;
     align-items: center;
+    margin-bottom: 1vmin;
 }
 
-.defineInputLangText span{
-    font-size: 2.5vmin;
+
+.defineInputLangText span {
+    font-size: 2.8vmin;
+    font-weight: bold;
+    color: white;
+    text-shadow: 0px 2px 4px rgba(0, 0, 0, 0.5);
 }
+
 
 .language-select {
     width: 80%;
-    height: 15%;
-    padding: 1.2vmin;
-    font-size: 1.8vmin;
-    border: 2px solid var(--new--body-leftSection--);
-    border-radius: 1vmin;
-    background-color: var(--new--body-leftSection--);
+    height: 20%;
+    padding: 1.5vmin;
+    font-size: 2vmin;
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    border-radius: 1.5vmin;
+    background: linear-gradient(135deg, #383838, #4a4a4a);
     color: white;
     cursor: pointer;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    margin-top: 1vmin;
-    transition: border-color 0.3s, box-shadow 0.3s;
+    appearance: none;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+    margin-top: 2vmin;
+    transition: border-color 0.2s, box-shadow 0.2s, transform 0.2s;
 }
 
 .language-select:hover {
-    border-color: rgba(255, 255, 255, 0.5);
-    box-shadow: 0 6px 8px rgba(0, 0, 0, 0.2);
+    border-color: hsla(245, 70%, 61%);
+    box-shadow: 0 6px 10px hsla(245, 70%, 61%, 0.3);
 }
 
 .language-select:focus {
     outline: none;
-    border-color: rgba(0, 153, 255, 0.8);
-    box-shadow: 0 0 6px rgba(0, 153, 255, 0.6);
+    border-color: hsla(245, 70%, 61%, 0.8);
+    box-shadow: 0 0 6px hsla(245, 70%, 61%, 0.6);
 }
 
-.nextButtonVoice{
-    width: 100%;
-    height: 25%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+.language-select option {
+    background-color: #383838; /* Consistent option background */
+    color: #ffffff;
+    font-size: 1.5vmin;
+    padding: 1vmin;
 }
 
-.nextButtonV{
-    width: 25%;
-    height: 50%;
-    font-size: 3vmin;
-    cursor: pointer;
-    border: none;
-    color: white;
-    border-radius: 1vmin;
-    outline: transparent;
-    background: transparent;
-    opacity: .9;
-    transition: all .1s;
-}
-
-.nextButtonV:hover{
-    opacity: 1;
-}
-
-.voiceNotice{
-    width: 100%;
-    height: 35%;
-    display: flex;
-    justify-content: center;
-    align-items: flex-start;
-}
-
-.voiceNotice span{
-    max-width: 80%;
-    text-align: center;
-    opacity: .7;
-}
-
-
-.recordHere{
-    width: 100%;
-    height: 100%;
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
-    flex-direction: column;
-    display: none;
-}
-
-.recordText{
+.nextButtonVoice {
     width: 100%;
     height: 20%;
     display: flex;
@@ -432,17 +406,82 @@
     align-items: center;
 }
 
-.recordText p{
+.nextButtonV {
+    width: 30%;
+    height: 80%;
     font-size: 2.5vmin;
+    cursor: pointer;
+    border: none;
+    color: white;
+    border-radius: 1vmin;
+    background: var(--buttonNew--);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    transition: transform 0.2s, box-shadow 0.2s, opacity 0.3s;
+}
+
+.nextButtonV:hover {
+    opacity: 1;
+    transform: scale(1.05);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.5);
+}
+
+.voiceNotice {
+    width: 100%;
+    height: 40%;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    margin-top: 1vmin;
+}
+
+.voiceNotice span {
+    max-width: 80%;
+    text-align: center;
+    font-size: 1.8vmin;
+    color: rgba(255, 255, 255, 0.7);
+    line-height: 1.5;
+    text-shadow: 0px 1px 3px rgba(0, 0, 0, 0.4);
+}
+
+.recordHere {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-direction: column;
+    display: none;
+    background: linear-gradient(145deg, #1f1f1f, #282828);
+    border-radius: 1.5vmin;
+    box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.4);
+    padding: 2vmin;
+    color: white;
+}
+
+.recordText {
+    width: 100%;
+    height: 20%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 1vmin;
+}
+
+.recordText p {
+    font-size: 3vmin;
+    font-weight: bold;
+    color: white;
+    text-shadow: 0px 2px 4px rgba(0, 0, 0, 0.5);
 }
 
 .recordingAnimation {
-    width: 50px;
-    height: 50px;
+    width: 60px;
+    height: 60px;
     border-radius: 50%;
-    background: red;
-    animation: pulse 1s infinite;
+    background: radial-gradient(circle, #ff0000, #800000);
+    animation: pulse 1.5s infinite;
     display: none;
+    box-shadow: 0 4px 8px rgba(255, 0, 0, 0.6);
 }
 
 @keyframes pulse {
@@ -452,7 +491,7 @@
     }
     50% {
         transform: scale(1.2);
-        opacity: 0.5;
+        opacity: 0.7;
     }
     100% {
         transform: scale(1);
@@ -462,8 +501,10 @@
 
 
 .recordingTime {
-    font-size: 2vmin;
+    font-size: 2.2vmin;
     margin: 2vmin;
+    color: rgba(255, 255, 255, 0.8);
+    font-style: italic;
 }
 
 .controls {
@@ -481,30 +522,43 @@
     gap: 2vmin;
 }
 
-.controls button, .saveDownload button {
-    padding: 1vmin 2.5vmin;
-    background-color: #ff5733;
-    border: none;
-    color: white;
+.controls button,
+.saveDownload button {
+    padding: 1.5vmin 2.5vmin;
     font-size: 1.5vmin;
-    border-radius: 1vmin;
+    font-weight: bold;
+    border: none;
+    border-radius: 1.5vmin;
     cursor: pointer;
-    margin-top: 1.5vmin;
+    background: var(--buttonNew--);
+    color: white;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    transition: all 0.1s;
+}
+
+.controls button:hover,
+.saveDownload button:hover {
+    transform: scale(1.02);
+    opacity: .9;
 }
 
 .controls button:disabled,
 .saveDownload button:disabled {
     background-color: #7f8c8d !important; /* Ensure disabled buttons are grayed out */
     cursor: not-allowed;
+    box-shadow: none;
+    transform: scale(1);
 }
 
 .audio-player {
-    width: 50%;
-    margin-top: 1vmin;
+    width: 60%;
+    background: linear-gradient(135deg, #444, #222);
+    border-radius: 1vmin;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.3);
     display: none;
 }
 
-.upperVoiceContainer{
+.upperVoiceContainer {
     width: 100%;
     height: 70%;
     display: flex;
@@ -514,23 +568,33 @@
     margin-top: 2vmin;
 }
 
-.optionsContainer{
+.optionsContainer {
     width: 100%;
     height: 30%;
     display: flex;
-    justify-content: flex-end;
+    justify-content: center;
     align-items: center;
     flex-direction: column;
     margin-bottom: 2vmin;
 }
 
-.saveButton, .downloadButton {
-    padding: 10px 20px;
-    background-color: #28a745;
+.saveButton,
+.downloadButton {
+    padding: 1.5vmin 3vmin;
+    font-size: 2vmin;
+    font-weight: bold;
+    border: none;
+    border-radius: 1.5vmin;
+    color: white;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    transition: all 0.3s;
 }
 
-.saveButton:disabled, .downloadButton:disabled {
-    background-color: #7f8c8d;
+.saveButton:disabled,
+.downloadButton:disabled {
+    background-color: #7f8c8d !important;
+    cursor: not-allowed;
+    box-shadow: none;
 }
 
 .userSection{
@@ -638,7 +702,7 @@
     opacity: .8;
 }
 
-.aboutWebsite{
+.aboutWebsite {
     width: 90%;
     height: 30%;
     display: flex;
@@ -670,63 +734,6 @@
     font-size: 1.5vmin;
 }
 
-.logoutPopupContainer {
-    position: absolute;
-    width: 20vmin;
-    height: 10vmin;
-    background-color: var(--new--body-rightSection--);
-    border-radius: 1vmin;
-    border: .2vmin solid var(--border-universal--);
-    top: -4vmin;
-    right: -22vmin;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    flex-direction: column;
-    display: none;
-}
-.logoutPopupContainer span{
-    font-size: 2vmin;
-    margin-top: .5vmin;
-}
-
-.logoutPopupContainer::before, .logoutPopupContainer::after {
-    content: "";
-    position: absolute;
-    width: 2vmin;
-    height: 2vmin;
-    background-color: var(--new--body-rightSection--);
-    border-left: .2vmin solid var(--border-universal--);
-    border-bottom: .2vmin solid var(--border-universal--);
-    transform: rotate(45deg);
-    top: 70%;
-    left: -1vmin;
-    transform: translateY(-50%) rotate(45deg);
-}
-
-.logoutConfirmButton{
-    width: 100%;
-    height: 50%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 2vmin;
-}
-
-.logoutConfirmButton button{
-    width: 35%;
-    height: 60%;
-    border-radius: .7vmin;
-    font-size: 2vmin;
-    font-weight: bold;
-    cursor: pointer;
-    border: none;
-    transition: all .05s;
-}
-
-.logoutConfirmButton button:hover{
-    opacity: .9;
-}
 
 .aboutWebsitePopupContainer{
     position: absolute;
@@ -796,6 +803,65 @@ margin-left: 1vmin;
 .aboutWItems li:hover{
     background-color: var(--new--body-leftSection--);
 }
+
+.logoutPopupContainer {
+    position: absolute;
+    width: 20vmin;
+    height: 10vmin;
+    background-color: var(--new--body-rightSection--);
+    border-radius: 1vmin;
+    border: .2vmin solid var(--border-universal--);
+    top: -4vmin;
+    right: -22vmin;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: column;
+    display: none;
+}
+.logoutPopupContainer span{
+    font-size: 2vmin;
+    margin-top: .5vmin;
+}
+
+.logoutPopupContainer::before, .logoutPopupContainer::after {
+    content: "";
+    position: absolute;
+    width: 2vmin;
+    height: 2vmin;
+    background-color: var(--new--body-rightSection--);
+    border-left: .2vmin solid var(--border-universal--);
+    border-bottom: .2vmin solid var(--border-universal--);
+    transform: rotate(45deg);
+    top: 70%;
+    left: -1vmin;
+    transform: translateY(-50%) rotate(45deg);
+}
+
+.logoutConfirmButton{
+    width: 100%;
+    height: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 2vmin;
+}
+
+.logoutConfirmButton button{
+    width: 35%;
+    height: 60%;
+    border-radius: .7vmin;
+    font-size: 2vmin;
+    font-weight: bold;
+    cursor: pointer;
+    border: none;
+    transition: all .05s;
+}
+
+.logoutConfirmButton button:hover{
+    opacity: .9;
+}
+
 
 .chatsSection{
     width: 100%;
@@ -979,171 +1045,120 @@ margin-left: 1vmin;
     font-size: 1.5vmin;
 }
 
-.storagePopup{
+.storagePopup {
     position: fixed;
-    width: 80vmin;
-    height: 80vmin;
-    background-color: var(--new--body-rightSection--);
-    border: .2vmin solid var(--border-universal--);
-    top: 50%;
-    right: 50%;
-    transform: translate(50%, -50%);
+    width: 60vmin;
+    height: auto;
+    max-height: 80vmin;
+    background-color: #2a2c34;
+    border: none;
     border-radius: 1vmin;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
     display: none;
     flex-direction: column;
     align-items: flex-start;
     justify-content: flex-start;
     z-index: 10;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+    overflow: hidden;
+    padding: 2vmin;
 }
 
-.storagePopupText{
+.storagePopupHeader {
     width: 100%;
-    height: 5%;
     display: flex;
-    justify-content: flex-start;
+    justify-content: space-between;
     align-items: center;
+    border-bottom: 1px solid #444;
+    padding: 1vmin 0;
 }
 
-.storagePopupText span{
-    margin-left: 2vmin;
+.storagePopupHeader span {
     font-size: 2vmin;
-    border-bottom: .2vmin solid var(--border-universal--);
-}
-
-.searchChatsContainer{
-    width: 100%;
-    height: 95%;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: center;
-}
-
-.searchChats{
-    width: 100%;
-    height: 10%;
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
-}
-
-.searchNow{
-    position: relative;
-    width: 50%;
-    height: 80%;
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
-    margin-left: 2vmin;
-}
-
-.searchNow img{
-    position: absolute;
-    width: 2.5vmin;
-    margin-left: 1vmin;
-}
-
-.searchInput{
-    width: 100%;
-    height: 100%;
-    background-color: var(--new--body-rightSection--);
     color: white;
-    border: none;
-    outline: transparent;
-    font-size: 2vmin;
-    padding: 0 4vmin;
-    border-bottom: .2vmin solid var(--border-universal--);
-}
-
-.searchInput:focus{
-    border-bottom: .2vmin solid white;
-}
-
-.chatsListPopup{
-    position: relative;
-    width: 100%;
-    height: 90%;
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
-    flex-direction: column;
-    overflow-y: auto;
-    overflow-x: hidden;
-}
-
-.selectDeleteChats{
-    position: fixed;
-    width: 95%;
-    height: 5%;
-    display: flex;
-    background-color: var(--new--body-rightSection--);
-}
-
-.selectAllChats{
-    width: 50%;
-    height: 100%;
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
-    margin-left: 1.5vmin;
-}
-
-.deleteChats{
-    width: 50%;
-    height: 100%;
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
-}
-
-.deleteChatButton{
-    width: 30%;
-    height: 100%;
-    border: none;
-    border-radius: 1vmin;
-    color: white;
-    cursor: pointer;
-    font-size: 2vmin;
     font-weight: bold;
-    background-color: #E53935;
 }
 
-.deleteChatButton:hover{
-    opacity: .9;
+.searchChatsContainer {
+    width: 100%;
+    margin-top: 1vmin;
+    display: flex;
+    flex-direction: column;
+    gap: 1vmin;
 }
 
-.checkboxSelect {
-    appearance: none;
-    width: 2vmin;
-    height: 2vmin;
-    border: .2vmin solid var(--border-universal--);
-    border-radius: 0.2vmin;
-    display: inline-block;
+.searchNow {
     position: relative;
-    cursor: pointer;
-    outline: none;
-    background-color: transparent;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    background-color: #3a3d47;
+    border-radius: 1vmin;
+    padding: 0.5vmin 1vmin;
 }
 
-.checkboxSelect:checked {
-    background-color: var(--border-universal--);
-    border-color: rgba(255, 255, 255, 0.7);
+.searchNow img {
+    width: 2.5vmin;
+    margin-right: 1vmin;
+}
+
+.searchInput {
+    flex: 1;
+    background-color: transparent;
+    color: white;
+    border: none;
+    outline: none;
+    font-size: 1.5vmin;
+}
+
+.searchInput::placeholder {
+    color: #bbb;
+}
+
+.chatsListPopup {
+    width: 100%;
+    max-height: 50vmin;
+    overflow-y: auto;
+    margin-top: 1vmin;
+    border-top: 1px solid #444;
+    padding-top: 1vmin;
+    overflow: hidden;
+}
+
+.selectDeleteChats {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #3a3d47;
+    padding: 0.5vmin 1vmin;
+    border-radius: 1vmin;
+    margin-bottom: 1vmin;
 }
 
 .customLabel {
+    font-size: 1.5vmin;
     display: flex;
     align-items: center;
-    font-size: 1.5vmin;
-    cursor: pointer;
     gap: 1vmin;
-    user-select: none;
+    color: white;
 }
 
+.deleteChatButton {
+    background-color: #E53935;
+    color: white;
+    border: none;
+    padding: 0.5vmin 2vmin;
+    font-size: 1.5vmin;
+    border-radius: 0.5vmin;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
 
-.chatsList {
-    width: 100%;
-    height: auto;
-    margin-top: 4.5vmin;
+.deleteChatButton:hover {
+    background-color: #d32f2f;
 }
 
 .chatList {
@@ -1151,49 +1166,43 @@ margin-left: 1vmin;
     display: flex;
     flex-direction: column;
     gap: 0.5vmin;
+    padding: 0;
 }
 
 .chatList li {
-    width: 97%;
-    height: 100%;
-    cursor: pointer;
-    border-radius: 1vmin;
-    padding: 1vmin;
     display: flex;
     align-items: center;
-    gap: 1vmin;
-    margin-left: 1.3vmin;
+    background-color: #3a3d47;
+    border-radius: 1vmin;
+    padding: 1vmin;
+    transition: background-color 0.3s ease;
+    cursor: pointer;
 }
 
 .chatList li:hover {
-    background-color: var(--new--body-leftSection--);
-}
-.chatList li span{
-    padding: .5vmin;
-    font-size: 1.5vmin;
+    background-color: #444;
 }
 
 .chatCheckbox {
     appearance: none;
     width: 2vmin;
     height: 2vmin;
-    border: 0.2vmin solid var(--border-universal--);
+    border: 0.2vmin solid #bbb;
     border-radius: 0.2vmin;
     cursor: pointer;
-    background-color: transparent;
-    display: inline-block;
+    margin-right: 1vmin;
 }
 
 .chatCheckbox:checked {
-    background-color: var(--border-universal--);
-    border-color: rgba(255, 255, 255, 0.7);
+    background-color: #4caf50;
+    border-color: #4caf50;
 }
 
 .chatName {
     font-size: 1.5vmin;
     color: white;
-    flex: 1;
 }
+
 
 /* -------------------------------------------Right Section -------------------------------*/
 .rightMain{
@@ -1464,6 +1473,7 @@ margin-left: 1vmin;
   }
   
   .voiceOptions select {
+    width: 40vmin;
     margin-left: 20px;
     padding: 5px;
     background-color: #2a2c34;
