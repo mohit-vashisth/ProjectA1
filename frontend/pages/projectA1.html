@@ -329,7 +329,7 @@
                             <div class="logoutPopupContainer">
                                 <span><strong>confirm Logout</strong></span>
                                 <div class="logoutConfirmButton">
-                                    <button class="yesButton">Yes</button>
+                                    <button class="yesButton" id="logout">Yes</button>
                                     <button class="noButton">No</button>
                                 </div>    
                             </div>
@@ -389,7 +389,18 @@
                     </div>
                     <button class="generateSpeechBtn">Generate Speech</button>
                 </div>
-              </div>
+            </div>
+            <div class="loadingAssets">
+                <div class="animationText">
+                    <div class="animation"></div>
+                    <div class="animationText">
+                        <span class="loadingText loadingText1">Creating workspace</span>
+                        <span class="loadingText loadingText2">Loading assets</span>
+                        <span class="loadingText loadingText3">Just a moment</span>
+                        <span class="loadingText loadingText4">Everything done</span>
+                    </div>
+                </div>
+            </div>
         </section>
     </div>
     <script src="/frontend/js/utils/dragIconsSvg.js"defer></script>
@@ -402,5 +413,6 @@
     <script src="/frontend/js/pages/projectA1/storagePopup.js"defer></script>
     <script src="/frontend/js/pages/projectA1/fileRenameExport.js"defer></script>
     <script src="/frontend/js/pages/projectA1/chooseVoiceOptions.js"defer></script>
+    <script src="/frontend/js/pages/projectA1/loadingAnimationText.js"defer></script>
 </body>
 </html>

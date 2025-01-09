@@ -10,7 +10,7 @@ class GoogleToken(BaseModel):
     id_token: str
 
 # Google OAuth2 client ID (jo aapko Google Developer Console se milega)
-CLIENT_ID = '275232167947-3g32km2e0lf630hbaklm6kaiimcq2taq.apps.googleusercontent.com'
+CLIENT_ID = 'YOUR_GOOGLE_CLIENT_ID'
 
 @app.post("/api/auth/google")
 async def google_auth(google_token: GoogleToken):

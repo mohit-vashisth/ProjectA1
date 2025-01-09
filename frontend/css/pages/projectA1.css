@@ -1214,6 +1214,57 @@ margin-left: 1vmin;
     justify-content: flex-end;
 }
 
+.loadingAssets{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: var(--new--body-rightSection--);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.animationText{
+    width: 40vmin;
+    height: 20vmin;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-direction: column;
+    margin-top: 2vmin;
+}
+
+.animation{
+    width: 5vmin;
+    height: 6.5vmin;
+    border: .5vmin solid white;
+    border-top: .1vmin solid var(--new--body-rightSection--);
+    border-bottom: .1vmin solid var(--new--body-rightSection--);
+    border-radius: 50vmin;
+    animation: rotationAnimation 1s linear infinite;
+}
+
+.loadingText{
+    position: absolute;
+    font-size: 2vmin;
+    font-weight: bold;
+}
+.loadingText1,
+.loadingText2,
+.loadingText3,
+.loadingText4{
+    opacity: 0;
+}
+
+@keyframes rotationAnimation {
+    from {
+        transform: rotate(0deg); /* Starting point */
+    }
+    to {
+        transform: rotate(360deg); /* Full rotation */
+    }
+}
+
 .upperRight{
     position: fixed;
     width: 85%;

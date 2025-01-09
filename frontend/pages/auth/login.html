@@ -3,86 +3,33 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3R Minds - ProjectA1 - Login</title>
     <link rel="stylesheet" href="/frontend/css/utils/utils.css">
     <link rel="stylesheet" href="/frontend/css/pages/login.css">
-    <title>3R Minds - Login</title>
 </head>
-<body class="dark-mode">
-    <section class="gradientBackground" id="lazyGradient">
-        <div class="gradient-bg lazy-load-content" style="display: none;">
-            <svg xmlns="http://www.w3.org/2000/svg">
-              <defs>
-                <filter id="goo">
-                  <feGaussianBlur in="SourceGraphic" stdDeviation="10" result="blur" />
-                  <feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 18 -8" result="goo" />
-                  <feBlend in="SourceGraphic" in2="goo" />
-                </filter>
-              </defs>
-            </svg>
-        </div>
-        <div class="gradientContainer lazy-load-content" style="display: none;">
-            <div class="g1"></div>
-            <div class="g2"></div>
-            <div class="g3"></div>
-            <div class="g4"></div>
-            <div class="g5"></div>
-            <div class="interactiveCircle"></div>
-        </div>
-    </section>
-    <section class="mainFormSection">
-        <div class="mainLoginContainerFormContainer">
-            <div class="companyLogoContainer">
-                <div class="companyLogoContainerSpan3">3</div>R Minds - Login
-                <div class="CloseAnimationHolder">Turn off Animation</div>
-                <div class="openAnimationHolder">Turn on Animation</div>
+<body>
+    <form>
+        <div class="formCard">
+        <section>
+            <div>
+                <input type="text" placeholder="Email" id="email">
             </div>
-            <div class="signUpFormHereContainer">
-                <form action="">
-                    <div class="heading">
-                        We are glad to see you back
-                    </div>
-                    <div class="nameEmailContainer">
-                        <div class="emailContainer">
-                            <span class="icon"><img src="/frontend/assets/images/svg/mail.svg" alt=""></span>
-                            <input class="userLoginEmail" type="email" placeholder="Email">
-                        </div>
-                    </div>
-                    <div class="passwordConfirmPasswordContainer">
-                        <div class="passwordContainer">
-                            <span class="icon">
-                                <img class="ShowPassword" src="/frontend/assets/images/svg/showpassword.svg" alt="">
-                                <img class="passwordHideAuto" src="/frontend/assets/images/svg/hidepassword.svg" alt="">
-                            </span>
-                            <input class="userPasswordInput" type="password" placeholder="Password">
-                        </div>
-                        <p class="passwordConfirmPasswordContainerP"></p>
-                    </div>
-                    <div class="ButtonsAndGoogleLoginContainer">
-                        <div class="continueLoginContainer">
-                            <button class="continueLoginButton">Continue</button>
-                        </div>
-                        <div class="signinForgotPasswordContainer">
-                            <div class="signinButton">Don't have an account? <a href="signup.html">click here</a></div>
-                        </div>
-                    </div>
-                    <div class="horizontalBarLoginGoogle">
-                        <p>more ways</p>
-                    </div>
-                    <div class="googleLoginSystem">
-                        <div class="googleIconButtonHolder">
-                            <img src="/frontend/assets/images/svg/googleLogin.svg" alt="google icon">
-                            <p class="googleLoginTemplate">Login with Google</p>
-                        </div>
-                    </div>
-                </form>
+            <div>
+                <input type="password" placeholder="Password" id="password">
             </div>
+        </section>
+        <section>
+            <div class="buttons">
+                <p id="errorDisplay"></p>
+                <a href="">Forgot Password?</a>
+                <button id="login">Login</button>
+            </div>
+        </section>
+        <section>
+            <button>Google Login</button>
+        </section>
         </div>
-    </section>
-    <script src="/frontend/js/utils/showHidePassword.js"></script>
-    <script src="/frontend/js/utils/showHideConfirmPassword.js"></script>
-    <!-- <script src="/frontend/js/utils/disableDeveloperTools.js"></script> -->
-    <script type="module" src="/frontend/js/utils/signupLoginCSSAnimation.js"></script>
-    <script src="/frontend/js/utils/lazyLoading.js"></script>
+    </form>
     <script src="/frontend/js/pages/login.js"></script>
 </body>
 </html>
