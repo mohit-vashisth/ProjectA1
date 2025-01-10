@@ -4,13 +4,14 @@ const password = document.querySelector("#password");
 const confirmPassword = document.querySelector("#confirmPassword");
 const continueButton = document.querySelector("#continue");
 const errors = document.querySelector(".errors"); 
-const popupErr = document.querySelector(".popupErrors"); 
+const popupErr = document.querySelector(".popupErrors");
+const loadingAnimation = document.querySelector(".laoding");
 
+let currentController = null;
 let userInfo = {
     userName: "",
     userEmail: "",
-    userPassowrd: "",
-    userConfirmPassword: ""
+    userPassowrd: ""
 }
 
 continueButton.style.pointerEvents = "none";
@@ -33,9 +34,7 @@ function popupError(error) {
 
 function resetForm(){
     userName.value = "",
-    email.value = "",
-    password.value = "",
-    confirmPassword.value = ""
+    email.value = ""
 }
 
 // Function to check if all inputs are valid
@@ -67,42 +66,60 @@ confirmPassword.addEventListener("input", validateInputs);
 continueButton.addEventListener("click", async (e) => {
     e.preventDefault();
 
-    if (continueButton.style.pointerEvents === "auto") {
+    if (continueButton.style.pointerEvents === "none") return;
 
-        userInfo.userName = userName.value;
-        userInfo.userEmail = email.value;
-        userInfo.userPassowrd = password.value;
-        userInfo.userConfirmPassword = confirmPassword.value;
-        
-        try{
-            const response = await fetch("http://127.0.0.1:3002/api/signup", {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({userInfo})
-            })
+    if(currentController) currentController.abort();
 
-            if(!response.ok){
-                popupError("server is not responding")
-                setTimeout(()=>{popupError("")}, 2000)
-                return;
-            }
+    loadingAnimation.style.display = "flex";
+    
+    currentController = new AbortController();
+    const signal = currentController.signal;
 
-            const data = await response.json()
-            if (data.status === "success") {
-                localStorage.setItem("userName", data.userName);
-                localStorage.setItem("userEmail", data.userEmail);
-                window.location.href = "/frontend/pages/projectA1.html";
-            } else {
-                popupError("Unable to Signup")
-            }
+    userInfo.userName = userName.value;
+    userInfo.userEmail = email.value;
+    userInfo.userPassowrd = password.value;
+    
+
+    try{
+        const timeout = setTimeout(() => {
+            currentController.abort();
+            popupError("Request timed out! Please try again.");
+        }, 8000);
+        const response = await fetch("http://127.0.0.1:3002/api/signup", {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({userInfo}),
+            signal: signal,
+        })
+        clearTimeout(timeout)
+
+        loadingAnimation.style.display = "none";
+
+        if(!response.ok){
+            popupError("Server is not responding");
+            setTimeout(()=>{popupError("")}, 2000)
+            return;
+        }
+
+        const data = await response.json()
+        if (data.status === "success") {
+            localStorage.setItem("userName", data.userName);
+            localStorage.setItem("userEmail", data.userEmail);
+            window.location.href = "/frontend/pages/projectA1.html";
+        } else {
+            popupError("Signup failed");
+            setTimeout(() => popupError(""), 2500);
             resetForm();
         }
-        catch (error){
-            console.error("fetch Error:", error)
-            popupError("Something went Wrong!")
-            resetForm()
+    }
+    catch (error){
+        if(error.name === "AbortError"){
+            console.error("Login request aborted!")
         }
+        console.error("fetch Error:", error)
+        popupError("Something went wrong! Please try again.");
+        setTimeout(() => popupError(""), 2000);
     }
 });

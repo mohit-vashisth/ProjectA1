@@ -10,26 +10,29 @@
 <body>
     <form>
         <div class="formCard">
-        <section>
-            <div>
-                <input type="text" placeholder="Email" id="email">
-            </div>
-            <div>
-                <input type="password" placeholder="Password" id="password">
-            </div>
-        </section>
-        <section>
-            <div class="buttons">
-                <p id="errorDisplay"></p>
-                <a href="">Forgot Password?</a>
-                <button id="login">Login</button>
-            </div>
-        </section>
-        <section>
-            <button>Google Login</button>
-        </section>
+            <h1 class="login-heading">3R Minds - Login</h1>
+            <section class="inputContainer">
+                <div>
+                    <input type="text" placeholder="Email" id="email" class="inputField">
+                </div>
+                <div>
+                    <input type="password" placeholder="Password" id="password" class="inputField">
+                </div>
+            </section>
+            <section class="buttonsContainer">
+                <p id="errorDisplay" class="errors"></p>
+                <a href="#" class="forgotPassword">Forgot Password?</a>
+                <button id="login" class="loginButton">
+                    <span>Login</span>
+                    <div class="loading"></div>
+                </button>
+            </section>
+            <section class="socialLoginContainer">
+                <button class="googleLoginButton">Google Login</button>
+            </section>
         </div>
     </form>
+    <div class="popupErrors"></div>
     <script src="/frontend/js/pages/login.js"></script>
 </body>
 </html>

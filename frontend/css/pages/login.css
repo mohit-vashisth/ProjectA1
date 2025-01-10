@@ -1,48 +1,198 @@
-form{
-  width: 100%;
-  height: 100%;
+/* Body styling */
+body {
+  position: relative;
+  background-image: url("/frontend/assets/images/leftFaceSignupBackground.png");
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+  height: 100vh;
+  margin: 0;
+  font-family: 'Arial', sans-serif;
+}
+
+body::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.3);
+  pointer-events: none;
+  z-index: -1;
+}
+
+/* Form styling */
+form {
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: var(--new--body-rightSection--);
+  width: 100%;
+  height: 100%;
 }
 
-.formCard{
-  width: 70vmin;
-  height: 90vmin;
-  background-color: white;
-  border-radius: 1vmin;
+/* Card styling */
+.formCard {
+  width: 400px;
+  max-width: 90%;
+  padding: 40px;
+  background-color: #ffffff;
+  border-radius: 15px;
+  box-shadow: 0px 15px 40px rgba(0, 0, 0, 0.1);
   display: flex;
-  align-items: center ;
   flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 
-#email{
-  margin-top: 5vmin;
+/* Login heading styling */
+.login-heading {
+  font-weight: 600;
+  font-size: 2.5rem;
+  color: #2c3e50;
+  text-align: center;
+  margin-bottom: 30px;
+  text-transform: capitalize;
+  letter-spacing: 1px;
 }
 
-input{
-  width: 50vmin;
-  height: 8vmin;
-  margin-top: 1vmin;
-  padding: 1vmin;
-  font-size: 2vmin;
-  outline: transparent;
+/* Input fields styling */
+.inputContainer {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.inputField {
+  width: 100%;
+  padding: 15px;
+  font-size: 1rem;
   border: none;
-  border-bottom: .3vmin solid black;
+  border-bottom: 2px solid #ccc;
+  outline: none;
+  background-color: #f8f8f8;
+  border-radius: 8px;
+  transition: all 0.3s ease;
 }
 
-#login{
-  padding: 1vmin;
-  font-size: 1.5vmin;
+.inputField:focus {
+  border-color: #3498db;
+  background-color: #fff;
+}
+
+.inputField:hover {
+  border-color: #2980b9;
+}
+
+/* Button styling */
+.buttonsContainer {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+
+.loginButton {
+  position: relative;
+  width: 100%;
+  padding: 12px;
+  font-size: 1rem;
   font-weight: bold;
-  width: 10vmin;
-  border-radius: 1vmin;
-  margin: 5vmin;
+  background-color: #3498db;
+  color: white;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
   pointer-events: none;
+  opacity: .5;
 }
 
-#errorDisplay{
-  font-size: 2vmin;
-  color: red;
+.loginButton:hover {
+  background-color: #2980b9;
 }
+
+/* Forgot Password link styling */
+.forgotPassword {
+  font-size: 0.9rem;
+  color: #3498db;
+  text-decoration: none;
+}
+
+.forgotPassword:hover {
+  text-decoration: underline;
+}
+
+/* Error message styling */
+.errors {
+  font-size: 0.9rem;
+  color: #e74c3c;
+}
+
+/* Social login button styling */
+.socialLoginContainer {
+  width: 100%;
+  margin-top: 20px;
+}
+
+.googleLoginButton {
+  width: 100%;
+  padding: 12px;
+  font-size: 1rem;
+  font-weight: bold;
+  background-color: #db4437;
+  color: white;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.googleLoginButton:hover {
+  background-color: #c1351d;
+}
+
+
+.popupErrors {
+  position: absolute;
+  top: 10%;
+  right: 0;
+  width: 0;
+  height: 50px;
+  background-color: #e74c3c;
+  border-radius: 10px;
+  color: white;
+  font-weight: bold;
+  font-size: 1rem;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  word-break: break-word;
+  transition: width 0.3s ease;
+}
+
+
+.loading{
+  position: absolute;
+  width: 25px;
+  height: 25px;
+  border: 3px solid white;
+  border-top: 3px solid transparent;
+  border-radius: 50px;
+  top: 9px;
+  right: 110px;
+  animation: rotation 1s linear infinite;
+  display: none;
+}
+
+@keyframes rotation {
+  form{
+    transform: rotate(0deg);
+  }
+  to{
+    transform: rotate(360deg);
+  } 
+} 

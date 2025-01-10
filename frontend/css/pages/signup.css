@@ -1,77 +1,183 @@
-form{
+body {
+  position: relative;
+  background-image: url("/frontend/assets/images/leftFaceSignupBackground.png");
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+  height: 100vh;
+  margin: 0;
+  font-family: 'Arial', sans-serif;
+}
+
+body::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.3);
+  pointer-events: none;
+  z-index: -1;
+}
+
+form {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   width: 100%;
   height: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
 }
 
-.inputField{
-  width: 50vmin;
-  height: 6vmin;
-  background: transparent;
-  border: none;
-  border-bottom: .3vmin solid black;
-  font-size: 2vmin;
-  outline: none;
-  padding: 1vmin;
-}
-
-#name{
-  margin-top: 5vmin;
-}
-
-.formContainer{
-  width: 70vmin;
-  height: 90vmin;
-  display: flex;
-  align-items: center;
-  flex-direction: column;
-  border-radius: 1vmin;
-  overflow: hidden;
-  padding: 1.5vmin;
-  background-color: rgb(215, 215, 228);
-  border: .2vmin solid white;
-}
-
-.nameEmailPassContainer{
+.formMainCard {
   width: 100%;
-  height: 50%;
+  max-width: 600px;
+  height: auto;
+  background-color: #fff;
+  padding: 40px;
+  border-radius: 15px;
+  box-shadow: 0px 15px 40px rgba(0, 0, 0, 0.1);
   display: flex;
-  justify-content: flex-start;
-  align-items: center;
   flex-direction: column;
-  gap: 1vmin;
+  justify-content: center;
+  margin-top: 20px;
 }
 
-.errors{
-  font-size: 2vmin;
-  color: rgb(231, 0, 0);
+.signup-heading {
+  font-weight: 600;
+  font-size: 2.5rem;
+  color: #2c3e50;
+  text-align: center;
+  margin-bottom: 30px;
+  text-transform: capitalize;
+  letter-spacing: 1px;
 }
 
-#continue{
-  padding: 1vmin;
-  width: 10vmin;
-  border-radius: 1vmin;
-  pointer-events: none;  
+.nameEmailPassContainer {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
 }
 
-.popupErrors{
+.inputField {
+  width: 100%;
+  padding: 15px;
+  font-size: 1.2rem;
+  border: none;
+  border-bottom: 2px solid #ccc;
+  box-sizing: border-box;
+  outline: none;
+  transition: all 0.3s ease;
+  background-color: #f8f8f8;
+  border-radius: 8px;
+}
+
+.inputField:focus {
+  border-color: #3498db;
+  background-color: #fff;
+}
+
+.inputField:hover {
+  border-color: #2980b9;
+}
+
+.inputField:focus,
+.inputField:hover {
+  transition: border-color 0.3s ease, background-color 0.3s ease;
+}
+
+.errors {
+  color: #e74c3c;
+  font-size: 1rem;
+  margin-bottom: 1rem;
+}
+
+#continue {
+  position: relative;
+  padding: 12px 24px;
+  background-color: #3498db;
+  color: white;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  font-size: 1.2rem;
+  margin-top: 20px;
+  transition: background-color 0.3s ease;
+  width: 100%;
+}
+
+#continue:hover {
+  background-color: #2980b9;
+}
+
+a {
+  display: block;
+  text-align: center;
+  font-size: 1.1rem;
+  color: #3498db;
+  text-decoration: none;
+  margin-top: 1.5rem;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+.otherWaysToSign button {
+  width: 100%;
+  padding: 12px;
+  background-color: #db4437;
+  color: white;
+  border: none;
+  border-radius: 12px;
+  font-size: 1.2rem;
+  margin-top: 20px;
+  transition: background-color 0.3s ease;
+}
+
+.otherWaysToSign button:hover {
+  background-color: #c1351d;
+}
+
+.popupErrors {
   position: absolute;
-  top: 10vmin;
+  top: 10%;
   right: 0;
-  width: 0vmin;
-  height: 8vmin;
-  background-color: rgb(244, 23, 23);
-  border-radius: 1vmin;
-  box-shadow: 0 .5vmin .5vmin rgba(255, 0, 0, 0.2);
+  width: 0;
+  height: 50px;
+  background-color: #e74c3c;
+  border-radius: 10px;
   color: white;
   font-weight: bold;
-  font-size: 2vmin;
+  font-size: 1rem;
   overflow: hidden;
   display: flex;
   justify-content: center;
   align-items: center;
-  word-break: break-all;
-  transition: width .1s;
+  word-break: break-word;
+  transition: width 0.3s ease;
 }
+
+
+.laoding{
+  position: absolute;
+  width: 35px;
+  height: 35px;
+  border: 3px solid white;
+  border-top: 3px solid transparent;
+  border-radius: 50px;
+  top: 6px;
+  right: 175px;
+  animation: rotation 1s linear infinite;
+  display: none;
+}
+
+@keyframes rotation {
+  form{
+    transform: rotate(0deg);
+  }
+  to{
+    transform: rotate(360deg);
+  } 
+} 
