@@ -1,3 +1,4 @@
+import PyJWT #type: ignore
 from beanie import init_beanie, Document, PydanticObjectId
 from motor.motor_asyncio import AsyncIOMotorClient
 from pydantic import BaseModel

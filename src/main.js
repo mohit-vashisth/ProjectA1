@@ -8,7 +8,7 @@ const chatbotMessages = document.querySelector(".botResponses");
 const exploreProjectA1 = document.getElementById("exploreProjectA1");
 
 exploreProjectA1.addEventListener("click", () => {
-    window.location.href = "pages/signup.html";
+    window.location.href = "/frontend/pages/signup.html";
 });
 
 const predefinedQuestions = [

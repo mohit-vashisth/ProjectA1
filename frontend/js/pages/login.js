@@ -10,6 +10,13 @@ let userLoginInfo = {
     email: "",
     password: ""
 };
+document.addEventListener('DOMContentLoaded', () => {
+    const link = document.createElement('link'); // Create a <link> element
+    link.rel = 'stylesheet'; // Set the relationship as "stylesheet"
+    link.href = '/frontend/css/pages/signin.css'; // Path to your CSS file
+    document.head.appendChild(link); // Append the <link> to the <head>
+});
+
 
 function popupError(error) {
     if(error !== ""){
@@ -63,12 +70,15 @@ login.addEventListener('click', async (event)=>{
         const timeout = setTimeout(() => {
             currentController.abort();
             popupError("Request timed out! Please try again.");
+            setTimeout(()=>{popupError("")}, 2000)
+            loadingAnimation.style.display = "none"
         }, 8000);
 
-        const response = await fetch("http://127.0.0.1:3002/api/login", {
+        const response = await fetch("http://127.0.0.1:3000/api/login", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
+
             },
             body: JSON.stringify({ userLoginInfo }),
             signal: signal,
@@ -78,17 +88,20 @@ login.addEventListener('click', async (event)=>{
 
         if(!response.ok){
             popupError("Server not responding")
-            setTimeout(() => {
-                popupError("")
-            }, 2000);
+            setTimeout(() => {popupError("")}, 2000);
+            loadingAnimation.style.display = "none";
             return;
         }
 
-        const data = await response.json()
-        if(data.status === "success"){
+        const data = await response.json().catch(()=> null);
+        if(data.status === "success" && data.email && data.access_token){
+            /*
+            using cookies instead of localStorage
             localStorage.setItem("userEmail", data.email)
-            resetForm()
+            localStorage.setItem("access_token", data.access_token)
+             */
             window.location.href = "/frontend/pages/projectA1.html"
+            resetForm()
         }
         else{
             popupError("Invalid login credentials");
@@ -98,7 +111,7 @@ login.addEventListener('click', async (event)=>{
     }
     catch(error){
         loadingAnimation.style.display = "none";
-
+        clearTimeout(timeout);
         if(error.name === "AbortError"){
             console.error("Login request aborted!")
         }

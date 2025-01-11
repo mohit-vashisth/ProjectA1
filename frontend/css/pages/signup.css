@@ -160,15 +160,15 @@ a:hover {
 }
 
 
-.laoding{
+.loading{
   position: absolute;
-  width: 35px;
-  height: 35px;
+  width: 25px;
+  height: 25px;
   border: 3px solid white;
   border-top: 3px solid transparent;
   border-radius: 50px;
-  top: 6px;
-  right: 175px;
+  top: 11px;
+  right: 190px;
   animation: rotation 1s linear infinite;
   display: none;
 }
