@@ -2,7 +2,7 @@
     --bg-color: #000000;
     --card-bg: #0a0a0a;
     --text-primary: #ffffff;
-    --text-secondary: rgba(255, 255, 255, 0.7);
+    --text-secondary: rgba(255, 255, 255, 0.8);
     --accent-color: #4CAF50;
     --gradient: linear-gradient(135deg, #4CAF50, #2196F3);
     --nav-height: 80px;
@@ -34,15 +34,6 @@
 @keyframes float {
     0%, 100% { transform: translateY(0); }
     50% { transform: translateY(-10px); }
-}
-
-@keyframes glitch {
-    0% { transform: translate(0); }
-    20% { transform: translate(-2px, 2px); }
-    40% { transform: translate(-2px, -2px); }
-    60% { transform: translate(2px, 2px); }
-    80% { transform: translate(2px, -2px); }
-    100% { transform: translate(0); }
 }
 
 body {
@@ -99,6 +90,31 @@ body {
     color: var(--accent-color);
 }
 
+.nav_projectHolder{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 40px;
+}
+
+.tryProjectA1{
+    text-decoration: none;
+    font-size: 1rem;
+    color: var(--text-primary);   
+    font-weight: bold;
+    display: flex;
+    justify-content: center;
+    align-items: center; 
+}
+.tryProjectA1:hover{
+    opacity: .9;
+}
+.tryProjectA1 img{
+    filter: invert(1);
+    width: 20px;
+    margin-top: 3px;
+}
+
 .hero {
     height: 100vh;
     display: flex;
@@ -115,39 +131,47 @@ body {
     animation: fadeIn 1s ease-out;
 }
 
+.h1Holder{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
 .hero h1 {
-    font-size: 4rem;
+    position: relative;
+    font-size: 5rem;
     margin-bottom: 1rem;
-    position: relative;
+    color: transparent;
+    -webkit-text-stroke: 1px white;
 }
 
-.glitch {
-    position: relative;
-    animation: glitch 3s infinite;
-}
-
-.glitch::before,
-.glitch::after {
+.hero h1::before {
     content: attr(data-text);
     position: absolute;
+    width: 0%;
+    height: 100%;
     top: 0;
     left: 0;
-    width: 100%;
-    height: 100%;
+    z-index: -1;
+    color: white;
+    overflow: hidden;
+    border-right: 8px solid white;
+    animation: typing 4s ease-in-out infinite;
+    text-wrap: nowrap;
 }
-
-.glitch::before {
-    left: 2px;
-    text-shadow: -2px 0 #ff00c1;
-    clip: rect(44px, 450px, 56px, 0);
-    animation: glitch 5s infinite linear alternate-reverse;
-}
-
-.glitch::after {
-    left: -2px;
-    text-shadow: -2px 0 #00fff9;
-    clip: rect(44px, 450px, 56px, 0);
-    animation: glitch 5s infinite linear alternate-reverse;
+@keyframes typing {
+    0% {
+        width: 0%;
+    }
+    50% {
+        width: 100%; /* Typing completes here */
+    }
+    71% {
+        width: 100%; /* Hold at 100% for ~1 second */
+    }
+    100% {
+        width: 0%; /* Reset to 0% */
+    }
 }
 
 .subtitle {
@@ -162,7 +186,7 @@ body {
     left: 0;
     width: 100%;
     height: 100%;
-    background: radial-gradient(circle at center, rgba(76, 175, 80, 0.1) 0%, transparent 70%);
+    background:  linear-gradient(to bottom, transparent, var(--card-bg));
     animation: pulse 4s infinite;
 }
 
@@ -281,7 +305,9 @@ body {
 }
 
 .feature {
-    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .icon {
@@ -421,6 +447,47 @@ textarea.form-input {
     color: var(--text-secondary);
 }
 
+.footer-links {
+    margin-top: 1rem;
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+}
+
+.footer-links a {
+    color: var(--text-primary);
+    text-decoration: none;
+    margin: 0 0.5rem;
+    transition: color 0.3s ease;
+}
+
+.footer-links a:hover {
+    color: var(--accent-color);
+}
+
+.section {
+    padding: 4rem 2rem;
+    background: var(--card-bg);
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.section-content {
+    max-width: 800px;
+    margin: 0 auto;
+    color: var(--text-secondary);
+    text-align: center;
+}
+
+.section-title {
+    margin-bottom: 2rem;
+    font-size: 2rem;
+    color: var(--text-primary);
+    background: var(--gradient);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+
 @media (max-width: 768px) {
     .nav-content {
         padding: 0 1rem;
@@ -431,7 +498,7 @@ textarea.form-input {
     }
 
     .hero h1 {
-        font-size: 2.5rem;
+        font-size: 2rem;
     }
 
     .about-grid, .contact-container {
@@ -445,5 +512,17 @@ textarea.form-input {
 @media (max-width: 768px) and (orientation: portrait) {
     .card {
         padding: 1rem;
+    }
+    
+    .hero ht::before{
+        content: '';
+    }
+
+    .about, .project, .contact {
+        padding: 8rem 1rem;
+    }
+
+    .features{
+        display: block;
     }
 }

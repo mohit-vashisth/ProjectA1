@@ -10,18 +10,25 @@
     <nav class="navbar">
         <div class="nav-content">
             <div class="logo">3R Minds</div>
-            <div class="nav-links">
-                <a href="#home">Home</a>
-                <a href="#about">About</a>
-                <a href="#project">Project A1</a>
-                <a href="#contact">Contact</a>
+            <div class="nav_projectHolder">
+                <div class="nav-links">
+                    <a href="#home">Home</a>
+                    <a href="#about">About</a>
+                    <a href="#project">Project A1</a>
+                    <a href="#contact">Contact</a>
+                    <a href="#T_C_Privacy">T&C & Privacy</a>
+                </div>
+                <a href="" class="tryProjectA1">
+                    <span>Try ProjectA1</span>
+                    <img src="/frontend/assets/images/svg/rightTopArrow.svg" alt="">
+                </a>
             </div>
         </div>
     </nav>
 
     <section id="home" class="hero">
         <div class="hero-content">
-            <h1 class="glitch" data-text="Welcome to 3R Minds">Welcome to 3R Minds</h1>
+            <div class="h1Holder"><h1 class="glitch" data-text="Welcome to 3R Minds">Welcome to 3R Minds</h1></div>
             <p class="subtitle">Innovating the Future of AI Communication</p>
             <div class="hero-cta">
                 <a href="#project" class="explore-btn">Explore Our Vision</a>
@@ -76,7 +83,7 @@
                         </div>
                         <div class="feature">
                             <span class="icon">🔄</span>
-                            <span class="feature-text">Text-to-Voice & Voice-to-Text</span>
+                            <span class="feature-text">Text-to-Voice</span>
                         </div>
                     </div>
 
@@ -108,26 +115,31 @@
                 </div>
                 <div class="contact-form">
                     <div class="form-group">
-                        <input type="text" placeholder="Your Name" class="form-input">
+                        <input type="text" id="formName" placeholder="Your Name" class="form-input">
                     </div>
                     <div class="form-group">
-                        <input type="email" placeholder="Your Email" class="form-input">
+                        <input type="email" id="formEmail" placeholder="Your Email" class="form-input">
                     </div>
                     <div class="form-group">
-                        <textarea placeholder="Your Message" class="form-input"></textarea>
+                        <textarea placeholder="Your Message" id="formText" class="form-input"></textarea>
                     </div>
-                    <button class="submit-btn">Send Message</button>
+                    <button class="submit-btn" id="submitForm">Send Message</button>
                 </div>
             </div>
         </div>
     </section>
 
+    </footer>
     <footer class="footer">
         <div class="footer-content">
             <div class="footer-logo">3R Minds</div>
             <p class="footer-text">© 2025 3R Minds. All rights reserved.</p>
+            <div class="footer-links">
+                <a href="" id="T_C_Privacy" class="footer-link">T&C & Privacy</a>
+            </div>
         </div>
     </footer>
-    <script src="src/main.js"></script>
+    
+    <script type="module" src="src/main.js"></script>
 </body>
 </html>

@@ -1,3 +1,4 @@
+//  G-variables
 const userName = document.querySelector("#name");
 const email = document.querySelector("#email");
 const password = document.querySelector("#password");
@@ -7,6 +8,7 @@ const errors = document.querySelector(".errors");
 const popupErr = document.querySelector(".popupErrors");
 const loadingAnimation = document.querySelector(".loading");
 const signinLink = document.querySelector("#signinLink");
+const baseURL = import.meta.env.VITE_BASE_URL;
 
 let currentController = null;
 let userInfo = {
@@ -15,6 +17,7 @@ let userInfo = {
     userPassword: ""
 }
 
+// user side signin form
 if(signinLink){
     signinLink.addEventListener('click', (event)=>{
         event.preventDefault()
@@ -22,21 +25,25 @@ if(signinLink){
     })
 }
 
+// css dynamic inject
 document.addEventListener('DOMContentLoaded', () => {
-    const link = document.createElement('link'); // Create a <link> element
-    link.rel = 'stylesheet'; // Set the relationship as "stylesheet"
-    link.href = '/frontend/css/pages/signup.css'; // Path to your CSS file
-    document.head.appendChild(link); // Append the <link> to the <head>
+    const link = document.createElement('link');
+    link.rel = 'stylesheet';
+    link.href = '/frontend/css/pages/signup.css';
+    document.head.appendChild(link);
 });
 
-
+// continue button initial state
 continueButton.style.pointerEvents = "none";
-continueButton.style.opacity = "0.5"; // Optional: To visually indicate it's disabled
+continueButton.style.opacity = "0.5";
 
+// error display inside user's form
 function errorDisplay(error) {
     errors.textContent = error;
-    errors.style.color = "red"; // Optional: Add styling for visibility
+    errors.style.color = "red";
 }
+
+// popup form of error right top corner display
 function popupError(error) {
     if(error !== ""){
         popupErr.textContent = error;
@@ -48,6 +55,12 @@ function popupError(error) {
     }
 }
 
+// clearing popup 2sec time
+function clearErrorPopup() {
+    setTimeout(() => errorPopup(""), 2000);
+}
+
+// reset form after successfull or fail login
 function resetForm(){
     userName.value = "",
     email.value = ""
@@ -78,27 +91,32 @@ email.addEventListener("blur", validateInputs);
 password.addEventListener("blur", validateInputs);
 confirmPassword.addEventListener("input", validateInputs);
 
+// check if user is offline
 window.addEventListener('offline', () => {
     popupError("You are offline. Please check your internet connection.");
     continueButton.style.pointerEvents = "none";
     continueButton.style.opacity = "0.5";
 });
 
+// check if user is online
 window.addEventListener('online', () => {
     popupError("You are back online. You can now continue.");
     continueButton.style.pointerEvents = "auto";
     continueButton.style.opacity = "1";
 });
+
 // Add click event for the continue button
 continueButton.addEventListener("click", async (e) => {
     e.preventDefault();
 
-    if(currentController) currentController.abort();
+    if(currentController){
+        currentController.abort()
+        currentController = null;
+    };
 
     loadingAnimation.style.display = "flex";
-    
-    currentController = new AbortController();
-    const signal = currentController.signal;
+
+    currentController = new AbortController();  //api request control
 
     userInfo.userName = userName.value;
     userInfo.userEmail = email.value;
@@ -109,24 +127,24 @@ continueButton.addEventListener("click", async (e) => {
         const timeout = setTimeout(() => {
             currentController.abort();
             popupError("Request timed out! Please try again.");
-            setTimeout(()=>{popupError("")}, 2000)
+            clearErrorPopup()
             loadingAnimation.style.display = "none"
         }, 8000);
-        const response = await fetch("http://127.0.0.1:3000/api/signup", {
+        const response = await fetch(`${baseURL}/api/signup`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
             },
             body: JSON.stringify({userInfo}),
-            signal: signal,
             credentials: "include",
+            signal: currentController.signal,
         })
         clearTimeout(timeout)
         loadingAnimation.style.display = "none";
 
         if(!response.ok){
             popupError("Server is not responding");
-            setTimeout(()=>{popupError("")}, 2000)
+            clearErrorPopup()
             loadingAnimation.style.display = "none";
             return;
         }
@@ -141,11 +159,11 @@ continueButton.addEventListener("click", async (e) => {
             localStorage.setItem("userEmail", data.userEmail);
             localStorage.setItem("access_token", data.access_token);
             */
-            window.location.href = "/frontend/pages/projectA1.html";
+            window.location.href = "/frontend/pages/projectA1.html"; // dashboard
             resetForm();
         } else {
             popupError("Signup failed");
-            setTimeout(() => popupError(""), 2500);
+            clearErrorPopup()
             loadingAnimation.style.display = "none";
             resetForm();
         }
@@ -165,6 +183,6 @@ continueButton.addEventListener("click", async (e) => {
         
         console.error("fetch Error:", error)
         popupError("Something went wrong! Please try again.");
-        setTimeout(() => popupError(""), 2000);
+        clearErrorPopup()
     }
 });

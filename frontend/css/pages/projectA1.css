@@ -1203,6 +1203,25 @@ margin-left: 1vmin;
     color: white;
 }
 
+.errorPopup {
+    position: absolute;
+    top: 10%;
+    right: 0;
+    width: 0;
+    height: 80px;
+    background-color: #e74c3c;
+    border-radius: 10px;
+    color: white;
+    font-weight: bold;
+    font-size: 1rem;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-wrap: nowrap;
+    word-break: break-word;
+    transition: width 0.3s ease;
+  }
 
 /* -------------------------------------------Right Section -------------------------------*/
 .rightMain{

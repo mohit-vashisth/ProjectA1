@@ -4,6 +4,7 @@ const login = document.querySelector("#login");
 const errShow = document.querySelector("#errorDisplay");
 const popupErr = document.querySelector(".popupErrors");
 const loadingAnimation = document.querySelector(".loading");
+const baseURL = import.meta.env.VITE_BASE_URL;
 
 let currentController = null;
 let userLoginInfo = {
@@ -27,6 +28,10 @@ function popupError(error) {
         popupErr.style.width = "0";
         popupErr.style.padding = "0";
     }
+}
+
+function clearErrorPopup() {
+    setTimeout(() => errorPopup(""), 2000);
 }
 
 function resetForm() {
@@ -57,38 +62,38 @@ login.addEventListener('click', async (event)=>{
     userLoginInfo.email = email.value;
     userLoginInfo.password = password.value;
     
-    if(currentController) currentController.abort();
+    if(currentController){
+        currentController.abort()
+        currentController = null;
+    };
     
     loadingAnimation.style.display = "flex";
     
     currentController = new AbortController();
-    const signal = currentController.signal;
-
 
     try{
 
         const timeout = setTimeout(() => {
             currentController.abort();
             popupError("Request timed out! Please try again.");
-            setTimeout(()=>{popupError("")}, 2000)
+            clearErrorPopup();
             loadingAnimation.style.display = "none"
         }, 8000);
 
-        const response = await fetch("http://127.0.0.1:3000/api/login", {
+        const response = await fetch(`${baseURL}/api/login`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
-
             },
             body: JSON.stringify({ userLoginInfo }),
-            signal: signal,
+            signal: currentController.signal,
         })
         clearTimeout(timeout);
         loadingAnimation.style.display = "none";
 
         if(!response.ok){
             popupError("Server not responding")
-            setTimeout(() => {popupError("")}, 2000);
+            clearErrorPopup();
             loadingAnimation.style.display = "none";
             return;
         }
@@ -105,7 +110,7 @@ login.addEventListener('click', async (event)=>{
         }
         else{
             popupError("Invalid login credentials");
-            setTimeout(() => popupError(""), 2500);
+            clearErrorPopup();
             resetForm()
         }
     }
@@ -118,7 +123,7 @@ login.addEventListener('click', async (event)=>{
         else{
             console.error("Fetch error:", error);
             popupError("Something went wrong! Please try again.");
-            setTimeout(() => popupError(""), 2000);
+            clearErrorPopup();
         }
     }
 
