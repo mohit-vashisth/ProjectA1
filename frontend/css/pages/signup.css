@@ -59,6 +59,20 @@ form {
   flex-direction: column;
   gap: 25px;
 }
+#T_C_Privacy{
+  margin-left: 5px;
+}
+.privacyLabel{
+  color: black;
+  margin-left: 5px;
+}
+
+.buttons{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
 
 .inputField {
   width: 100%;

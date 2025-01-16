@@ -888,7 +888,7 @@ margin-left: 1vmin;
     justify-content: flex-start;
     align-items: flex-start;
     flex-direction: column;
-    background-color: var(--new--body-leftSection--);
+    background-color: var(--button--);
     border-radius: 1vmin;
     overflow: hidden;
     opacity: .8;
@@ -989,6 +989,11 @@ margin-left: 1vmin;
     padding: 1.2vmin 0vmin;
     cursor: pointer;
     border-radius: 1vmin;
+}
+.chatsHistoryHereNow li a{
+    text-decoration: none;
+    color: inherit;
+    display: flex;
 }
 .chatsHistoryHereNow li span{
     margin-left: 1vmin;

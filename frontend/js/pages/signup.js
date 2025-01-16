@@ -8,6 +8,7 @@ const errors = document.querySelector(".errors");
 const popupErr = document.querySelector(".popupErrors");
 const loadingAnimation = document.querySelector(".loading");
 const signinLink = document.querySelector("#signinLink");
+const isPrivacyChecked = document.querySelector("#T_C_Privacy")
 const baseURL = import.meta.env.VITE_BASE_URL;
 
 let currentController = null;
@@ -56,8 +57,8 @@ function popupError(error) {
 }
 
 // clearing popup 2sec time
-function clearErrorPopup() {
-    setTimeout(() => errorPopup(""), 2000);
+function clearErrorPopup(time) {
+    setTimeout(() => errorPopup(""), time);
 }
 
 // reset form after successfull or fail login
@@ -72,13 +73,14 @@ function validateInputs() {
     const isEmailValid = email.value.trim() !== "";
     const isPasswordValid = password.value.trim() !== "";
     const isConfirmPasswordValid = confirmPassword.value.trim() !== "" && confirmPassword.value === password.value;
+    const isPrivacyCheckedValid = isPrivacyChecked.checked; // Check if privacy policy is agreed
 
     // Enable the button if all inputs are valid
-    if (isUserNameValid && isEmailValid && isPasswordValid && isConfirmPasswordValid) {
+    if (isUserNameValid && isEmailValid && isPasswordValid && isConfirmPasswordValid && isPrivacyCheckedValid) {
         continueButton.style.pointerEvents = "auto";
         continueButton.style.opacity = "1";
         errorDisplay("");
-        return true
+        return true;
     } else {
         continueButton.style.pointerEvents = "none";
         continueButton.style.opacity = "0.5"; // Optional: Make it look disabled
@@ -86,6 +88,7 @@ function validateInputs() {
 }
 
 // Add event listeners to all input fields
+isPrivacyChecked.addEventListener("change", validateInputs);
 userName.addEventListener("blur", validateInputs);
 email.addEventListener("blur", validateInputs);
 password.addEventListener("blur", validateInputs);
@@ -127,8 +130,8 @@ continueButton.addEventListener("click", async (e) => {
         const timeout = setTimeout(() => {
             currentController.abort();
             popupError("Request timed out! Please try again.");
-            clearErrorPopup()
             loadingAnimation.style.display = "none"
+            clearErrorPopup(2000)
         }, 8000);
         const response = await fetch(`${baseURL}/api/signup`, {
             method: 'POST',
@@ -144,7 +147,7 @@ continueButton.addEventListener("click", async (e) => {
 
         if(!response.ok){
             popupError("Server is not responding");
-            clearErrorPopup()
+            clearErrorPopup(2000)
             loadingAnimation.style.display = "none";
             return;
         }
@@ -163,7 +166,7 @@ continueButton.addEventListener("click", async (e) => {
             resetForm();
         } else {
             popupError("Signup failed");
-            clearErrorPopup()
+            clearErrorPopup(2000)
             loadingAnimation.style.display = "none";
             resetForm();
         }
@@ -183,6 +186,6 @@ continueButton.addEventListener("click", async (e) => {
         
         console.error("fetch Error:", error)
         popupError("Something went wrong! Please try again.");
-        clearErrorPopup()
+        clearErrorPopup(2000)
     }
 });
