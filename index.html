@@ -1,145 +1,333 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>3R Minds - Innovation Redefined</title>
-    <link rel="stylesheet" href="/frontend/css/index.css">
-</head>
-<body>
-    <nav class="navbar">
-        <div class="nav-content">
-            <div class="logo">3R Minds</div>
-            <div class="nav_projectHolder">
-                <div class="nav-links">
-                    <a href="#home">Home</a>
-                    <a href="#about">About</a>
-                    <a href="#project">Project A1</a>
-                    <a href="#contact">Contact</a>
-                    <a href="#T_C_Privacy">T&C & Privacy</a>
-                </div>
-                <a href="" class="tryProjectA1">
-                    <span>Try ProjectA1</span>
-                    <img src="/frontend/assets/images/svg/rightTopArrow.svg" alt="">
-                </a>
-            </div>
-        </div>
-    </nav>
-
-    <section id="home" class="hero">
-        <div class="hero-content">
-            <div class="h1Holder"><h1 class="glitch" data-text="Welcome to 3R Minds">Welcome to 3R Minds</h1></div>
-            <p class="subtitle">Innovating the Future of AI Communication</p>
-            <div class="hero-cta">
-                <a href="#project" class="explore-btn">Explore Our Vision</a>
-            </div>
-        </div>
-        <div class="hero-background"></div>
-    </section>
-
-    <section id="about" class="about">
-        <div class="section-content">
-            <h2 class="section-title">About 3R Minds</h2>
-            <div class="about-grid">
-                <div class="about-text">
-                    <p>At <strong>3R Minds</strong>, we're pioneering the future of AI-driven innovation. Our commitment to excellence drives us to create solutions that transform how people interact with technology.</p>
-                    <p>By blending cutting-edge AI with human-centric design, we're building tools that are both powerful and accessible.</p>
-                </div>
-                <div class="about-stats">
-                    <div class="stat-card">
-                        <span class="stat-number">100%</span>
-                        <span class="stat-label">AI Powered</span>
-                    </div>
-                    <div class="stat-card">
-                        <span class="stat-number">24/7</span>
-                        <span class="stat-label">Support</span>
-                    </div>
-                    <div class="stat-card">
-                        <span class="stat-number">Global</span>
-                        <span class="stat-label">Reach</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section id="project" class="project">
-        <div class="section-content">
-            <div class="card">
-                <div class="content">
-                    <div class="discover-text">
-                        <span>Discover</span> <span class="highlight">Project A1</span>
-                    </div>
-                    <p class="description">Our cutting-edge AI-powered chatbot interface designed to redefine user interaction. With features like:</p>
-                    
-                    <div class="features">
-                        <div class="feature">
-                            <span class="icon">🌐</span>
-                            <span class="feature-text">Real-time Translation</span>
-                        </div>
-                        <div class="feature">
-                            <span class="icon">🎙️</span>
-                            <span class="feature-text">Voice Cloning</span>
-                        </div>
-                        <div class="feature">
-                            <span class="icon">🔄</span>
-                            <span class="feature-text">Text-to-Voice</span>
-                        </div>
-                    </div>
-
-                    <div class="main-text">
-                        <h2>Project A1 blends innovation with simplicity to deliver an unparalleled experience. Be among the first to try it and witness the future of AI communication!</h2>
-                    </div>
-
-                    <p class="tagline">Stay tuned. The revolution begins here. 🚀</p>
-
-                    <button class="explore-btn" id="exploreProjectA1">EXPLORE PROJECT A1</button>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section id="contact" class="contact">
-        <div class="section-content">
-            <h2 class="section-title">Get In Touch</h2>
-            <div class="contact-container">
-                <div class="contact-info">
-                    <h3>Connect With Us</h3>
-                    <p>We'd love to hear from you! Whether you have questions about our projects or want to explore collaboration opportunities, our team is here to help.</p>
-                    <div class="contact-details">
-                        <a href="mailto:mohitnarayanvashisth2703@gmail.com" class="contact-link">
-                            <span class="icon">📧</span>
-                            <span>mohitnarayanvashisth2703@gmail.com</span>
-                        </a>
-                    </div>
-                </div>
-                <div class="contact-form">
-                    <div class="form-group">
-                        <input type="text" id="formName" placeholder="Your Name" class="form-input">
-                    </div>
-                    <div class="form-group">
-                        <input type="email" id="formEmail" placeholder="Your Email" class="form-input">
-                    </div>
-                    <div class="form-group">
-                        <textarea placeholder="Your Message" id="formText" class="form-input"></textarea>
-                    </div>
-                    <button class="submit-btn" id="submitForm">Send Message</button>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    </footer>
-    <footer class="footer">
-        <div class="footer-content">
-            <div class="footer-logo">3R Minds</div>
-            <p class="footer-text">© 2025 3R Minds. All rights reserved.</p>
-            <div class="footer-links">
-                <a href="" id="T_C_Privacy" class="footer-link">T&C & Privacy</a>
-            </div>
-        </div>
-    </footer>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="ProjectA1 - Convert spoken language into real-time text and translate it for pronunciation in another language." />
+    <meta name="keywords" content="real-time translation, voice-to-text, ProjectA1, AI chatbot" />
+    <meta name="author" content="3R Minds" />
+    <meta name="robots" content="index, follow" />
     
-    <script type="module" src="src/main.js"></script>
+    <!-- Updated CSP -->    
+    <!-- <meta http-equiv="Content-Security-Policy" content="
+        default-src 'self'; 
+        script-src 'self'; 
+        style-src 'self'; 
+        img-src 'self' data:; 
+        font-src 'self'; 
+        connect-src 'self'; 
+        object-src 'none';
+        frame-ancestors 'none';"> -->
+
+    <link rel="preload" href="/src/css/utils.css" as="style" />
+    <link rel="preload" href="/src/css/index.css" as="style" />
+
+    <link rel="stylesheet" href="/src/css/utils.css" />
+    <link rel="stylesheet" href="/src/css/index.css" />
+    
+    <!-- <script type="module" src="/src/javascript/utils/ToolsDisable_UI.js"></script> -->
+    <script type="module" src="/src/javascript/utils/dragIconsSvg_UI.js"></script>
+    <script type="module" src="/src/main.js" crossorigin="anonymous"></script>
+
+    
+    <title>ProjectA1: By 3R Minds</title>
+</head>
+
+<body>
+    <div class="root">
+        <section class="leftMain">
+            <div class="sliderButtonsChats">
+                <div class="slider">
+                    <div class="slide">
+                        <img class="filter" src="/src/assets/svg/hamburger.svg" alt="">
+                    </div>
+                </div>
+                <div class="chatVoiceButtons">
+                    <div class="newChatButton">
+                        <button class="newChat">
+                            <strong>+</strong>
+                            <span>New Speech</span>
+                        </button>
+                    </div>
+                    <div class="addVoiceButton">
+                        <div class="addVoice">
+                            <img class="filter" src="/src/assets/svg/microphone.svg" alt="">
+                            <span class="voiceText">Create Voice Clone</span>
+                        </div>
+                        <div class="addVoicePopup100VH">
+                            <div class="addvoicePopup">
+                                <div class="backVoicePopup">
+                                    <img class="filter" src="/src/assets/svg/slidebarLeft.svg" alt="">
+                                </div>
+                                <div class="closeVoicePopup">
+                                    <img class="filter" src="/src/assets/svg/cross.svg" alt="">
+                                </div>
+                                <div class="voicePopup">
+                                    <div class="voiceHeading">
+                                        <span>How would you like to clone your voice?</span>
+                                    </div>
+                                    <div class="addVoiceOptions">
+                                        <div class="popupOptionBox">
+                                            <div class="voiceBox voiceBox1">
+                                                <div class="recImg">
+                                                    <img src="/src/assets/svg/voiceClone.svg" alt="">
+                                                </div>
+                                                <div class="recTitle">
+                                                    <p><strong>Instant</strong></p>
+                                                    <span>Only 30 seconds of audio needed.</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="popupOptionBox">
+                                            <div class="voiceBox voiceBox2">
+                                                <div class="addFileImg">
+                                                    <img src="/src/assets/svg/real-time.svg" alt="">
+                                                </div>
+                                                <div class="Fileheading">
+                                                    <p><strong>Premium</strong></p>
+                                                    <span>Upgrade now for just ₹29 and unlock advanced features instantly!</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="addInputLanguage">
+                                    <div class="defineInputLangText">
+                                        <span><strong>Define Input Language</strong></span>
+                                    </div>
+                                    <select id="languageDropdown" class="language-select">
+                                    </select>
+                                    <div class="nextButtonVoice">
+                                        <button class="nextButtonV">Continue</button>
+                                    </div>
+                                    <div class="voiceNotice">
+                                        <span>Currently, your voice clone supports both <strong>Hindi</strong> and <strong>English</strong> language. It will perform optimally in the language it was recorded in.</span>
+                                    </div>
+                                </div>
+                                <div class="recordHere">
+                                    <div class="upperVoiceContainer">
+                                        <div class="recordText">
+                                            <p><strong>Record Here</strong></p>
+                                        </div>
+                                        <div class="recordingAnimation"></div>
+                                        <div class="recordingTime">0:00</div>
+                                        <audio class="audio-player" controls download></audio>
+                                    </div>
+                                    <div class="optionsContainer">
+                                        <div class="controls">
+                                            <button class="startButton">Start</button>
+                                            <button class="stopButton" disabled>Stop</button>
+                                            <button class="resetButton" disabled>Reset</button>
+                                        </div>
+                                        <div class="saveDownload">
+                                            <button class="saveButton" disabled>Save</button>
+                                            <button class="downloadButton" disabled>Download</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="chatsSection">
+                <div class="chatsHistory">
+                    <div class="recentChats">
+                        <div class="recentChatsButton">
+                            <div class="imgTextRecentChatsButton">
+                                <img class="filter" src="/src/assets/svg/clock.svg" alt="">
+                                <span>Recent chats</span>
+                            </div>
+                            <div class="dropdownRecentChats">
+                                <img class="filter" src="/src/assets/svg/arrowDown.svg" alt="">
+                            </div>
+                        </div>
+                    </div>
+                    <ul class="chatsHistoryHereNow">
+                        <li>
+                            <a href="" class="chatHereLink">
+                                <div class="chatHereDiv">
+                                    <span>Mohit 1</span>
+                                </div>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="storageSection">
+                <div class="storageAudios">
+                    <div class="storageIconText">
+                        <img class="filter" src="/src/assets/svg/storage.svg" alt="">
+                        <span>Files</span>
+                    </div>
+                </div>                
+                <div class="storagePopup">
+                    <div class="storagePopupHeader">
+                        <span>All Files</span>
+                    </div>
+                    <div class="searchChatsContainer">
+                        <div class="searchChats">
+                            <div class="searchNow">
+                                <img class="filter" src="/src/assets/svg/search.svg" alt="Search Icon">
+                                <input class="searchInput" type="text" placeholder="Search Chats">
+                            </div>
+                        </div>
+                        <div class="chatsListPopup">
+                            <div class="selectDeleteChats">
+                                <div class="selectAllChats">
+                                    <label for="checkboxSelect" class="customLabel">
+                                        <input type="checkbox" id="checkboxSelect" class="checkboxSelect">
+                                        Select All
+                                    </label>
+                                </div>
+                                <div class="deleteChats">
+                                    <button class="deleteChatButton">Delete</button>
+                                </div>
+                            </div>
+                            <div class="chatsList">
+                                <ul id="chatList" class="chatList">
+                                    <li>
+                                        <input type="checkbox" class="chatCheckbox">
+                                        <span class="chatName">Mohit</span>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="userSection">
+                <div class="aboutWebsite">
+                    <div class="about">
+                        <img class="filter" src="/src/assets/svg/aboutWebsite.svg" alt="">
+                        <span>About</span>    
+                    </div>
+                    <div class="aboutWebsitePopupContainer">
+                        <div class="aboutWpopup">
+                            <ul class="aboutWItems">
+                                <li><span>Privacy Policy</span></li>
+                                <li><span>Terms and Conditions</span></li>
+                                <li><span>Contact Us</span></li>
+                                <li><span>Legal Notice</span></li>
+                                <li><span>Version - v1.0.0</span></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="userHere">
+                    <div class="user">
+                        <div class="userInfo">
+                            <div class="userImg">
+                                <div class="img">M</div>
+                            </div>
+                            <div class="userName"><span>Mohit Narayan Vashisth</span></div>
+                        </div>
+                        <div class="userLogout">
+                            <div class="logoutImg">
+                                <img class="logoutIcon filter" src="/src/assets/svg/logout.svg" alt="">
+                            </div>
+                            <div class="logoutPopupContainer">
+                                <span><strong>confirm Logout</strong></span>
+                                <div class="logoutConfirmButton">
+                                    <button class="yesButton" id="logout">Yes</button>
+                                    <button class="noButton">No</button>
+                                </div>    
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="rightMain">
+            <div class="upperRight">
+                <div class="webSiteName">
+                    <span>3R Minds</span> <li>Innovating AI, Fueling Imagination</li>
+                </div>
+                <div class="exportAudios">
+                    <div class="exportAudioNow">
+                        <div class="audioFileName">
+                            <div class="fileName"><span>FileName</span></div>
+                            <div class="fileNameEdit">
+                                <input type="text">
+                            </div>
+                        </div>
+                        <button class="export">Export</button>
+                        <div class="exportOptionsPopup">
+                            <div class="wavFile"><span>WAV Format</span></div>
+                            <div class="mp4File"><span>MP4 Format</span></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="lowerRight">
+                <div class="speechGenerateContainer">
+                    <div class="textInputSection">
+                        <label for="inputText">Add Speech</label>
+                        <textarea id="inputText" placeholder="Type here..."></textarea>
+                    </div>
+                    <div class="voiceOptions">
+                    <!-- Pre-Available Voices -->
+                    <div>
+                        <input type="radio" id="preAvailable" name="voice" checked />
+                        <label for="preAvailable">Pre-Available Voices</label>
+                        <select id="preAvailableDropdown">
+                        <option>jenny ~ English</option>
+                        <option>sam ~ English</option>
+                        <option>Naveen ~ Hindi</option>
+                        </select>
+                    </div>
+                    <!-- Use Your Own Voice -->
+                    <div>
+                        <input type="radio" id="useOwnVoice" name="voice" />
+                        <label for="useOwnVoice">Use Your Own Voice</label>
+                        <select id="useOwnVoiceDropdown" disabled>
+                        <option>Voice 1</option>
+                        <option>Voice 2</option>
+                        <option>Voice 3</option>
+                        </select>
+                    </div>
+                    </div>
+                    <button class="generateSpeechBtn">Generate Speech</button>
+                </div>
+            </div>
+            <div class="loadingAssets">
+                <div class="animationText">
+                    <div class="animation"></div>
+                    <div class="animationText">
+                        <span class="loadingText loadingText1">Creating workspace</span>
+                        <span class="loadingText loadingText2">Loading assets</span>
+                        <span class="loadingText loadingText3">Just a moment</span>
+                        <span class="loadingText loadingText4">Everything done</span>
+                    </div>
+                </div>
+            </div>
+            <div class="errorPopup"></div>
+        </section>
+        
+    </div>
+    <!--------------------------------- User interface ---------------------------->
+    <script type="module" src="src/javascript/UI/screenSlider_M_UI.js"></script>
+    <script type="module" src="src/javascript/UI/addVoiceCLone_UI.js"></script>
+    <script type="module" src="src/javascript/UI/chatList_UI.js"></script>
+    <script type="module" src="src/javascript/UI/storagePopup_UI.js"></script>
+    <script type="module" src="src/javascript/UI/aboutWebsite_UI.js"></script>
+    <script type="module" src="src/javascript/UI/exportVoice_UI.js"></script>
+    <script type="module" src="src/javascript/UI/renameChat_UI.js"></script>
+    <script type="module" src="src/javascript/UI/loadingAssets_UI.js"></script>
+    <script type="module" src="src/javascript/UI/selcPreloadOrOwnVoice_UI.js"></script>
+    <script type="module" src="src/javascript/UI/utils/dragIconsSvg_UI.js"></script>
+
+    <!------------------------------- Services | Endpoints ---------------------------->
+    <script type="module" src="src/javascript/services/newChatService.js"></script>
+    <script type="module" src="src/javascript/services/addVoiceCloneService.js"></script>
+    <script type="module" src="src/javascript/services/chatListService.js"></script>
+    <script type="module" src="src/javascript/services/storagePopupService.js"></script>
+    <script type="module" src="src/javascript/services/aboutWebsiteService.js"></script>
+    <script type="module" src="src/javascript/services/userLogoutService.js"></script>
+    <script type="module" src="src/javascript/services/renameChatService.js"></script>
+    <script type="module" src="src/javascript/services/textAreaInputService.js"></script>
+    <script type="module" src="src/javascript/services/selcPreloadOrOwnVoiceService.js"></script>
+    <script type="module" src="src/javascript/services/generateSpeechService.js"></script>
 </body>
 </html>

@@ -1683,16 +1683,27 @@ margin-left: 1vmin;
     .chatsSection.openChatListDisplay {
         max-height: 60%;
     }
+    .slider{
+        transform: scale(.9);
+        display: flex;
+    }
     .about img {
         width: 3.5vmin;
     }
     .logoutImg img {
         width: 3.5vmin;
     }
+    .rightMain{
+        width: 100%;
+    }
     .upperRight{
         height: 9%;
         width: 100%;
         flex-direction: column;
+    }
+    .lowerRight{
+        width: 100%;
+        margin-top: 18vmin;
     }
     .exportAudioNow {
         width: 100%;
@@ -1738,6 +1749,15 @@ margin-left: 1vmin;
         height: 50%;
     }
 
+    .export{
+        width: 20%;
+        height: 85%;
+    }
+
+    #inputText{
+        resize: vertical;
+    }
+
 }
 
 @media screen and (max-width: 768px) and (orientation: landscape) {
@@ -1748,5 +1768,6 @@ margin-left: 1vmin;
     textarea {
         width: 70%;
     }
+
 }
 
