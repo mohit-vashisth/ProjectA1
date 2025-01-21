@@ -33,9 +33,11 @@ function toggleVoiceContainer() {
 function resetDisplay() {
     const isHidden = window.getComputedStyle(addVoiceMainContainer).display === "none";
     if(isHidden){
+        backCount = 0
         voicePopup.style.display = "flex";
         selectLanguage.style.display = "none";
         recordNowContainer.style.display = "none";
+        back.style.display = "none";
     }
 }
 

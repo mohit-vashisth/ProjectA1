@@ -1,3 +1,4 @@
+// import resetDisplay from 
 const startButton = document.querySelector(".startButton"); // Start recording button
 const stopButton = document.querySelector(".stopButton"); // Stop recording button
 const resetButton = document.querySelector(".resetButton"); // Reset recording button
@@ -176,15 +177,18 @@ function populateLanguageDropdown() {
 
 // Attach event listeners
 document.addEventListener("DOMContentLoaded", () => {
-    populateLanguageDropdown();
+    if(startButton && saveButton && downloadButton && resetButton && startButton){
+        populateLanguageDropdown();
+        startButton.addEventListener("click", startRecording);
+        stopButton.addEventListener("click", stopRecording);
+        resetButton.addEventListener("click", resetRecording);
+        saveButton.addEventListener("click", saveRecording);
+        downloadButton.addEventListener("click", downloadRecording);
 
-    startButton.addEventListener("click", startRecording);
-    stopButton.addEventListener("click", stopRecording);
-    resetButton.addEventListener("click", resetRecording);
-    saveButton.addEventListener("click", saveRecording);
-    downloadButton.addEventListener("click", downloadRecording);
-
-    // Initial button states
-    startButton.disabled = false;
-    stopButton.disabled = true;
+        // Initial button states
+        startButton.disabled = false;
+        stopButton.disabled = true;
+    }else{
+        stopRecording()
+    }
 });

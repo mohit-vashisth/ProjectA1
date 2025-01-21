@@ -252,6 +252,7 @@
     cursor: pointer;
     overflow: hidden;
     position: relative;
+    padding-bottom: 3vmin;
     transition: opacity 0.3s ease, transform 0.3s ease;
 }
 .voiceBox:hover {
