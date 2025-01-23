@@ -1,148 +1,183 @@
-// import resetDisplay from 
-const startButton = document.querySelector(".startButton"); // Start recording button
-const stopButton = document.querySelector(".stopButton"); // Stop recording button
-const resetButton = document.querySelector(".resetButton"); // Reset recording button
-const saveButton = document.querySelector(".saveButton"); // Save recording button
-const downloadButton = document.querySelector(".downloadButton"); // Download recording button
-const audioPlayer = document.querySelector(".audio-player"); // Audio player element
-const recordingTime = document.querySelector(".recordingTime"); // Timer display element
-const recordingAnimation = document.querySelector(".recordingAnimation"); // Recording animation element
-const dataAPI = import.meta.env.VITE_DATA_URL;
+const openDisplayButton = document.querySelector(".addVoice");
+const openDisplayButtonText = document.querySelector(".addVoiceButtonText");
+const loadingAnimationBTN = document.querySelector(".addVoiceAnimation");
+const popupDisplay = document.querySelector(".addVoicePopup100VH");
+const card = document.querySelector(".addvoicePopup");
+const closeDisplayButton = document.querySelector(".closeVoicePopup");
+const instantVoiceButton = document.querySelector(".voiceBox1");
+const display1 = document.querySelector(".voicePopup");
+const display2 = document.querySelector(".addInputLanguage");
+const display3 = document.querySelector(".recordHere");
+const dropDownLanguage = document.querySelector("#languageDropdown");
+const continueButton = document.querySelector(".nextButtonV");
+const previous = document.querySelector(".backVoicePopup");
+const animation = document.querySelector(".recordingAnimation");
+const player = document.querySelector(".audio-player");
+const voiceText = document.querySelector(".voiceText");
+const startRecButton = document.querySelector(".startButton");
+const stopRecButton = document.querySelector(".stopButton");
+const resetRecButton = document.querySelector(".resetButton");
+const saveRecButton = document.querySelector(".saveButton");
+const recordingTime = document.querySelector(".recordingTime");
+const dataURL = import.meta.env.VITE_DATA_URL;
 const config = {
-    recordingLimit: 30, // Max recording limit in seconds
-    languages: ["English", "Hindi"], // Available languages
+    recordLimit: 30, // seconds
+    languages: ["English", "Hindi"]
 };
 
-let recorder, mediaStream, audioChunks = [];
-let userSeconds = 0;
+const today = new Date();
+const payload = {
+    language: "",
+    audio: null,
+    date: `${today.getFullYear()}-${today.getMonth() + 1}-${today.getDate()}`
+};
+
+let previousCount = 0;
+let stream, recorder, audioChunks = [];
+let currentController = null;
 let timerInterval;
-let currentContoller = null;
-// Function to start recording
+let userSeconds = 0;
+
+function toggleDisplay() {
+    openDisplayButton.addEventListener("click", () => {
+        resetDisplays();
+        popupDisplay.style.display = "flex";
+    });
+
+    document.addEventListener("click", (e) => {
+        if (!card.contains(e.target) && e.target !== openDisplayButton) {
+            popupDisplay.style.display = "none";
+            resetDisplays()
+        }
+    });
+
+    closeDisplayButton.addEventListener("click", () => {
+        popupDisplay.style.display = "none";
+        resetDisplays()
+    });
+
+    instantVoiceButton.addEventListener("click", () => {
+        previousCount++;
+        previousDisplay();
+    });
+
+    continueButton.addEventListener("click", () => {
+        previousCount++;
+        previousDisplay();
+    });
+
+    previous.addEventListener("click", () => {
+        previousCount--;
+        previousDisplay();
+    });
+}
+
+function selectLanguages() {
+    dropDownLanguage.innerHTML = "";
+
+    config.languages.forEach((lang) => {
+        const option = document.createElement("option");
+        option.value = lang;
+        option.textContent = lang;
+        if (lang === "English") option.selected = true;
+        dropDownLanguage.appendChild(option);
+    });
+
+    dropDownLanguage.addEventListener("blur", () => {
+        payload.language = dropDownLanguage.value;
+    });
+}
+
+function previousDisplay() {
+    if (previousCount === 0) {
+        display1.style.display = "flex";
+        display2.style.display = "none";
+        display3.style.display = "none";
+        previous.style.display = "none";
+    } else if (previousCount === 1) {
+        display1.style.display = "none";
+        display2.style.display = "flex";
+        display3.style.display = "none";
+        previous.style.display = "flex";
+    } else if (previousCount === 2) {
+        display1.style.display = "none";
+        display2.style.display = "none";
+        display3.style.display = "flex";
+        previous.style.display = "flex";
+    }
+}
+
 async function startRecording() {
     try {
-        mediaStream = await navigator.mediaDevices.getUserMedia({ audio: true });
-        const options = {
-            mimeType: 'audio/webm',
-            audioBitsPerSecond: 256000, // High-quality bitrate
-            sampleRate: 48000
-        };
-        recorder = new MediaRecorder(mediaStream, options);
+        stream = await navigator.mediaDevices.getUserMedia({ audio: true });
 
-        recorder.ondataavailable = (event) => {
-            if (event.data.size > 0) {
-                audioChunks.push(event.data);
+        recorder = new MediaRecorder(stream, {
+            mimeType: "audio/webm",
+            audioBitsPerSecond: 256000,
+            sampleRate: 48000
+        });
+
+        audioChunks = [];
+        recorder.ondataavailable = (e) => {
+            if (e.data.size > 0) {
+                audioChunks.push(e.data);
             }
+        };
+
+        recorder.onstart = () => {
+            animation.style.display = "flex";
+            player.style.display = "none"
+            startRecButton.disabled = true;
+            stopRecButton.disabled = false;
         };
 
         recorder.onstop = () => {
             const audioBlob = new Blob(audioChunks, { type: "audio/webm" });
-            const audioUrl = URL.createObjectURL(audioBlob);
-            audioPlayer.src = audioUrl;
-            saveButton.dataset.blobUrl = audioUrl; // Save the blob URL for saving
-            audioChunks = [];
+            const playableURL = URL.createObjectURL(audioBlob);
+            player.src = playableURL;
+            player.style.display = "flex"
+            animation.style.display = "none";
+            saveRecButton.dataset.blobUrl = playableURL;
+            payload.audio = audioBlob;
         };
 
         recorder.start();
-        toggleRecordingState(true);
         startTimer();
-
-        startButton.disabled = true;
-        stopButton.disabled = false;
-    } catch (err) {
-        alert("Error accessing microphone: " + err.message);
+    } catch (error) {
+        console.error("Error starting recording:", error);
     }
 }
 
-// Function to stop recording
 function stopRecording() {
-    if (recorder && recorder.state === "recording") {
+    if (recorder && recorder.state !== "inactive") {
         recorder.stop();
-        mediaStream.getTracks().forEach(track => track.stop());
-        toggleRecordingState(false);
-        stopTimer();
-
-        startButton.disabled = true;
-        stopButton.disabled = true;
-        saveButton.disabled = false;
-        downloadButton.disabled = false;
-        resetButton.disabled = false;
+        startRecButton.disabled = false;
+        stopRecButton.disabled = true;
+        resetRecButton.disabled = false;
+        saveRecButton.disabled = false;
+        clearInterval(timerInterval);
     }
 }
 
-// Function to reset the recording
 function resetRecording() {
     stopRecording();
-    audioPlayer.src = "";
+    player.src = ""; // Clear player source
+    player.style.display = "none"; // Hide player
+    audioChunks = [];
+    payload.audio = null; // Reset payload audio
+    resetRecButton.disabled = true;
+    saveRecButton.disabled = true;
     recordingTime.textContent = "0:00";
-    userSeconds = 0;
-    saveButton.dataset.blobUrl = ""; // Clear saved blob URL
-    
-    startButton.disabled = false;
-    stopButton.disabled = true;
-    saveButton.disabled = true;
-    downloadButton.disabled = true;
-    resetButton.disabled = true;
 }
 
-// Function to save the recording
-async function saveRecording() {
-    if (!saveButton.dataset.blobUrl) {
-        alert("No recording to save!");
-        return;
-    }
-
-    if(currentContoller){
-        currentContoller.abort()
-        currentContoller = null;
-    }
-
-    currentContoller = new AbortController()
-
-    try {
-        const timeoutID = setTimeout(()=>{
-            currentContoller.abort()
-        }, 8000)
-        const response = await fetch(`${dataAPI}`,{
-            method: "POST",
-            credentials: "include",
-            signal: currentContoller.signal,
-        })
-        setTimeout(timeoutID)
-        if(!response.ok){
-            console.error("Something went wrong");
-        }
-        const data = await response.json()
-
-        if(data && data.success){
-            saveButton.innerHTML = "Saved"
-        }
-        else{
-            console.error("server not responding")
-        }
-        
-    } catch (error) {
-        
-    }
-}
-
-// Function to download the recording
-function downloadRecording() {
-    saveRecording(); // Same functionality as saving in this context
-}
-
-// Function to toggle recording state
-function toggleRecordingState(isRecording) {
-    recordingAnimation.style.display = isRecording ? "block" : "none";
-}
-
-// Function to start the timer
 function startTimer() {
+    userSeconds = 0;
+    recordingTime.textContent = "0:00";
     timerInterval = setInterval(() => {
         userSeconds++;
-        if (userSeconds >= config.recordingLimit) {
+        if (userSeconds >= config.recordLimit) {
             stopRecording();
             alert("Recording limit reached!");
-            return;
         }
         const minutes = Math.floor(userSeconds / 60);
         const seconds = userSeconds % 60;
@@ -150,45 +185,83 @@ function startTimer() {
     }, 1000);
 }
 
-// Function to stop the timer
-function stopTimer() {
-    clearInterval(timerInterval);
-    userSeconds = 0;
+function resetDisplays() {
+    previousCount = 0; // Reset navigation state
+    display1.style.display = "flex"; // Reset to initial display
+    display2.style.display = "none";
+    display3.style.display = "none";
+    previous.style.display = "none"; // Hide previous button
+    player.src = ""; // Clear audio player
+    player.style.display = "none"; // Hide player
+    audioChunks = []; // Clear recorded audio chunks
+    payload.audio = null; // Reset audio in payload
+    resetRecording(); // Reset recording timer and controls
 }
 
-// Populate language dropdown
-function populateLanguageDropdown() {
-    const dropdown = document.getElementById("languageDropdown");
-    let selectedLanguage = "English"; // Default language
-
-    config.languages.forEach(language => {
-        const option = document.createElement("option");
-        option.value = language.toLowerCase();
-        option.textContent = language;
-        dropdown.appendChild(option);
-    });
-
-    dropdown.addEventListener("blur", () => {
-        if (dropdown.value) { // Update only if a value is selected
-            selectedLanguage = dropdown.value;
-        }
-    });
-}
-
-// Attach event listeners
-document.addEventListener("DOMContentLoaded", () => {
-    if(startButton && saveButton && downloadButton && resetButton && startButton){
-        populateLanguageDropdown();
-        startButton.addEventListener("click", startRecording);
-        stopButton.addEventListener("click", stopRecording);
-        resetButton.addEventListener("click", resetRecording);
-        saveButton.addEventListener("click", saveRecording);
-        downloadButton.addEventListener("click", downloadRecording);
-
-        // Initial button states
-        startButton.disabled = false;
-        stopButton.disabled = true;
-    }else{
-        stopRecording()
+async function saveRecording() {
+    loadingAnimationBTN.style.display = "flex"
+    openDisplayButtonText.style.display = "none"
+    if (!payload.audio) {
+        alert("No audio to save! Please record first.");
+        return;
     }
-});
+    if (currentController){
+        currentController.abort()
+        currentController = null
+    };
+    currentController = new AbortController();
+
+    const formData = new FormData();
+    formData.append("language", payload.language);
+    formData.append("audio", payload.audio);
+    formData.append("date", payload.date);
+
+    try {
+        const timeout = setTimeout(() => {
+            currentController.abort()
+            loadingAnimationBTN.style.display = "none"
+            openDisplayButtonText.style.display = "flex" 
+        }, 8000);
+        const response = await fetch(dataURL, {
+            method: "POST",
+            body: formData,
+            signal: currentController.signal,
+        });
+        clearTimeout(timeout)
+        loadingAnimationBTN.style.display = "none"
+        openDisplayButtonText.style.display = "flex"
+        const data = await response.json();
+
+        if (data && data.success) {
+            openDisplayButtonText.textContent = "1 Voice Added";
+        } else {
+            loadingAnimationBTN.style.display = "none"
+            throw new Error("Upload failed");
+        }
+    } catch (error) {
+        loadingAnimationBTN.style.display = "none"
+        openDisplayButtonText.style.display = "flex"
+        console.error("Error saving recording:", error);
+        voiceText.textContent = "Error saving. Try again.";
+    } finally {
+        currentController = null; // Clear controller
+        setTimeout(() => {
+            voiceText.textContent = "Create Voice Clone";
+        }, 2000);
+    }
+}
+
+export function addVoiceServiceEXP() {
+    startRecButton.disabled = false;
+    stopRecButton.disabled = true;
+    resetRecButton.disabled = true;
+    saveRecButton.disabled = true;
+
+    toggleDisplay();
+    selectLanguages();
+
+    startRecButton.addEventListener("click", startRecording);
+    stopRecButton.addEventListener("click", stopRecording);
+    resetRecButton.addEventListener("click", resetRecording);
+    saveRecButton.addEventListener("click", saveRecording);
+}

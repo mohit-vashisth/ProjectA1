@@ -1,7 +1,7 @@
 const slideBar = document.querySelector('.slider');
 const leftSection = document.querySelector('.leftMain');
 
-function slideMobile() {
+export function slideMobileEXP() {
     slideBar.addEventListener("click", ()=>{
         if(leftSection.style.width === "50%"){
             leftSection.style.width = "0%";
@@ -10,4 +10,3 @@ function slideMobile() {
         }
     })
 }
-slideMobile()

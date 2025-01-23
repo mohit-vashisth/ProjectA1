@@ -1,36 +1,24 @@
-const profileImg = document.querySelector(".img");
-const userName = document.querySelector(".userName span");
-const logout = document.querySelector("#logout");
-const popup = document.querySelector(".errorPopup")
-const baseURL = import.meta.env.VITE_BASE_URL;
-let currentController = null;
-let timeoutID;
+import { newChatEXP } from "./javascript/services/newChatService";
+import { addVoiceServiceEXP } from "./javascript/services/addVoiceCloneService";
+import { slideMobileEXP } from "./javascript/UI/screenSlider_M_UI";
+import { aboutWWebsiteEXP } from "./javascript/UI/aboutWebsite_UI";
+import { assetsLoadingEXP } from "./javascript/UI/loadingAssets_UI";
+import { dragDisabledEXP } from "./javascript/utils/dragIconsSvg_UI";
+import { recentChatsEXP } from "./javascript/services/chatListService";
 
-function errorPopup(errorText) {
-  if (popup) {
-    if (errorText !== "") {
-      popup.textContent = errorText;
+const popup = document.querySelector(".errorPopup")
+const verifyTokenURL = import.meta.env.VITE_VERIFYTOKEN_URL;
+const signupURL = import.meta.env.VITE_SIGNUP_URL;
+
+let currentController = null;
+let timeout;
+
+function errorPopup(text, time) {
+      popup.textContent = text;
       popup.style.width = "30vmin";
-    } else {
-      popup.style.width = "0";
-    }
-  }
-}
-function clearErrorPopup() {
-  setTimeout(() => errorPopup(""), 2000);
-}
-function timeout() {
-  timeoutID = setTimeout(() => {
-    currentController.abort();
-    errorPopup("request timeout")
-    clearErrorPopup()
-  }, 2000);
-}
-function setUser() {
-  nameOfUser = localStorage.getItem("userName");
-  emailOfUser = localStorage.getItem("userEmail");
-  userName.textContent = nameOfUser;
-  profileImg.textContent = emailOfUser[0].toLowerCase();
+      setTimeout(()=>{
+        popup.style.width = "0";
+      }, time)
 }
 
 async function validateUserCred() {
@@ -43,29 +31,33 @@ async function validateUserCred() {
   const signal = currentController.signal;
 
   try {
-    const response = await fetch(`${baseURL}/api/verifing`, {
+    timeout = setTimeout(()=>{
+      currentController.abort()
+      errorPopup("Request Timeout, Try Again", 2000)
+    }, 8000)
+    const response = await fetch(verifyTokenURL, {
       method: "GET",
       credentials: "include",
       signal: signal,
     });
-    clearTimeout(timeoutID)
+    clearTimeout(timeout)
 
     if (!response.ok) {
       if (response.status === 401) {
-        const refreshResponse = await fetch(`${baseURL}/api/session`, {
+        const refreshResponse = await fetch(verifyTokenURL, {
           method: "POST",
           credentials: "include",
           signal: signal,
         });
-        clearTimeout(timeoutID)
+        clearTimeout(timeout)
 
         if (refreshResponse.ok) {
           return await validateUserCred();
         } else {
-          window.location.href = "/frontend/pages/auth/login.html";
+          window.location.href = signupURL;
         }
       } else {
-        window.location.href = "/frontend/pages/auth/login.html";
+        window.location.href = signupURL;
       }
       return;
     }
@@ -76,13 +68,12 @@ async function validateUserCred() {
       localStorage.setItem("userEmail", data.userEmail);
     }
   } catch (error) {
-    clearTimeout(timeoutID)
+    clearTimeout(timeout)
     if(error.name === "AbortError"){
-      errorPopup("request aborted")
-      clearErrorPopup()
+      errorPopup("request aborted", 2000)
     }
     console.error("Error verifying token:", error);
-    window.location.href = "/frontend/pages/auth/login.html";
+    window.location.href = signupURL;
   }
 }
 
@@ -94,3 +85,11 @@ async function validateUserCred() {
 //   }
 // });
 // logout.addEventListener("click", logoutUser);
+
+newChatEXP()
+addVoiceServiceEXP()
+slideMobileEXP()
+aboutWWebsiteEXP()
+assetsLoadingEXP()
+dragDisabledEXP()
+recentChatsEXP()

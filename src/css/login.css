@@ -1,7 +1,7 @@
 /* Body styling */
 body {
   position: relative;
-  background-image: url("/frontend/assets/images/leftFaceSignupBackground.png");
+  background-image: url("/src/assets/images/leftFaceSignupBackground.png");
   background-repeat: no-repeat;
   background-attachment: fixed;
   background-size: cover;

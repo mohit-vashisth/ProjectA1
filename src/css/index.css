@@ -81,6 +81,21 @@
     text-wrap: nowrap;
     overflow: hidden;
     margin: 1vmin;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.newChatButtonAnimation, 
+.addVoiceAnimation{
+    position: absolute;
+    width: 3vmin;
+    height: 3vmin;
+    border: .4vmin solid white;
+    border-top: .4vmin solid transparent;
+    border-radius: 50vmin;
+    display: none;
+    animation: rotationAnimation 1s linear infinite;
 }
 
 .newChat:hover{
@@ -111,6 +126,12 @@
 }
 .addVoice:hover{
     border: .3vmin solid var(--border-universal--);
+}
+
+.addVoiceButtonText{
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .addVoice span{
@@ -521,6 +542,7 @@
     justify-content: center;
     align-items: center;
     gap: 2vmin;
+    margin-top: 2vmin;
 }
 
 .controls button,
@@ -579,8 +601,7 @@
     margin-bottom: 2vmin;
 }
 
-.saveButton,
-.downloadButton {
+.saveButton{
     padding: 1.5vmin 3vmin;
     font-size: 2vmin;
     font-weight: bold;
@@ -591,8 +612,7 @@
     transition: all 0.3s;
 }
 
-.saveButton:disabled,
-.downloadButton:disabled {
+.saveButton:disabled{
     background-color: #7f8c8d !important;
     cursor: not-allowed;
     box-shadow: none;

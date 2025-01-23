@@ -1,6 +1,6 @@
 body {
   position: relative;
-  background-image: url("/frontend/assets/images/leftFaceSignupBackground.png");
+  background-image: url("/src/assets/images/leftFaceSignupBackground.png");
   background-repeat: no-repeat;
   background-attachment: fixed;
   background-size: cover;
@@ -119,6 +119,7 @@ form {
   margin-top: 20px;
   transition: background-color 0.3s ease;
   width: 100%;
+  opacity: .5;
 }
 
 #continue:hover {
@@ -181,8 +182,8 @@ a:hover {
   border: 3px solid white;
   border-top: 3px solid transparent;
   border-radius: 50px;
-  top: 11px;
-  right: 190px;
+  top: 15px;
+  right: 185px;
   animation: rotation 1s linear infinite;
   display: none;
 }

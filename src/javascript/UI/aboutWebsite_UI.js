@@ -1,6 +1,8 @@
 const aboutWebsitePopupContainer = document.querySelector('.aboutWebsitePopupContainer');
 const about = document.querySelector('.about');
 const aboutLinks = document.querySelectorAll('.aboutWItems li');
+const legalURL = import.meta.env.VITE_LEGALINFORMATION_URL;
+
 
 function aboutWebsiteDisplay(aboutButton, popupContainer) {
     if (aboutButton && popupContainer) {
@@ -16,12 +18,15 @@ function aboutWebsiteDisplay(aboutButton, popupContainer) {
     }
 }
 
+export function aboutWWebsiteEXP() {
+    
 aboutWebsiteDisplay(about, aboutWebsitePopupContainer);
 
 
 aboutLinks.forEach(element => {
     element.addEventListener("click", (e)=>{
         e.preventDefault()
-        window.location.href = "/frontend/pages/about/legalInformation.html"
+        window.location.href = legalURL;
     })
 });
+}

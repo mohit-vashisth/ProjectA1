@@ -4,6 +4,7 @@ const login = document.querySelector("#login");
 const errShow = document.querySelector("#errorDisplay");
 const popupErr = document.querySelector(".popupErrors");
 const loadingAnimation = document.querySelector(".loading");
+const loginURL = import.meta.env.VITE_LOGIN_URL;
 const baseURL = import.meta.env.VITE_BASE_URL;
 
 let currentController = null;
@@ -17,7 +18,6 @@ document.addEventListener('DOMContentLoaded', () => {
     link.href = '/frontend/css/pages/signin.css'; // Path to your CSS file
     document.head.appendChild(link); // Append the <link> to the <head>
 });
-
 
 function popupError(error) {
     if(error !== ""){
@@ -80,7 +80,7 @@ login.addEventListener('click', async (event)=>{
             loadingAnimation.style.display = "none"
         }, 8000);
 
-        const response = await fetch(`${baseURL}/api/login`, {
+        const response = await fetch(loginURL, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
@@ -99,13 +99,8 @@ login.addEventListener('click', async (event)=>{
         }
 
         const data = await response.json().catch(()=> null);
-        if(data.status === "success" && data.email && data.access_token){
-            /*
-            using cookies instead of localStorage
-            localStorage.setItem("userEmail", data.email)
-            localStorage.setItem("access_token", data.access_token)
-             */
-            window.location.href = "/frontend/pages/projectA1.html"
+        if(data?.success && data.email && data.access_token){
+            window.location.href = baseURL;
             resetForm()
         }
         else{
@@ -126,5 +121,4 @@ login.addEventListener('click', async (event)=>{
             clearErrorPopup();
         }
     }
-
 })

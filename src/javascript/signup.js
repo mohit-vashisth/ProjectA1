@@ -9,6 +9,7 @@ const popupErr = document.querySelector(".popupErrors");
 const loadingAnimation = document.querySelector(".loading");
 const signinLink = document.querySelector("#signinLink");
 const isPrivacyChecked = document.querySelector("#T_C_Privacy")
+const signUpURL = import.meta.env.VITE_SIGNUP_URL;
 const baseURL = import.meta.env.VITE_BASE_URL;
 
 let currentController = null;
@@ -22,7 +23,7 @@ let userInfo = {
 if(signinLink){
     signinLink.addEventListener('click', (event)=>{
         event.preventDefault()
-        window.location.href = "/frontend/pages/auth/login.html";
+        window.location.href = signUpURL;
     })
 }
 
@@ -133,7 +134,7 @@ continueButton.addEventListener("click", async (e) => {
             loadingAnimation.style.display = "none"
             clearErrorPopup(2000)
         }, 8000);
-        const response = await fetch(`${baseURL}/api/signup`, {
+        const response = await fetch(signUpURL, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -155,14 +156,7 @@ continueButton.addEventListener("click", async (e) => {
         const data = await response.json().catch(() => null); 
         if (data && data.status === "success" && data.userName && data.userEmail && data.access_token) {
             
-            /*
-            using cooking instead of localStorage
-
-            localStorage.setItem("userName", data.userName);
-            localStorage.setItem("userEmail", data.userEmail);
-            localStorage.setItem("access_token", data.access_token);
-            */
-            window.location.href = "/frontend/pages/projectA1.html"; // dashboard
+            window.location.href = baseURL; // dashboard
             resetForm();
         } else {
             popupError("Signup failed");

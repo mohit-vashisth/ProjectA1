@@ -23,8 +23,10 @@ function showAndHideTexts() {
     }, 3000);
 }
 
-if (localStorage.getItem("animationPlayed") !== "true") {
-    showAndHideTexts();
-} else {
-    animationContainer.style.display = "none";
+export function assetsLoadingEXP() {
+    if (localStorage.getItem("animationPlayed") !== "true") {
+        showAndHideTexts();
+    } else {
+        animationContainer.style.display = "none";
+    }
 }
