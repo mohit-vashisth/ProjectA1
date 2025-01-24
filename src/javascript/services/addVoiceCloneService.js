@@ -43,14 +43,14 @@ function toggleDisplay() {
         resetDisplays();
         popupDisplay.style.display = "flex";
     });
-
+    
     document.addEventListener("click", (e) => {
         if (!card.contains(e.target) && e.target !== openDisplayButton) {
             popupDisplay.style.display = "none";
             resetDisplays()
         }
     });
-
+    
     closeDisplayButton.addEventListener("click", () => {
         popupDisplay.style.display = "none";
         resetDisplays()
@@ -60,12 +60,12 @@ function toggleDisplay() {
         previousCount++;
         previousDisplay();
     });
-
+    
     continueButton.addEventListener("click", () => {
         previousCount++;
         previousDisplay();
     });
-
+    
     previous.addEventListener("click", () => {
         previousCount--;
         previousDisplay();
@@ -74,7 +74,7 @@ function toggleDisplay() {
 
 function selectLanguages() {
     dropDownLanguage.innerHTML = "";
-
+    
     config.languages.forEach((lang) => {
         const option = document.createElement("option");
         option.value = lang;
@@ -82,7 +82,7 @@ function selectLanguages() {
         if (lang === "English") option.selected = true;
         dropDownLanguage.appendChild(option);
     });
-
+    
     dropDownLanguage.addEventListener("blur", () => {
         payload.language = dropDownLanguage.value;
     });
@@ -110,27 +110,27 @@ function previousDisplay() {
 async function startRecording() {
     try {
         stream = await navigator.mediaDevices.getUserMedia({ audio: true });
-
+        
         recorder = new MediaRecorder(stream, {
             mimeType: "audio/webm",
             audioBitsPerSecond: 256000,
             sampleRate: 48000
         });
-
+        
         audioChunks = [];
         recorder.ondataavailable = (e) => {
             if (e.data.size > 0) {
                 audioChunks.push(e.data);
             }
         };
-
+        
         recorder.onstart = () => {
             animation.style.display = "flex";
             player.style.display = "none"
             startRecButton.disabled = true;
             stopRecButton.disabled = false;
         };
-
+        
         recorder.onstop = () => {
             const audioBlob = new Blob(audioChunks, { type: "audio/webm" });
             const playableURL = URL.createObjectURL(audioBlob);
@@ -210,12 +210,12 @@ async function saveRecording() {
         currentController = null
     };
     currentController = new AbortController();
-
+    
     const formData = new FormData();
     formData.append("language", payload.language);
     formData.append("audio", payload.audio);
     formData.append("date", payload.date);
-
+    
     try {
         const timeout = setTimeout(() => {
             currentController.abort()
@@ -231,7 +231,7 @@ async function saveRecording() {
         loadingAnimationBTN.style.display = "none"
         openDisplayButtonText.style.display = "flex"
         const data = await response.json();
-
+        
         if (data && data.success) {
             openDisplayButtonText.textContent = "1 Voice Added";
         } else {

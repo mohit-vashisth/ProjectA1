@@ -5,21 +5,15 @@ import { aboutWWebsiteEXP } from "./javascript/UI/aboutWebsite_UI";
 import { assetsLoadingEXP } from "./javascript/UI/loadingAssets_UI";
 import { dragDisabledEXP } from "./javascript/utils/dragIconsSvg_UI";
 import { recentChatsEXP } from "./javascript/services/chatListService";
+import { displayError } from "./javascript/utils/errorDisplay";
+import { handleCurrentFileNameEXP } from "./javascript/services/renameChatService";
 
-const popup = document.querySelector(".errorPopup")
+const popup = document.querySelector(".displayError")
 const verifyTokenURL = import.meta.env.VITE_VERIFYTOKEN_URL;
 const signupURL = import.meta.env.VITE_SIGNUP_URL;
 
 let currentController = null;
 let timeout;
-
-function errorPopup(text, time) {
-      popup.textContent = text;
-      popup.style.width = "30vmin";
-      setTimeout(()=>{
-        popup.style.width = "0";
-      }, time)
-}
 
 async function validateUserCred() {
   if (currentController) {
@@ -33,7 +27,7 @@ async function validateUserCred() {
   try {
     timeout = setTimeout(()=>{
       currentController.abort()
-      errorPopup("Request Timeout, Try Again", 2000)
+      displayError("Request Timeout, Try Again")
     }, 8000)
     const response = await fetch(verifyTokenURL, {
       method: "GET",
@@ -70,7 +64,7 @@ async function validateUserCred() {
   } catch (error) {
     clearTimeout(timeout)
     if(error.name === "AbortError"){
-      errorPopup("request aborted", 2000)
+      displayError("request aborted")
     }
     console.error("Error verifying token:", error);
     window.location.href = signupURL;
@@ -93,3 +87,4 @@ aboutWWebsiteEXP()
 assetsLoadingEXP()
 dragDisabledEXP()
 recentChatsEXP()
+handleCurrentFileNameEXP()

@@ -1,31 +1,13 @@
+import { displayError } from "../utils/errorDisplay";
+
 const logoutPopupContainer = document.querySelector(".logoutPopupContainer");
 const logoutIcon = document.querySelector(".logoutIcon");
 const noButton = document.querySelector(".noButton");
 const logout = document.querySelector("#logout");
-const popup = document.querySelector(".errorPopup");
+const popup = document.querySelector(".displayError");
 const baseURL = import.meta.env.VITE_BASE_URL;
 let currentController = null;
 let timeoutID;
-function errorPopup(errorText) {
-  if (popup) {
-    if (errorText !== "") {
-      popup.textContent = errorText;
-      popup.style.width = "30vmin";
-    } else {
-      popup.style.width = "0";
-    }
-  }
-}
-function clearErrorPopup() {
-  setTimeout(() => errorPopup(""), 2000);
-}
-function timeout() {
-  timeoutID = setTimeout(() => {
-    currentController.abort();
-    errorPopup("request timeout");
-    clearErrorPopup();
-  }, 2000);
-}
 
 logoutIcon.addEventListener("click", function () {
     logoutPopupContainer.style.display = "flex";
@@ -36,7 +18,7 @@ noButton.addEventListener("click", function () {
 });
 
 async function logoutUser() {
-  if (!logout && !logoutPopupContainer) errorPopup("something went wrong");
+  if (!logout && !logoutPopupContainer) displayError("something went wrong");
 
 
   document.addEventListener("click", function (event) {
@@ -63,8 +45,7 @@ async function logoutUser() {
         clearTimeout(timeoutID);
 
         if (!response.ok) {
-            errorPopup("unable to logout");
-            clearErrorPopup();
+            displayError("unable to logout");
         }
 
         const data = await response.json();
@@ -72,17 +53,14 @@ async function logoutUser() {
             localStorage.removeItem("access_token");
             window.location.href = "/frontend/pages/auth/login.html";
         } else {
-            errorPopup("something went wrong, unable to logout");
-            clearErrorPopup();
+            displayError("something went wrong, unable to logout");
         }
     } catch (error) {
         clearTimeout(timeoutID);
         if (error.name === "AbortError") {
-            errorPopup("Request aborted");
-            clearErrorPopup();
+            displayError("Request aborted");
         }
-        errorPopup("Something went wrong");
-        clearErrorPopup();
+        displayError("Something went wrong");
   }
 }
 

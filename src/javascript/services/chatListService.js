@@ -1,3 +1,4 @@
+import { displayError } from "../utils/errorDisplay";
 const recentChatsButton = document.querySelector(".recentChatsButton");
 const chatsSection = document.querySelector(".chatsSection");
 const iconRotate = document.querySelector(".dropdownRecentChats img");
@@ -5,8 +6,12 @@ const popupErr = document.querySelector(".errorPopup");
 const baseURL = import.meta.env.VITE_BASE_URL;
 
 let currentController = null;
-let currentChat = {}
+let currentChat = {
+  name: null,
+  link: null
+};
 
+// Function to open or close the chat list dropdown
 function openCloseChatList() {
   if (!chatsSection.classList.contains("openChatListDisplay")) {
     recentChatsButton.classList.add("openChatList");
@@ -19,17 +24,13 @@ function openCloseChatList() {
   }
 }
 
-function popupError(text, time) {
-  popupErr.textContent = text;
-  popupErr.style.width = "30vmin";
-  popupErr.style.padding = "1vmin";
-  setTimeout(() => {
-    popupErr.style.width = "0";
-    popupErr.style.padding = "0";
-  }, time);
-}
-
+// Function to add a single chat to the list
 function addChatToList(chatLink, chatName) {
+  if (!chatLink || !chatName) {
+    console.error("Invalid chat data:", { chatLink, chatName });
+    return;
+  }
+
   const chatsHistory = document.querySelector(".chatsHistoryHereNow");
   const chatItem = document.createElement("li");
   chatItem.innerHTML = `
@@ -40,8 +41,15 @@ function addChatToList(chatLink, chatName) {
     </a>
   `;
   chatsHistory.appendChild(chatItem);
+
+  // Update the currentChat object when a chat is clicked
+  chatItem.querySelector(".chatHereLink").addEventListener("click", () => {
+    currentChat.name = chatName;
+    currentChat.link = chatLink;
+  });
 }
 
+// Function to load user chats from the server
 async function loadUserChats() {
   if (currentController) {
     currentController.abort();
@@ -53,7 +61,7 @@ async function loadUserChats() {
   try {
     const timeout = setTimeout(() => {
       currentController.abort();
-      popupError("Taking too much time, try again later.", 2000);
+      displayError("Taking too much time, try again later.");
     }, 8000);
 
     const response = await fetch(baseURL, {
@@ -66,37 +74,59 @@ async function loadUserChats() {
     clearTimeout(timeout);
 
     if (!response.ok) {
-      popupError("Something went wrong", 2000);
+      displayError("Something went wrong");
       return;
     }
 
     const data = await response.json();
 
     if (data && data.status && data.chats.length > 0) {
-        data.chats.forEach(chat => {
-            addChatToList(chat.chatLink, chat.chatName);
-            localStorage.setItem(chat.chatName, chat.chatLink);
+      const fragment = document.createDocumentFragment();
+      data.chats.forEach((chat) => {
+        const chatItem = document.createElement("li");
+        chatItem.innerHTML = `
+          <a href="${chat.chatLink}" class="chatHereLink">
+            <div class="chatHereDiv">
+              <span>${chat.chatName}</span>
+            </div>
+          </a>
+        `;
+        fragment.appendChild(chatItem);
+
+        // Add click listener to update currentChat
+        chatItem.querySelector(".chatHereLink").addEventListener("click", () => {
+          currentChat.name = chat.chatName;
+          currentChat.link = chat.chatLink;
         });
+
+        // Save to localStorage
+        localStorage.setItem(chat.chatName, chat.chatLink);
+      });
+      document.querySelector(".chatsHistoryHereNow").appendChild(fragment);
+    } else {
+      displayError("No chats found.");
     }
-    
   } catch (error) {
     if (error.name === "AbortError") {
-      popupError("Request aborted", 2000);
+      displayError("Request aborted");
     } else {
-      popupError("Server not responding", 2000);
+      displayError("Server not responding");
     }
   }
 }
 
+// Function to initialize recent chats
 export function recentChatsEXP() {
   recentChatsButton.addEventListener("click", openCloseChatList);
   loadUserChats();
-  
-    addChatToList("#", "Google")
-    addChatToList("#", "YouTube")
-    addChatToList("#", "FaceBook")
+
+  // Add sample chats (for testing purposes)
+  addChatToList("#", "Google");
+  addChatToList("#", "YouTube");
+  addChatToList("#", "Facebook");
 }
 
+// Function to return the current chat
 export function userCurrentChatEXP() {
-    
+  return currentChat;
 }

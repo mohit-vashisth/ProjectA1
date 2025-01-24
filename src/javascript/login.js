@@ -1,8 +1,9 @@
+import { displayError } from "./utils/errorDisplay";
 const email = document.querySelector("#email");
 const password = document.querySelector("#password");
 const login = document.querySelector("#login");
 const errShow = document.querySelector("#errorDisplay");
-const popupErr = document.querySelector(".popupErrors");
+const popupErr = document.querySelector(".displayErrors");
 const loadingAnimation = document.querySelector(".loading");
 const loginURL = import.meta.env.VITE_LOGIN_URL;
 const baseURL = import.meta.env.VITE_BASE_URL;
@@ -18,21 +19,6 @@ document.addEventListener('DOMContentLoaded', () => {
     link.href = '/frontend/css/pages/signin.css'; // Path to your CSS file
     document.head.appendChild(link); // Append the <link> to the <head>
 });
-
-function popupError(error) {
-    if(error !== ""){
-        popupErr.textContent = error;
-        popupErr.style.width = "30vmin";
-        popupErr.style.padding = "1vmin";
-    } else{
-        popupErr.style.width = "0";
-        popupErr.style.padding = "0";
-    }
-}
-
-function clearErrorPopup() {
-    setTimeout(() => errorPopup(""), 2000);
-}
 
 function resetForm() {
     password.value = "";
@@ -75,8 +61,7 @@ login.addEventListener('click', async (event)=>{
 
         const timeout = setTimeout(() => {
             currentController.abort();
-            popupError("Request timed out! Please try again.");
-            clearErrorPopup();
+            displayError("Request timed out! Please try again.");
             loadingAnimation.style.display = "none"
         }, 8000);
 
@@ -92,8 +77,7 @@ login.addEventListener('click', async (event)=>{
         loadingAnimation.style.display = "none";
 
         if(!response.ok){
-            popupError("Server not responding")
-            clearErrorPopup();
+            displayError("Server not responding")
             loadingAnimation.style.display = "none";
             return;
         }
@@ -104,8 +88,7 @@ login.addEventListener('click', async (event)=>{
             resetForm()
         }
         else{
-            popupError("Invalid login credentials");
-            clearErrorPopup();
+            displayError("Invalid login credentials");
             resetForm()
         }
     }
@@ -117,8 +100,7 @@ login.addEventListener('click', async (event)=>{
         }
         else{
             console.error("Fetch error:", error);
-            popupError("Something went wrong! Please try again.");
-            clearErrorPopup();
+            displayError("Something went wrong! Please try again.");
         }
     }
 })

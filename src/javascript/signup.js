@@ -1,3 +1,6 @@
+//  Imports
+import { displayError } from "./utils/errorDisplay";
+
 //  G-variables
 const userName = document.querySelector("#name");
 const email = document.querySelector("#email");
@@ -5,7 +8,7 @@ const password = document.querySelector("#password");
 const confirmPassword = document.querySelector("#confirmPassword");
 const continueButton = document.querySelector("#continue");
 const errors = document.querySelector(".errors"); 
-const popupErr = document.querySelector(".popupErrors");
+const popupErr = document.querySelector(".displayErrors");
 const loadingAnimation = document.querySelector(".loading");
 const signinLink = document.querySelector("#signinLink");
 const isPrivacyChecked = document.querySelector("#T_C_Privacy")
@@ -45,23 +48,6 @@ function errorDisplay(error) {
     errors.style.color = "red";
 }
 
-// popup form of error right top corner display
-function popupError(error) {
-    if(error !== ""){
-        popupErr.textContent = error;
-        popupErr.style.width = "30vmin";
-        popupErr.style.padding = "1vmin";
-    } else{
-        popupErr.style.width = "0";
-        popupErr.style.padding = "0";
-    }
-}
-
-// clearing popup 2sec time
-function clearErrorPopup(time) {
-    setTimeout(() => errorPopup(""), time);
-}
-
 // reset form after successfull or fail login
 function resetForm(){
     userName.value = "",
@@ -97,14 +83,14 @@ confirmPassword.addEventListener("input", validateInputs);
 
 // check if user is offline
 window.addEventListener('offline', () => {
-    popupError("You are offline. Please check your internet connection.");
+    displayError("You are offline. Please check your internet connection.");
     continueButton.style.pointerEvents = "none";
     continueButton.style.opacity = "0.5";
 });
 
 // check if user is online
 window.addEventListener('online', () => {
-    popupError("You are back online. You can now continue.");
+    displayError("You are back online. You can now continue.");
     continueButton.style.pointerEvents = "auto";
     continueButton.style.opacity = "1";
 });
@@ -130,9 +116,8 @@ continueButton.addEventListener("click", async (e) => {
     try{
         const timeout = setTimeout(() => {
             currentController.abort();
-            popupError("Request timed out! Please try again.");
+            displayError("Request timed out! Please try again.");
             loadingAnimation.style.display = "none"
-            clearErrorPopup(2000)
         }, 8000);
         const response = await fetch(signUpURL, {
             method: 'POST',
@@ -147,8 +132,7 @@ continueButton.addEventListener("click", async (e) => {
         loadingAnimation.style.display = "none";
 
         if(!response.ok){
-            popupError("Server is not responding");
-            clearErrorPopup(2000)
+            displayError("Server is not responding");
             loadingAnimation.style.display = "none";
             return;
         }
@@ -159,8 +143,7 @@ continueButton.addEventListener("click", async (e) => {
             window.location.href = baseURL; // dashboard
             resetForm();
         } else {
-            popupError("Signup failed");
-            clearErrorPopup(2000)
+            displayError("Signup failed");
             loadingAnimation.style.display = "none";
             resetForm();
         }
@@ -179,7 +162,6 @@ continueButton.addEventListener("click", async (e) => {
         }
         
         console.error("fetch Error:", error)
-        popupError("Something went wrong! Please try again.");
-        clearErrorPopup(2000)
+        displayError("Something went wrong! Please try again.");
     }
 });
