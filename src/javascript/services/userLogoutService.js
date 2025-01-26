@@ -4,7 +4,6 @@ const logoutPopupContainer = document.querySelector(".logoutPopupContainer");
 const logoutIcon = document.querySelector(".logoutIcon");
 const noButton = document.querySelector(".noButton");
 const logout = document.querySelector("#logout");
-const popup = document.querySelector(".displayError");
 const baseURL = import.meta.env.VITE_BASE_URL;
 let currentController = null;
 let timeoutID;

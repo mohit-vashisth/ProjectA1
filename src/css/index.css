@@ -1071,18 +1071,25 @@ margin-left: 1vmin;
     font-size: 1.5vmin;
 }
 
-.storagePopup {
+.storagePopup100VH{
     position: fixed;
+    background-color: rgba(0, 0, 0, 0.3);
+    width: 100dvw;
+    height: 100dvh;
+    top: 0;
+    right: 0;
+    z-index: 5;
+    display: none;
+    justify-content: center;
+    align-items: center;
+}
+
+.storagePopup {
     width: 60vmin;
-    height: auto;
-    max-height: 80vmin;
+    height: 80vmin;
     background-color: #2a2c34;
     border: none;
     border-radius: 1vmin;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    display: none;
     flex-direction: column;
     align-items: flex-start;
     justify-content: flex-start;

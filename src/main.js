@@ -7,8 +7,8 @@ import { dragDisabledEXP } from "./javascript/utils/dragIconsSvg_UI";
 import { recentChatsEXP } from "./javascript/services/chatListService";
 import { displayError } from "./javascript/utils/errorDisplay";
 import { handleCurrentFileNameEXP } from "./javascript/services/renameChatService";
+import { storageHandleEXP } from "./javascript/services/storagePopupService";
 
-const popup = document.querySelector(".displayError")
 const verifyTokenURL = import.meta.env.VITE_VERIFYTOKEN_URL;
 const signupURL = import.meta.env.VITE_SIGNUP_URL;
 
@@ -88,3 +88,4 @@ assetsLoadingEXP()
 dragDisabledEXP()
 recentChatsEXP()
 handleCurrentFileNameEXP()
+storageHandleEXP()

@@ -1,7 +1,6 @@
 import { displayError } from "../utils/errorDisplay"
 
 const newChatButton = document.querySelector(".newChat")
-const errPopup = document.querySelector(".errorPopup")
 const newChatLoadingIndicator  = document.querySelector(".newChatButtonAnimation")
 const newChatButtonText = document.querySelector(".newChatButtonText")
 const baseURL = import.meta.env.VITE_BASE_URL;
@@ -9,6 +8,7 @@ const loginURL = import.meta.env.VITE_LOGIN_URL;
 const chatsURL = import.meta.env.VITE_CHATS_URL;
 
 let currentController = null
+let socket = null
 
 async function newChatHandle() {
     if(currentController){
@@ -43,7 +43,7 @@ async function newChatHandle() {
 
         const data = await response.json()
         if(data?.success && data.chatID){
-            const chatURL = `${chatsURL}${data.chatID}`
+            const newUrl = `${chatsURL}${data.chatID}`
             history.pushState(null, '', newUrl);
         }
         else{   

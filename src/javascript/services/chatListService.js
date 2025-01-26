@@ -2,7 +2,6 @@ import { displayError } from "../utils/errorDisplay";
 const recentChatsButton = document.querySelector(".recentChatsButton");
 const chatsSection = document.querySelector(".chatsSection");
 const iconRotate = document.querySelector(".dropdownRecentChats img");
-const popupErr = document.querySelector(".errorPopup");
 const baseURL = import.meta.env.VITE_BASE_URL;
 
 let currentController = null;
