@@ -63,4 +63,6 @@ async function logoutUser() {
   }
 }
 
-logout.addEventListener('click', logoutUser)
+export function logoutUserEXP() {
+  logout.addEventListener('click', logoutUser)
+}

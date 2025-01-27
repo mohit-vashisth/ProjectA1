@@ -84,8 +84,8 @@ function handleNameChange() {
   });
 }
 
+fileName.addEventListener("dblclick", openInputField);
 export function handleCurrentFileNameEXP() {
-  fileName.addEventListener("dblclick", openInputField);
   handleNameChange();
   setCurrentFileName();
 }

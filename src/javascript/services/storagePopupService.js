@@ -93,7 +93,6 @@ async function populateStorage() {
     if (data && data.chats) addChatToStorage(data.chats);
 
   } catch (error) {
-    clearTimeout(timeout);
     if (error.name === "AbortError") {
       displayError("Request aborted");
     }
@@ -195,9 +194,10 @@ async function deleteChats() {
 
 // Initialize
 toggleStorage();
+searchChats();
+selectChats();
+
 export function storageHandleEXP() {
   populateStorage();
-  searchChats();
-  selectChats();
   deleteChats();
 }

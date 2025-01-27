@@ -14,4 +14,6 @@ function exportOptions(button, displayContainer) {
     }
 }
 
-exportOptions(exportButton, exportDisplayContainer);
+export function exportVoiceEXP() {
+    exportOptions(exportButton, exportDisplayContainer);
+}
