@@ -1253,8 +1253,15 @@ margin-left: 1vmin;
     align-items: center;
     text-wrap: nowrap;
     word-break: break-word;
-    transition: width 0.3s ease;
-  }
+    transition: all 0.3s;
+}
+
+.errorPopup p{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: all 0.3s;
+}
 
 /* -------------------------------------------Right Section -------------------------------*/
 .rightMain{
@@ -1528,7 +1535,6 @@ margin-left: 1vmin;
   
   .textInputSection label {
     display: block;
-    margin-bottom: 8px;
     font-size: 16px;
   }
   
@@ -1553,6 +1559,29 @@ margin-left: 1vmin;
     box-shadow: 0 0 5px var(--buttonNew--);
 }
 
+.textInputLimit{
+    display: flex;
+    align-items: center;
+    margin-bottom: 1vmin;
+}
+
+.maxCharactorTextHolder{
+    background: var(--buttonNew--);
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    width: 125px;
+    height: 30px;
+    margin-left: 30px;
+    border-radius: 6px;
+    overflow: hidden;
+}
+
+.maximumChar{
+    font-size: 16px;
+    font-weight: bold;
+    margin-left: 5px;
+}
   
   .voiceOptions {
     width: 100%;

@@ -85,19 +85,39 @@ async function populateStorage() {
 
     clearTimeout(timeout);
 
-    if (!response.ok){
-      displayError(`error: ${response.status}`)
-    };
+    if (!response.ok) {
+      switch (response.status) {
+          case 400:
+              displayError("Invalid input. Please check your text or voice selection.");
+              break;
+          case 401:
+              displayError("You are not logged in. Please log in and try again.");
+              break;
+          case 403:
+              displayError("You do not have permission to perform this action.");
+              break;
+          case 404:
+              displayError("The requested resource was not found.");
+              break;
+          case 500:
+              displayError("A server error occurred. Please try again later.");
+              break;
+          default:
+              displayError("Something went wrong, Try again.");
+      }
+      return;
+  }
 
     const data = await response.json();
     if (data && data.chats) addChatToStorage(data.chats);
 
   } catch (error) {
     if (error.name === "AbortError") {
-      displayError("Request aborted");
-    }
-    else{
-      displayError("Failed to fetch files");
+        displayError("Request timeout.");
+    } else if (error.message.includes("Failed to fetch")) {
+        displayError("Unable to connect. Please check your internet connection.");
+    } else {
+        displayError("An unexpected error occurred.");
     }
   }
 }

@@ -10,13 +10,14 @@ import { newChatEXP } from "./javascript/services/newChatService";
 import { displayError } from "./javascript/utils/errorDisplay";
 import { exportVoiceEXP } from "./javascript/services/exportVoiceService";
 import { logoutUserEXP } from "./javascript/services/userLogoutService";
-import { textAreaInputEXP } from "./javascript/services/textAreaInputService";
+import { generateSpeechToVoiceEXP } from "./javascript/services/generateSpeechService";
 
 const verifyTokenURL = import.meta.env.VITE_VERIFYTOKEN_URL;
 const signupURL = import.meta.env.VITE_SIGNUP_URL;
 
 let currentController = null;
 let timeout;
+let retryCount = 0;
 
 async function validateUserCred() {
   if (currentController) {
@@ -38,26 +39,45 @@ async function validateUserCred() {
       signal: signal,
     });
     clearTimeout(timeout)
-
+    // new
     if (!response.ok) {
-      if (response.status === 401) {
-        const refreshResponse = await fetch(verifyTokenURL, {
-          method: "POST",
-          credentials: "include",
-          signal: signal,
-        });
-        clearTimeout(timeout)
-
-        if (refreshResponse.ok) {
-          return await validateUserCred();
-        } else {
-          window.location.href = signupURL;
-        }
-      } else {
-        window.location.href = signupURL;
+      switch (response.status) {
+        case 400:
+          displayError("Invalid input. Please check your text or voice selection.");
+          break;
+        case 401:
+          const refreshResponse = await fetch(verifyTokenURL, {
+            method: "POST",
+            credentials: "include",
+            signal: signal,
+          });
+          clearTimeout(timeout)
+          if (refreshResponse.ok) {
+            return await validateUserCred();
+          } else {
+            if (retryCount >= 1) {
+              displayError("Session expired. Please log in again.");
+              window.location.href = signupURL;
+              return;
+            }
+          retryCount++;
+          }
+          break;
+        case 403:
+          displayError("You do not have permission to perform this action.");
+          break;
+        case 404:
+          displayError("The requested resource was not found.");
+          break;
+        case 500:
+          displayError("A server error occurred. Please try again later.");
+          break;
+        default:
+          displayError("Something went wrong, Try again.");
       }
       return;
     }
+
     const data = await response.json();
 
     if (data && data.status && data.userInfo) {
@@ -65,9 +85,13 @@ async function validateUserCred() {
       localStorage.setItem("userEmail", data.userEmail);
     }
   } catch (error) {
-    clearTimeout(timeout)
-    if(error.name === "AbortError"){
-      displayError("request aborted")
+    clearTimeout(timeout);
+    if (error.name === "AbortError") {
+      displayError("Request timeout.");
+    } else if (error.message.includes("Failed to fetch")) {
+        displayError("Unable to connect. Please check your internet connection.");
+    } else {
+        displayError("An unexpected error occurred.");
     }
     console.error("Error verifying token:", error);
     window.location.href = signupURL;
@@ -95,7 +119,7 @@ function initApp() {
   storageHandleEXP();
   exportVoiceEXP()
   logoutUserEXP()
-  textAreaInputEXP() // temp
+  generateSpeechToVoiceEXP()
 }
 
 initApp();

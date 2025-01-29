@@ -263,7 +263,12 @@
             <div class="lowerRight">
                 <div class="speechGenerateContainer">
                     <div class="textInputSection">
-                        <label for="inputText">Add Speech</label>
+                        <div class="textInputLimit">
+                            <label for="inputText">Add Speech</label>
+                            <div class="maxCharactorTextHolder">
+                                <p class="maximumChar"></p>
+                            </div>
+                        </div>
                         <textarea id="inputText" placeholder="Type here..."></textarea>
                     </div>
                     <div class="voiceOptions">
@@ -302,12 +307,10 @@
                     </div>
                 </div>
             </div>
-            <div class="errorPopup"></div>
+            <div class="errorPopup">
+                <p>Error</p>
+            </div>
         </section>
-        
     </div>
-    <!------------------------------- Services | Endpoints ---------------------------->
-    <script type="module" src="src/javascript/services/selcPreloadOrOwnVoiceService.js"></script>
-    <script type="module" src="src/javascript/services/generateSpeechService.js"></script>
 </body>
 </html>

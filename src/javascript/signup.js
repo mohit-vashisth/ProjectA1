@@ -103,21 +103,20 @@ continueButton.addEventListener("click", async (e) => {
         currentController.abort()
         currentController = null;
     };
-
+    
     loadingAnimation.style.display = "flex";
-
+    
     currentController = new AbortController();  //api request control
-
+    
     userInfo.userName = userName.value;
     userInfo.userEmail = email.value;
     userInfo.userPassword = password.value;
     
-
+    
     try{
         const timeout = setTimeout(() => {
             currentController.abort();
             displayError("Request timed out! Please try again.");
-            loadingAnimation.style.display = "none"
         }, 8000);
         const response = await fetch(signUpURL, {
             method: 'POST',
@@ -129,39 +128,64 @@ continueButton.addEventListener("click", async (e) => {
             signal: currentController.signal,
         })
         clearTimeout(timeout)
-        loadingAnimation.style.display = "none";
+        
+        if (!response.ok) {
+            switch (response.status) {
+                case 400:
+                    displayError("Invalid input. Please check your text or voice selection.");
+                    break;
+                    case 401:
+                        displayError("You are not logged in. Please log in and try again.");
+                        break;
+                        case 403:
+                            displayError("You do not have permission to perform this action.");
+                            break;
+                            case 404:
+                                displayError("The requested resource was not found.");
+                                break;
+                case 500:
+                    displayError("A server error occurred. Please try again later.");
+                    break;
+                    default:
+                        displayError("Something went wrong, Try again.");
+                    }
+                    return;
+                }
 
-        if(!response.ok){
-            displayError("Server is not responding");
-            loadingAnimation.style.display = "none";
-            return;
-        }
-
-        const data = await response.json().catch(() => null); 
+                const data = await response.json().catch(() => null); 
         if (data && data.status === "success" && data.userName && data.userEmail && data.access_token) {
             
             window.location.href = baseURL; // dashboard
             resetForm();
         } else {
             displayError("Signup failed");
-            loadingAnimation.style.display = "none";
             resetForm();
         }
     }
     catch (error){
         clearTimeout(timeout);
-        if(error.name === "AbortError"){
-            console.error("Login request aborted!")
+        if (error.name === "AbortError") {
+            displayError("Request timeout.");
         }
-        if (!navigator.onLine) {
+        else if (error.message.includes("Failed to fetch")) {
+            displayError("Unable to connect. Please check your internet connection.");
+        }
+        else if (!navigator.onLine) {
             setTimeout(() => {
                 if (!navigator.onLine) {
                     window.location.reload();
                 }
             }, 5000);
         }
+        else {
+            displayError("An unexpected error occurred.");
+        }
         
         console.error("fetch Error:", error)
         displayError("Something went wrong! Please try again.");
+    }
+    finally {
+        loadingAnimation.style.display = "none";
+        clearTimeout(timeout)
     }
 });
