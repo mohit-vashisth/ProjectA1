@@ -1,7 +1,7 @@
 const aboutWebsitePopupContainer = document.querySelector('.aboutWebsitePopupContainer');
 const about = document.querySelector('.about');
 const aboutLinks = document.querySelectorAll('.aboutWItems li');
-const legalURL = import.meta.env.VITE_LEGALINFORMATION_URL;
+const legalURL = import.meta.env.VITE_LEGAL_3RMINDS_PAGE;
 
 
 function aboutWebsiteDisplay(aboutButton, popupContainer) {

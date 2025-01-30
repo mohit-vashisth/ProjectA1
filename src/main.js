@@ -13,7 +13,7 @@ import { logoutUserEXP } from "./javascript/services/userLogoutService";
 import { generateSpeechToVoiceEXP } from "./javascript/services/generateSpeechService";
 
 const verifyTokenURL = import.meta.env.VITE_VERIFYTOKEN_URL;
-const signupURL = import.meta.env.VITE_SIGNUP_URL;
+const signupPAGE = import.meta.env.VITE_SIGNUP_PAGE;
 
 let currentController = null;
 let timeout;
@@ -57,7 +57,7 @@ async function validateUserCred() {
           } else {
             if (retryCount >= 1) {
               displayError("Session expired. Please log in again.");
-              window.location.href = signupURL;
+              window.location.href = "projectA1/src/pages/login.html";
               return;
             }
           retryCount++;
@@ -94,7 +94,7 @@ async function validateUserCred() {
         displayError("An unexpected error occurred.");
     }
     console.error("Error verifying token:", error);
-    window.location.href = signupURL;
+    window.location.href = signupPAGE;
   }
 }
 
@@ -105,7 +105,6 @@ async function validateUserCred() {
 //       console.error("Error during user validation:", error);
 //   }
 // });
-// logout.addEventListener("click", logoutUser);
 
 function initApp() {
   newChatEXP();

@@ -8,7 +8,7 @@ const preAvailableRadio = document.getElementById("preAvailable");
 const useOwnVoiceRadio = document.getElementById("useOwnVoice");
 const preAvailableDropdown = document.getElementById("preAvailableDropdown");
 const useOwnVoiceDropdown = document.getElementById("useOwnVoiceDropdown");
-const baseURL = import.meta.env.VITE_BASE_URL
+const userSessionURL = import.meta.env.VITE_SESSION_URL
 
 let payload = {
     finalSpeech: "",
@@ -81,7 +81,7 @@ async function generateUserSpeech() {
             currentController.abort()
             displayError("Request timeout.")
         }, 8000)
-        const response = await fetch(baseURL, {
+        const response = await fetch(userSessionURL, {
             method: "POST",
             headers: {'Content-Type': 'application/json'},
             credentials: "include",

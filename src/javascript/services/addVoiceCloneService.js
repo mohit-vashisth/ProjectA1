@@ -19,7 +19,7 @@ const stopRecButton = document.querySelector(".stopButton");
 const resetRecButton = document.querySelector(".resetButton");
 const saveRecButton = document.querySelector(".saveButton");
 const recordingTime = document.querySelector(".recordingTime");
-const dataURL = import.meta.env.VITE_DATA_URL;
+const voiceDataURL = import.meta.env.VITE_VOICE_DATA_URL;
 const config = {
     recordLimit: 30, // seconds
     languages: ["English", "Hindi"]
@@ -222,7 +222,7 @@ async function saveRecording() {
             loadingAnimationBTN.style.display = "none"
             openDisplayButtonText.style.display = "flex" 
         }, 8000);
-        const response = await fetch(dataURL, {
+        const response = await fetch(voiceDataURL, {
             method: "POST",
             body: formData,
             signal: currentController.signal,

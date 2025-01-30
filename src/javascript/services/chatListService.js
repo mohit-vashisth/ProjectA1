@@ -2,7 +2,7 @@ import { displayError } from "../utils/errorDisplay";
 const recentChatsButton = document.querySelector(".recentChatsButton");
 const chatsSection = document.querySelector(".chatsSection");
 const iconRotate = document.querySelector(".dropdownRecentChats img");
-const baseURL = import.meta.env.VITE_BASE_URL;
+const userChatsURL = import.meta.env.VITE_CHATS_URL;
 
 let currentController = null;
 let currentChat = {
@@ -63,7 +63,7 @@ async function loadUserChats() {
       displayError("Taking too much time, try again later.");
     }, 8000);
 
-    const response = await fetch(baseURL, {
+    const response = await fetch(userChatsURL, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       credentials: "include",
