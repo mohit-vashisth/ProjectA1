@@ -1,5 +1,5 @@
 //  Imports
-import { displayError } from "./utils/errorDisplay";
+import { displayError } from "../../src/javascript/utils/errorDisplay";
 
 //  G-variables
 const userName = document.querySelector("#name");
@@ -12,8 +12,8 @@ const popupErr = document.querySelector(".displayErrors");
 const loadingAnimation = document.querySelector(".loading");
 const signinLink = document.querySelector("#signinLink");
 const isPrivacyChecked = document.querySelector("#T_C_Privacy")
-const signUpURL = import.meta.env.VITE_SIGNUP_URL;
-const baseURL = import.meta.env.VITE_BASE_URL;
+const signUpURL = import.meta.env.VITE_SIGNUP_EP;
+const dashboardPage = import.meta.env.VITE_DASHBOARD_PAGE;
 
 let currentController = null;
 let userInfo = {
@@ -155,7 +155,7 @@ continueButton.addEventListener("click", async (e) => {
                 const data = await response.json().catch(() => null); 
         if (data && data.status === "success" && data.userName && data.userEmail && data.access_token) {
             
-            window.location.href = baseURL; // dashboard
+            window.location.href = dashboardPage; // dashboard
             resetForm();
         } else {
             displayError("Signup failed");

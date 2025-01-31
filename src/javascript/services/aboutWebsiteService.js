@@ -19,14 +19,12 @@ function aboutWebsiteDisplay(aboutButton, popupContainer) {
 }
 
 export function aboutWWebsiteEXP() {
-    
-aboutWebsiteDisplay(about, aboutWebsitePopupContainer);
+    aboutWebsiteDisplay(about, aboutWebsitePopupContainer);
 
-
-aboutLinks.forEach(element => {
-    element.addEventListener("click", (e)=>{
-        e.preventDefault()
-        window.location.href = legalURL;
-    })
-});
+    aboutLinks.forEach(element => {
+        element.addEventListener("click", (e)=>{
+            e.preventDefault()
+            window.location.href = legalURL;
+        })
+    });
 }

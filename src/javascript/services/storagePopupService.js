@@ -8,7 +8,7 @@ const selectAllCheckbox = document.querySelector('.checkboxSelect');
 const deleteChatButton = document.querySelector('.deleteChatButton');
 const chatListUL = document.querySelector('.chatList');
 const searchBar = document.querySelector(".searchInput");
-const baseURL = import.meta.env.VITE_BASE_URL
+const storageURL = import.meta.env.VITE_STORAGE_FILES_EP
 
 // State
 let currentChat = {
@@ -76,7 +76,7 @@ async function populateStorage() {
       displayError("Request Aborted");
     }, 8000);
 
-    const response = await fetch(baseURL, {
+    const response = await fetch(`${storageURL}/get-chats`, {
       method: "GET",
       headers: { "Content-Type": "application/json" },
       credentials: "include",
@@ -182,7 +182,7 @@ async function deleteChats() {
           displayError("Request Aborted");
         }, 8000);
 
-        const response = await fetch(baseURL, {
+        const response = await fetch(`${storageURL}/delete-chats`, {
           method: "POST", // POST request for deletion
           headers: { "Content-Type": "application/json" },
           credentials: "include",

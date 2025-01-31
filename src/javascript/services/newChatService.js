@@ -3,12 +3,10 @@ import { displayError } from "../utils/errorDisplay"
 const newChatButton = document.querySelector(".newChat")
 const newChatLoadingIndicator  = document.querySelector(".newChatButtonAnimation")
 const newChatButtonText = document.querySelector(".newChatButtonText")
-const baseURL = import.meta.env.VITE_BASE_URL;
-const loginURL = import.meta.env.VITE_LOGIN_URL;
-const chatsURL = import.meta.env.VITE_CHATS_URL;
+const newSessionURL = import.meta.env.VITE_NEW_CHAT_EP;
+const loginPage = import.meta.env.VITE_LOGIN_PAGE;
 
 let currentController = null
-let socket = null
 
 async function newChatHandle() {
     if(currentController){
@@ -26,7 +24,7 @@ async function newChatHandle() {
             displayError("request aborted")
         }, 8000);
 
-        const response = await fetch(baseURL, {
+        const response = await fetch(newSessionURL, {
             method: "GET",
             credentials: "include",
             signal: currentController.signal,
@@ -60,13 +58,12 @@ async function newChatHandle() {
         }
 
         const data = await response.json()
-        if(data?.success && data.chatID){
-            const newUrl = `${chatsURL}${data.chatID}`
-            history.pushState(null, '', newUrl);
+        if(data?.success && data.sessionLink){
+            history.pushState(null, '', data.sessionLink);
         }
         else{   
             displayError("User timeout, redirecting to login")
-            window.location.href = loginURL
+            window.location.href = loginPage
         }
     }
     catch (error) {

@@ -19,7 +19,7 @@ const stopRecButton = document.querySelector(".stopButton");
 const resetRecButton = document.querySelector(".resetButton");
 const saveRecButton = document.querySelector(".saveButton");
 const recordingTime = document.querySelector(".recordingTime");
-const voiceDataURL = import.meta.env.VITE_VOICE_DATA_URL;
+const voiceDataURL = import.meta.env.VITE_USER_VOICE_ADD_EP;
 const config = {
     recordLimit: 30, // seconds
     languages: ["English", "Hindi"]

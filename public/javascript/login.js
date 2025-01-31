@@ -1,12 +1,12 @@
-import { displayError } from "./utils/errorDisplay";
+import { displayError } from "../../src/javascript/utils/errorDisplay";
 const email = document.querySelector("#email");
 const password = document.querySelector("#password");
 const login = document.querySelector("#login");
 const errShow = document.querySelector("#errorDisplay");
 const popupErr = document.querySelector(".displayErrors");
 const loadingAnimation = document.querySelector(".loading");
-const loginURL = import.meta.env.VITE_LOGIN_URL;
-const baseURL = import.meta.env.VITE_BASE_URL;
+const loginURL = import.meta.env.VITE_LOGIN_EP;
+const dashBoardPage = import.meta.env.VITE_DASHBOARD_PAGE;
 
 let currentController = null;
 let userLoginInfo = {
@@ -99,7 +99,7 @@ login.addEventListener('click', async (event)=>{
 
         const data = await response.json().catch(()=> null);
         if(data?.success && data.email && data.access_token){
-            window.location.href = baseURL;
+            window.location.href = dashBoardPage;
             resetForm()
         }
         else{

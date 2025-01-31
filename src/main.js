@@ -12,8 +12,8 @@ import { exportVoiceEXP } from "./javascript/services/exportVoiceService";
 import { logoutUserEXP } from "./javascript/services/userLogoutService";
 import { generateSpeechToVoiceEXP } from "./javascript/services/generateSpeechService";
 
-const verifyTokenURL = import.meta.env.VITE_VERIFYTOKEN_URL;
-const signupPAGE = import.meta.env.VITE_SIGNUP_PAGE;
+const verifyTokenURL = import.meta.env.VITE_VERIFY_TOKEN_URL;
+const userLoginPAGE = import.meta.env.VITE_LOGIN_PAGE;
 
 let currentController = null;
 let timeout;
@@ -57,7 +57,7 @@ async function validateUserCred() {
           } else {
             if (retryCount >= 1) {
               displayError("Session expired. Please log in again.");
-              window.location.href = "projectA1/src/pages/login.html";
+              window.location.href = userLoginPAGE;
               return;
             }
           retryCount++;
@@ -85,17 +85,17 @@ async function validateUserCred() {
       localStorage.setItem("userEmail", data.userEmail);
     }
   } catch (error) {
-    clearTimeout(timeout);
-    if (error.name === "AbortError") {
-      displayError("Request timeout.");
-    } else if (error.message.includes("Failed to fetch")) {
-        displayError("Unable to connect. Please check your internet connection.");
-    } else {
-        displayError("An unexpected error occurred.");
+      clearTimeout(timeout);
+      if (error.name === "AbortError") {
+        displayError("Request timeout.");
+      } else if (error.message.includes("Failed to fetch")) {
+          displayError("Unable to connect. Please check your internet connection.");
+      } else {
+          displayError("An unexpected error occurred.");
+      }
+      console.error("Error verifying token:", error);
+      window.location.href = userLoginPAGE;
     }
-    console.error("Error verifying token:", error);
-    window.location.href = signupPAGE;
-  }
 }
 
 // document.addEventListener("DOMContentLoaded", async () => {

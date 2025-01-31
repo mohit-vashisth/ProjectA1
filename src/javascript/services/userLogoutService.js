@@ -4,7 +4,10 @@ const logoutPopupContainer = document.querySelector(".logoutPopupContainer");
 const logoutIcon = document.querySelector(".logoutIcon");
 const noButton = document.querySelector(".noButton");
 const logout = document.querySelector("#logout");
-const baseURL = import.meta.env.VITE_BASE_URL;
+
+const userLogoutURL = import.meta.env.VITE_LOGOUT_EP;
+const loginPageURL = import.meta.env.VITE_LOGIN_PAGE
+
 let currentController = null;
 let timeoutID;
 
@@ -36,7 +39,7 @@ async function logoutUser() {
   currentController = new AbortController();
 
     try {
-        const response = await fetch(`${baseURL}/logout`, {
+        const response = await fetch(userLogoutURL, {
         method: "POST",
         credentials: "include",
         signal: currentController.signal,
@@ -69,7 +72,7 @@ async function logoutUser() {
         const data = await response.json();
         if (data && data.status) {
             localStorage.removeItem("access_token");
-            window.location.href = "/frontend/pages/auth/login.html";
+            window.location.href = loginPageURL;
         } else {
             displayError("something went wrong, unable to logout");
         }

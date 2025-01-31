@@ -5,7 +5,7 @@ const fileName = document.querySelector(".fileName");
 const fileNameEdit = document.querySelector(".fileNameEdit");
 const inputField = fileNameEdit.querySelector("input");
 
-const baseURL = import.meta.env.VITE_BASE_URL;
+const renameURL = import.meta.env.VITE_RENAME_EP;
 
 let currentController = null;
 
@@ -40,7 +40,7 @@ async function updateName() {
       displayError("Request Aborted!");
     }, 8000);
 
-    const response = await fetch(baseURL, {
+    const response = await fetch(renameURL, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       credentials: "include",
