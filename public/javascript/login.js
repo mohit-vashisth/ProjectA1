@@ -7,11 +7,13 @@ const popupErr = document.querySelector(".displayErrors");
 const loadingAnimation = document.querySelector(".loading");
 const loginURL = import.meta.env.VITE_LOGIN_EP;
 const dashBoardPage = import.meta.env.VITE_DASHBOARD_PAGE;
+const userTimeZone = Intl.DateTimeFormat().resolvedOptions().timeZone;
 
 let currentController = null;
 let userLoginInfo = {
     email: "",
-    password: ""
+    password: "",
+    timeZone: userTimeZone
 };
 document.addEventListener('DOMContentLoaded', () => {
     const link = document.createElement('link'); // Create a <link> element

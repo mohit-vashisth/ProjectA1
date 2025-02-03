@@ -4,10 +4,13 @@ import { defineConfig, loadEnv } from 'vite';
 export default defineConfig(({ mode }) => {
   const env = loadEnv(mode, process.cwd());
 
+  // Log environment variables for debugging
+  console.log('Loaded environment variables:', env);
+
   // Get the base URL and other page-specific URLs from environment variables or defaults
   const baseURL = env.VITE_BASE_URL || '/';
-  const signupURL = env.VITE_SIGNUP_URL || '/signup.html';
-  const loginURL = env.VITE_LOGIN_URL || '/login.html';
+  const signupURL = env.VITE_SIGNUP_PAGE || '/signup.html';  // Corrected to use the correct variable
+  const loginURL = env.VITE_LOGIN_PAGE || '/login.html';    // Corrected to use the correct variable
 
   return {
     // Set the base URL from the environment variable (for routing)

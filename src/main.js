@@ -121,4 +121,6 @@ function initApp() {
   generateSpeechToVoiceEXP()
 }
 
-initApp();
+document.addEventListener("DOMContentLoaded", () => {
+  initApp();
+});

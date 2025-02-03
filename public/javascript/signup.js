@@ -1,42 +1,34 @@
 //  Imports
 import { displayError } from "../../src/javascript/utils/errorDisplay";
-
 //  G-variables
 const userName = document.querySelector("#name");
 const email = document.querySelector("#email");
 const password = document.querySelector("#password");
 const confirmPassword = document.querySelector("#confirmPassword");
 const continueButton = document.querySelector("#continue");
-const errors = document.querySelector(".errors"); 
-const popupErr = document.querySelector(".displayErrors");
+const errors = document.querySelector(".errors");
 const loadingAnimation = document.querySelector(".loading");
 const signinLink = document.querySelector("#signinLink");
-const isPrivacyChecked = document.querySelector("#T_C_Privacy")
+const isPrivacyChecked = document.querySelector("#T_C_Privacy");
 const signUpURL = import.meta.env.VITE_SIGNUP_EP;
+const loginPage = import.meta.env.VITE_LOGIN_PAGE;
 const dashboardPage = import.meta.env.VITE_DASHBOARD_PAGE;
 
 let currentController = null;
 let userInfo = {
-    userName: "",
-    userEmail: "",
-    userPassword: ""
-}
+    userName: null,
+    userEmail: null,
+    userPassword: null,
+    timeZone: null,
+};
 
 // user side signin form
-if(signinLink){
-    signinLink.addEventListener('click', (event)=>{
-        event.preventDefault()
-        window.location.href = signUpURL;
-    })
+if (signinLink) {
+    signinLink.addEventListener('click', (event) => {
+        event.preventDefault();
+        window.location.href = loginPage;
+    });
 }
-
-// css dynamic inject
-document.addEventListener('DOMContentLoaded', () => {
-    const link = document.createElement('link');
-    link.rel = 'stylesheet';
-    link.href = '/frontend/css/pages/signup.css';
-    document.head.appendChild(link);
-});
 
 // continue button initial state
 continueButton.style.pointerEvents = "none";
@@ -48,16 +40,21 @@ function errorDisplay(error) {
     errors.style.color = "red";
 }
 
-// reset form after successfull or fail login
-function resetForm(){
-    userName.value = "",
-    email.value = ""
+// reset form after successful or failed login
+function resetForm() {
+    password.value = "";
+    confirmPassword.value = "";
+}
+
+// Email validation function
+function isValidEmail(email) {
+    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
 }
 
 // Function to check if all inputs are valid
 function validateInputs() {
     const isUserNameValid = userName.value.trim() !== "";
-    const isEmailValid = email.value.trim() !== "";
+    const isEmailValid = isValidEmail(email.value.trim());
     const isPasswordValid = password.value.trim() !== "";
     const isConfirmPasswordValid = confirmPassword.value.trim() !== "" && confirmPassword.value === password.value;
     const isPrivacyCheckedValid = isPrivacyChecked.checked; // Check if privacy policy is agreed
@@ -70,8 +67,11 @@ function validateInputs() {
         return true;
     } else {
         continueButton.style.pointerEvents = "none";
-        continueButton.style.opacity = "0.5"; // Optional: Make it look disabled
+        continueButton.style.opacity = "0.5";
+        errorDisplay("Please fill out all fields correctly.");
+        return false;
     }
+
 }
 
 // Add event listeners to all input fields
@@ -99,77 +99,83 @@ window.addEventListener('online', () => {
 continueButton.addEventListener("click", async (e) => {
     e.preventDefault();
 
-    if(currentController){
-        currentController.abort()
+    // Prevent multiple submissions
+    continueButton.disabled = true;
+
+    if (!validateInputs()) {
+        continueButton.disabled = false;
+        return;
+    }
+
+    if (currentController) {
+        currentController.abort();
         currentController = null;
-    };
-    
+    }
+
     loadingAnimation.style.display = "flex";
     
-    currentController = new AbortController();  //api request control
+    currentController = new AbortController(); // API request control
     
     userInfo.userName = userName.value;
     userInfo.userEmail = email.value;
     userInfo.userPassword = password.value;
-    
-    
-    try{
+    userInfo.timeZone = Intl.DateTimeFormat().resolvedOptions().timeZone;
+
+    try {
         const timeout = setTimeout(() => {
             currentController.abort();
             displayError("Request timed out! Please try again.");
         }, 8000);
+
         const response = await fetch(signUpURL, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({userInfo}),
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(userInfo),
             credentials: "include",
             signal: currentController.signal,
-        })
-        clearTimeout(timeout)
-        
+        });
+        clearTimeout(timeout);
+
+        const data = await response.json();
         if (!response.ok) {
+            const errorDetails = data?.detail || "Something went wrong. Try again.";
             switch (response.status) {
                 case 400:
-                    displayError("Invalid input. Please check your text or voice selection.");
+                    displayError(errorDetails || "Invalid input. Please check your text or voice selection.");
                     break;
-                    case 401:
-                        displayError("You are not logged in. Please log in and try again.");
-                        break;
-                        case 403:
-                            displayError("You do not have permission to perform this action.");
-                            break;
-                            case 404:
-                                displayError("The requested resource was not found.");
-                                break;
+                case 401:
+                    displayError(errorDetails || "You are not logged in. Please log in and try again.");
+                    break;
+                case 403:
+                    displayError(errorDetails || "You do not have permission to perform this action.");
+                    break;
+                case 404:
+                    displayError(errorDetails || "The requested resource was not found.");
+                    break;
+                case 409:
+                    displayError(errorDetails || "Email id already in use.");
+                    break;
                 case 500:
-                    displayError("A server error occurred. Please try again later.");
+                    displayError(errorDetails || "A server error occurred. Please try again later.");
                     break;
-                    default:
-                        displayError("Something went wrong, Try again.");
-                    }
-                    return;
-                }
+                default:
+                    displayError(errorDetails);
+            }
+            continueButton.disabled = false;
+            return;
+        }
 
-                const data = await response.json().catch(() => null); 
-        if (data && data.status === "success" && data.userName && data.userEmail && data.access_token) {
-            
-            window.location.href = dashboardPage; // dashboard
+        if (data.message === "User signed up successfully") {
+            window.location.href = dashboardPage;
             resetForm();
         } else {
-            displayError("Signup failed");
-            resetForm();
+            displayError("Signup failed. Please try again.");
         }
-    }
-    catch (error){
-        clearTimeout(timeout);
+        
+    } catch (error) {
         if (error.name === "AbortError") {
             displayError("Request timeout.");
-        }
-        else if (error.message.includes("Failed to fetch")) {
-            displayError("Unable to connect. Please check your internet connection.");
-        }
+        } 
         else if (!navigator.onLine) {
             setTimeout(() => {
                 if (!navigator.onLine) {
@@ -180,12 +186,9 @@ continueButton.addEventListener("click", async (e) => {
         else {
             displayError("An unexpected error occurred.");
         }
-        
-        console.error("fetch Error:", error)
-        displayError("Something went wrong! Please try again.");
-    }
-    finally {
+    } finally {
         loadingAnimation.style.display = "none";
-        clearTimeout(timeout)
+        resetForm();
+        continueButton.disabled = false;
     }
 });

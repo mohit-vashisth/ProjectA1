@@ -155,12 +155,12 @@ a:hover {
   background-color: #c1351d;
 }
 
-.popupErrors {
+.errorPopup {
   position: absolute;
   top: 10%;
   right: 0;
   width: 0;
-  height: 50px;
+  height: 80px;
   background-color: #e74c3c;
   border-radius: 10px;
   color: white;
@@ -170,8 +170,16 @@ a:hover {
   display: flex;
   justify-content: center;
   align-items: center;
+  text-wrap: nowrap;
   word-break: break-word;
-  transition: width 0.3s ease;
+  transition: all 0.3s;
+}
+
+.errorPopup p{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: all 0.3s;
 }
 
 
