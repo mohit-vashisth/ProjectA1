@@ -8,11 +8,16 @@ class User_signup(BaseModel):
     password: str = Field(..., alias="userPassword")
     signup_time: datetime = Field(default_factory=datetime.now)
     time_zone: str = Field(..., alias="timeZone")
+    privacy_link: bool = Field(..., alias="privacyCheck")
+
+    class config:
+        extra= "ignore"
 
 
 # whenever we create an instance date and time will be set to actual time when it will be created.
 class User_login(BaseModel):
-    email_ID: EmailStr = Field(..., alias="userEmail")
-    password: str = Field(..., alias="userPassword")
-    signup_time: datetime = Field(default_factory=datetime.now)
-    time_zone: str = Field(..., alias="timeZone")
+    email_ID: EmailStr = Field(..., alias="email")
+    password: str = Field(..., alias="password")
+
+    class config:
+        extra= "ignore"

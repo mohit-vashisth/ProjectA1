@@ -20,6 +20,7 @@ let userInfo = {
     userEmail: null,
     userPassword: null,
     timeZone: null,
+    privacyCheck: null,
 };
 
 // user side signin form
@@ -58,7 +59,7 @@ function validateInputs() {
     const isPasswordValid = password.value.trim() !== "";
     const isConfirmPasswordValid = confirmPassword.value.trim() !== "" && confirmPassword.value === password.value;
     const isPrivacyCheckedValid = isPrivacyChecked.checked; // Check if privacy policy is agreed
-
+    userInfo.privacyCheck = isPrivacyCheckedValid
     // Enable the button if all inputs are valid
     if (isUserNameValid && isEmailValid && isPasswordValid && isConfirmPasswordValid && isPrivacyCheckedValid) {
         continueButton.style.pointerEvents = "auto";
@@ -130,9 +131,8 @@ continueButton.addEventListener("click", async (e) => {
         const response = await fetch(signUpURL, {
             method: "POST",
             headers: { "Content-Type": "application/json" },
-            body: JSON.stringify(userInfo),
-            credentials: "include",
             signal: currentController.signal,
+            body: JSON.stringify(userInfo),
         });
         clearTimeout(timeout);
 
@@ -145,9 +145,6 @@ continueButton.addEventListener("click", async (e) => {
                     break;
                 case 401:
                     displayError(errorDetails || "You are not logged in. Please log in and try again.");
-                    break;
-                case 403:
-                    displayError(errorDetails || "You do not have permission to perform this action.");
                     break;
                 case 404:
                     displayError(errorDetails || "The requested resource was not found.");

@@ -7,6 +7,7 @@ def set_user_info(user_info):
     user_info_dict["password"] = password_hash(user_info.password)
     user_info_dict["signup_time"] = user_info.signup_time
     user_info_dict["time_zone"] = user_info.time_zone
+    user_info_dict["privacy_link"] = user_info.privacy_link
 
 def get_user_info():
     return user_info_dict

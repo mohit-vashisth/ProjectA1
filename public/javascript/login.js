@@ -2,18 +2,14 @@ import { displayError } from "../../src/javascript/utils/errorDisplay";
 const email = document.querySelector("#email");
 const password = document.querySelector("#password");
 const login = document.querySelector("#login");
-const errShow = document.querySelector("#errorDisplay");
-const popupErr = document.querySelector(".displayErrors");
 const loadingAnimation = document.querySelector(".loading");
 const loginURL = import.meta.env.VITE_LOGIN_EP;
 const dashBoardPage = import.meta.env.VITE_DASHBOARD_PAGE;
-const userTimeZone = Intl.DateTimeFormat().resolvedOptions().timeZone;
 
 let currentController = null;
 let userLoginInfo = {
     email: "",
-    password: "",
-    timeZone: userTimeZone
+    password: ""
 };
 document.addEventListener('DOMContentLoaded', () => {
     const link = document.createElement('link'); // Create a <link> element
@@ -58,49 +54,47 @@ login.addEventListener('click', async (event)=>{
     loadingAnimation.style.display = "flex";
     
     currentController = new AbortController();
-
+    let timeout
     try{
 
-        const timeout = setTimeout(() => {
+        timeout = setTimeout(() => {
             currentController.abort();
             displayError("Request timed out! Please try again.");
         }, 8000);
 
         const response = await fetch(loginURL, {
             method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify({ userLoginInfo }),
+            headers: {"Content-Type": "application/json"},
+            body: JSON.stringify(userLoginInfo),
+            credentials: "include",
             signal: currentController.signal,
         })
         clearTimeout(timeout);
 
+        const data = await response.json();
         if (!response.ok) {
+            const errorDetails = data?.detail || "Something went wrong. Try again.";
             switch (response.status) {
                 case 400:
-                    displayError("Invalid input. Please check your text or voice selection.");
+                    displayError(errorDetails || "Invalid input. Please check your text or voice selection.");
                     break;
                 case 401:
-                    displayError("You are not logged in. Please log in and try again.");
-                    break;
-                case 403:
-                    displayError("You do not have permission to perform this action.");
+                    displayError(errorDetails || "You are not logged in. Please log in and try again.");
                     break;
                 case 404:
-                    displayError("The requested resource was not found.");
+                    displayError(errorDetails || "The requested resource was not found.");
                     break;
                 case 500:
-                    displayError("A server error occurred. Please try again later.");
+                    displayError(errorDetails || "A server error occurred. Please try again later.");
                     break;
                 default:
-                    displayError("Something went wrong, Try again.");
+                    displayError(errorDetails || "Something went wrong. Try again.");
             }
+            continueButton.disabled = false;
             return;
         }
-
-        const data = await response.json().catch(()=> null);
-        if(data?.success && data.email && data.access_token){
+        
+        if(data?.message === "User logged in successfully."){
             window.location.href = dashBoardPage;
             resetForm()
         }
