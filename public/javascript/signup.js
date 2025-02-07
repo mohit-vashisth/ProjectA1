@@ -1,10 +1,13 @@
 //  Imports
 import { displayError } from "../../src/javascript/utils/errorDisplay";
+import { initializePhoneInput } from "./signup/userContactjs";
 //  G-variables
 const userName = document.querySelector("#name");
 const email = document.querySelector("#email");
 const password = document.querySelector("#password");
 const confirmPassword = document.querySelector("#confirmPassword");
+const contactNumber = document.querySelector("#contactNumber");
+const countryCode = document.querySelector("#countryCode");
 const continueButton = document.querySelector("#continue");
 const errors = document.querySelector(".errors");
 const loadingAnimation = document.querySelector(".loading");
@@ -18,6 +21,7 @@ let currentController = null;
 let userInfo = {
     userName: null,
     userEmail: null,
+    ContactNumber: null,
     userPassword: null,
     timeZone: null,
     privacyCheck: null,
@@ -30,6 +34,10 @@ if (signinLink) {
         window.location.href = loginPage;
     });
 }
+
+document.addEventListener('DOMContentLoaded', ()=>{
+    initializePhoneInput()
+})
 
 // continue button initial state
 continueButton.style.pointerEvents = "none";
@@ -45,11 +53,17 @@ function errorDisplay(error) {
 function resetForm() {
     password.value = "";
     confirmPassword.value = "";
+    contactNumber.value = "";
 }
 
 // Email validation function
 function isValidEmail(email) {
     return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+}
+
+function isValidContactNumber() {
+    const phoneNumber = contactNumber.value.trim();
+    return phoneNumber.length > 5;
 }
 
 // Function to check if all inputs are valid
@@ -59,9 +73,15 @@ function validateInputs() {
     const isPasswordValid = password.value.trim() !== "";
     const isConfirmPasswordValid = confirmPassword.value.trim() !== "" && confirmPassword.value === password.value;
     const isPrivacyCheckedValid = isPrivacyChecked.checked; // Check if privacy policy is agreed
+    const isContactNumberValid = isValidContactNumber();
     userInfo.privacyCheck = isPrivacyCheckedValid
+
+    if (!isContactNumberValid) {
+        errorDisplay("Contact number cannot be empty.");
+    }
+
     // Enable the button if all inputs are valid
-    if (isUserNameValid && isEmailValid && isPasswordValid && isConfirmPasswordValid && isPrivacyCheckedValid) {
+    if (isUserNameValid && isEmailValid && isPasswordValid && isConfirmPasswordValid && isContactNumberValid && isPrivacyCheckedValid) {
         continueButton.style.pointerEvents = "auto";
         continueButton.style.opacity = "1";
         errorDisplay("");
@@ -81,6 +101,7 @@ userName.addEventListener("blur", validateInputs);
 email.addEventListener("blur", validateInputs);
 password.addEventListener("blur", validateInputs);
 confirmPassword.addEventListener("input", validateInputs);
+contactNumber.addEventListener("blur", validateInputs);
 
 // check if user is offline
 window.addEventListener('offline', () => {
@@ -119,6 +140,7 @@ continueButton.addEventListener("click", async (e) => {
     
     userInfo.userName = userName.value;
     userInfo.userEmail = email.value;
+    userInfo.ContactNumber = await initializePhoneInput();
     userInfo.userPassword = password.value;
     userInfo.timeZone = Intl.DateTimeFormat().resolvedOptions().timeZone;
 

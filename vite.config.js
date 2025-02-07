@@ -5,7 +5,6 @@ export default defineConfig(({ mode }) => {
   const env = loadEnv(mode, process.cwd());
 
   // Log environment variables for debugging
-  console.log('Loaded environment variables:', env);
 
   // Get the base URL and other page-specific URLs from environment variables or defaults
   const baseURL = env.VITE_BASE_URL || '/';

@@ -9,6 +9,7 @@ class User_signup(BaseModel):
     signup_time: datetime = Field(default_factory=datetime.now)
     time_zone: str = Field(..., alias="timeZone")
     privacy_link: bool = Field(..., alias="privacyCheck")
+    contact_number: str = Field(..., alias="ContactNumber")
 
     class config:
         extra= "ignore"

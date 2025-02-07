@@ -1,54 +1,58 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>3R Minds - signup - ProjectA1</title>
-    <link rel="stylesheet" href="/src/css/utils.css">
-    <link rel="stylesheet" href="./css/signup.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>3R Minds - signup - ProjectA1</title>
+  <link rel="stylesheet" href="/src/css/utils.css" />
+  <link rel="stylesheet" href="./css/signup.css" />
 </head>
 <body>
-    <form>
-        <div class="formMainCard">
-            <h1 class="signup-heading">3R Minds - Create a New Account</h1>
-            <section class="nameEmailPassContainer">
-                <div>
-                    <input class="inputField" id="name" placeholder="Name" type="text">
-                </div>
-                <div>
-                    <input class="inputField" id="email" placeholder="Email" type="email">
-                </div>
-                <div>
-                    <input class="inputField" id="password" placeholder="Password" type="password">
-                </div>
-                <div>
-                    <input class="inputField" id="confirmPassword" placeholder="Confirm Password" type="password">
-                </div>
-            </section>
-            <section>
-                <div class="buttons">
-                    <p class="errors"></p>
-                    <div class="privacyHolder">
-                        <input id="T_C_Privacy" type="checkbox" style="transform: scale(1.5);">
-                        <label class="privacyLabel" for="T_C_Privacy">T&C & Privacy</label>
-                    </div>
-                    <a href="" id="signinLink">Already have an account?</a>
-                    <button id="continue">
-                        <span>Continue</span>
-                        <div class="loading"></div>
-                    </button>
-                </div>
-            </section>
-            <section>
-                <div class="otherWaysToSign">
-                    <button>Google Login</button>
-                </div>
-            </section>
+  <form>
+    <div class="formMainCard">
+      <h1 class="signup-heading">3R Minds - Create a New Account</h1>
+      <section class="nameEmailPassContainer">
+        <div>
+          <input class="inputField" id="name" placeholder="Name" type="text" required>
         </div>
-        <div class="errorPopup">
-            <p></p>
-        </div>    
-    </form>
+        <div>
+          <input class="inputField" id="email" placeholder="Email" type="email" required>
+        </div>
+        <div class="phoneInputContainer">
+            <select id="countryCode" class="inputField"></select>
+            <input class="inputField" id="contactNumber" placeholder="Enter your number" type="tel" required>
+          </div>
+        <div>
+          <input class="inputField" id="password" placeholder="Password" type="password" required>
+        </div>
+        <div>
+          <input class="inputField" id="confirmPassword" placeholder="Confirm Password" type="password" required>
+        </div>
+      </section>
+      <section>
+        <div class="buttons">
+          <p class="errors"></p>
+          <div class="privacyHolder">
+            <input id="T_C_Privacy" type="checkbox" style="transform: scale(1.5);">
+            <label class="privacyLabel" for="T_C_Privacy">T&C & Privacy</label>
+          </div>
+          <a href="" id="signinLink">Already have an account?</a>
+          <button id="continue">
+            <span>Continue</span>
+            <div class="loading"></div>
+          </button>
+        </div>
+      </section>
+      <section>
+        <div class="otherWaysToSign">
+          <button>Google Login</button>
+        </div>
+      </section>
+    </div>
+    <div class="errorPopup">
+      <p></p>
+    </div>
+  </form>
+  <script type="module" src="/public/javascript/signup.js"></script>
 </body>
-<script type="module" src="/public/javascript/signup.js"></script>
 </html>

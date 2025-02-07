@@ -203,4 +203,23 @@ a:hover {
   to{
     transform: rotate(360deg);
   } 
-} 
+}
+
+.phoneInputContainer {
+  display: flex;
+  gap: 10px;
+}
+
+#countryCode {
+  width: 30%;
+  padding: 5px;
+  font-size: 1rem;
+  border: none;
+  border-bottom: 2px solid #ccc;
+  background-color: #f8f8f8;
+  border-radius: 10px;
+}
+
+#contactNumber {
+  width: 70%;
+}

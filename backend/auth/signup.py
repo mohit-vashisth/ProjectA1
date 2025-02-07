@@ -21,12 +21,17 @@ async def signup(user_info: User_signup):
             status_code=status.HTTP_400_BAD_REQUEST,
             detail="Email required"
         )
+    if not user_info.contact_number:
+        raise HTTPException(
+            status_code=status.HTTP_400_BAD_REQUEST,
+            detail="Contact Number required"
+        )
     if not user_info.password:
         raise HTTPException(
             status_code=status.HTTP_400_BAD_REQUEST,
             detail="Password required"
         )
-    
+
     await email_validation(user_info.email_ID)
     await check_existing_email(database_emails(), user_info.email_ID, True)
 
