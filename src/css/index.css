@@ -1502,9 +1502,9 @@ margin-left: 1vmin;
     --rightSection--: #1d1f27; /* Background color */
     --new--button-bg--: #0052cc; /* Button color */
     --new--text-color--: #fff; /* Text color */
-  }
-  
-  .lowerRight {
+}
+
+.lowerRight {
     width: 100%;
     display: flex;
     flex-direction: column;
@@ -1515,30 +1515,31 @@ margin-left: 1vmin;
     border-radius: 10px;
     margin-top: 10vmin;
     overflow-y: auto;
-  }
+}
 
-  .speechGenerateContainer{
+.speechGenerateContainer{
     width: 90%;
     display: flex;
     justify-content: flex-start;
     align-items: flex-start;
     flex-direction: column;
+    gap: 20px;
     background-color: var(--rightSection--);
     padding: 2vmin 3vmin;
     border-radius: 2vmin;
-  }
-  
-  .textInputSection {
+}
+
+.textInputSection {
     width: 100%;
     margin-bottom: 20px;
-  }
-  
-  .textInputSection label {
+}
+
+.textInputSection label {
     display: block;
     font-size: 16px;
-  }
-  
-  .textInputSection textarea {
+}
+
+.textInputSection textarea {
     width: 100%;
     min-height: 200px;
     background-color: #2a2c34;
@@ -1583,28 +1584,27 @@ margin-left: 1vmin;
     margin-left: 5px;
 }
   
-  .voiceOptions {
+.voiceOptions {
     width: 100%;
-    margin-bottom: 20px;
-  }
-  
-  .voiceOptions p {
+}
+
+.voiceOptions p {
     font-size: 16px;
     margin-bottom: 10px;
-  }
-  
-  .voiceOptions div {
+}
+
+.voiceOptions div {
     display: flex;
     align-items: center;
     gap: 10px;
     margin-bottom: 2vmin;
-  }
-  
-  .voiceOptions input[type="radio"] {
+}
+
+.voiceOptions input[type="radio"] {
     margin-right: 10px;
-  }
-  
-  .voiceOptions select {
+}
+
+.voiceOptions select, .selectLangToTranslateSection select {
     width: 40vmin;
     margin-left: 20px;
     padding: 5px;
@@ -1612,9 +1612,18 @@ margin-left: 1vmin;
     border: 1px solid #444;
     border-radius: 5px;
     color: var(--new--text-color--);
-  }
+}
+
+.speechOptions{
+    display: flex;
+    width: 100%;
+}
+.selectLangToTranslateSection{
+    display: flex;
+    gap: 10px;
+}
   
-  .generateSpeechBtn {
+.generateSpeechBtn, .translateSpeechBtn {
     background-color: var(--buttonNew--);
     color: var(--new--text-color--);
     border: none;
@@ -1622,9 +1631,9 @@ margin-left: 1vmin;
     font-size: 16px;
     border-radius: 5px;
     cursor: pointer;
-  }
+}
   
-  .generateSpeechBtn:hover {
+.generateSpeechBtn:hover, .translateSpeechBtn:hover {
     opacity: .9;
 }
 

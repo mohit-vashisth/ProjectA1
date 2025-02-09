@@ -37,10 +37,11 @@ async function userSpeech() {
     );
 }
 
-function userFinalSpeech() {
+export function userFinalSpeech() {
     inputText.addEventListener('blur', () => {
         payload.finalSpeech = inputText.value;
     });
+    return payload.finalSpeech
 }
 
 function selectLangPreference() {

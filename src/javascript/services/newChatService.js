@@ -1,5 +1,4 @@
 import { displayError } from "../utils/errorDisplay"
-
 const newChatButton = document.querySelector(".newChat")
 const newChatLoadingIndicator  = document.querySelector(".newChatButtonAnimation")
 const newChatButtonText = document.querySelector(".newChatButtonText")

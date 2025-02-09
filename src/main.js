@@ -11,6 +11,7 @@ import { displayError } from "./javascript/utils/errorDisplay";
 import { exportVoiceEXP } from "./javascript/services/exportVoiceService";
 import { logoutUserEXP } from "./javascript/services/userLogoutService";
 import { generateSpeechToVoiceEXP } from "./javascript/services/generateSpeechService";
+import { translateServiceEXP } from "./javascript/services/translateSpeechService";
 
 const verifyTokenURL = import.meta.env.VITE_VERIFY_TOKEN_URL;
 const userLoginPAGE = import.meta.env.VITE_LOGIN_PAGE;
@@ -119,6 +120,7 @@ function initApp() {
   exportVoiceEXP()
   logoutUserEXP()
   generateSpeechToVoiceEXP()
+  translateServiceEXP()
 }
 
 document.addEventListener("DOMContentLoaded", () => {

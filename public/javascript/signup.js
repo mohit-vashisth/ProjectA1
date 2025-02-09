@@ -7,7 +7,6 @@ const email = document.querySelector("#email");
 const password = document.querySelector("#password");
 const confirmPassword = document.querySelector("#confirmPassword");
 const contactNumber = document.querySelector("#contactNumber");
-const countryCode = document.querySelector("#countryCode");
 const continueButton = document.querySelector("#continue");
 const errors = document.querySelector(".errors");
 const loadingAnimation = document.querySelector(".loading");
