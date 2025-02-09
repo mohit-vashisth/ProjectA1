@@ -41,6 +41,6 @@ async def signup(user_info: User_signup):
     "message": "User signed up successfully",
     "userName": user_info.user_name,
     "userEmail": user_info.email_ID,
-    "accessToken": "sampleAccessToken"
+    "access_token": "sampleAccessToken"
 }
 

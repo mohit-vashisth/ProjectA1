@@ -2,8 +2,9 @@ from auth.signup import signup_route
 from auth.login import login_route
 from dashboard.new_chat_service import new_chat_route
 
-from fastapi import FastAPI
+from fastapi import FastAPI, HTTPException, Request
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.responses import JSONResponse
 
 app = FastAPI()
 
@@ -17,9 +18,16 @@ app.add_middleware(
     # max_age=86400,  # Cache for 1 day in browser this is for production
 )
 
+@app.exception_handler(HTTPException)
+async def http_exception_handler(request: Request, exc: HTTPException):
+    return JSONResponse(
+        status_code=exc.status_code,
+        content={"message": exc.detail or "An error occurred. Please try again."},  # Default message
+    )
+
 app.include_router(signup_route, tags=["auth"])
 app.include_router(login_route, tags=["auth"])
-app.include_router(new_chat_route, tags=["services"])
+app.include_router(new_chat_route, tags=["services"]) # later on we will ad Depends in this, so that owr auth will work at every request
 
 @app.get("/")
 def root() -> dict:
