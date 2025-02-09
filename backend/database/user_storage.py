@@ -1,4 +1,4 @@
-from utils.security import password_hash
+from security.security import password_hash
 user_info_dict = {}
 
 def set_user_info(user_info):

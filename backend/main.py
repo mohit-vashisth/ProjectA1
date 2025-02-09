@@ -17,9 +17,9 @@ app.add_middleware(
     # max_age=86400,  # Cache for 1 day in browser this is for production
 )
 
-app.include_router(signup_route)
-app.include_router(login_route)
-app.include_router(new_chat_route)
+app.include_router(signup_route, tags=["auth"])
+app.include_router(login_route, tags=["auth"])
+app.include_router(new_chat_route, tags=["services"])
 
 @app.get("/")
 def root() -> dict:

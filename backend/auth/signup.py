@@ -1,9 +1,9 @@
 from fastapi import APIRouter, HTTPException, status
-from utils.email_verification import email_validation
+from security.email_verification import email_validation
 from schema.user_model import User_signup
 from database.user_storage import set_user_info, database_emails
 from config import env_variables
-from utils.check_existing_email import check_existing_email
+from security.check_existing_email import check_existing_email
 
 signup_route = APIRouter()
 

@@ -1,9 +1,9 @@
 from fastapi import APIRouter, HTTPException, status
 from schema.user_model import User_login
-from utils.security import verify_user_password
+from security.security import verify_user_password
 from database.user_storage import database_emails
-from utils.email_verification import email_validation
-from utils.check_existing_email import check_existing_email
+from security.email_verification import email_validation
+from security.check_existing_email import check_existing_email
 from config import env_variables
 
 login_route = APIRouter()
