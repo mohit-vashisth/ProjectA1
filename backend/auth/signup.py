@@ -1,9 +1,9 @@
 from fastapi import APIRouter, HTTPException, status
 from security.email_verification import email_validation
-from schema.user_model import User_signup
-from database.user_storage import set_user_info, database_emails
+from backend.schema.user_models import User_signup
 from config import env_variables
 from security.check_existing_email import check_existing_email
+from database.user_info_db_storage import create_user
 
 signup_route = APIRouter()
 
@@ -33,14 +33,16 @@ async def signup(user_info: User_signup):
         )
 
     await email_validation(user_info.email_ID)
-    await check_existing_email(database_emails(), user_info.email_ID, True)
 
-    set_user_info(user_info)
+    database_emails_temp = ("mohitvashisth2703@gmail.com")
+    await check_existing_email(database_emails_temp, user_info.email_ID, True)
+
+    user = create_user(user_info)
 
     return {
     "message": "User signed up successfully",
-    "userName": user_info.user_name,
-    "userEmail": user_info.email_ID,
+    "userName": user.user_name,
+    "userEmail": user.email_ID,
     "access_token": "sampleAccessToken"
 }
 
