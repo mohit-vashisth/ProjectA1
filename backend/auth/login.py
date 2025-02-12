@@ -1,7 +1,6 @@
 from fastapi import APIRouter, HTTPException, status
-from backend.schema.user_models import User_login
+from schema.user_models import User_login
 from security.security import verify_user_password
-from database.user_storage import database_emails
 from security.email_verification import email_validation
 from security.check_existing_email import check_existing_email
 from config import env_variables
@@ -23,8 +22,10 @@ async def login(user_info: User_login):
             detail="Password required"
         )
     
+    database_emails = ("mohitvashisth2703@gmail.com")
+
     await email_validation(user_info.email_ID)
-    if not await check_existing_email(database_emails(),user_info.email_ID, False):
+    if not await check_existing_email(database_emails,user_info.email_ID, False):
         raise HTTPException(
             status_code=status.HTTP_401_UNAUTHORIZED,
             detail="Account not found associated with this email id"

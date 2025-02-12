@@ -14,13 +14,14 @@ async def check_db_exists(client: AsyncIOMotorClient, db_name: str) -> bool:
         before_sleep=lambda retry_state: print(f"⚠️ Retrying MongoDB connection ({retry_state.attempt_number})...")
 )
 async def init() -> None:
-    db_name = env_variables("DATABASE_INIT")
+    db_name = env_variables("DATABASE_INIT") or "ProjectA1" # this env_variables("DATABASE_INIT") is not working, its returning none whenever i try to load env variable it says None.
     client = AsyncIOMotorClient(env_variables("MONGO_URI"))
     
     # testing connection 
     try:
-        await client.admin.command('ping')
+        await client.admin.command('ping')  
         print("MongoDB connection successful")
+        print("DATABASE_INIT:", env_variables("DATABASE_INIT"))
     except Exception as e:
         print(f"Database connection error: {e}")
         return
