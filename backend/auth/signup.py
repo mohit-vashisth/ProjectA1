@@ -37,12 +37,11 @@ async def signup(user_info: User_signup):
     database_emails_temp = ("mohitvashisth2703@gmail.com")
     await check_existing_email(database_emails_temp, user_info.email_ID, True)
 
-    user = create_user(user_info)
-
+    await create_user(user_info)
+    
     return {
     "message": "User signed up successfully",
-    "userName": user.user_name,
-    "userEmail": user.email_ID,
+    "userName": user_info.user_name,
+    "userEmail": user_info.email_ID,
     "access_token": "sampleAccessToken"
 }
-

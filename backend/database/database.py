@@ -1,7 +1,7 @@
 from motor.motor_asyncio import AsyncIOMotorClient
 from config import env_variables
 from beanie import init_beanie
-from schema.user_models import User_db_model
+from schema.user_models import Users
 from tenacity import retry, stop_after_attempt, before_sleep, wait_exponential
 
 async def check_db_exists(client: AsyncIOMotorClient, db_name: str) -> bool:
@@ -14,18 +14,23 @@ async def check_db_exists(client: AsyncIOMotorClient, db_name: str) -> bool:
         before_sleep=lambda retry_state: print(f"⚠️ Retrying MongoDB connection ({retry_state.attempt_number})...")
 )
 async def init() -> None:
-    db_name = env_variables("DATABASE_INIT") or "ProjectA1" # this env_variables("DATABASE_INIT") is not working, its returning none whenever i try to load env variable it says None.
+    db_name = env_variables("DATABASE_INIT")
     client = AsyncIOMotorClient(env_variables("MONGO_URI"))
     
     # testing connection 
     try:
         await client.admin.command('ping')  
         print("MongoDB connection successful")
-        print("DATABASE_INIT:", env_variables("DATABASE_INIT"))
     except Exception as e:
         print(f"Database connection error: {e}")
         return
     
-    if not await check_db_exists(client, db_name):
-        db = client[db_name]
-        await init_beanie(database=db, document_models=[User_db_model])
+    db = client[db_name]
+    await init_beanie(database=db, document_models=[Users]) 
+        
+    if Users.get_motor_collection() is None:
+        print("❌ Beanie initialization failed for User_db_model")
+    else:
+        print("✅ Beanie initialized successfully for User_db_model")
+        users = await Users.find().to_list()
+        print(users)

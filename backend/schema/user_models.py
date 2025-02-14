@@ -11,7 +11,7 @@ class User_signup(BaseModel):
     privacy_link: bool = Field(..., alias="privacyCheck")
     contact_number: str = Field(..., alias="ContactNumber")
 
-    class config:
+    class Config:
         extra= "ignore"
 
 
@@ -20,11 +20,12 @@ class User_login(BaseModel):
     email_ID: EmailStr = Field(..., alias="email")
     password: str = Field(..., alias="password")
 
-    class config:
+    class Config:
         extra= "ignore"
 
 
-class User_db_model(Document):
+# database model
+class Users(Document):
     user_name: str
     email_ID: EmailStr
     password: str
@@ -33,8 +34,11 @@ class User_db_model(Document):
     privacy_link: bool
     contact_number: str
 
-    class settings:
-        extra = "users"
+    @property
+    def id(self):
+        return self.email_ID # to treat gmail as uniqueKey and for query and existing gmails validation will be more easier
+    class Settings:
+        collection = "Users"
         indexes = [
             "email_ID",
             [("created_at", -1)], # -1 for decending, we will get latest users on the top and oldest user at last

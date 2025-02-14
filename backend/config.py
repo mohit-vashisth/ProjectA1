@@ -15,3 +15,4 @@ def env_variables(key):
     value = os.getenv(key)
     if value and value.startswith("http"):
         return urlparse(value).path
+    return value
