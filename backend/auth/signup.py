@@ -1,13 +1,13 @@
 from fastapi import APIRouter, HTTPException, status
 from security.email_verification import email_validation
-from schema.user_models import User_signup
+from schemas.user_schema import User_signup
 from config import env_variables
 from security.check_existing_email import check_existing_email
-from database.user_info_db_storage import create_user
+from auth.create_user import create_user
 
 signup_route = APIRouter()
 
-
+print(env_variables("VITE_SIGNUP_EP"))
 # signup route/path/Endpoint
 @signup_route.post(env_variables("VITE_SIGNUP_EP"), status_code=status.HTTP_201_CREATED)
 async def signup(user_info: User_signup):
@@ -33,10 +33,7 @@ async def signup(user_info: User_signup):
         )
 
     await email_validation(user_info.email_ID)
-
-    database_emails_temp = ("mohitvashisth2703@gmail.com")
-    await check_existing_email(database_emails_temp, user_info.email_ID, True)
-
+    await check_existing_email(("mohittvashisth2703@gmail.com"), user_info.email_ID)
     await create_user(user_info)
     
     return {

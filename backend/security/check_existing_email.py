@@ -1,6 +1,6 @@
 from fastapi import HTTPException, status
 # Handling existing user email ids
-async def check_existing_email(emails: set, requested_email: str, is_signup: bool) -> bool:
+async def check_existing_email(emails: set, requested_email: str, is_signup: bool = True) -> bool:
     if is_signup and requested_email in emails:
         raise HTTPException(
             status_code=status.HTTP_401_UNAUTHORIZED,

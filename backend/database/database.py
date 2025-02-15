@@ -1,7 +1,7 @@
 from motor.motor_asyncio import AsyncIOMotorClient
 from config import env_variables
 from beanie import init_beanie
-from schema.user_models import Users
+from schemas.user_model import Users
 from tenacity import retry, stop_after_attempt, before_sleep, wait_exponential
 
 async def check_db_exists(client: AsyncIOMotorClient, db_name: str) -> bool:
@@ -32,5 +32,3 @@ async def init() -> None:
         print("❌ Beanie initialization failed for User_db_model")
     else:
         print("✅ Beanie initialized successfully for User_db_model")
-        users = await Users.find().to_list()
-        print(users)
