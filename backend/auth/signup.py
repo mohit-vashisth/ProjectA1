@@ -1,5 +1,4 @@
 from fastapi import APIRouter, HTTPException, status
-from security.email_verification import email_validation
 from schemas.user_schema import User_signup
 from config import env_variables
 from security.check_existing_email import check_existing_email
@@ -32,7 +31,6 @@ async def signup(user_info: User_signup):
             detail="Password required"
         )
 
-    await email_validation(user_info.email_ID)
     if await check_existing_email(user_info.email_ID, True):
         await create_user(user_info)
     

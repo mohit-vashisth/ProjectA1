@@ -1,10 +1,9 @@
 from fastapi import APIRouter, HTTPException, status
 from schemas.user_schema import User_login
-from security.security import verify_user_password
-from security.email_verification import email_validation
+from security.pass_verifier import verify_user_password
 from security.check_existing_email import check_existing_email
 from config import env_variables
-from database.find_user import get_user
+from database.user_queries import get_user
 
 login_route = APIRouter()
 
@@ -21,7 +20,6 @@ async def login(user_info: User_login):
             detail="Password required"
         )
     
-    await email_validation(user_info.email_ID)
     await check_existing_email(user_info.email_ID, False)
 
     user_data = await get_user(user_info.email_ID)  # First, await the function call

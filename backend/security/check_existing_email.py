@@ -1,5 +1,6 @@
 from fastapi import HTTPException, status
-from database.find_user import get_user
+from database.user_queries import get_user
+
 async def check_existing_email(req_email: str, is_signup: bool = True) -> bool:
     user_data = await get_user(req_email)
     # Debugging ke liye add ki line 
