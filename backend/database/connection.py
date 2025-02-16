@@ -2,7 +2,7 @@ from motor.motor_asyncio import AsyncIOMotorClient
 from config import env_variables
 from beanie import init_beanie
 from schemas.user_model import Users
-from tenacity import retry, stop_after_attempt, before_sleep, wait_exponential
+from tenacity import retry, stop_after_attempt, wait_exponential
 
 async def check_db_exists(client: AsyncIOMotorClient, db_name: str) -> bool:
     db_list = await client.list_database_names()

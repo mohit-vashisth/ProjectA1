@@ -4,7 +4,7 @@ from dashboard.services.new_chat_service import new_chat_route
 from fastapi import FastAPI, HTTPException, Request
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import JSONResponse
-from database.database import init
+from database.connection import init
 from contextlib import asynccontextmanager
 
 @asynccontextmanager
