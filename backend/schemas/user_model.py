@@ -1,11 +1,11 @@
 from datetime import datetime
 from pydantic import Field, EmailStr
-from beanie import Document
+from beanie import Document, Indexed
 from datetime import datetime, timezone
 
 class Users(Document):
     user_name: str
-    email_ID: EmailStr = Field(unique=True)  # Ensure email is unique
+    email_ID: EmailStr = Field(default=..., unique=True, index=True)  # Ensure email is unique
     password: str  # Store hashed password
     time_zone: str
     created_at: datetime = Field(default_factory=lambda: datetime.now(timezone.utc))  # Timezone-aware datetime
@@ -18,9 +18,4 @@ class Users(Document):
 
     class Settings:
         collection = "Users"
-        indexes = [
-            "email_ID",  # Unique Index
-            [("created_at", -1)],  # Sorting by latest users
-            "user_name"
-        ]
 
