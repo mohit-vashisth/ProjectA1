@@ -7,7 +7,7 @@ def password_hash(password: str) -> str:
     return pass_context.hash(password)
 
 # used to verify the password with stored password in database
-def verify_user_password(password: str, hashed_password: str) -> bool:
+def verify_user_password(hashed_password: str, password: str) -> bool:
     return pass_context.verify(password, hashed_password)
 
 def check_auth(user_cred: str) -> None:

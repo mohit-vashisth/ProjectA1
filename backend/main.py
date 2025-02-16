@@ -30,7 +30,11 @@ app.add_middleware(
 async def http_exception_handler(request: Request, exc: HTTPException):
     return JSONResponse(
         status_code=exc.status_code,
-        content={"message": exc.detail or "An error occurred. Please try again."},  # Default message
+        content={
+            "message": exc.detail or "An error occurred. Please try again.",
+            "method": request.method,
+            "url": str(request.url),
+        },
     )
 
 app.include_router(signup_route, tags=["auth"])

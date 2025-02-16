@@ -159,22 +159,22 @@ continueButton.addEventListener("click", async (e) => {
 
         const data = await response.json();
         if (!response.ok) {
-            const errorDetails = data?.detail || "Something went wrong. Try again.";
+            const errorDetails = data?.detail;
             switch (response.status) {
                 case 400:
-                    displayError(errorDetails || "Invalid input. Please check your text or voice selection.");
+                    displayError(errorDetails);
                     break;
                 case 401:
-                    displayError(errorDetails || "You are not logged in. Please log in and try again.");
+                    displayError(errorDetails);
                     break;
                 case 404:
-                    displayError(errorDetails || "The requested resource was not found.");
+                    displayError(errorDetails);
                     break;
                 case 409:
-                    displayError(errorDetails || "Email id already in use.");
+                    displayError(errorDetails);
                     break;
                 case 500:
-                    displayError(errorDetails || "A server error occurred. Please try again later.");
+                    displayError(errorDetails);
                     break;
                 default:
                     displayError(errorDetails);

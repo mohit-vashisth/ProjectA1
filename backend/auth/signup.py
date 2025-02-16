@@ -33,8 +33,8 @@ async def signup(user_info: User_signup):
         )
 
     await email_validation(user_info.email_ID)
-    await check_existing_email(("mohittvashisth2703@gmail.com"), user_info.email_ID)
-    await create_user(user_info)
+    if await check_existing_email(user_info.email_ID, True):
+        await create_user(user_info)
     
     return {
     "message": "User signed up successfully",
