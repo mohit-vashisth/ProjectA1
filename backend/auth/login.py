@@ -2,7 +2,7 @@ from fastapi import APIRouter, HTTPException, status
 from schemas.user_schema import User_login
 from security.pass_verifier import verify_user_password
 from security.check_existing_email import check_existing_email
-from config import env_variables
+from core.config import env_variables
 from database.user_queries import get_user
 
 login_route = APIRouter()

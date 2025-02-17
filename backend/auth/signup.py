@@ -1,6 +1,6 @@
 from fastapi import APIRouter, HTTPException, status
 from schemas.user_schema import User_signup
-from config import env_variables
+from core.config import env_variables
 from security.check_existing_email import check_existing_email
 from auth.create_user import create_user
 

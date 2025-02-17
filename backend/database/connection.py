@@ -1,5 +1,5 @@
 from motor.motor_asyncio import AsyncIOMotorClient
-from config import env_variables
+from core.config import env_variables
 from beanie import init_beanie
 from schemas.user_model import Users
 from tenacity import retry, stop_after_attempt, wait_exponential
