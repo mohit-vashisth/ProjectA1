@@ -34,7 +34,7 @@ async def signup(user_info: User_signup):
     if await check_existing_email(user_info.email_ID, True):
         user = await create_user(user_info)
         logging.info("User creation sucessful")
-        token = await create_access_token(user_info)
+        token = await create_access_token(user)
 
         logging.info("Signup sucessful")
     

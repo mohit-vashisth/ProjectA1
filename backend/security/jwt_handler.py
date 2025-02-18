@@ -3,7 +3,7 @@ from fastapi import HTTPException, Depends
 from auth.create_user import create_user
 from core import config
 from utils.current_time import current_time
-from datetime import timedeltSa
+from datetime import timedelta
 from fastapi.security import OAuth2PasswordBearer
 import logging
 
