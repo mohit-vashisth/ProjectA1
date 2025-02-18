@@ -2,12 +2,11 @@ from fastapi import APIRouter, HTTPException, status
 from schemas.user_schema import User_login
 from security.pass_verifier import verify_user_password
 from security.check_existing_email import check_existing_email
-from core.config import env_variables
+from core import config
 from database.user_queries import get_user
 
 login_route = APIRouter()
-
-@login_route.post(env_variables("VITE_LOGIN_EP"), status_code=status.HTTP_200_OK)
+@login_route.post(config.VITE_LOGIN_EP, status_code=status.HTTP_200_OK)
 async def login(user_info: User_login):
     if not user_info.email_ID:
         raise HTTPException(
@@ -29,7 +28,7 @@ async def login(user_info: User_login):
             detail="Invalid password"
     )
     else:
-        print(f"user {user_info} is verified and logged in")
+        print(f"user {user_info} is verified and logged in") # temperory
 
     return {
     "message": "User logged in successfully.",

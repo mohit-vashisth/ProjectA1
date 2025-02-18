@@ -1,4 +1,4 @@
-from pydantic import BaseModel, EmailStr, Field
+from pydantic import BaseModel, EmailStr, Field, Extra
 # whenever we create an instance date and time will be set to actual time when it will be created.
 class User_signup(BaseModel):
     user_name: str = Field(..., alias="userName")
@@ -9,7 +9,7 @@ class User_signup(BaseModel):
     contact_number: str = Field(..., alias="ContactNumber")
 
     class Config:
-        extra= "ignore"
+        extra = Extra.forbid
 
 
 # whenever we create an instance date and time will be set to actual time when it will be created.
@@ -18,4 +18,4 @@ class User_login(BaseModel):
     password: str = Field(..., alias="password")
 
     class Config:
-        extra= "ignore"
+        extra = Extra.forbid

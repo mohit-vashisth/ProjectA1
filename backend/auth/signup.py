@@ -1,15 +1,15 @@
 from fastapi import APIRouter, HTTPException, status
 from schemas.user_schema import User_signup
-from core.config import env_variables
+from core import config
 from security.check_existing_email import check_existing_email
 from auth.create_user import create_user
+from security.jwt_handler import create_access_token
 
 signup_route = APIRouter()
-
-print(env_variables("VITE_SIGNUP_EP"))
 # signup route/path/Endpoint
-@signup_route.post(env_variables("VITE_SIGNUP_EP"), status_code=status.HTTP_201_CREATED)
+@signup_route.post(config.VITE_SIGNUP_EP, status_code=status.HTTP_201_CREATED)
 async def signup(user_info: User_signup):
+    print(await create_access_token(user_info))
     if not user_info.user_name:
         raise HTTPException(
             status_code=status.HTTP_400_BAD_REQUEST,

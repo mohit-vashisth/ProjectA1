@@ -41,6 +41,7 @@ app.include_router(signup_route, tags=["auth"])
 app.include_router(login_route, tags=["auth"])
 app.include_router(new_chat_route, tags=["services"]) # later on we will ad Depends in this, so that owr auth will work at every request
 
+
 @app.get("/")
-def root() -> dict:
-    return {"status": "Success"} # later on we will work on this
+async def root() -> dict:
+    return {"status": "Success"}

@@ -36,12 +36,17 @@ DATABASE_INIT = env_variables("DATABASE_INIT")
 # JWT Configuration
 PRIVATE_KEY_PATH = env_variables("PRIVATE_KEY_PATH")
 PUBLIC_KEY_PATH = env_variables("PUBLIC_KEY_PATH")
-ACCESS_TOKEN_EXPIRE_MINUTES = int(env_variables("ACCESS_TOKEN_EXPIRE_MINUTES", "60"))
-JWT_ALGORITHM = env_variables("JWT_ALGORITHM", "RS256")
+ACCESS_TOKEN_EXPIRE_MINUTES = int(env_variables("ACCESS_TOKEN_EXPIRE_MINUTES"))
+JWT_ALGORITHM = env_variables("JWT_ALGORITHM")
 
 # CORS Settings
-ALLOWED_ORIGINS = env_variables("ALLOWED_ORIGINS", "http://localhost:3000,http://localhost:8000").split(",")
+# ALLOWED_ORIGINS = env_variables("ALLOWED_ORIGINS", "http://localhost:3000,http://localhost:8000").split(",")
 
 # General App Settings
-DEBUG = env_variables("DEBUG", "True") == "True"  # Convert string to boolean
-APP_NAME = env_variables("APP_NAME", "Project A1")
+DEBUG = env_variables("DEBUG") == "True"  # Convert string to boolean
+APP_NAME = env_variables("APP_NAME")
+
+# secret keys init
+def read_pv_key():
+    with open(PRIVATE_KEY_PATH,'rb') as pv_key:
+        return pv_key.read()
