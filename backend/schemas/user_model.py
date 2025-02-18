@@ -1,14 +1,14 @@
-from datetime import datetime
 from pydantic import Field, EmailStr
 from beanie import Document
 from datetime import datetime, timezone
+from utils.current_time import current_time
 
 class Users(Document):
     user_name: str
     email_ID: EmailStr = Field(unique=True,)  # Ensure email is unique
     password: str  # Store hashed password
     time_zone: str
-    created_at: datetime = Field(default_factory=lambda: datetime.now(timezone.utc))  # Timezone-aware datetime
+    created_at: datetime = Field(default_factory=lambda: current_time())  # Timezone-aware datetime
     privacy_link: bool
     contact_number: str
 

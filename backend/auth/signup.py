@@ -9,7 +9,6 @@ signup_route = APIRouter()
 # signup route/path/Endpoint
 @signup_route.post(config.VITE_SIGNUP_EP, status_code=status.HTTP_201_CREATED)
 async def signup(user_info: User_signup):
-    print(await create_access_token(user_info))
     if not user_info.user_name:
         raise HTTPException(
             status_code=status.HTTP_400_BAD_REQUEST,
@@ -32,7 +31,7 @@ async def signup(user_info: User_signup):
         )
 
     if await check_existing_email(user_info.email_ID, True):
-        await create_user(user_info)
+        print("JWT token:", await create_access_token(user_info))
     
     return {
     "message": "User signed up successfully",

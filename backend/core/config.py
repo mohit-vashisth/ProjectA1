@@ -37,7 +37,10 @@ DATABASE_INIT = env_variables("DATABASE_INIT")
 PRIVATE_KEY_PATH = env_variables("PRIVATE_KEY_PATH")
 PUBLIC_KEY_PATH = env_variables("PUBLIC_KEY_PATH")
 ACCESS_TOKEN_EXPIRE_MINUTES = int(env_variables("ACCESS_TOKEN_EXPIRE_MINUTES"))
-JWT_ALGORITHM = env_variables("JWT_ALGORITHM")
+JWT_HEADER = {
+    "alg":env_variables("JWT_ALGORITHM"),
+    "typ": env_variables("TYPE")
+}
 
 # CORS Settings
 # ALLOWED_ORIGINS = env_variables("ALLOWED_ORIGINS", "http://localhost:3000,http://localhost:8000").split(",")
@@ -48,5 +51,10 @@ APP_NAME = env_variables("APP_NAME")
 
 # secret keys init
 def read_pv_key():
-    with open(PRIVATE_KEY_PATH,'rb') as pv_key:
-        return pv_key.read()
+    with open(PRIVATE_KEY_PATH,'rb') as pv_file:
+        pv_key = pv_file.read()
+
+    with open(PUBLIC_KEY_PATH,'rb') as pb_file:
+        pb_key = pb_file.read()
+
+    return pv_key, pb_key
