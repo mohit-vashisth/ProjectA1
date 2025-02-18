@@ -9,11 +9,10 @@ from fastapi.security import OAuth2PasswordBearer
 PRIVATE_KEY, PUBLIC_KEY = config.read_pv_key()
 
 async def create_access_token(user):
-    user_info = await create_user(user)
     exp_time = current_time() + timedelta(minutes=config.ACCESS_TOKEN_EXPIRE_MINUTES)
 
     Payload = {
-        "email_ID": user_info.email_ID,
+        "email_ID": user.email_ID,
         "current_time": int(current_time().timestamp()),
         "exp": int(exp_time.timestamp()),
     }

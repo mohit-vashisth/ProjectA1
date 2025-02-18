@@ -31,6 +31,7 @@ async def signup(user_info: User_signup):
         )
 
     if await check_existing_email(user_info.email_ID, True):
+        await create_user(user_info)
         token = await create_access_token(user_info)
         print("JWT Token:", token)
     
