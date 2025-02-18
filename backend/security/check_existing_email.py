@@ -1,10 +1,11 @@
 from fastapi import HTTPException, status
 from database.user_queries import get_user
+import logging
 
 async def check_existing_email(req_email: str, is_signup: bool = True) -> bool:
     user_data = await get_user(req_email)
     # Debugging ke liye add ki line 
-    print(f"Checking email: {req_email}, Found user: {user_data}")
+    logging.info(f"Checking email: {req_email}, Found user: {user_data}")
 
     if is_signup and user_data:
         raise HTTPException(

@@ -3,8 +3,9 @@ from fastapi import HTTPException, Depends
 from auth.create_user import create_user
 from core import config
 from utils.current_time import current_time
-from datetime import timedelta
+from datetime import timedeltSa
 from fastapi.security import OAuth2PasswordBearer
+import logging
 
 PRIVATE_KEY, PUBLIC_KEY = config.read_pv_key()
 
@@ -17,6 +18,7 @@ async def create_access_token(user):
         "exp": int(exp_time.timestamp()),
     }
     jwt_token = jwt.encode(header=config.JWT_HEADER, payload=Payload, key=PRIVATE_KEY)
+    logging.info("Token generated sucessfully")
     return jwt_token.decode('utf-8')
 
 oauth2_scheme = OAuth2PasswordBearer(tokenUrl=config.VITE_LOGIN_EP)
@@ -24,7 +26,7 @@ oauth2_scheme = OAuth2PasswordBearer(tokenUrl=config.VITE_LOGIN_EP)
 async def verify_access_token(token: str = Depends(oauth2_scheme)):
     payload = jwt.decode(token, PUBLIC_KEY, claims_options={
     "exp": {"essential": True},  # Ensures token has an expiry
-    "sub": {"essential": True},  # Ensures token contains user_id
+    "email_ID": {"essential": True},  # Ensures token contains user_id
     })
     payload.validate()
 

@@ -4,6 +4,7 @@ from core import config
 from security.check_existing_email import check_existing_email
 from auth.create_user import create_user
 from security.jwt_handler import create_access_token
+import logging
 
 signup_route = APIRouter()
 # signup route/path/Endpoint
@@ -31,9 +32,11 @@ async def signup(user_info: User_signup):
         )
 
     if await check_existing_email(user_info.email_ID, True):
-        await create_user(user_info)
+        user = await create_user(user_info)
+        logging.info("User creation sucessful")
         token = await create_access_token(user_info)
-        print("JWT Token:", token)
+
+        logging.info("Signup sucessful")
     
         return {
             "message": "User signed up successfully",
