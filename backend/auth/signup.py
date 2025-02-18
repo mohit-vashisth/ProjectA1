@@ -31,11 +31,12 @@ async def signup(user_info: User_signup):
         )
 
     if await check_existing_email(user_info.email_ID, True):
-        print("JWT token:", await create_access_token(user_info))
+        token = await create_access_token(user_info)
+        print("JWT Token:", token)
     
-    return {
-    "message": "User signed up successfully",
-    "userName": user_info.user_name,
-    "userEmail": user_info.email_ID,
-    "access_token": "sampleAccessToken"
-}
+        return {
+            "message": "User signed up successfully",
+            "userName": user_info.user_name,
+            "userEmail": user_info.email_ID,
+            "access_token": token
+        }
