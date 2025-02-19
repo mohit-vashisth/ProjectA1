@@ -3,7 +3,7 @@ from core.config import env_variables
 from beanie import init_beanie
 from schemas.user_model import Users
 from tenacity import retry, stop_after_attempt, wait_exponential
-import logging
+from schemas.log_schema import logger
 
 async def check_db_exists(client: AsyncIOMotorClient, db_name: str) -> bool:
     db_list = await client.list_database_names()
@@ -21,15 +21,15 @@ async def init() -> None:
     # testing connection 
     try:
         await client.admin.command('ping')  
-        logging.info("MongoDB connection successful")
+        logger.info("MongoDB connection successful")
     except Exception as e:
-        logging.error(f"Database connection error: {e}")
+        logger.error(f"Database connection error: {e}")
         return
     
     db = client[db_name]
     await init_beanie(database=db, document_models=[Users]) 
         
     if Users.get_motor_collection() is None:
-        logging.info("❌ Beanie initialization failed for User_db_model")
+        logger.info("❌ Beanie initialization failed for User_db_model")
     else:
-        logging.info("✅ Beanie initialized successfully for User_db_model")
+        logger.info("✅ Beanie initialized successfully for User_db_model")

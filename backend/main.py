@@ -6,14 +6,15 @@ from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import JSONResponse
 from database.connection import init
 from contextlib import asynccontextmanager
+from schemas.log_schema import logger
 
-logging.info("Starting the application.")
+logger.info("Starting the application.")
 @asynccontextmanager
 async def lifespan(app: FastAPI):
-    logging.info("🚀 Starting FastAPI app & initializing database...")
+    logger.info("🚀 Starting FastAPI app & initializing database...")
     await init()  # Initialize MongoDB connection
     yield  # Wait here until the app shuts down
-    logging.info("🛑 Shutting down FastAPI app...")
+    logger.info("🛑 Shutting down FastAPI app...")
 
 app = FastAPI(lifespan=lifespan)
 
@@ -26,7 +27,7 @@ app.add_middleware(
     max_age=600,  # with this browser will save cache for 10 minutes for development
     # max_age=86400,  # Cache for 1 day in browser this is for production
 )
-logging.info("CORS middleware configured to allow requests from http://localhost:3000.")
+logger.info("CORS middleware configured to allow requests from http://localhost:3000.")
 
 @app.exception_handler(HTTPException)
 async def http_exception_handler(request: Request, exc: HTTPException):
