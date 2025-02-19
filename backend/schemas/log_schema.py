@@ -14,10 +14,12 @@ class JSONFormatter(logging.Formatter):
         if record.levelname == "ERROR":
             log_entry["function"] = record.funcName
         return json.dumps(log_entry)
-    
-logger = logging.getLogger("app_logs")
-logger.setLevel(logging.INFO)
 
-console_handler = logging.StreamHandler()
-console_handler.setFormatter(JSONFormatter())
-logger.addHandler(console_handler)
+# ab app_logs name ka logs banaya h or use 'logger' variable m dal diya
+# logs banane k liye hum logger ka use karenge ab
+logger = logging.getLogger("app_logs")  # ye app_logs name ka logs banane k liye (ek file samajle)
+logger.setLevel(logging.INFO)   # logs ka level set k liye
+
+console_handler = logging.StreamHandler()   # ye console m log dikhane k liye
+console_handler.setFormatter(JSONFormatter())   # console m log ki format json k liye
+logger.addHandler(console_handler)  # ye console_handler jo banaya h use logger m add karne k liye
