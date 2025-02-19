@@ -6,12 +6,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import JSONResponse
 from database.connection import init
 from contextlib import asynccontextmanager
-import logging
 
-logging.basicConfig(
-    level=logging.INFO,
-    format='%(asctime)s - %(filename)s - %(message)s'
-)
 logging.info("Starting the application.")
 @asynccontextmanager
 async def lifespan(app: FastAPI):

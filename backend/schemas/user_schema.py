@@ -1,4 +1,5 @@
 from pydantic import BaseModel, EmailStr, Field, Extra
+import pytz
 # whenever we create an instance date and time will be set to actual time when it will be created.
 class User_signup(BaseModel):
     user_name: str = Field(..., alias="userName")
@@ -7,6 +8,8 @@ class User_signup(BaseModel):
     time_zone: str = Field(..., alias="timeZone")
     privacy_link: bool = Field(..., alias="privacyCheck")
     contact_number: str = Field(..., alias="ContactNumber")
+
+    
 
     class Config:
         extra = Extra.forbid

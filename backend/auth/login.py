@@ -4,8 +4,10 @@ from security.pass_verifier import verify_user_password
 from security.check_existing_email import check_existing_email
 from core import config
 from database.user_queries import get_user
+import logging
 
 login_route = APIRouter()
+
 @login_route.post(config.VITE_LOGIN_EP, status_code=status.HTTP_200_OK)
 async def login(user_info: User_login):
     if not user_info.email_ID:

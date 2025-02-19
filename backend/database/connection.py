@@ -23,7 +23,7 @@ async def init() -> None:
         await client.admin.command('ping')  
         logging.info("MongoDB connection successful")
     except Exception as e:
-        logging.info(f"Database connection error: {e}")
+        logging.error(f"Database connection error: {e}")
         return
     
     db = client[db_name]
