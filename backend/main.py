@@ -11,10 +11,10 @@ from schemas.log_schema import logger
 logger.info("Starting the application.")
 @asynccontextmanager
 async def lifespan(app: FastAPI):
-    logger.info("🚀 Starting FastAPI app & initializing database...")
+    logger.info("Starting FastAPI app & initializing database...")
     await init()  # Initialize MongoDB connection
     yield  # Wait here until the app shuts down
-    logger.info("🛑 Shutting down FastAPI app...")
+    logger.info("Shutting down FastAPI app...")
 
 app = FastAPI(lifespan=lifespan)
 

@@ -30,6 +30,6 @@ async def init() -> None:
     await init_beanie(database=db, document_models=[Users]) 
         
     if Users.get_motor_collection() is None:
-        logger.info("❌ Beanie initialization failed for User_db_model")
+        logger.info("Beanie initialization failed for User_db_model")
     else:
-        logger.info("✅ Beanie initialized successfully for User_db_model")
+        logger.info("Beanie initialized successfully for User_db_model")

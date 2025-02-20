@@ -11,4 +11,4 @@ async def create_user(user_info: dict) -> Users:
         contact_number=user_info.contact_number
         )
     await user.insert()
-    return user
+    return user 
