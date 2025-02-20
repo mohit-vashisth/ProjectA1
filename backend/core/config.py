@@ -42,6 +42,8 @@ JWT_HEADER = {
     "typ": env_variables("TYPE")
 }
 
+# Charator lenth
+LENGTH = env_variables("LENGTH")
 # CORS Settings
 # ALLOWED_ORIGINS = env_variables("ALLOWED_ORIGINS", "http://localhost:3000,http://localhost:8000").split(",")
 
