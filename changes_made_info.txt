@@ -1,1 +1,8 @@
 added a (__init__.py) in utils for lower versions of python OR
+
+user_schema.py:
+    -> check Extra cause it is depricated
+
+config.py:
+    -> env_variable function is outputes to type str
+    -> line 46 int(Length) for translate text

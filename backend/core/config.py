@@ -11,11 +11,11 @@ if ENVIRONMENT == "production":
 else:
     load_dotenv(dotenv_path=os.path.join(BASE_DIR, ".env.development"))
 
-def env_variables(key):
+def env_variables(key) -> str:
     value = os.getenv(key)
     if value and value.startswith("http"):
         return urlparse(value).path
-    return value
+    return str(value)
 
 # API Endpoints
 VITE_NEW_CHAT_EP = env_variables("VITE_NEW_CHAT_EP")
@@ -43,7 +43,7 @@ JWT_HEADER = {
 }
 
 # Charator lenth
-LENGTH = env_variables("LENGTH")
+LENGTH = int(env_variables("LENGTH"))
 # CORS Settings
 # ALLOWED_ORIGINS = env_variables("ALLOWED_ORIGINS", "http://localhost:3000,http://localhost:8000").split(",")
 
