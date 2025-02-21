@@ -1,6 +1,7 @@
 from auth.signup import signup_route
 from auth.login import login_route
 from dashboard.services.new_chat_SV import new_chat_route
+from dashboard.services.translate_text_SV import translate_route
 from fastapi import FastAPI, HTTPException, Request
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import JSONResponse
@@ -43,6 +44,7 @@ async def http_exception_handler(request: Request, exc: HTTPException):
 app.include_router(signup_route, tags=["auth"])
 app.include_router(login_route, tags=["auth"])
 app.include_router(new_chat_route, tags=["services"]) # later on we will ad Depends in this, so that owr auth will work at every request
+app.include_router(translate_route, tags=["services"]) # later on we will ad Depends in this, so that owr auth will work at every request
 
 
 @app.get("/")

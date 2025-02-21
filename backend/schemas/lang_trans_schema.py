@@ -7,4 +7,3 @@ class Language_request(BaseModel):
 
 class Language_response(BaseModel):
     text: str
-    language: str

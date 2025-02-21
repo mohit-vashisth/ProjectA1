@@ -60,3 +60,5 @@ def read_pv_key():
         pb_key = pb_file.read()
 
     return pv_key, pb_key
+
+MODEL_PATH = env_variables("MODEL_PATH_DETECT_LANG")
