@@ -1,7 +1,7 @@
 from schemas.user_model import Users
 from security.pass_hasher import password_hash
 
-async def create_user(user_info: dict) -> Users:
+async def create_user(user_info: Users) -> Users:
     user = Users(
         user_name=user_info.user_name,
         email_ID=user_info.email_ID,

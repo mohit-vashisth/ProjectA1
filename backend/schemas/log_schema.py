@@ -6,7 +6,7 @@ import sys
 from rich.logging import RichHandler
 from rich.console import Console
 
-class JSON_formatter(jsonlogger.JsonFormatter):
+class JSON_formatter(jsonlogger.JsonFormatter): # type: ignore
     def format(self, record):
         log_entry = {
             "timestamp": self.formatTime(record, "%d/%m/%Y, %H:%M:%S"),
@@ -14,13 +14,13 @@ class JSON_formatter(jsonlogger.JsonFormatter):
             "message": record.getMessage()
             }
         if record.exc_info:
-            log_record['exception'] = self.formatException(record.exc_info)
+            log_entry['exception'] = self.formatException(record.exc_info)
 
         if config.DEBUG:
             log_entry["function"] = record.funcName
             log_entry["level"] = record.levelname
             log_entry["filename"] = record.filename
-            log_entry["line"] = record.lineno
+            log_entry["line"] = str(record.lineno)
 
         return json.dumps(log_entry)
         
