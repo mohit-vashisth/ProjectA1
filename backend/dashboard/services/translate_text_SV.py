@@ -13,5 +13,4 @@ def translate(request: Language_request):
             status_code=status.HTTP_404_NOT_FOUND,
             detail = "Text not found."
         )
-    detect_lang(request)
-    
+    detect_lang(lang_req=request)

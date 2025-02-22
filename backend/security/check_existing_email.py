@@ -1,11 +1,14 @@
 from fastapi import HTTPException, status
+from schemas.user_model import Users
 from database.user_queries import get_user
 import logging
 
 async def check_existing_email(req_email: str, is_signup: bool = True) -> bool:
-    user_data = await get_user(req_email)
-    # Debugging ke liye add ki line 
-    logging.info(f"Checking email: {req_email}, Found user: {user_data}")
+    user_data: Users | None = await get_user(req_email=req_email)
+    if user_data:
+        logging.info(msg=f"User found for Email: {user_data}") #debugg
+    else:
+        logging.error(msg=f"User not found for Email: {user_data}") #debugg
 
     if is_signup and user_data:
         raise HTTPException(

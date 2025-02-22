@@ -9,7 +9,7 @@ from schemas.log_schema import logger
 
 signup_route = APIRouter()
 # signup route/path/Endpoint
-@signup_route.post(config.VITE_SIGNUP_EP, status_code=status.HTTP_201_CREATED)
+@signup_route.post(path=config.VITE_SIGNUP_EP, status_code=status.HTTP_201_CREATED)
 async def signup(user_info: User_signup):
     try:
         if not user_info.user_name:
@@ -33,12 +33,12 @@ async def signup(user_info: User_signup):
                 detail="Password required"
             )
 
-        if await check_existing_email(user_info.email_ID, True):
-            user = await create_user(user_info) # type: ignore
-            logger.info("User creation sucessful")
-            token = await create_access_token(user)
+        if await check_existing_email(req_email=user_info.email_ID, is_signup=True):
+            user = await create_user(user_info=user_info) # type: ignore
+            logger.info(msg="User creation sucessful")
+            token = await create_access_token(user=user)
 
-            logger.info("Signup sucessful") #debugg
+            logger.info(msg="Signup sucessful") #debugg
 
             return JSONResponse(
                 content={
@@ -50,7 +50,7 @@ async def signup(user_info: User_signup):
                 status_code=status.HTTP_201_CREATED
         )
     except ConnectionError as cnn_error:
-        logger.error(f"Database Connection Error: {cnn_error}")
+        logger.error(msg=f"Database Connection Error: {cnn_error}") #debugg
 
         raise HTTPException(
             status_code=status.HTTP_400_BAD_REQUEST,
@@ -58,11 +58,11 @@ async def signup(user_info: User_signup):
         )
 
     except HTTPException as http_except:
-        logger.error(f"Http exception: {http_except}")
+        logger.error(msg=f"Http exception: {http_except}") #debugg
         raise http_except
 
     except Exception as e:
-        logger.error(f"Error during signup: {e}")
+        logger.error(msg=f"Error during signup: {e}") #debugg
 
         raise HTTPException(
             status_code=status.HTTP_400_BAD_REQUEST,

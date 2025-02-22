@@ -9,4 +9,4 @@ pass_context = CryptContext(
 
 # used to verify the password with stored password in database
 def verify_user_password(hashed_password: str, password: str) -> bool:
-    return pass_context.verify(password, hashed_password)
+    return pass_context.verify(secret=password, hash=hashed_password)

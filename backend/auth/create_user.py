@@ -5,7 +5,7 @@ async def create_user(user_info: Users) -> Users:
     user = Users(
         user_name=user_info.user_name,
         email_ID=user_info.email_ID,
-        password=password_hash(user_info.password),
+        password=password_hash(password=user_info.password),
         time_zone=user_info.time_zone,
         privacy_link=user_info.privacy_link,
         contact_number=user_info.contact_number
