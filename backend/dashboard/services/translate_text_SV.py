@@ -1,7 +1,7 @@
 from fastapi import APIRouter, HTTPException, status
-from core import config
+from backend.core import config
 from ml_models.language_detect.language_check import detect_lang
-from schemas.lang_trans_schema import Language_request
+from backend.schemas.lang_trans_schema import Language_request
 
 
 translate_route = APIRouter()

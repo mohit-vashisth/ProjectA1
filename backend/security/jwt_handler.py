@@ -1,8 +1,8 @@
 from authlib.jose import jwt, JoseError
 from fastapi import HTTPException, Depends
-from auth.create_user import create_user
-from core import config
-from utils.current_time import current_time
+from backend.auth.create_user import create_user
+from backend.core import config
+from backend.utils.current_time import current_time
 from datetime import timedelta
 from fastapi.security import OAuth2PasswordBearer
 import logging

@@ -1,7 +1,7 @@
 from pydantic import Field, EmailStr
 from beanie import Document
 from datetime import datetime, timezone
-from utils.current_time import current_time
+from backend.utils.current_time import current_time
 
 class Users(Document):
     user_name: str

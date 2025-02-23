@@ -1,11 +1,12 @@
-from fastapi import APIRouter, HTTPException, status
-from schemas.user_schema import User_signup
-from core import config
-from security.check_existing_email import check_existing_email
-from auth.create_user import create_user
-from security.jwt_handler import create_access_token
+from backend.schemas.user_schema import User_signup
+from backend.core import config
+from backend.security.check_existing_email import check_existing_email
+from backend.auth.create_user import create_user
+from backend.schemas.log_schema import logger
+from backend.security.jwt_handler import create_access_token
+
 from fastapi.responses import JSONResponse
-from schemas.log_schema import logger
+from fastapi import APIRouter, HTTPException, status
 
 signup_route = APIRouter()
 # signup route/path/Endpoint

@@ -1,4 +1,5 @@
 from pydantic import BaseModel, EmailStr, Field, ConfigDict
+
 class User_signup(BaseModel):
     user_name: str = Field(default=..., alias="userName")
     email_ID: EmailStr = Field(default=..., alias="userEmail")

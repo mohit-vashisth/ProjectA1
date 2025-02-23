@@ -1,6 +1,6 @@
 from fastapi import HTTPException, status
-from schemas.user_model import Users
-from database.user_queries import get_user
+from backend.schemas.user_model import Users
+from backend.database.user_queries import get_user
 import logging
 
 async def check_existing_email(req_email: str, is_signup: bool = True) -> bool:

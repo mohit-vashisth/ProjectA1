@@ -1,11 +1,12 @@
+from backend.schemas.user_model import Users
+from backend.schemas.user_schema import User_login
+from backend.security.check_existing_email import check_existing_email
+from backend.security.pass_verifier import verify_user_password
+from backend.database.user_queries import get_user
+from backend.core import config
+from backend.schemas.log_schema import logging
+
 from fastapi import APIRouter, HTTPException, status
-from schemas.user_model import Users
-from schemas.user_schema import User_login
-from security.pass_verifier import verify_user_password
-from security.check_existing_email import check_existing_email
-from core import config
-from database.user_queries import get_user
-from schemas.log_schema import logging
 
 login_route = APIRouter()
 

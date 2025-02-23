@@ -1,7 +1,7 @@
 import logging
 import json
 from pythonjsonlogger import jsonlogger
-from core import config
+from backend.core import config
 import sys
 from rich.logging import RichHandler
 from rich.console import Console

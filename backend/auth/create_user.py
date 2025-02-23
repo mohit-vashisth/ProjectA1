@@ -1,5 +1,5 @@
-from schemas.user_model import Users
-from security.pass_hasher import password_hash
+from backend.schemas.user_model import Users
+from backend.security.pass_hasher import password_hash
 
 async def create_user(user_info: Users) -> Users:
     user = Users(

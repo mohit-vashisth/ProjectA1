@@ -1,0 +1,30 @@
+[tool.poetry]
+name = "ProjectA1"
+version = "1.0.0"
+description = "Voice Cloning Project"
+authors = ["Mohit N. Vashisth <mohitnarayanvashisth2703@gmail.com>"]
+readme = "README.md"
+packages = [{ include = "backend" }]  # Ensure Poetry knows your backend folder
+
+[tool.poetry.dependencies]
+python = ">=3.11,<4.0"  # ← Moved here
+python-json-logger = ">=3.2.1,<4.0.0"
+fastapi = ">=0.115.8,<0.116.0"
+fasttext-wheel = ">=0.9.2,<0.10.0"
+rich = ">=13.9.4,<14.0.0"
+beanie = ">=1.29.0,<2.0.0"
+uvicorn = ">=0.34.0,<0.35.0"
+dotenv = "^0.9.9"
+pydantic = {extras = ["email"], version = "^2.10.6"}
+pathlib = "^1.0.1"
+authlib = "^1.4.1"
+tenacity = "^9.0.0"
+passlib = "^1.7.4"
+
+[build-system]
+requires = ["poetry-core>=2.0.0,<3.0.0"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.poetry.scripts]
+dev = "backend.main:app"
+
