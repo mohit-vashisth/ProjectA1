@@ -1,3 +1,4 @@
+import uvicorn
 from backend.auth.signup import signup_route
 from backend.auth.login import login_route
 from backend.dashboard.services.new_chat_SV import new_chat_route
@@ -51,3 +52,10 @@ app.include_router(router=translate_route, tags=["services"]) # later on we will
 @app.get(path="/")
 async def root() -> dict:
     return {"status": "Success"}
+
+
+def initializeAPP():
+    uvicorn.run("backend.main:app", host="127.0.0.1", port=8000, reload=True)
+
+if __name__ == "__main__":
+    initializeAPP()
