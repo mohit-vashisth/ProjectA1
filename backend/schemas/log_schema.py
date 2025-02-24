@@ -2,7 +2,6 @@ import logging
 import json
 from pythonjsonlogger import jsonlogger
 from backend.core import config
-import sys
 from rich.logging import RichHandler
 from rich.console import Console
 
@@ -35,4 +34,3 @@ rich_handler = RichHandler(rich_tracebacks=True, markup=True)
 rich_handler.setFormatter(fmt=JSON_formatter())
 logger.addHandler(hdlr=rich_handler)
 console = Console()
-console.print("Hello")

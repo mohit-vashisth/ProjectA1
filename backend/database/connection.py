@@ -1,12 +1,15 @@
-from motor.motor_asyncio import AsyncIOMotorClient
 from backend.core import config
-from beanie import init_beanie
 from backend.schemas.user_model import Users
+from backend.utils.logger import init_logger
+from ml_models.language_detect.language_check import text_lang_detect
+
+from motor.motor_asyncio import AsyncIOMotorClient
+from beanie import init_beanie
 from tenacity import retry, stop_after_attempt, wait_exponential
-from backend.schemas.log_schema import logger
 
 async def check_db_exists(client: AsyncIOMotorClient, db_name: str) -> bool:
     db_list = await client.list_database_names()
+    init_logger(message=f"Database {db_list}")
     return db_name in db_list
 
 @retry(
@@ -21,15 +24,16 @@ async def init() -> None:
     # testing connection 
     try:
         await client.admin.command(command='ping')  
-        logger.info(msg="MongoDB connection successful")
+        init_logger(message="MongoDB connection successful")
     except Exception as e:
-        logger.error(msg=f"Database connection error: {e}")
+        init_logger(message="Database connection error: {e}", level="error")
         return
     
     db = client[db_name]
     await init_beanie(database=db, document_models=[Users]) 
         
     if Users.get_motor_collection() is None:
-        logger.warning(msg="Beanie initialization failed for User_db_model")
+        init_logger(message="Beanie initialization failed for User_db_model", level="warning")
     else:
-        logger.info(msg="Beanie initialized successfully for User_db_model")
+        init_logger(message="Beanie initialized successfully for User_db_model")
+        text_lang_detect()

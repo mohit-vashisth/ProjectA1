@@ -4,6 +4,7 @@ from backend.security.check_existing_email import check_existing_email
 from backend.auth.create_user import create_user
 from backend.schemas.log_schema import logger
 from backend.security.jwt_handler import create_access_token
+from backend.utils.logger import init_logger
 
 from fastapi.responses import JSONResponse
 from fastapi import APIRouter, HTTPException, status
@@ -13,22 +14,28 @@ signup_route = APIRouter()
 @signup_route.post(path=config.VITE_SIGNUP_EP, status_code=status.HTTP_201_CREATED)
 async def signup(user_info: User_signup):
     try:
+        init_logger(message=f"signup attemp for email {user_info.email_ID}")
+
         if not user_info.user_name:
+            init_logger(message=f"signup failed: missing Name {user_info.user_name}", level="warning")
             raise HTTPException(
                 status_code=status.HTTP_400_BAD_REQUEST,
                 detail="Name required"
             )
         if not user_info.email_ID:
+            init_logger(message=f"signup failed: missing Email {user_info.email_ID}", level="warning")
             raise HTTPException(
                 status_code=status.HTTP_400_BAD_REQUEST,
                 detail="Email required"
             )
         if not user_info.contact_number:
+            init_logger(message=f"signup failed: missing Number {user_info.contact_number}", level="warning")
             raise HTTPException(
                 status_code=status.HTTP_400_BAD_REQUEST,
                 detail="Contact Number required"
             )
         if not user_info.password:
+            init_logger(message=f"signup failed: missing Password {user_info.password}", level="warning")
             raise HTTPException(
                 status_code=status.HTTP_400_BAD_REQUEST,
                 detail="Password required"
@@ -36,10 +43,10 @@ async def signup(user_info: User_signup):
 
         if await check_existing_email(req_email=user_info.email_ID, is_signup=True):
             user = await create_user(user_info=user_info) # type: ignore
-            logger.info(msg="User creation sucessful")
+            init_logger(message=f"user created in database")
             token = await create_access_token(user=user)
 
-            logger.info(msg="Signup sucessful") #debugg
+            init_logger(message=f"user created in database")
 
             return JSONResponse(
                 content={
@@ -51,20 +58,16 @@ async def signup(user_info: User_signup):
                 status_code=status.HTTP_201_CREATED
         )
     except ConnectionError as cnn_error:
-        logger.error(msg=f"Database Connection Error: {cnn_error}") #debugg
-
+        init_logger(message=f"Database Connection Error: {cnn_error}", level="error")
         raise HTTPException(
             status_code=status.HTTP_400_BAD_REQUEST,
             detail="unable to connect to database."
         )
-
     except HTTPException as http_except:
-        logger.error(msg=f"Http exception: {http_except}") #debugg
+        init_logger(message=f"Http exception: {str(http_except)}", level="error")
         raise http_except
-
     except Exception as e:
-        logger.error(msg=f"Error during signup: {e}") #debugg
-
+        init_logger(message=f"Error during signup: {str(e)}", level="error")
         raise HTTPException(
             status_code=status.HTTP_400_BAD_REQUEST,
             detail="something went wrong"

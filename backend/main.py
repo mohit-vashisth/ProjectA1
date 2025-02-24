@@ -4,20 +4,20 @@ from backend.auth.login import login_route
 from backend.dashboard.services.new_chat_SV import new_chat_route
 from backend.dashboard.services.translate_text_SV import translate_route
 from backend.database.connection import init
-from backend.schemas.log_schema import logger
+from backend.utils.logger import init_logger
 
 from fastapi import FastAPI, HTTPException, Request
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import JSONResponse
 from contextlib import asynccontextmanager
 
-logger.info(msg="Starting the application.")
+init_logger(message="Starting the application.")
 @asynccontextmanager
 async def lifespan(app: FastAPI):
-    logger.info(msg="Starting FastAPI app & initializing database...")
+    init_logger(message="Starting FastAPI app & initializing database...")
     await init()  # Initialize MongoDB connection
     yield  # Wait here until the app shuts down
-    logger.info(msg="Shutting down FastAPI app...")
+    init_logger(message="Shutting down FastAPI app...")
 
 app = FastAPI(lifespan=lifespan)
 
@@ -30,7 +30,7 @@ app.add_middleware(
     max_age=600,  # with this browser will save cache for 10 minutes for development
     # max_age=86400,  # Cache for 1 day in browser this is for production
 )
-logger.info(msg="CORS middleware configured to allow requests from http://localhost:3000.")
+init_logger(message="CORS middleware configured to allow requests from http://localhost:3000.")
 
 @app.exception_handler(exc_class_or_status_code=HTTPException)
 async def http_exception_handler(request: Request, exc: HTTPException):
