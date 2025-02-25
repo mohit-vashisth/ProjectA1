@@ -14,10 +14,11 @@ except HTTPException as http_exp:
 def text_lang_detect(lang_req: Language_request):
     try:
         predictions = model.predict(lang_req.text, k=1, threshold=7.5)
-        lang_code = predictions[0]
-        assert lang_code
-        lang_code = lang_code[0]
-        init_logger(message=lang_code)
+        language = predictions[0]
+        assert language
+        language = language[0]
+        confidence = predictions[1][0]
+        init_logger(message=f"Detected Language: {language} | Accuracy: {confidence}")
         
 
     except HTTPException as http_exp:
