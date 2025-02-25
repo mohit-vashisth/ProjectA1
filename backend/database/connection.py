@@ -1,7 +1,6 @@
 from backend.core import config
 from backend.schemas.user_model import Users
 from backend.utils.logger import init_logger
-from ml_models.language_detect.language_check import text_lang_detect
 
 from motor.motor_asyncio import AsyncIOMotorClient
 from beanie import init_beanie
@@ -36,4 +35,3 @@ async def init() -> None:
         init_logger(message="Beanie initialization failed for User_db_model", level="warning")
     else:
         init_logger(message="Beanie initialized successfully for User_db_model")
-        text_lang_detect()
