@@ -9,7 +9,7 @@
     "preview": "vite preview"
   },
   "devDependencies": {
-    "vite": "^6.0.5"
+    "vite": "^6.2.0"
   },
   "dependencies": {
     "dotenv": "^16.4.7"
