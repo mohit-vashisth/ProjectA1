@@ -20,6 +20,7 @@ pathlib = "^1.0.1"
 authlib = "^1.4.1"
 tenacity = "^9.0.0"
 passlib = "^1.7.4"
+numpy = "1.26.4"
 
 [build-system]
 requires = ["poetry-core>=2.0.0,<3.0.0"]
