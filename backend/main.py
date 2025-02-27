@@ -1,4 +1,3 @@
-import uvicorn
 from backend.auth.signup import signup_route
 from backend.auth.login import login_route
 from backend.dashboard.services.new_chat_SV import new_chat_route
@@ -6,6 +5,7 @@ from backend.dashboard.services.translate_text_SV import translate_route
 from backend.database.connection import init
 from backend.utils.logger import init_logger
 
+import uvicorn
 from fastapi import FastAPI, HTTPException, Request
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import JSONResponse

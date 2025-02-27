@@ -4,7 +4,6 @@ import sys
 from pythonjsonlogger import jsonlogger
 from backend.core import config
 from rich.logging import RichHandler
-from rich.console import Console
 
 class JSON_formatter(jsonlogger.JsonFormatter): # type: ignore
     def format(self, record):

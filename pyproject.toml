@@ -21,6 +21,10 @@ authlib = "^1.4.1"
 tenacity = "^9.0.0"
 passlib = "^1.7.4"
 numpy = "1.26.4"
+googletrans = "4.0.0-rc1"
+goslate = "^1.5.4"
+deep-translator = "^1.11.4"
+translate = "^3.6.1"
 
 [build-system]
 requires = ["poetry-core>=2.0.0,<3.0.0"]

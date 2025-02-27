@@ -1,11 +1,14 @@
-from backend.schemas.lang_trans_schema import Language_request, Language_response
-from backend.utils.logger import init_logger
-from ml_models.language_detect.language_detect import language_detect
 from googletrans import Translator
 
-def google_translate(lang_req: Language_request):
-    response = language_detect(request=lang_req)
+from backend.schemas.lang_trans_schema import Language_response
+from backend.utils.logger import init_logger
 
-    translator = Translator(raise_exception=True)
-    translated_text =  translator.translate(response.text, response.dest, response.src)
-    init_logger(message=f"Translated_Text: {translated_text}", level="critical")
+def google_Trans_transltor(response: Language_response):
+    try:
+        translator = Translator()
+        translated_text = translator.translate(text=response.text, dest=response.dest, src=response.src).text
+        init_logger(message=f"final text: {translated_text}")
+        return translated_text
+    except Exception as e:
+        init_logger(message=f"an error occured: {str(e)}", level="error")
+        raise RuntimeError("Unable to translate")
