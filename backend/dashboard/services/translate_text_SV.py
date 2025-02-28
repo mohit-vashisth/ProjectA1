@@ -1,7 +1,3 @@
-from pydoc import text
-import stat
-from webbrowser import get
-from colorama import init
 from fastapi import APIRouter, HTTPException, status
 from backend.core import config
 from backend.schemas.lang_trans_schema import Language_request
@@ -20,8 +16,11 @@ def translate(request: Language_request):
                 status_code=status.HTTP_400_BAD_REQUEST,
                 detail="Text is too small or not found"
             )
-        translated_text_res = translate_req_handler(request=request)
-        init_logger(message=f"translated_text_res: {translated_text_res}")
+        try:
+            translated_text_res = translate_req_handler(request=request)
+            init_logger(message=f"translated_text_res: {translated_text_res}")
+        except RuntimeError as rnn_error:
+            pass
 
         return translated_text_res
 
