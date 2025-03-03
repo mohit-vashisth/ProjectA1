@@ -5,8 +5,7 @@ from backend.utils.logger import init_logger
 
 def google_Trans_transltor(response: Language_response):
     try:
-        translator = Translator()
-        translated_text = translator.translate(text=response.text, dest=response.dest, src=response.src).text
+        translated_text = Translator().translate(text=response.text, dest=response.dest, src="auto").text
         init_logger(message=f"final text: {translated_text}")
         return translated_text
     except Exception as e:

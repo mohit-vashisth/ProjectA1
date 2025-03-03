@@ -24,19 +24,17 @@ async def signup(user_info: User_signup):
         
         init_logger(message=f"user created in database")
 
-        token = await create_access_token(user=user)
+        access_token = await create_access_token(user=user)
 
         init_logger(message=f"user created in database")
 
-        return JSONResponse(
-            content={
+        return {
                 "message": "User signed up successfully",
                 "userName": user_info.user_name,
                 "userEmail": user_info.email_ID,
-                "access_token": token
-            },
-            status_code=status.HTTP_201_CREATED
-        )
+                "access_token": access_token
+            }
+    
     except ConnectionError as cnn_error:
         init_logger(message=f"Database Connection Error: {cnn_error}", level="error")
         raise HTTPException(

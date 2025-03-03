@@ -80,8 +80,8 @@ async def verify_n_refresh_token(token: str = Depends(oauth2_scheme)):
         try:
             payload.validate()
 
-        except JoseError as ve:
-            init_logger(message=f"Validation error in verify_access_token: {str(ve)}", level="error")
+        except JoseError as je:
+            init_logger(message=f"Validation error in verify_access_token: {str(je)}", level="error")
             raise HTTPException(
                 status_code=status.HTTP_401_UNAUTHORIZED,
                 detail="Invalid token claims"
