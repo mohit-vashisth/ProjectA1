@@ -1,5 +1,6 @@
 from backend.core import config
 from backend.schemas.user_model import Users
+from backend.schemas.refresh_token_schema import RefreshToken
 from backend.utils.logger import init_logger
 
 from motor.motor_asyncio import AsyncIOMotorClient
@@ -14,7 +15,7 @@ async def check_db_exists(client: AsyncIOMotorClient, db_name: str) -> bool:
 @retry(
         stop=stop_after_attempt(max_attempt_number=5),
         wait=wait_exponential(multiplier=1, min=1, max=16),
-        before_sleep=lambda retry_state: print(f"⚠️ Retrying MongoDB connection ({retry_state.attempt_number})...")
+        before_sleep=lambda retry_state: print(f"Retrying MongoDB connection ({retry_state.attempt_number})...")
 )
 async def init() -> None:
     db_name: str = config.DATABASE_INIT
@@ -29,7 +30,7 @@ async def init() -> None:
         return
     
     db = client[db_name]
-    await init_beanie(database=db, document_models=[Users]) 
+    await init_beanie(database=db, document_models=[Users, RefreshToken])
         
     if Users.get_motor_collection() is None:
         init_logger(message="Beanie initialization failed for User_db_model", level="warning")

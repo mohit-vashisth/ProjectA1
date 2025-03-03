@@ -6,7 +6,8 @@ from backend.database.connection import init
 from backend.utils.logger import init_logger
 
 import uvicorn
-from fastapi import FastAPI, HTTPException, Request
+from fastapi import FastAPI, HTTPException, Request, status
+from fastapi.exceptions import RequestValidationError
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import JSONResponse
 from contextlib import asynccontextmanager
@@ -42,6 +43,30 @@ async def http_exception_handler(request: Request, exc: HTTPException):
             "url": str(object=request.url),
         },
     )
+
+from fastapi import Request
+from fastapi.exceptions import RequestValidationError
+from starlette.responses import JSONResponse
+
+@app.exception_handler(RequestValidationError)
+async def validation_exp_handler(request: Request, exc: RequestValidationError):
+    errors = exc.errors()
+
+    for error in errors:
+        field = "->".join(error["loc"])
+        typ = error["type"]
+        message = (
+            f"Validation error in {field}: {error['msg']} "
+            f"(Type: {typ}) - Request: {request.method} {request.url}"
+        )
+        
+        init_logger(message=message, level="error")
+
+    return JSONResponse(
+        status_code=status.HTTP_400_BAD_REQUEST,
+        content={"detail": errors},
+    )
+
 
 app.include_router(router=signup_route, tags=["auth"])
 app.include_router(router=login_route, tags=["auth"])

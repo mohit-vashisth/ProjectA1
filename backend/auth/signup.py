@@ -16,46 +16,26 @@ async def signup(user_info: User_signup):
     try:
         init_logger(message=f"signup attemp for email {user_info.email_ID}")
 
-        if not user_info.user_name:
-            init_logger(message=f"signup failed: missing Name {user_info.user_name}", level="warning")
-            raise HTTPException(
-                status_code=status.HTTP_400_BAD_REQUEST,
-                detail="Name required"
-            )
-        if not user_info.email_ID:
-            init_logger(message=f"signup failed: missing Email {user_info.email_ID}", level="warning")
-            raise HTTPException(
-                status_code=status.HTTP_400_BAD_REQUEST,
-                detail="Email required"
-            )
-        if not user_info.contact_number:
-            init_logger(message=f"signup failed: missing Number {user_info.contact_number}", level="warning")
-            raise HTTPException(
-                status_code=status.HTTP_400_BAD_REQUEST,
-                detail="Contact Number required"
-            )
-        if not user_info.password:
-            init_logger(message=f"signup failed: missing Password {user_info.password}", level="warning")
-            raise HTTPException(
-                status_code=status.HTTP_400_BAD_REQUEST,
-                detail="Password required"
-            )
+        await check_existing_email(req_email=user_info.email_ID)
 
-        if await check_existing_email(req_email=user_info.email_ID, is_signup=True):
-            user = await create_user(user_info=user_info) # type: ignore
-            init_logger(message=f"user created in database")
-            token = await create_access_token(user=user)
+        user = await create_user(user_info=user_info)
+        if not user:
+            init_logger(message=f"unable to create user in database")
+        
+        init_logger(message=f"user created in database")
 
-            init_logger(message=f"user created in database")
+        token = await create_access_token(user=user)
 
-            return JSONResponse(
-                content={
-                    "message": "User signed up successfully",
-                    "userName": user_info.user_name,
-                    "userEmail": user_info.email_ID,
-                    "access_token": token
-                },
-                status_code=status.HTTP_201_CREATED
+        init_logger(message=f"user created in database")
+
+        return JSONResponse(
+            content={
+                "message": "User signed up successfully",
+                "userName": user_info.user_name,
+                "userEmail": user_info.email_ID,
+                "access_token": token
+            },
+            status_code=status.HTTP_201_CREATED
         )
     except ConnectionError as cnn_error:
         init_logger(message=f"Database Connection Error: {cnn_error}", level="error")
