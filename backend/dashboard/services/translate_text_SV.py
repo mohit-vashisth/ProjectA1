@@ -10,6 +10,7 @@ translate_route = APIRouter()
 @translate_route.post(config.VITE_TRANSLATE_SPEECH_EP, status_code=status.HTTP_200_OK)
 def translate(request: Language_request):
     try:
+        init_logger(message=f"text: {request.text} | destination: {request.dest}", level="critical")
         if not request.text:
             init_logger(message="Text is too small or not found", level="error")
             raise HTTPException(
@@ -22,7 +23,9 @@ def translate(request: Language_request):
         except RuntimeError as rnn_error:
             pass
 
-        return translated_text_res
+        return {
+            "text": translated_text_res
+        }
 
     except HTTPException as http_exp:
         init_logger(message=f"Unexpected error during translation: {str(http_exp)}", level="error")

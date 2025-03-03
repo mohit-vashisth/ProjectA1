@@ -10,8 +10,8 @@ const translateURL = import.meta.env.VITE_TRANSLATE_SPEECH_EP
 
 let currentController = null
 let translateSpeechOb = {
-    languageCode: null,
-    userSpeech: null
+    text: null,
+    dest: null
 }
 
 async function translateHandle() {
@@ -23,8 +23,10 @@ async function translateHandle() {
         currentController = null
     }
     
-    translateSpeechOb.languageCode = selectedLanguage()
-    translateSpeechOb.userSpeech = userFinalSpeech()
+    translateSpeechOb.text = userFinalSpeech()
+    translateSpeechOb.dest = selectedLanguage()
+
+    console.log(translateSpeechOb)
 
     currentController = new AbortController()
     let timeout;
@@ -47,20 +49,22 @@ async function translateHandle() {
         generateBtn.disabled = false
 
         const data = await response.json();
+
+        console.log("Translated Text:", data.text);
         if (!response.ok) {
-            const errorDetails = data?.detail || "Something went wrong. Try again.";
+            const errorDetails = data?.detail;
             switch (response.status) {
                 case 400:
-                    displayError(errorDetails || "Invalid input. Please check your text or voice selection.");
+                    displayError(errorDetails);
                     break;
                 case 401:
-                    displayError(errorDetails || "You are not logged in. Please log in and try again.");
+                    displayError(errorDetails);
                     break;
                 case 404:
-                    displayError(errorDetails || "The requested resource was not found.");
+                    displayError(errorDetails);
                     break;
                 case 500:
-                    displayError(errorDetails || "A server error occurred. Please try again later.");
+                    displayError(errorDetails);
                     break;
                 default:
                     displayError(errorDetails);
@@ -68,13 +72,12 @@ async function translateHandle() {
             return;
         }
 
-        if(data){
-            inputArea.value = ""
-            inputArea.value = data.userSpeech
-        }
-        else{
+        if(!data){
             displayError("Unable to translate speech")
         }
+        
+        inputArea.value = ""
+        inputArea.value = data.text
 
     } catch (error) {
         clearTimeout(timeout)
