@@ -1,3 +1,4 @@
+from fastapi import HTTPException, status
 from backend.core import config
 from backend.schemas.user_model import Users
 from backend.schemas.refresh_token_schema import RefreshToken
@@ -8,9 +9,16 @@ from beanie import init_beanie
 from tenacity import retry, stop_after_attempt, wait_exponential
 
 async def check_db_exists(client: AsyncIOMotorClient, db_name: str) -> bool:
-    db_list = await client.list_database_names()
-    init_logger(message=f"Database {db_list}")
-    return db_name in db_list
+    try:
+        init_logger(message="checking database existed?")
+
+        db_list = await client.list_database_names()
+
+        init_logger(message=f"Database List: {db_list}")
+        return db_name in db_list
+    except Exception as e:
+        init_logger(message=f"Unable to find database:  {str(e)}", level="error")
+        return False
 
 @retry(
         stop=stop_after_attempt(max_attempt_number=5),
@@ -23,16 +31,24 @@ async def init() -> None:
     
     # testing connection 
     try:
+        init_logger(message="Establising Connection to Database...")
+
         await client.admin.command(command='ping')  
-        init_logger(message="MongoDB connection successful")
+
+        init_logger(message="Connection Established...")
+
     except Exception as e:
-        init_logger(message="Database connection error: {e}", level="error")
-        return
+        init_logger(message=f"Database connection error: {e}", level="error")
+        raise HTTPException(
+            status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
+            detail="Unable to established connection with database"
+        )
     
     db = client[db_name]
     await init_beanie(database=db, document_models=[Users, RefreshToken])
         
     if Users.get_motor_collection() is None:
         init_logger(message="Beanie initialization failed for User_db_model", level="warning")
-    else:
-        init_logger(message="Beanie initialized successfully for User_db_model")
+        raise RuntimeError("Beanie initialization failed")
+    
+    init_logger(message="Beanie initialized successfully for User_db_model")

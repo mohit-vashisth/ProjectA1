@@ -3,19 +3,21 @@ from backend.auth.login import login_route
 from backend.dashboard.services.new_chat_SV import new_chat_route
 from backend.dashboard.services.translate_text_SV import translate_route
 from backend.database.connection import init
+from backend.security.jwt_handler import verify_n_refresh_token
 from backend.utils.logger import init_logger
 
 import uvicorn
-from fastapi import FastAPI, HTTPException, Request, status
+from fastapi import Depends, FastAPI, HTTPException, Request, status
 from fastapi.exceptions import RequestValidationError
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import JSONResponse
 from contextlib import asynccontextmanager
 
-init_logger(message="Starting the application.")
+init_logger(message="Starting FastAPI Application")
+
 @asynccontextmanager
 async def lifespan(app: FastAPI):
-    init_logger(message="Starting FastAPI app & initializing database...")
+    init_logger(message="initializing database...")
     await init()  # Initialize MongoDB connection
     yield  # Wait here until the app shuts down
     init_logger(message="Shutting down FastAPI app...")
@@ -31,7 +33,6 @@ app.add_middleware(
     max_age=600,  # with this browser will save cache for 10 minutes for development
     # max_age=86400,  # Cache for 1 day in browser this is for production
 )
-init_logger(message="CORS middleware configured to allow requests from http://localhost:3000.")
 
 @app.exception_handler(exc_class_or_status_code=HTTPException)
 async def http_exception_handler(request: Request, exc: HTTPException):
@@ -43,10 +44,6 @@ async def http_exception_handler(request: Request, exc: HTTPException):
             "url": str(object=request.url),
         },
     )
-
-from fastapi import Request
-from fastapi.exceptions import RequestValidationError
-from starlette.responses import JSONResponse
 
 @app.exception_handler(RequestValidationError)
 async def validation_exp_handler(request: Request, exc: RequestValidationError):
@@ -70,8 +67,8 @@ async def validation_exp_handler(request: Request, exc: RequestValidationError):
 
 app.include_router(router=signup_route, tags=["auth"])
 app.include_router(router=login_route, tags=["auth"])
-app.include_router(router=new_chat_route, tags=["services"]) # later on we will ad Depends in this, so that owr auth will work at every request
-app.include_router(router=translate_route, tags=["services"]) # later on we will ad Depends in this, so that owr auth will work at every request
+app.include_router(router=new_chat_route, tags=["services"], dependencies=[Depends(verify_n_refresh_token)]) # later on we will ad Depends in this, so that owr auth will work at every request
+app.include_router(router=translate_route, tags=["services"], dependencies=[Depends(verify_n_refresh_token)]) # later on we will ad Depends in this, so that owr auth will work at every request
 
 
 @app.get(path="/")

@@ -8,26 +8,34 @@ from datetime import timedelta
 from fastapi.security import OAuth2PasswordBearer
 
 try:
+    init_logger(message="Loading Keys from Environment Variables")
     PRIVATE_KEY, PUBLIC_KEY = config.read_pv_key()
+    init_logger(message="Key Loaded successfully...")
+
     if not PRIVATE_KEY or not PUBLIC_KEY:
         init_logger(message="Private/Public key not loaded properly", level="critical")
         raise RuntimeError("Private/Public key not loaded properly")
     
-except Exception as exp_err:
-    init_logger(message=f"Error loading private/public keys: {str(exp_err)}", level="critical")
-    raise RuntimeError("Failed to initialize JWT keys") from exp_err
+except Exception as e:
+    init_logger(message=f"Error loading private/public keys: {str(e)}", level="critical")
+    raise RuntimeError("Failed to initialize JWT keys") from e
 
-async def create_access_token(user):
+async def create_access_token(user) -> str:
     try:
-        if not config.ACCESS_TOKEN_EXPIRE_MINUTES:
-            init_logger(message="Could not able to fetch expiration time", level="error")
+        exp_time = config.ACCESS_TOKEN_EXPIRE_MINUTES
 
-        exp_time = current_time() + timedelta(minutes=config.ACCESS_TOKEN_EXPIRE_MINUTES)
+        init_logger(message="Creating Jwt...")
+
+        if not exp_time:
+            init_logger(message="Could not able to fetch expiration time", level="warning")
+
+        exp_time = current_time() + timedelta(minutes=exp_time)
 
         payload = {
             "email_ID": user.email_ID,
             "current_time": int(current_time().timestamp()),
             "exp": int(exp_time.timestamp()),
+            "type": "access"
         }
         
         jwt_token = jwt.encode(header=config.JWT_HEADER, payload=payload, key=PRIVATE_KEY)
@@ -62,40 +70,57 @@ async def create_access_token(user):
 
 oauth2_scheme = OAuth2PasswordBearer(tokenUrl=config.VITE_LOGIN_EP)
 
-async def verify_n_refresh_token(token: str = Depends(oauth2_scheme)):
+async def verify_n_refresh_token(token: str = Depends(oauth2_scheme)) -> str:
     try:
-
         if not isinstance(token, str):
-            init_logger(message="Invalid token format received", level="error")
+            init_logger(message="Invalid token format received", level="warning")
             raise HTTPException(
                 status_code=status.HTTP_400_BAD_REQUEST,
                   detail="Invalid token format"
             )
         
         payload = jwt.decode(token, PUBLIC_KEY, claims_options={
-        "exp": {"essential": True},  # Ensures token has an expiry
-        "email_ID": {"essential": True},  # Ensures token contains user_id
+            "exp": {"essential": True},
+            "email_ID": {"essential": True},
+            "type": {"essential": True}
         })
 
-        try:
-            payload.validate()
+        init_logger(message="Verifying jwt token")
 
-        except JoseError as je:
-            init_logger(message=f"Validation error in verify_access_token: {str(je)}", level="error")
-            raise HTTPException(
-                status_code=status.HTTP_401_UNAUTHORIZED,
-                detail="Invalid token claims"
-            )
+        payload.validate()
 
-        init_logger(message=f"Token validated successfully for {payload['email_ID']}")
+        if payload["type"] != "access":
+            raise HTTPException(status.HTTP_401_UNAUTHORIZED, detail="Invalid access token")
+
+        init_logger(message="Verified jwt token")
 
         return payload
     
     except JoseError as je:
         init_logger(message=f"JoseError in verify_access_token: {str(je)}", level="error")
+
+        if "exp" in str(je):
+            init_logger(message="Token expired, generating new token")
+
+            try:
+                expired_payload = jwt.decode(token, PUBLIC_KEY, validate=False)
+                user_info = {
+                    "email_ID": expired_payload["email_ID"],
+                }
+
+                new_token = await create_access_token(user=user_info)
+                return new_token
+
+            except Exception as e:
+                init_logger(message=f"Error while extracting user info: {str(e)}", level="error")
+                raise HTTPException(
+                    status_code=status.HTTP_401_UNAUTHORIZED,
+                    detail="Expired token is invalid"
+                )
+
         raise HTTPException(
             status_code=status.HTTP_401_UNAUTHORIZED,
-            detail="Invalid or expired token"
+            detail="Invalid token claims"
         )
     
     except Exception as e:
