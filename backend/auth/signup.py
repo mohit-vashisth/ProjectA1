@@ -5,12 +5,12 @@ from backend.auth.create_user import create_user
 from backend.security.jwt_handler import create_access_token
 from backend.utils.logger import init_logger
 
-from fastapi import APIRouter, HTTPException, status
+from fastapi import APIRouter, HTTPException, Response, status
 
 signup_route = APIRouter()
 # signup route/path/Endpoint
 @signup_route.post(path=config.VITE_SIGNUP_EP, status_code=status.HTTP_201_CREATED)
-async def signup(user_info: User_signup):
+async def signup(user_info: User_signup, response: Response):
     try:
         init_logger(message=f"signup attemp for email {user_info.email_ID}")
 
@@ -21,6 +21,15 @@ async def signup(user_info: User_signup):
         access_token = await create_access_token(user=user)
 
         init_logger(message=f"user created in database")
+        
+        response.set_cookie(
+            key = "access_token",
+            value = access_token,
+            httponly=True,
+            #secure=True,
+            samesite=None,
+            max_age=86400
+        )
 
         return {
                 "message": "User signed up successfully",

@@ -6,12 +6,12 @@ from backend.database.user_queries import get_user
 from backend.core import config
 from backend.utils.logger import init_logger
 
-from fastapi import APIRouter, HTTPException, status
+from fastapi import APIRouter, HTTPException, Response, status
 
 login_route = APIRouter()
 
 @login_route.post(path=config.VITE_LOGIN_EP, status_code=status.HTTP_200_OK)
-async def login(user_info: User_login):
+async def login(user_info: User_login, response: Response):
     try:
         init_logger(message=f"Login attemp for email {user_info.email_ID}")
         
@@ -23,9 +23,19 @@ async def login(user_info: User_login):
 
         init_logger(message=f"User {user_info.email_ID} logged in successfully")
 
+        response.set_cookie(
+            key = "access_token",
+            value = access_token,
+            httponly=True,
+            #secure=True,
+            samesite=None,
+            max_age=86400
+        )
+
         return {
         "message": "User logged in successfully.",
-        "access_token": access_token
+        "userName": user_data.user_name,
+        "userEmail": user_data.email_ID
         }
     
     except Exception as exp:

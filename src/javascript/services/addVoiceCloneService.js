@@ -27,7 +27,7 @@ const config = {
 
 const today = new Date();
 const payload = {
-    language: "",
+    language: "English", // Default language
     audio: null,
     date: `${today.getFullYear()}-${today.getMonth() + 1}-${today.getDate()}`
 };
@@ -37,6 +37,42 @@ let stream, recorder, audioChunks = [];
 let currentController = null;
 let timerInterval;
 let userSeconds = 0;
+let downloadButton = null;
+let recordingFormat = {
+    extension: "mp3",
+    mimeType: "audio/mpeg"
+};
+
+// Try to determine the best format support based on browser capabilities
+function detectOptimalFormat() {
+    // These formats are listed in order of preference for Pot Player compatibility
+    const formats = [
+        { mimeType: "audio/mp3", extension: "mp3" },
+        { mimeType: "audio/mpeg", extension: "mp3" },
+        { mimeType: "audio/wav", extension: "wav" },
+        { mimeType: "audio/webm;codecs=pcm", extension: "webm" },
+        { mimeType: "audio/webm", extension: "webm" }
+    ];
+    
+    // Find the first supported format
+    for (const format of formats) {
+        try {
+            if (MediaRecorder.isTypeSupported(format.mimeType)) {
+                recordingFormat.mimeType = format.mimeType;
+                recordingFormat.extension = format.extension;
+                console.log(`Using format: ${format.mimeType}`);
+                return true;
+            }
+        } catch (e) {
+            console.log(`Format ${format.mimeType} check failed:`, e);
+        }
+    }
+    
+    // Default to standard WebM if nothing else works
+    recordingFormat.mimeType = "";
+    recordingFormat.extension = "webm";
+    return false;
+}
 
 function toggleDisplay() {
     openDisplayButton.addEventListener("click", () => {
@@ -47,13 +83,13 @@ function toggleDisplay() {
     document.addEventListener("click", (e) => {
         if (!card.contains(e.target) && e.target !== openDisplayButton) {
             popupDisplay.style.display = "none";
-            resetDisplays()
+            resetDisplays();
         }
     });
     
     closeDisplayButton.addEventListener("click", () => {
         popupDisplay.style.display = "none";
-        resetDisplays()
+        resetDisplays();
     });
 
     instantVoiceButton.addEventListener("click", () => {
@@ -83,7 +119,7 @@ function selectLanguages() {
         dropDownLanguage.appendChild(option);
     });
     
-    dropDownLanguage.addEventListener("blur", () => {
+    dropDownLanguage.addEventListener("change", () => {
         payload.language = dropDownLanguage.value;
     });
 }
@@ -107,15 +143,74 @@ function previousDisplay() {
     }
 }
 
+function createDownloadButton() {
+    // Only create the button if it doesn't exist
+    if (!downloadButton) {
+        downloadButton = document.createElement("button");
+        downloadButton.className = "downloadButton";
+        downloadButton.textContent = "Download Recording";
+        downloadButton.style.display = "none";
+        downloadButton.style.marginTop = "10px";
+        downloadButton.style.padding = "8px 12px";
+        
+        // Insert it after the save button
+        saveRecButton.parentNode.insertBefore(downloadButton, saveRecButton.nextSibling);
+    }
+    return downloadButton;
+}
+
+function createAudioFileForDownload(audioBlob, format) {
+    // For MP3 conversion, we need to use the correct MIME type
+    const outputType = format || recordingFormat.mimeType || "audio/webm";
+    const extension = recordingFormat.extension;
+    
+    // Create a download link with the correct MIME type and extension
+    const downloadBtn = createDownloadButton();
+    downloadBtn.style.display = "flex";
+    
+    const downloadUrl = URL.createObjectURL(audioBlob);
+    
+    // Set up the download button to trigger the download
+    downloadBtn.onclick = () => {
+        const a = document.createElement("a");
+        a.href = downloadUrl;
+        a.download = `voice-recording-${new Date().toISOString().slice(0,10)}.${extension}`;
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        // Don't revoke immediately to ensure download completes
+        setTimeout(() => URL.revokeObjectURL(downloadUrl), 1000);
+    };
+}
+
 async function startRecording() {
     try {
-        stream = await navigator.mediaDevices.getUserMedia({ audio: true });
-        
-        recorder = new MediaRecorder(stream, {
-            mimeType: "audio/webm",
-            audioBitsPerSecond: 256000,
-            sampleRate: 48000
+        stream = await navigator.mediaDevices.getUserMedia({ 
+            audio: {
+                echoCancellation: true,
+                noiseSuppression: true,
+                autoGainControl: true,
+                channelCount: 1, // Mono recording for better compatibility
+                sampleRate: 44100 // Standard sample rate for better compatibility
+            } 
         });
+        
+        // Set up recorder with optimal format
+        const options = {};
+        if (recordingFormat.mimeType) {
+            options.mimeType = recordingFormat.mimeType;
+        }
+        
+        // Set bitrate based on format (lower for MP3, higher for others)
+        if (recordingFormat.extension === "mp3") {
+            options.audioBitsPerSecond = 128000;
+        } else if (recordingFormat.extension === "wav") {
+            options.audioBitsPerSecond = 256000;
+        } else {
+            options.audioBitsPerSecond = 128000;
+        }
+        
+        recorder = new MediaRecorder(stream, options);
         
         audioChunks = [];
         recorder.ondataavailable = (e) => {
@@ -126,36 +221,62 @@ async function startRecording() {
         
         recorder.onstart = () => {
             animation.style.display = "flex";
-            player.style.display = "none"
+            player.style.display = "none";
             startRecButton.disabled = true;
             stopRecButton.disabled = false;
+            
+            // Hide download button during recording
+            if (downloadButton) {
+                downloadButton.style.display = "none";
+            }
         };
         
         recorder.onstop = () => {
-            const audioBlob = new Blob(audioChunks, { type: "audio/webm" });
+            // Get MIME type - use what recorder actually used
+            const blobType = recorder.mimeType || recordingFormat.mimeType || "audio/webm";
+            const audioBlob = new Blob(audioChunks, { type: blobType });
+            
+            // Create URLs for playback
             const playableURL = URL.createObjectURL(audioBlob);
             player.src = playableURL;
-            player.style.display = "flex"
+            player.style.display = "flex";
             animation.style.display = "none";
+            
+            // Ensure audio controls are enabled but prevent direct download from player
+            player.controls = true;
+            player.setAttribute('controlsList', 'nodownload');
+            
             saveRecButton.dataset.blobUrl = playableURL;
             payload.audio = audioBlob;
+            
+            // Enable proper download capability
+            createAudioFileForDownload(audioBlob, blobType);
+            
+            // Enable buttons after recording
+            startRecButton.disabled = false;
+            stopRecButton.disabled = true;
+            resetRecButton.disabled = false;
+            saveRecButton.disabled = false;
         };
 
-        recorder.start();
+        // Ask for data frequently to ensure better quality recordings
+        recorder.start(250);
         startTimer();
     } catch (error) {
         console.error("Error starting recording:", error);
+        alert("Could not access microphone. Please check permissions.");
     }
 }
 
 function stopRecording() {
     if (recorder && recorder.state !== "inactive") {
         recorder.stop();
-        startRecButton.disabled = false;
-        stopRecButton.disabled = true;
-        resetRecButton.disabled = false;
-        saveRecButton.disabled = false;
         clearInterval(timerInterval);
+        
+        // Stop all audio tracks
+        if (stream) {
+            stream.getTracks().forEach(track => track.stop());
+        }
     }
 }
 
@@ -168,11 +289,19 @@ function resetRecording() {
     resetRecButton.disabled = true;
     saveRecButton.disabled = true;
     recordingTime.textContent = "0:00";
+    userSeconds = 0;
+    
+    // Hide download button
+    if (downloadButton) {
+        downloadButton.style.display = "none";
+    }
 }
 
 function startTimer() {
     userSeconds = 0;
     recordingTime.textContent = "0:00";
+    clearInterval(timerInterval); // Clear any existing interval
+    
     timerInterval = setInterval(() => {
         userSeconds++;
         if (userSeconds >= config.recordLimit) {
@@ -195,41 +324,78 @@ function resetDisplays() {
     player.style.display = "none"; // Hide player
     audioChunks = []; // Clear recorded audio chunks
     payload.audio = null; // Reset audio in payload
-    resetRecording(); // Reset recording timer and controls
+    
+    // Stop any active recording
+    if (recorder && recorder.state !== "inactive") {
+        stopRecording();
+    }
+    
+    // Reset timer
+    clearInterval(timerInterval);
+    userSeconds = 0;
+    recordingTime.textContent = "0:00";
+    
+    // Reset buttons
+    startRecButton.disabled = false;
+    stopRecButton.disabled = true;
+    resetRecButton.disabled = true;
+    saveRecButton.disabled = true;
+    
+    // Hide download button
+    if (downloadButton) {
+        downloadButton.style.display = "none";
+    }
+}
+
+function displayError(message) {
+    voiceText.textContent = message;
+    setTimeout(() => {
+        voiceText.textContent = "Create Voice Clone";
+    }, 3000);
 }
 
 async function saveRecording() {
-    loadingAnimationBTN.style.display = "flex"
-    openDisplayButtonText.style.display = "none"
+    loadingAnimationBTN.style.display = "flex";
+    openDisplayButtonText.style.display = "none";
+    
     if (!payload.audio) {
         alert("No audio to save! Please record first.");
+        loadingAnimationBTN.style.display = "none";
+        openDisplayButtonText.style.display = "flex";
         return;
     }
-    if (currentController){
-        currentController.abort()
-        currentController = null
-    };
+    
+    if (currentController) {
+        currentController.abort();
+        currentController = null;
+    }
+    
     currentController = new AbortController();
     
     const formData = new FormData();
-    formData.append("language", payload.language);
+    formData.append("language", payload.language || "English"); // Ensure language is never empty
     formData.append("audio", payload.audio);
     formData.append("date", payload.date);
     
     try {
         const timeout = setTimeout(() => {
-            currentController.abort()
-            loadingAnimationBTN.style.display = "none"
-            openDisplayButtonText.style.display = "flex" 
+            if (currentController) {
+                currentController.abort();
+                loadingAnimationBTN.style.display = "none";
+                openDisplayButtonText.style.display = "flex";
+                displayError("Request timeout. Please try again.");
+            }
         }, 8000);
+        
         const response = await fetch(voiceDataURL, {
             method: "POST",
             body: formData,
             signal: currentController.signal,
         });
-        clearTimeout(timeout)
-        loadingAnimationBTN.style.display = "none"
-        openDisplayButtonText.style.display = "flex"
+        
+        clearTimeout(timeout);
+        loadingAnimationBTN.style.display = "none";
+        openDisplayButtonText.style.display = "flex";
 
         if (!response.ok) {
             switch (response.status) {
@@ -249,7 +415,7 @@ async function saveRecording() {
                     displayError("A server error occurred. Please try again later.");
                     break;
                 default:
-                    displayError("Something went wrong, Try again.");
+                    displayError("Something went wrong. Try again.");
             }
             return;
         }
@@ -258,35 +424,44 @@ async function saveRecording() {
         
         if (data && data.success) {
             openDisplayButtonText.textContent = "1 Voice Added";
+            popupDisplay.style.display = "none"; // Close popup on success
+            resetDisplays(); // Reset for next use
         } else {
-            loadingAnimationBTN.style.display = "none"
-            throw new Error("Upload failed");
+            throw new Error(data.message || "Upload failed");
         }
     } catch (error) {
-        loadingAnimationBTN.style.display = "none"
-        openDisplayButtonText.style.display = "flex"
+        loadingAnimationBTN.style.display = "none";
+        openDisplayButtonText.style.display = "flex";
+        
         if (error.name === "AbortError") {
             displayError("Request timeout.");
         } else if (error.message.includes("Failed to fetch")) {
             displayError("Unable to connect. Please check your internet connection.");
         } else {
-            displayError("An unexpected error occurred.");
+            displayError(error.message || "An unexpected error occurred.");
         }
-        voiceText.textContent = "Error saving. Try again.";
     } finally {
         currentController = null; // Clear controller
-        setTimeout(() => {
-            voiceText.textContent = "Create Voice Clone";
-        }, 2000);
     }
 }
 
 export function addVoiceServiceEXP() {
+    // Detect optimal format first
+    detectOptimalFormat();
+    
+    // Create download button at initialization
+    createDownloadButton();
+    
+    // Initialize button states
     startRecButton.disabled = false;
     stopRecButton.disabled = true;
     resetRecButton.disabled = true;
     saveRecButton.disabled = true;
 
+    // Set default language
+    payload.language = "English";
+
+    // Initialize event listeners
     toggleDisplay();
     selectLanguages();
 

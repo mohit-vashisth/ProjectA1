@@ -183,7 +183,7 @@ async function deleteChats() {
         }, 8000);
 
         const response = await fetch(`${storageURL}/delete-chats`, {
-          method: "POST", // POST request for deletion
+          method: "POST",
           headers: { "Content-Type": "application/json" },
           credentials: "include",
           signal: currentController2.signal,

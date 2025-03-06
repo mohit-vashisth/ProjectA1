@@ -1,5 +1,6 @@
 from backend.auth.signup import signup_route
 from backend.auth.login import login_route
+from backend.dashboard.services.logout_SV import logout_route
 from backend.dashboard.services.new_chat_SV import new_chat_route
 from backend.dashboard.services.translate_text_SV import translate_route
 from backend.database.connection import init
@@ -67,8 +68,9 @@ async def validation_exp_handler(request: Request, exc: RequestValidationError):
 
 app.include_router(router=signup_route, tags=["auth"])
 app.include_router(router=login_route, tags=["auth"])
-app.include_router(router=new_chat_route, tags=["services"], dependencies=[Depends(verify_n_refresh_token)]) # later on we will ad Depends in this, so that owr auth will work at every request
-app.include_router(router=translate_route, tags=["services"], dependencies=[Depends(verify_n_refresh_token)]) # later on we will ad Depends in this, so that owr auth will work at every request
+app.include_router(router=logout_route, tags=["services"])
+app.include_router(router=new_chat_route, tags=["services"])
+app.include_router(router=translate_route, tags=["services"]) # dependencies=[Depends(verify_n_refresh_token)]
 
 
 @app.get(path="/")
