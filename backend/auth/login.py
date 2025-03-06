@@ -15,7 +15,13 @@ async def login(user_info: User_login, response: Response):
     try:
         init_logger(message=f"Login attemp for email {user_info.email_ID}")
         
-        user_data: Users = await get_user(req_email=user_info.email_ID)
+        user_data = await get_user(req_email=user_info.email_ID)
+        if user_data is None:
+            init_logger(message=f"User not found: {user_info.email_ID}", level="error")
+            raise HTTPException(
+                status_code=status.HTTP_404_NOT_FOUND,
+                detail="User not found"
+            )
         
         verify_user_password(hashed_password=user_data.password, password=user_info.password)
         

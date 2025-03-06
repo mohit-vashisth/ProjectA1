@@ -7,10 +7,8 @@ async def check_existing_email(req_email: str) -> bool:
     try:
         init_logger(message=f"Checking if email exists: {req_email}")
         
-        user_data: Users = await get_user(req_email=req_email)
+        user_data = await get_user(req_email=req_email)
 
-        init_logger(message=f"Email ID: {req_email} is not registered. Proceeding with signup.")
-        
         if user_data:
             init_logger(message=f"User found for Email: {req_email}, cannot proceed", level="warning")
             raise HTTPException(
@@ -18,6 +16,7 @@ async def check_existing_email(req_email: str) -> bool:
                 detail="Email is already in use"
             )
     
+        init_logger(message=f"Email ID: {req_email} is not registered. Proceeding with signup.")
         return True
 
     except HTTPException as http_exp:
