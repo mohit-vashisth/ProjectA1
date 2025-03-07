@@ -1,9 +1,11 @@
+import token
 from backend.core import config
+from backend.schemas.blacklist_token_schema import BlacklistToken
 from backend.utils.logger import init_logger
 from backend.utils.current_time import current_time
 
 from authlib.jose import jwt, JoseError
-from fastapi import HTTPException, Depends, status
+from fastapi import HTTPException, Depends, Security, status
 from datetime import timedelta
 from fastapi.security import OAuth2PasswordBearer
 
@@ -129,3 +131,13 @@ async def verify_n_refresh_token(token: str = Depends(oauth2_scheme)) -> str:
             status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
             detail="Error while verifying token"
         )
+    
+async def check_blacklisted_token(token:str = Security(verify_n_refresh_token)):
+    blacklisted = BlacklistToken.find_one({"token":token})
+    if blacklisted:
+        init_logger(message="The token is blacklisted.", level = "error")
+        raise HTTPException(
+            status_code= status.HTTP_401_UNAUTHORIZED,
+            detail="Token has beens blacklisted. Please login again"
+        )
+    return token
