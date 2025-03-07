@@ -26,6 +26,7 @@ goslate = "^1.5.4"
 deep-translator = "^1.11.4"
 translate = "^3.6.1"
 pymongo = "^4.11.1"
+argon2-cffi = "^23.1.0"
 
 [build-system]
 requires = ["poetry-core>=2.0.0,<3.0.0"]

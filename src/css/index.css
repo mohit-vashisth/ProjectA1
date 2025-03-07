@@ -1238,15 +1238,15 @@ margin-left: 1vmin;
 
 .errorPopup {
     position: absolute;
-    top: 10%;
-    right: 0;
-    width: 0;
-    height: 80px;
+    width: 100%;
+    height: 50%;
+    bottom: 0;
+    border-radius: 1vmin;
     background-color: #e74c3c;
-    border-radius: 10px;
+    /* transform: translateY(3.5vmin); */
     color: white;
     font-weight: bold;
-    font-size: 1rem;
+    font-size: 2vmin;
     overflow: hidden;
     display: flex;
     justify-content: center;
@@ -1254,6 +1254,8 @@ margin-left: 1vmin;
     text-wrap: nowrap;
     word-break: break-word;
     transition: all 0.3s;
+    z-index: -1;
+    opacity: 0;
 }
 
 .errorPopup p{
@@ -1333,6 +1335,18 @@ margin-left: 1vmin;
     background-color: var(--new--body-leftSection--);
     display: flex;
     align-items: center;
+    transition: al .2s;
+}
+.upperRightIn{
+    position: relative;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    right: 0;
+    background-color: var(--new--body-leftSection--);
+    display: flex;
+    align-items: center;
+    justify-content: center;
     transition: al .2s;
 }
 

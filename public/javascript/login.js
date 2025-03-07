@@ -74,22 +74,8 @@ login.addEventListener('click', async (event)=>{
         const data = await response.json();
         if (!response.ok) {
             const errorDetails = data?.detail;
-            switch (response.status) {
-                case 400:
-                    displayError(errorDetails);
-                    break;
-                case 401:
-                    displayError(errorDetails);
-                    break;
-                case 404:
-                    displayError(errorDetails);
-                    break;
-                case 500:
-                    displayError(errorDetails);
-                    break;
-                default:
-                    displayError(errorDetails);
-            }
+            displayError(errorDetails);
+            
             continueButton.disabled = false;
             return;
         }

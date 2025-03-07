@@ -1,12 +1,14 @@
 const popupErr = document.querySelector(".errorPopup");
 const popupErrText = document.querySelector(".errorPopup p");
 
-export function displayError(text = "", time = 2000) {
+export function displayError(text = "", time = 3000) {
   popupErrText.textContent = text;
-  popupErr.style.width = "auto";
-  popupErrText.style.padding = "50px";
+  popupErr.style.transform = "translateY(3.5vmin)";
+  popupErr.style.opacity = "1";
+  
   setTimeout(() => {
     popupErrText.textContent = "";
-    popupErrText.style.padding = "0";
+    popupErr.style.transform = "translateY(0)";
+    popupErr.style.opacity = "0";
   }, time);
 }
