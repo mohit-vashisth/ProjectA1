@@ -1,4 +1,4 @@
-from backend.schemas.user_model import Users
+from backend.schemas.user_model import Auth, UserProfile, Users
 from backend.security.pass_hasher import password_hash
 from pymongo.errors import PyMongoError
 from pydantic import ValidationError
@@ -9,14 +9,18 @@ from backend.utils.logger import init_logger
 async def create_user(user_info) -> Users:
     try:
         init_logger(message=f"Creating user in database for user ID: {user_info.email_ID}")
-        
+
         user = Users(
-            user_name=user_info.user_name,
             email_ID=user_info.email_ID,
-            password=password_hash(password=user_info.password),
-            time_zone=user_info.time_zone,
-            privacy_link=user_info.privacy_link,
-            contact_number=user_info.contact_number
+            profile = UserProfile(
+                user_name=user_info.user_name,
+                contact_number=user_info.contact_number
+            ),
+            auth=Auth(
+                password=password_hash(password=user_info.password),
+            ),
+            is_Premium=False,
+            privacy_link=user_info.privacy_link
         )
         
         await user.insert()

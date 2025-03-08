@@ -1,20 +1,29 @@
-from pydantic import Field, EmailStr
+from pydantic import BaseModel, Field, EmailStr
 from beanie import Document
 from datetime import datetime
 from backend.utils.current_time import current_time
 
-class Users(Document):
+class UserProfile(BaseModel):
     user_name: str
-    email_ID: EmailStr # Ensure email is unique
-    password: str  # Store hashed password
-    time_zone: str
-    created_at: datetime = Field(default_factory=lambda: current_time())  # Timezone-aware datetime
-    privacy_link: bool
     contact_number: str
 
-    @property
-    def get_id(self):
-        return str(self.id)  # Using MongoDB ObjectId
+class Auth(BaseModel):
+    password: str
+
+class LoginHistory(BaseModel):
+    ip_address: str
+    time_zone: str
+    login_time: datetime
+
+
+class Users(Document):
+    email_ID: EmailStr
+    profile: UserProfile
+    auth: Auth
+    is_Premium: bool = Field(default=False)
+    created_at: datetime = Field(default_factory= current_time)
+    updated_at: datetime = Field(default_factory= current_time)
+    privacy_link: bool
 
     class Settings:
         collection = "Users"

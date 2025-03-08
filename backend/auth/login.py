@@ -24,7 +24,7 @@ async def login(user_info: User_login, response: Response, request: Request):
                 detail="User not found"
             )
         
-        verify_user_password(hashed_password=user_data.password, password=user_info.password)
+        verify_user_password(hashed_password=user_data.auth.password, password=user_info.password)
         
         access_token = await create_access_token(user=user_data)
 
@@ -42,7 +42,7 @@ async def login(user_info: User_login, response: Response, request: Request):
         return JSONResponse(
             content= {
                 "message": "User logged in successfully.",
-                "userName": user_data.user_name,
+                "userName": user_data.profile.user_name,
                 "userEmail": user_data.email_ID
             },
             headers={"X-API-Version": config.APP_VERSION, **response.headers}

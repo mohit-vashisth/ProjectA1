@@ -5,7 +5,7 @@ from backend.utils.logger import init_logger
 
 async def get_user(req_email: str) -> Users | None:
     try:
-        user_data = await Users.find_one({"email_ID" : req_email})
+        user_data = await Users.find_one(Users.email_ID == req_email)
         if user_data is None:
             init_logger(message=f"User not found: {req_email}", level="info")
             return None
