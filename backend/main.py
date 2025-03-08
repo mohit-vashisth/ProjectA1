@@ -9,6 +9,8 @@ from backend.security.jwt_handler import verify_n_refresh_token
 from backend.utils.logger import init_logger
 
 import uvicorn
+import uuid
+import time
 from fastapi import Depends, FastAPI, HTTPException, Request, status
 from fastapi.exceptions import RequestValidationError
 from fastapi.middleware.cors import CORSMiddleware
@@ -35,6 +37,19 @@ app.add_middleware(
     max_age=600 if config.DEBUG else 86400,
 )
 
+async def add_x_request_id(request: Request, call_next):
+    request_id = request.headers.get("X-Request-ID", str(uuid.uuid4()))
+    start_time = time.time()  # Track execution time
+
+    response = await call_next(request)
+    
+    process_time = round(time.time() - start_time, 4)
+    response.headers["X-Request-ID"] = request_id
+
+    init_logger(message=f"{request.method} {request.url.path} - {response.status_code} in {process_time}s", request=request, level="debug")
+    
+    return response
+
 @app.exception_handler(exc_class_or_status_code=HTTPException)
 async def http_exception_handler(request: Request, exc: HTTPException):
     return JSONResponse(
@@ -58,7 +73,7 @@ async def validation_exp_handler(request: Request, exc: RequestValidationError):
             f"(Type: {typ}) - Request: {request.method} {request.url}"
         )
         
-        init_logger(message=message, level="error")
+        init_logger(message=message, level="error", request=request)
 
     return JSONResponse(
         status_code=status.HTTP_400_BAD_REQUEST,

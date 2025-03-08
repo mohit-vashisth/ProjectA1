@@ -14,9 +14,10 @@ class CustomJSONFormatter(JsonFormatter):
         }
 
         # Add request_id if available
-        request_id = getattr(record, "request_id", None)
-        if request_id:
-            log_entry["request_id"] = request_id
+        for attr in ["request_id", "ip", "user_agent", "path"]:
+            value = getattr(record, attr, None)
+            if value:
+                log_entry[attr] = value
 
         if isinstance(record.exc_info, tuple):
             log_entry["exception"] = self.formatException(record.exc_info)

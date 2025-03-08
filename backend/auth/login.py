@@ -6,19 +6,19 @@ from backend.core import config
 from backend.utils.logger import init_logger
 from backend.core import config
 
-from fastapi import APIRouter, HTTPException, Response, status
+from fastapi import APIRouter, HTTPException, Request, Response, status
 from fastapi.responses import JSONResponse
 
 login_route = APIRouter()
 
 @login_route.post(path=config.VITE_LOGIN_EP, status_code=status.HTTP_200_OK)
-async def login(user_info: User_login, response: Response):
+async def login(user_info: User_login, response: Response, request: Request):
     try:
-        init_logger(message=f"Login attemp for email {user_info.email_ID}")
+        init_logger(message=f"Login attemp for email {user_info.email_ID}", request=request)
         
         user_data = await get_user(req_email=user_info.email_ID)
         if user_data is None:
-            init_logger(message=f"User not found: {user_info.email_ID}", level="error")
+            init_logger(message=f"User not found: {user_info.email_ID}", level="error", request=request)
             raise HTTPException(
                 status_code=status.HTTP_404_NOT_FOUND,
                 detail="User not found"
@@ -28,7 +28,7 @@ async def login(user_info: User_login, response: Response):
         
         access_token = await create_access_token(user=user_data)
 
-        init_logger(message=f"User {user_info.email_ID} logged in successfully")
+        init_logger(message=f"User {user_info.email_ID} logged in successfully", request=request)
 
         response.set_cookie(
             key = "access_token",
@@ -49,7 +49,7 @@ async def login(user_info: User_login, response: Response):
         )
 
     except Exception as exp:
-        init_logger(message=f"Unexpected Error during login: {str(exp)}", level="critical")
+        init_logger(message=f"Unexpected Error during login: {str(exp)}", level="critical", request=request)
         raise HTTPException(
             status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
             detail="Internal Server Error")
