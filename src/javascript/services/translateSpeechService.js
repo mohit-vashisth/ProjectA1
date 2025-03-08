@@ -47,26 +47,9 @@ async function translateHandle() {
     generateBtn.disabled = false;
 
     const data = await response.json();
-
     if (!response.ok) {
       const errorDetails = data?.detail;
-      switch (response.status) {
-        case 400:
-          displayError(errorDetails);
-          break;
-        case 401:
-          displayError(errorDetails);
-          break;
-        case 404:
-          displayError(errorDetails);
-          break;
-        case 500:
-          displayError(errorDetails);
-          break;
-        default:
-          displayError(errorDetails);
-      }
-      return;
+      displayError(errorDetails);
     }
 
     if (!data?.text) {

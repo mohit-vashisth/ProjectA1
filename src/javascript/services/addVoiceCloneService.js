@@ -397,31 +397,12 @@ async function saveRecording() {
         loadingAnimationBTN.style.display = "none";
         openDisplayButtonText.style.display = "flex";
 
+        const data = await response.json();
         if (!response.ok) {
-            switch (response.status) {
-                case 400:
-                    displayError("Invalid input. Please check your text or voice selection.");
-                    break;
-                case 401:
-                    displayError("You are not logged in. Please log in and try again.");
-                    break;
-                case 403:
-                    displayError("You do not have permission to perform this action.");
-                    break;
-                case 404:
-                    displayError("The requested resource was not found.");
-                    break;
-                case 500:
-                    displayError("A server error occurred. Please try again later.");
-                    break;
-                default:
-                    displayError("Something went wrong. Try again.");
-            }
-            return;
+            const errorDetails = data?.detail;
+            displayError(errorDetails);
         }
 
-        const data = await response.json();
-        
         if (data && data.success) {
             openDisplayButtonText.textContent = "1 Voice Added";
             popupDisplay.style.display = "none"; // Close popup on success
