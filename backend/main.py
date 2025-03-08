@@ -1,5 +1,6 @@
 from backend.auth.signup import signup_route
 from backend.auth.login import login_route
+from backend.core import config
 from backend.dashboard.services.logout_SV import logout_route
 from backend.dashboard.services.new_chat_SV import new_chat_route
 from backend.dashboard.services.translate_text_SV import translate_route
@@ -31,8 +32,7 @@ app.add_middleware(
     allow_credentials=True,
     allow_methods=["*"],  # Allow all HTTP methods
     allow_headers=["*"],
-    max_age=600,  # with this browser will save cache for 10 minutes for development
-    # max_age=86400,  # Cache for 1 day in browser this is for production
+    max_age=600 if config.DEBUG else 86400,
 )
 
 @app.exception_handler(exc_class_or_status_code=HTTPException)

@@ -5,17 +5,21 @@ from pythonjsonlogger.json import JsonFormatter
 from backend.core import config
 from rich.logging import RichHandler
 
-class CustomJSONFormatter(JsonFormatter): # type: ignore
+class CustomJSONFormatter(JsonFormatter):
     def format(self, record):
         log_entry = {
             "timestamp": self.formatTime(record=record, datefmt="%d/%m/%Y, %H:%M:%S"),
             "level": record.levelname,
-            "message": record.getMessage()
-            }
-        
+            "message": record.getMessage(),
+        }
+
+        # Add request_id if available
+        request_id = getattr(record, "request_id", None)
+        if request_id:
+            log_entry["request_id"] = request_id
+
         if isinstance(record.exc_info, tuple):
             log_entry["exception"] = self.formatException(record.exc_info)
-
 
         if config.DEBUG:
             log_entry.update(
@@ -25,7 +29,6 @@ class CustomJSONFormatter(JsonFormatter): # type: ignore
                     "line": getattr(record, "lineno", "N/A"),
                 }
             )
-
 
         return json.dumps(obj=log_entry, indent=1)
 

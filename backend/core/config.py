@@ -48,8 +48,11 @@ LENGTH = int(env_variables(key="LENGTH"))
 # ALLOWED_ORIGINS = env_variables("ALLOWED_ORIGINS", "http://localhost:3000,http://localhost:8000").split(",")
 
 # General App Settings
-DEBUG = env_variables(key="DEBUG") == "True"  # Convert string to boolean
+DEBUG = env_variables(key="DEBUG").strip().lower() in ("true", "1", "yes")
 APP_NAME = env_variables(key="APP_NAME")
+
+# APP/API Version
+APP_VERSION = env_variables(key="APP_VERSION")
 
 # secret keys init
 def read_pv_key():

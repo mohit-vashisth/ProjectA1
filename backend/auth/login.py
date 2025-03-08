@@ -1,12 +1,13 @@
 from backend.auth.signup import create_access_token
-from backend.schemas.user_model import Users
 from backend.schemas.user_schema import User_login
 from backend.security.pass_verifier import verify_user_password
 from backend.database.user_queries import get_user
 from backend.core import config
 from backend.utils.logger import init_logger
+from backend.core import config
 
 from fastapi import APIRouter, HTTPException, Response, status
+from fastapi.responses import JSONResponse
 
 login_route = APIRouter()
 
@@ -33,17 +34,20 @@ async def login(user_info: User_login, response: Response):
             key = "access_token",
             value = access_token,
             httponly=True,
-            #secure=True,
+            secure=not config.DEBUG,
             samesite=None,
-            max_age=86400
+            max_age=600 if config.DEBUG else 86400
         )
 
-        return {
-        "message": "User logged in successfully.",
-        "userName": user_data.user_name,
-        "userEmail": user_data.email_ID
-        }
-    
+        return JSONResponse(
+            content= {
+                "message": "User logged in successfully.",
+                "userName": user_data.user_name,
+                "userEmail": user_data.email_ID
+            },
+            headers={"X-API-Version": config.APP_VERSION, **response.headers}
+        )
+
     except Exception as exp:
         init_logger(message=f"Unexpected Error during login: {str(exp)}", level="critical")
         raise HTTPException(
