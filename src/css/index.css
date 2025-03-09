@@ -428,6 +428,13 @@
     align-items: center;
 }
 
+.aboutWebsitePopupContainer {
+    display: none;
+  }
+  .aboutWebsitePopupContainer.active {
+    display: flex;
+  }
+
 .nextButtonV {
     width: 30%;
     height: 80%;

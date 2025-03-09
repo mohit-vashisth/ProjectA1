@@ -6,7 +6,7 @@ class User_signup(BaseModel):
     password: str = Field(default=..., alias="userPassword")
     time_zone: str = Field(default=..., alias="timeZone")
     privacy_link: bool = Field(default=..., alias="privacyCheck")
-    contact_number: str = Field(default=..., alias="ContactNumber")
+    contact_number: str = Field(default=..., alias="contactNumber")
 
     model_config = ConfigDict(extra="forbid", populate_by_name=True)
 

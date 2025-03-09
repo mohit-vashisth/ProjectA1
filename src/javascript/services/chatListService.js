@@ -7,23 +7,16 @@ const userRecentChatsURL = import.meta.env.VITE_STORAGE_FILES_EP;
 let currentController = null;
 let currentChat = {
   name: null,
-  link: null
+  link: null,
 };
 
-// Function to open or close the chat list dropdown
 function openCloseChatList() {
-  if (!chatsSection.classList.contains("openChatListDisplay")) {
-    recentChatsButton.classList.add("openChatList");
-    chatsSection.classList.add("openChatListDisplay");
-    iconRotate.style.transform = "rotate(180deg)";
-  } else {
-    recentChatsButton.classList.remove("openChatList");
-    chatsSection.classList.remove("openChatListDisplay");
-    iconRotate.style.transform = "rotate(0deg)";
-  }
+  const isOpen = chatsSection.classList.contains("openChatListDisplay");
+  recentChatsButton.classList.toggle("openChatList", !isOpen);
+  chatsSection.classList.toggle("openChatListDisplay", !isOpen);
+  iconRotate.style.transform = isOpen ? "rotate(0deg)" : "rotate(180deg)";
 }
 
-// Function to add a single chat to the list
 function addChatToList(chatLink, chatName) {
   if (!chatLink || !chatName) {
     console.error("Invalid chat data:", { chatLink, chatName });
@@ -41,92 +34,83 @@ function addChatToList(chatLink, chatName) {
   `;
   chatsHistory.appendChild(chatItem);
 
-  // Update the currentChat object when a chat is clicked
   chatItem.querySelector(".chatHereLink").addEventListener("click", () => {
     currentChat.name = chatName;
     currentChat.link = chatLink;
   });
 }
 
-// Function to load user chats from the server
 async function loadUserChats() {
   if (currentController) {
     currentController.abort();
-    currentController = null;
   }
-
   currentController = new AbortController();
 
   try {
-    const timeout = setTimeout(() => {
-      currentController.abort();
-      displayError("Taking too much time, try again later.");
-    }, 8000);
+    const timeoutPromise = new Promise((_, reject) =>
+      setTimeout(() => reject(new Error("Request timeout")), 8000)
+    );
 
-    const response = await fetch(`${userRecentChatsURL}/recent-chats`, {
+    const fetchPromise = fetch(`${userRecentChatsURL}/recent-chats`, {
       method: "GET",
       headers: { "Content-Type": "application/json" },
       credentials: "include",
       signal: currentController.signal,
+    }).then(async (response) => {
+      if (!response.ok) {
+        throw new Error((await response.json())?.detail || "Failed to load chats");
+      }
+      return response.json();
     });
 
-    clearTimeout(timeout);
+    const data = await Promise.race([fetchPromise, timeoutPromise]);
 
-    const data = await response.json();
-      if (!response.ok) {
-        const errorDetails = data?.detail;
-        displayError(errorDetails);
-      }
-
-    if (data && data.status && data.chats.length > 0) {
+    if (data?.status && Array.isArray(data.chats) && data.chats.length > 0) {
       const fragment = document.createDocumentFragment();
-      data.chats.forEach((chat) => {
+      const chatStorage = [];
+      
+      data.chats.forEach(({ chatLink, chatName }) => {
         const chatItem = document.createElement("li");
         chatItem.innerHTML = `
-          <a href="${chat.chatLink}" class="chatHereLink">
+          <a href="${chatLink}" class="chatHereLink">
             <div class="chatHereDiv">
-              <span>${chat.chatName}</span>
+              <span>${chatName}</span>
             </div>
           </a>
         `;
         fragment.appendChild(chatItem);
 
-        // Add click listener to update currentChat
         chatItem.querySelector(".chatHereLink").addEventListener("click", () => {
-          currentChat.name = chat.chatName;
-          currentChat.link = chat.chatLink;
+          currentChat.name = chatName;
+          currentChat.link = chatLink;
         });
 
-        // Save to localStorage
-        localStorage.setItem(chat.chatName, chat.chatLink);
+        chatStorage.push({ name: chatName, link: chatLink });
       });
       document.querySelector(".chatsHistoryHereNow").appendChild(fragment);
+      localStorage.setItem("recentChats", JSON.stringify(chatStorage));
     } else {
       displayError("No chats found.");
     }
   } catch (error) {
-    if (error.name === "AbortError") {
-        displayError("Request timeout.");
-    } else if (error.message.includes("Failed to fetch")) {
-        displayError("Unable to connect. Please check your internet connection.");
-    } else {
-        displayError("An unexpected error occurred.");
-    }
+    displayError(error.message.includes("Failed to fetch")
+      ? "Unable to connect. Please check your internet connection."
+      : error.message
+    );
   }
 }
 
-// Function to initialize recent chats
 export function recentChatsEXP() {
   recentChatsButton.addEventListener("click", openCloseChatList);
   loadUserChats();
 
-  // Add sample chats (for testing purposes)
-  addChatToList("#", "Google");
-  addChatToList("#", "YouTube");
-  addChatToList("#", "Facebook");
+  if (import.meta.env.MODE === "development") {
+    addChatToList("#", "Google");
+    addChatToList("#", "YouTube");
+    addChatToList("#", "Facebook");
+  }
 }
 
-// Function to return the current chat
 export function userCurrentChatEXP() {
   return currentChat;
 }

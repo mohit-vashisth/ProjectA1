@@ -8,19 +8,18 @@ const generateBtn = document.querySelector(".generateSpeechBtn");
 const translateURL = import.meta.env.VITE_TRANSLATE_SPEECH_EP;
 
 let currentController = null;
-let translateSpeechOb = {
-  text: null,
-  dest: null,
-};
+let translateSpeechOb = { text: null, dest: null };
 
 async function translateHandle() {
   translateBtn.disabled = true;
   generateBtn.disabled = true;
+
   if (currentController) {
     currentController.abort();
     currentController = null;
   }
 
+  const previousText = inputArea.value; // Store previous text for rollback
   translateSpeechOb.text = userFinalSpeech();
   translateSpeechOb.dest = selectedLanguage();
 
@@ -28,12 +27,13 @@ async function translateHandle() {
 
   currentController = new AbortController();
   let timeout;
+  
   try {
     timeout = setTimeout(() => {
       currentController.abort();
-      currentController = null;
       displayError("Request Aborted");
     }, 8000);
+
     const response = await fetch(translateURL, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -41,31 +41,19 @@ async function translateHandle() {
       body: JSON.stringify(translateSpeechOb),
       signal: currentController.signal,
     });
-    clearTimeout(timeout);
 
-    translateBtn.disabled = false;
-    generateBtn.disabled = false;
+    clearTimeout(timeout);
 
     const data = await response.json();
-    if (!response.ok) {
-      const errorDetails = data?.detail;
-      displayError(errorDetails);
+    if (!response.ok || !data?.text) {
+      throw new Error(data?.detail || "Unable to translate speech");
     }
 
-    if (!data?.text) {
-      displayError("Unable to translate speech");
-      return;
-    }
+    inputArea.value = data.text; // Update input field with translated text
 
-    inputArea.value = data.text;
-    
   } catch (error) {
-    clearTimeout(timeout);
-    if (error.message === "AbortError") {
-      displayError("Request Aborted");
-    } else {
-      displayError("Something went wrong. Try again.");
-    }
+    inputArea.value = previousText; // Restore previous text on failure
+    displayError(error.message || "Something went wrong. Try again.");
   } finally {
     clearTimeout(timeout);
     translateBtn.disabled = false;

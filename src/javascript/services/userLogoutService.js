@@ -6,31 +6,30 @@ const noButton = document.querySelector(".noButton");
 const logout = document.querySelector("#logout");
 
 const userLogoutURL = import.meta.env.VITE_LOGOUT_EP;
-const loginPageURL = import.meta.env.VITE_LOGIN_PAGE
+const loginPageURL = import.meta.env.VITE_LOGIN_PAGE;
 
 let currentController = null;
-let timeoutID;
 
-logoutIcon.addEventListener("click", function () {
-    logoutPopupContainer.style.display = "flex";
+logoutIcon.addEventListener("click", () => {
+  logoutPopupContainer.style.display = "flex";
 });
 
-noButton.addEventListener("click", function () {
+noButton.addEventListener("click", () => {
+  logoutPopupContainer.style.display = "none";
+});
+
+document.addEventListener("click", (event) => {
+  if (!logoutPopupContainer.contains(event.target) && event.target !== logoutIcon) {
     logoutPopupContainer.style.display = "none";
+  }
 });
 
 async function logoutUser() {
-  if (!logout && !logoutPopupContainer) displayError("something went wrong");
+  if (!logout || !logoutPopupContainer) {
+    displayError("Something went wrong");
+    return;
+  }
 
-
-  document.addEventListener("click", function (event) {
-    if (
-      !popupContainer.contains(event.target) &&
-      event.target !== logoutButton
-    ) {
-      popupContainer.style.display = "none";
-    }
-  });
   if (currentController) {
     currentController.abort();
     currentController = null;
@@ -38,39 +37,38 @@ async function logoutUser() {
 
   currentController = new AbortController();
 
-    try {
-        const response = await fetch(userLogoutURL, {
-        method: "POST",
-        credentials: "include",
-        signal: currentController.signal,
-        });
-        clearTimeout(timeoutID);
+  try {
+    const timeoutID = setTimeout(() => {
+      currentController.abort();
+      displayError("Request timeout.");
+    }, 8000);
 
-        const data = await response.json();
-        if (!response.ok) {
-          const errorDetails = data?.detail;
-          displayError(errorDetails);
-          return;
-        }
+    const response = await fetch(userLogoutURL, {
+      method: "POST",
+      credentials: "include",
+      signal: currentController.signal,
+    });
 
-        if (data && data.status) {
-            localStorage.removeItem("access_token");
-            window.location.href = loginPageURL;
-        } else {
-            displayError("something went wrong, unable to logout");
-        }
-    } catch (error) {
-        clearTimeout(timeoutID);
-        if (error.name === "AbortError") {
-          displayError("Request timeout.");
-      } else if (error.message.includes("Failed to fetch")) {
-          displayError("Unable to connect. Please check your internet connection.");
-      } else {
-          displayError("An unexpected error occurred.");
-      }
+    clearTimeout(timeoutID);
+
+    const data = await response.json();
+    if (!response.ok || !data?.status) {
+      displayError(data?.detail || "Something went wrong, unable to logout");
+      return;
+    }
+
+    window.location.href = loginPageURL;
+  } catch (error) {
+    if (error.name === "AbortError") {
+      displayError("Request timeout.");
+    } else if (error.message.includes("Failed to fetch")) {
+      displayError("Unable to connect. Please check your internet connection.");
+    } else {
+      displayError("An unexpected error occurred.");
+    }
   }
 }
 
 export function logoutUserEXP() {
-  logout.addEventListener('click', logoutUser)
+  logout.addEventListener("click", logoutUser);
 }

@@ -1,104 +1,110 @@
 import { displayError } from "../../src/javascript/utils/errorDisplay";
+
 const email = document.querySelector("#email");
 const password = document.querySelector("#password");
-const login = document.querySelector("#login");
+const loginButton = document.querySelector("#login");
 const loadingAnimation = document.querySelector(".loading");
+
 const loginURL = import.meta.env.VITE_LOGIN_EP;
 const dashBoardPage = import.meta.env.VITE_DASHBOARD_PAGE;
 
 let currentController = null;
-let userLoginInfo = {
-    email: "",
-    password: ""
-};
+
 document.addEventListener('DOMContentLoaded', () => {
-    const link = document.createElement('link'); // Create a <link> element
-    link.rel = 'stylesheet'; // Set the relationship as "stylesheet"
-    link.href = '/frontend/css/pages/signin.css'; // Path to your CSS file
-    document.head.appendChild(link); // Append the <link> to the <head>
+    const link = document.createElement('link');
+    link.rel = 'stylesheet';
+    link.href = '/frontend/css/pages/signin.css';
+    document.head.appendChild(link);
+    validateFields();
 });
 
-function resetForm() {
-    password.value = "";
+const validationCriteria = {
+    email: value => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value),
+    password: value => value.trim().length >= 8
+};
+
+function updateButtonState(isValid) {
+    loginButton.style.pointerEvents = isValid ? "auto" : "none";
+    loginButton.style.cursor = isValid ? "pointer" : "not-allowed";
+    loginButton.style.opacity = isValid ? "1" : "0.5";
 }
 
 function validateFields() {
-    const isEmailValid = email.value.trim() !== "";
-    const isPasswordValid = password.value.trim() !== "";
+    const isEmailValid = validationCriteria.email(email.value.trim());
+    const isPasswordValid = validationCriteria.password(password.value.trim());
     
-    if (isEmailValid && isPasswordValid) {
-        login.style.pointerEvents = "auto";
-        login.style.opacity = "1";
-    } else {
-        login.style.pointerEvents = "none";
-        login.style.opacity = "0.5";
-    }
+    const isValid = isEmailValid && isPasswordValid;
+    updateButtonState(isValid);
+    
+    return isValid;
 }
 
-email.addEventListener("blur", validateFields);
+email.addEventListener("input", validateFields);
 password.addEventListener("input", validateFields);
 
-login.addEventListener('click', async (event)=>{
-    event.preventDefault()
-
-    if (login.style.pointerEvents === "none") return;
-
-    userLoginInfo.email = email.value;
-    userLoginInfo.password = password.value;
+loginButton.addEventListener('click', async (event) => {
+    event.preventDefault();
     
-    if(currentController){
-        currentController.abort()
-        currentController = null;
-    };
+    if (!validateFields()) return;
     
-    loadingAnimation.style.display = "flex";
+    loginButton.style.pointerEvents = "none";
+    loginButton.style.cursor = "not-allowed";
+    loginButton.style.opacity = "0.5";
     
+    if (currentController) currentController.abort();
     currentController = new AbortController();
-    let timeout
-    try{
 
-        timeout = setTimeout(() => {
+    const credentials = {
+        email: email.value.trim(),
+        password: password.value.trim()
+    };
+
+    try {
+        loadingAnimation.style.display = "flex";
+        
+        document.body.style.cursor = "wait";
+        
+        const timeout = setTimeout(() => {
             currentController.abort();
-            displayError("Request timed out! Please try again.");
+            displayError("Request timed out - please try again");
         }, 8000);
 
         const response = await fetch(loginURL, {
             method: "POST",
-            headers: {"Content-Type": "application/json"},
-            body: JSON.stringify(userLoginInfo),
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(credentials),
             credentials: "include",
-            signal: currentController.signal,
-        })
-        clearTimeout(timeout);
+            signal: currentController.signal
+        });
 
-        const data = await response.json();
-        if (!response.ok) {
-            const errorDetails = data?.detail;
-            displayError(errorDetails);
-            
-            continueButton.disabled = false;
-            return;
-        }
+        clearTimeout(timeout);
         
-        if(data?.message === "User logged in successfully."){
-            window.location.href = dashBoardPage;
-            resetForm()
+        if (!response.ok) {
+            const errorData = await response.json();
+            throw new Error(errorData.detail || "Authentication failed");
         }
-        else{
-            displayError("Invalid login credentials");
-            resetForm()
+
+        window.location.href = dashBoardPage;
+    } catch (error) {
+        if (error.name !== "AbortError") {
+            const errorMessage = error.message.includes("fetch")
+                ? "Network error - check internet connection"
+                : error.message;
+            
+            displayError(errorMessage);
+            password.value = "";
         }
-    }
-    catch (error) {
-        if (error.name === "AbortError") {
-            displayError("Request timeout.");
-        } else if (error.message.includes("Failed to fetch")) {
-            displayError("Unable to connect. Please check your internet connection.");
-        } else {
-            displayError("An unexpected error occurred.");
-        }
-    } finally{
-        clearTimeout(timeout)
+    } finally {
         loadingAnimation.style.display = "none";
+        currentController = null;
+        document.body.style.cursor = "default";
+        validateFields();
     }
-})
+});
+
+window.addEventListener('offline', () => {
+    displayError("No internet connection - working offline");
+    updateButtonState(false);
+});
+
+window.addEventListener('online', validateFields);

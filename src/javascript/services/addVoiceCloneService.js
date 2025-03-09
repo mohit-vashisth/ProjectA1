@@ -21,31 +21,29 @@ const saveRecButton = document.querySelector(".saveButton");
 const recordingTime = document.querySelector(".recordingTime");
 const voiceDataURL = import.meta.env.VITE_USER_VOICE_ADD_EP;
 const config = {
-    recordLimit: 30, // seconds
+    recordLimit: 30,
     languages: ["English", "Hindi"]
 };
 
 const today = new Date();
 const payload = {
-    language: "English", // Default language
+    language: "English",
     audio: null,
     date: `${today.getFullYear()}-${today.getMonth() + 1}-${today.getDate()}`
 };
 
 let previousCount = 0;
-let stream, recorder, audioChunks = [];
 let currentController = null;
 let timerInterval;
 let userSeconds = 0;
 let downloadButton = null;
+let stream, recorder, audioChunks = [];
 let recordingFormat = {
     extension: "mp3",
     mimeType: "audio/mpeg"
 };
 
-// Try to determine the best format support based on browser capabilities
 function detectOptimalFormat() {
-    // These formats are listed in order of preference for Pot Player compatibility
     const formats = [
         { mimeType: "audio/mp3", extension: "mp3" },
         { mimeType: "audio/mpeg", extension: "mp3" },
@@ -54,7 +52,6 @@ function detectOptimalFormat() {
         { mimeType: "audio/webm", extension: "webm" }
     ];
     
-    // Find the first supported format
     for (const format of formats) {
         try {
             if (MediaRecorder.isTypeSupported(format.mimeType)) {
@@ -68,7 +65,6 @@ function detectOptimalFormat() {
         }
     }
     
-    // Default to standard WebM if nothing else works
     recordingFormat.mimeType = "";
     recordingFormat.extension = "webm";
     return false;
@@ -144,7 +140,6 @@ function previousDisplay() {
 }
 
 function createDownloadButton() {
-    // Only create the button if it doesn't exist
     if (!downloadButton) {
         downloadButton = document.createElement("button");
         downloadButton.className = "downloadButton";
@@ -153,24 +148,19 @@ function createDownloadButton() {
         downloadButton.style.marginTop = "10px";
         downloadButton.style.padding = "8px 12px";
         
-        // Insert it after the save button
         saveRecButton.parentNode.insertBefore(downloadButton, saveRecButton.nextSibling);
     }
     return downloadButton;
 }
 
 function createAudioFileForDownload(audioBlob, format) {
-    // For MP3 conversion, we need to use the correct MIME type
     const outputType = format || recordingFormat.mimeType || "audio/webm";
     const extension = recordingFormat.extension;
-    
-    // Create a download link with the correct MIME type and extension
     const downloadBtn = createDownloadButton();
     downloadBtn.style.display = "flex";
     
     const downloadUrl = URL.createObjectURL(audioBlob);
     
-    // Set up the download button to trigger the download
     downloadBtn.onclick = () => {
         const a = document.createElement("a");
         a.href = downloadUrl;
@@ -178,9 +168,103 @@ function createAudioFileForDownload(audioBlob, format) {
         document.body.appendChild(a);
         a.click();
         document.body.removeChild(a);
-        // Don't revoke immediately to ensure download completes
         setTimeout(() => URL.revokeObjectURL(downloadUrl), 1000);
     };
+}
+
+async function convertToWav(audioBlob) {
+    return new Promise((resolve, reject) => {
+        const reader = new FileReader();
+        reader.onload = async function() {
+            try {
+                const arrayBuffer = this.result;
+                const audioContext = new (window.AudioContext || window.webkitAudioContext)();
+                const audioBuffer = await audioContext.decodeAudioData(arrayBuffer);
+                const wavBuffer = audioBufferToWav(audioBuffer);
+                const wavBlob = new Blob([new DataView(wavBuffer)], { type: "audio/wav" });
+                resolve(wavBlob);
+            } catch (e) {
+                reject(e);
+            }
+        };
+        reader.onerror = reject;
+        reader.readAsArrayBuffer(audioBlob);
+    });
+}
+
+function audioBufferToWav(buffer, opt) {
+    opt = opt || {}
+    let numChannels = buffer.numberOfChannels;
+    let sampleRate = buffer.sampleRate;
+    let format = opt.float32 ? 3 : 1;
+    let bitDepth = format === 3 ? 32 : 16;
+    
+    let result;
+    if (numChannels === 2) {
+        result = interleave(buffer.getChannelData(0), buffer.getChannelData(1));
+    } else {
+        result = buffer.getChannelData(0);
+    }
+    return encodeWAV(result, numChannels, sampleRate, bitDepth);
+}
+
+function encodeWAV(samples, numChannels, sampleRate, bitDepth) {
+    let bytesPerSample = bitDepth / 8;
+    let blockAlign = numChannels * bytesPerSample;
+    let buffer = new ArrayBuffer(44 + samples.length * bytesPerSample);
+    let view = new DataView(buffer);
+    
+    writeString(view, 0, 'RIFF');
+    view.setUint32(4, 36 + samples.length * bytesPerSample, true);
+    writeString(view, 8, 'WAVE');
+    writeString(view, 12, 'fmt ');
+    view.setUint32(16, 16, true);
+    view.setUint16(20, 1, true);
+    view.setUint16(22, numChannels, true);
+    view.setUint32(24, sampleRate, true);
+    view.setUint32(28, sampleRate * blockAlign, true);
+    view.setUint16(32, blockAlign, true);
+    view.setUint16(34, bitDepth, true);
+    writeString(view, 36, 'data');
+    view.setUint32(40, samples.length * bytesPerSample, true);
+    
+    if (bitDepth === 16) {
+        floatTo16BitPCM(view, 44, samples);
+    } else {
+        writeFloat32(view, 44, samples);
+    }
+    return buffer;
+}
+
+function floatTo16BitPCM(output, offset, input) {
+    for (let i = 0; i < input.length; i++, offset += 2) {
+        let s = Math.max(-1, Math.min(1, input[i]));
+        output.setInt16(offset, s < 0 ? s * 0x8000 : s * 0x7FFF, true);
+    }
+}
+
+function writeFloat32(output, offset, input) {
+    for (let i = 0; i < input.length; i++, offset += 4) {
+        output.setFloat32(offset, input[i], true);
+    }
+}
+
+function writeString(view, offset, string) {
+    for (let i = 0; i < string.length; i++) {
+        view.setUint8(offset + i, string.charCodeAt(i));
+    }
+}
+
+function interleave(leftChannel, rightChannel) {
+    let length = leftChannel.length + rightChannel.length;
+    let result = new Float32Array(length);
+    let index = 0, inputIndex = 0;
+    while (index < length) {
+        result[index++] = leftChannel[inputIndex];
+        result[index++] = rightChannel[inputIndex];
+        inputIndex++;
+    }
+    return result;
 }
 
 async function startRecording() {
@@ -190,18 +274,16 @@ async function startRecording() {
                 echoCancellation: true,
                 noiseSuppression: true,
                 autoGainControl: true,
-                channelCount: 1, // Mono recording for better compatibility
-                sampleRate: 44100 // Standard sample rate for better compatibility
+                channelCount: 1,
+                sampleRate: 44100
             } 
         });
         
-        // Set up recorder with optimal format
         const options = {};
         if (recordingFormat.mimeType) {
             options.mimeType = recordingFormat.mimeType;
         }
         
-        // Set bitrate based on format (lower for MP3, higher for others)
         if (recordingFormat.extension === "mp3") {
             options.audioBitsPerSecond = 128000;
         } else if (recordingFormat.extension === "wav") {
@@ -211,7 +293,6 @@ async function startRecording() {
         }
         
         recorder = new MediaRecorder(stream, options);
-        
         audioChunks = [];
         recorder.ondataavailable = (e) => {
             if (e.data.size > 0) {
@@ -224,42 +305,39 @@ async function startRecording() {
             player.style.display = "none";
             startRecButton.disabled = true;
             stopRecButton.disabled = false;
-            
-            // Hide download button during recording
             if (downloadButton) {
                 downloadButton.style.display = "none";
             }
         };
         
-        recorder.onstop = () => {
-            // Get MIME type - use what recorder actually used
+        recorder.onstop = async () => {
             const blobType = recorder.mimeType || recordingFormat.mimeType || "audio/webm";
-            const audioBlob = new Blob(audioChunks, { type: blobType });
+            let audioBlob = new Blob(audioChunks, { type: blobType });
             
-            // Create URLs for playback
+            if (recordingFormat.extension !== "wav") {
+                try {
+                    audioBlob = await convertToWav(audioBlob);
+                    recordingFormat = { mimeType: "audio/wav", extension: "wav" };
+                } catch (e) {
+                    console.error("Conversion to WAV failed:", e);
+                }
+            }
+            
             const playableURL = URL.createObjectURL(audioBlob);
             player.src = playableURL;
             player.style.display = "flex";
             animation.style.display = "none";
-            
-            // Ensure audio controls are enabled but prevent direct download from player
             player.controls = true;
             player.setAttribute('controlsList', 'nodownload');
-            
             saveRecButton.dataset.blobUrl = playableURL;
             payload.audio = audioBlob;
-            
-            // Enable proper download capability
             createAudioFileForDownload(audioBlob, blobType);
-            
-            // Enable buttons after recording
             startRecButton.disabled = false;
             stopRecButton.disabled = true;
             resetRecButton.disabled = false;
             saveRecButton.disabled = false;
         };
 
-        // Ask for data frequently to ensure better quality recordings
         recorder.start(250);
         startTimer();
     } catch (error) {
@@ -272,8 +350,6 @@ function stopRecording() {
     if (recorder && recorder.state !== "inactive") {
         recorder.stop();
         clearInterval(timerInterval);
-        
-        // Stop all audio tracks
         if (stream) {
             stream.getTracks().forEach(track => track.stop());
         }
@@ -282,16 +358,14 @@ function stopRecording() {
 
 function resetRecording() {
     stopRecording();
-    player.src = ""; // Clear player source
-    player.style.display = "none"; // Hide player
+    player.src = "";
+    player.style.display = "none";
     audioChunks = [];
-    payload.audio = null; // Reset payload audio
+    payload.audio = null;
     resetRecButton.disabled = true;
     saveRecButton.disabled = true;
     recordingTime.textContent = "0:00";
     userSeconds = 0;
-    
-    // Hide download button
     if (downloadButton) {
         downloadButton.style.display = "none";
     }
@@ -300,8 +374,7 @@ function resetRecording() {
 function startTimer() {
     userSeconds = 0;
     recordingTime.textContent = "0:00";
-    clearInterval(timerInterval); // Clear any existing interval
-    
+    clearInterval(timerInterval);
     timerInterval = setInterval(() => {
         userSeconds++;
         if (userSeconds >= config.recordLimit) {
@@ -315,33 +388,25 @@ function startTimer() {
 }
 
 function resetDisplays() {
-    previousCount = 0; // Reset navigation state
-    display1.style.display = "flex"; // Reset to initial display
+    previousCount = 0;
+    display1.style.display = "flex";
     display2.style.display = "none";
     display3.style.display = "none";
-    previous.style.display = "none"; // Hide previous button
-    player.src = ""; // Clear audio player
-    player.style.display = "none"; // Hide player
-    audioChunks = []; // Clear recorded audio chunks
-    payload.audio = null; // Reset audio in payload
-    
-    // Stop any active recording
+    previous.style.display = "none";
+    player.src = "";
+    player.style.display = "none";
+    audioChunks = [];
+    payload.audio = null;
     if (recorder && recorder.state !== "inactive") {
         stopRecording();
     }
-    
-    // Reset timer
     clearInterval(timerInterval);
     userSeconds = 0;
     recordingTime.textContent = "0:00";
-    
-    // Reset buttons
     startRecButton.disabled = false;
     stopRecButton.disabled = true;
     resetRecButton.disabled = true;
     saveRecButton.disabled = true;
-    
-    // Hide download button
     if (downloadButton) {
         downloadButton.style.display = "none";
     }
@@ -373,7 +438,7 @@ async function saveRecording() {
     currentController = new AbortController();
     
     const formData = new FormData();
-    formData.append("language", payload.language || "English"); // Ensure language is never empty
+    formData.append("language", payload.language || "English");
     formData.append("audio", payload.audio);
     formData.append("date", payload.date);
     
@@ -405,8 +470,8 @@ async function saveRecording() {
 
         if (data && data.success) {
             openDisplayButtonText.textContent = "1 Voice Added";
-            popupDisplay.style.display = "none"; // Close popup on success
-            resetDisplays(); // Reset for next use
+            popupDisplay.style.display = "none";
+            resetDisplays();
         } else {
             throw new Error(data.message || "Upload failed");
         }
@@ -422,27 +487,22 @@ async function saveRecording() {
             displayError(error.message || "An unexpected error occurred.");
         }
     } finally {
-        currentController = null; // Clear controller
+        currentController = null;
     }
 }
 
 export function addVoiceServiceEXP() {
-    // Detect optimal format first
     detectOptimalFormat();
     
-    // Create download button at initialization
     createDownloadButton();
     
-    // Initialize button states
     startRecButton.disabled = false;
     stopRecButton.disabled = true;
     resetRecButton.disabled = true;
     saveRecButton.disabled = true;
 
-    // Set default language
     payload.language = "English";
 
-    // Initialize event listeners
     toggleDisplay();
     selectLanguages();
 

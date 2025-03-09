@@ -3,41 +3,49 @@ import { displayError } from "../utils/errorDisplay";
 
 const fileName = document.querySelector(".fileName");
 const fileNameEdit = document.querySelector(".fileNameEdit");
-const inputField = fileNameEdit.querySelector("input");
+const inputField = fileNameEdit?.querySelector("input");
 
 const renameURL = import.meta.env.VITE_RENAME_EP;
-
 let currentController = null;
+let previousFileName = ""; // Store previous name to restore in case of failure
 
 function setCurrentFileName() {
   const currentName = userCurrentChatEXP();
-  fileName.textContent = currentName.name ? currentName.name : "untitled";
+  if (fileName) {
+    fileName.textContent = currentName?.name || "untitled";
+    previousFileName = fileName.textContent; // Store the initial file name
+  }
 }
 
 function openInputField() {
+  if (!fileName || !fileNameEdit || !inputField) return;
+
   fileName.style.display = "none";
   fileNameEdit.style.display = "flex";
-  inputField.value = fileName.querySelector("span").textContent;
+  inputField.value = fileName.textContent;
   inputField.focus();
 }
 
 async function updateName() {
-  if (currentController) {
-    currentController.abort();
-    currentController = null;
-  }
-  currentController = new AbortController();
+  if (!inputField || !fileName || !fileNameEdit) return;
 
-  const payload = { newName: inputField.value.trim() };
-  if (!payload.newName) {
+  const newName = inputField.value.trim();
+  if (!newName) {
     displayError("Name cannot be empty!");
     return;
   }
 
+  if (currentController) {
+    currentController.abort();
+    currentController = null;
+  }
+
+  currentController = new AbortController();
+
   try {
     const timeout = setTimeout(() => {
       currentController.abort();
-      displayError("Request Aborted!");
+      displayError("Request Timeout!");
     }, 8000);
 
     const response = await fetch(renameURL, {
@@ -45,44 +53,42 @@ async function updateName() {
       headers: { "Content-Type": "application/json" },
       credentials: "include",
       signal: currentController.signal,
-      body: JSON.stringify(payload),
+      body: JSON.stringify({ newName }),
     });
+
     clearTimeout(timeout);
 
     const data = await response.json();
-      if (!response.ok) {
-        const errorDetails = data?.detail;
-        displayError(errorDetails);
-      }
 
-    if (data?.success && data.newName) {
-      fileName.querySelector("span").textContent = data.newName;
-      fileName.style.display = "block";
-      fileNameEdit.style.display = "none";
-    } else {
-      displayError("Unable to change name, try again later.");
+    if (!response.ok || !data?.success || !data.newName) {
+      throw new Error(data?.detail || "Failed to rename file.");
     }
+
+    fileName.textContent = data.newName;
+    previousFileName = data.newName; // Update previous name only on success
+    fileName.style.display = "block";
+    fileNameEdit.style.display = "none";
   } catch (error) {
-    if (error.name === "AbortError") {
-        displayError("Request timeout.");
-    } else if (error.message.includes("Failed to fetch")) {
-        displayError("Unable to connect. Please check your internet connection.");
-    } else {
-        displayError("An unexpected error occurred.");
-    }
+    displayError(error.message || "An unexpected error occurred.");
+    fileName.textContent = previousFileName; // Restore previous name on failure
+  } finally {
+    fileName.style.display = "block";
+    fileNameEdit.style.display = "none";
+    inputField.value = previousFileName; // Ensure the input field resets
   }
 }
 
 function handleNameChange() {
+  if (!inputField) return;
+
   inputField.addEventListener("blur", updateName);
   inputField.addEventListener("keypress", (event) => {
-    if (event.key === "Enter") {
-      updateName();
-    }
+    if (event.key === "Enter") updateName();
   });
 }
 
-fileName.addEventListener("dblclick", openInputField);
+if (fileName) fileName.addEventListener("dblclick", openInputField);
+
 export function handleCurrentFileNameEXP() {
   handleNameChange();
   setCurrentFileName();

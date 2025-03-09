@@ -1,53 +1,58 @@
-import { displayError } from "../utils/errorDisplay"
-const newChatButton = document.querySelector(".newChat")
-const newChatLoadingIndicator  = document.querySelector(".newChatButtonAnimation")
-const newChatButtonText = document.querySelector(".newChatButtonText")
+import { displayError } from "../utils/errorDisplay";
+
+const newChatButton = document.querySelector(".newChat");
+const newChatLoadingIndicator = document.querySelector(".newChatButtonAnimation");
+const newChatButtonText = document.querySelector(".newChatButtonText");
+
 const newSessionURL = import.meta.env.VITE_NEW_CHAT_EP;
 const loginPage = import.meta.env.VITE_LOGIN_PAGE;
 
-let currentController = null
+let currentController = null;
 
 async function newChatHandle() {
-    if(currentController){
-        currentController.abort()
-        currentController = null
+    if (currentController) {
+        currentController.abort();
+        currentController = null;
     }
 
-    currentController = new AbortController()
-    newChatButtonText.style.display = "none"
-    newChatLoadingIndicator.style.display = "flex"
-    
-    try{
+    currentController = new AbortController();
+
+    if (newChatButtonText) newChatButtonText.style.display = "none";
+    if (newChatLoadingIndicator) newChatLoadingIndicator.style.display = "flex";
+
+    try {
         const timeout = setTimeout(() => {
-            currentController.abort()
-            displayError("request aborted")
+            currentController.abort();
+            displayError("Request timeout.");
         }, 8000);
 
         const response = await fetch(newSessionURL, {
             method: "GET",
             credentials: "include",
             signal: currentController.signal,
-        })
+        });
 
-        clearTimeout(timeout)
-        newChatButtonText.style.display = "block"
-        newChatLoadingIndicator.style.display = "none"
+        clearTimeout(timeout);
+
+        if (newChatButtonText) newChatButtonText.style.display = "block";
+        if (newChatLoadingIndicator) newChatLoadingIndicator.style.display = "none";
 
         const data = await response.json();
+
         if (!response.ok) {
-            const errorDetails = data?.detail;
-            displayError(errorDetails);
+            displayError(data?.detail || "Failed to start a new chat.");
+            return;
         }
 
-        if(data?.success && data.sessionLink){
-            history.pushState(null, '', data.sessionLink);
+        if (data?.success && data.sessionLink) {
+            history.pushState(null, "", data.sessionLink);
+        } else {
+            displayError("Session link not found, redirecting to login.");
+            window.location.href = loginPage;
         }
-        else{   
-            displayError("User timeout, redirecting to login")
-            window.location.href = loginPage
-        }
-    }
-    catch (error) {
+    } catch (error) {
+        console.error("New chat request failed:", error);
+
         if (error.name === "AbortError") {
             displayError("Request timeout.");
         } else if (error.message.includes("Failed to fetch")) {
