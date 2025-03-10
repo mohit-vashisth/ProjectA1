@@ -96,7 +96,7 @@ async function handleSignup() {
     const userData = {
         userName: userName.value.trim(),
         userEmail: email.value.trim(),
-        ContactNumber: contactNumber.value.replace(/\D/g, ''),
+        contactNumber: contactNumber.value.replace(/\D/g, ''),
         userPassword: password.value,
         timeZone: Intl.DateTimeFormat().resolvedOptions().timeZone,
         privacyCheck: isPrivacyChecked.checked
