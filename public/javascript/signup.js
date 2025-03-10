@@ -1,4 +1,5 @@
 import { displayError } from "../../src/javascript/utils/errorDisplay";
+import { Signup } from "../../src/schemas/signupSchema";
 import { initializePhoneInput } from "./signup/userContactjs";
 
 const userName = document.querySelector("#name");
@@ -93,14 +94,13 @@ async function handleSignup() {
     continueButton.style.cursor = "not-allowed";
     continueButton.style.opacity = "0.5";
 
-    const userData = {
-        userName: userName.value.trim(),
-        userEmail: email.value.trim(),
-        contactNumber: contactNumber.value.replace(/\D/g, ''),
-        userPassword: password.value,
-        timeZone: Intl.DateTimeFormat().resolvedOptions().timeZone,
-        privacyCheck: isPrivacyChecked.checked
-    };
+    const newUser = new Signup(
+        userName.value.trim(),
+        email.value.trim(),
+        contactNumber.value.replace(/\D/g, ''),
+        password.value,
+        isPrivacyChecked.checked
+    );
 
     try {
         loadingAnimation.style.display = "flex";
@@ -110,7 +110,7 @@ async function handleSignup() {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             signal: currentController.signal,
-            body: JSON.stringify(userData)
+            body: JSON.stringify(newUser)
         });
 
         if (!response.ok) {
