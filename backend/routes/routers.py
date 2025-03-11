@@ -11,6 +11,7 @@ from backend.core.config import DEBUG  # Assuming you have a config file with DE
 def include_routers(app: FastAPI):
     auth_routes: list[tuple] = [
         (translate_route, ["services"]),
+        (logout_route, ["auth"])
     ]
 
     app.include_router(router=signup_route, tags=["auth"])
@@ -20,5 +21,5 @@ def include_routers(app: FastAPI):
         if not DEBUG: # for HELL's sake just write true or false here instead
             app.include_router(router=route, tags=tags)
         else:
-            app.include_router(router=route, tags=tags, dependencies=[Depends(verify_n_refresh_token)])
+            app.include_router(router=route, tags=tags, dependencies=[Depends(dependency=verify_n_refresh_token)])
 

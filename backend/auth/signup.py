@@ -3,7 +3,7 @@ from backend.schemas.user_schema import User_signup
 from backend.core import config
 from backend.security.check_existing_email import check_existing_email
 from backend.auth.create_user import create_user
-from backend.security.jwt_handler import create_access_token
+from backend.security.jwt_handler import create_access_token, create_refresh_token
 from backend.utils.logger import init_logger
 
 from fastapi import APIRouter, HTTPException, Response, status
@@ -19,12 +19,23 @@ async def signup(user_info: User_signup, response: Response):
         user = await create_user(user_info=user_info)
 
         access_token = await create_access_token(user=user)
+        refresh_token = await create_refresh_token(user=user)
+
 
         init_logger(message=f"user created in database: token -> {access_token}", level="critical")
         
         response.set_cookie(
             key = "access_token",
             value = access_token,
+            httponly=True,
+            secure=not config.DEBUG,
+            samesite="lax",
+            max_age=600 if config.DEBUG else 86400
+        )
+
+        response.set_cookie(
+            key = "refresh_token",
+            value = refresh_token,
             httponly=True,
             secure=not config.DEBUG,
             samesite="lax",

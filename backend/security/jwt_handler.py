@@ -1,6 +1,6 @@
 import token
 from backend.core import config
-from backend.schemas.token_scema import Tokens
+from backend.schemas.token_scema import TokenType, Tokens
 from backend.security.token_manager import get_cookies_token
 from backend.utils.logger import init_logger
 from backend.utils.current_time import current_time
@@ -70,6 +70,61 @@ async def create_access_token(user) -> str:
             status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
             detail="Unexpected error generating token"
         )
+async def create_refresh_token(user) -> str:
+    try:
+        exp_time = config.REFRESH_TOKEN_EXPIRE_MINUTES
+
+        init_logger(message="Creating Jwt...")
+
+        if not exp_time:
+            init_logger(message="Could not able to fetch refreh token expiration time", level="warning")
+
+        exp_time = current_time() + timedelta(minutes=exp_time)
+
+        payload = {
+            "email_ID": user.email_ID,
+            "current_time": int(current_time().timestamp()),
+            "exp": int(exp_time.timestamp()),
+            "type": "refresh"
+        }
+        
+        jwt_token = jwt.encode(header=config.JWT_HEADER, payload=payload, key=PRIVATE_KEY)
+
+        if isinstance(jwt_token, bytes):
+            jwt_token = jwt_token.decode('utf-8')
+
+        init_logger(message=f"Refresh token generated successfully for {user.email_ID}, Expiration: {exp_time}")
+
+        refresh_token = Tokens(
+            email_ID=user.email_ID,
+            token=jwt_token,
+            token_type=TokenType.REFRESH
+        )
+
+        await refresh_token.insert()
+
+        return jwt_token
+    
+    except ValueError as ve:
+        init_logger(message=f"ValueError in create_refresh_token: {str(ve)}", level="error")
+        raise HTTPException(
+            status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
+            detail="Token generation configuration error"
+        )
+
+    except JoseError as je:
+        init_logger(message=f"error creating refresh token {str(je)}", level="error")
+        raise HTTPException(
+            status_code=status.HTTP_401_UNAUTHORIZED,
+            detail="Invalid or expired token"
+        )
+    
+    except Exception as e:
+        init_logger(message=f"Unexpected error in create_refresh_token: {str(e)}", level="error")
+        raise HTTPException(
+            status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
+            detail="Unexpected error generating token"
+        )
 
 oauth2_scheme = OAuth2PasswordBearer(tokenUrl=config.VITE_LOGIN_EP)
 
@@ -96,7 +151,7 @@ async def verify_n_refresh_token(request: Request) -> str:
         payload.validate()
 
         if payload["type"] != "access":
-            raise HTTPException(status.HTTP_401_UNAUTHORIZED, detail="Invalid access token")
+            raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED, detail="Invalid access token")
 
         init_logger(message="Verified jwt token")
 
@@ -136,13 +191,13 @@ async def verify_n_refresh_token(request: Request) -> str:
             detail="Error while verifying token"
         )
     
-async def check_blacklisted_token(token:str = Security(verify_n_refresh_token)): #isTokenExpBlk
-    blacklisted = Tokens.find_one({"token":token})
+async def check_blacklisted_token(token:str) -> None: #isTokenExpBlk
+    blacklisted = await Tokens.find_one({"token":token})
     init_logger(message=f"The Blacklisted Token: {blacklisted}", level = "Critical")
     if blacklisted:
         init_logger(message="The token is blacklisted.", level = "error")
         raise HTTPException(
             status_code= status.HTTP_401_UNAUTHORIZED,
-            detail="Token has beens blacklisted. Please login again"
+            detail="Token has been blacklisted. Please login again"
         )
-    return token
+    return None

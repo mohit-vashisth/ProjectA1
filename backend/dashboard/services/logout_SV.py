@@ -11,23 +11,17 @@ async def logout(request: Request , response: Response):
     init_logger(message=f"logout attempt : method :{request.method} | url:{request.url} | cookies: {request.cookies}")
     
     access_token = get_cookies_token(request=request)
-    await verify_n_refresh_token(request=request)
-    if not access_token:
-        raise HTTPException(
-            status_code = status.HTTP_400_BAD_REQUEST,
-            detail = "No access token found in cookies."
-        )
-    email_id = "  "
+    payload = await verify_n_refresh_token(request=request)
+    init_logger(message=f"payload:{payload}")
+    
+    email_id = "naveenmuwal@gmail.com"
     # if not email_id:
     #     raise HTTPException(
     #         status_code = status.HTTP_400_BAD_REQUEST,
     #         detail = "No email found in cookies."
     #     )
     
-    existing_token = await check_blacklisted_token(access_token)
-    if existing_token:
-        init_logger(message="Token is already blacklisted.")
-        return {"message" : "Token is already blacklisted."}
+    await check_blacklisted_token(token=access_token)
 
     blacklist_token = Tokens(
         email_ID=email_id,

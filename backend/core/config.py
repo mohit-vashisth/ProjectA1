@@ -37,6 +37,7 @@ DATABASE_INIT = env_variables(key="DATABASE_INIT")
 PRIVATE_KEY_PATH = env_variables(key="PRIVATE_KEY_PATH")
 PUBLIC_KEY_PATH = env_variables(key="PUBLIC_KEY_PATH")
 ACCESS_TOKEN_EXPIRE_MINUTES = int(env_variables(key="ACCESS_TOKEN_EXPIRE_MINUTES"))
+REFRESH_TOKEN_EXPIRE_MINUTES = int(env_variables(key="REFRESH_TOKEN_EXPIRE_MINUTES"))
 JWT_HEADER = {
     "alg":env_variables(key="JWT_ALGORITHM"),
     "typ": env_variables(key="TYPE")

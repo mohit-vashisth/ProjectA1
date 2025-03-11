@@ -20,7 +20,7 @@ class Tokens(Document):
     def validate_token(cls,values):
         token_type= values.get("token_type")
 
-        if token_type == TokenType.REFRESH and not values.get("expired_at"):
+        if token_type == TokenType.REFRESH and not values.get("expires_at"):
             raise ValueError("expires_at is required for refresh token.")
 
         if token_type == TokenType.BLACKLIST and values.get("expired_at"):

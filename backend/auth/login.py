@@ -1,5 +1,6 @@
 from backend.auth.signup import create_access_token
 from backend.schemas.user_schema import User_login
+from backend.security.jwt_handler import create_refresh_token
 from backend.security.pass_verifier import verify_user_password
 from backend.database.queries.user_queries import get_user
 from backend.core import config
@@ -28,12 +29,22 @@ async def login(user_info: User_login, response: Response, request: Request):
         verify_user_password(hashed_password=user_data.auth.password, password=user_info.password)
         
         access_token = await create_access_token(user=user_data)
+        refresh_token = await create_refresh_token(user=user_data)
 
         init_logger(message=f"User {user_info.email_ID} logged in successfully", request=request)
 
         response.set_cookie(
             key = "access_token",
             value = access_token,
+            httponly=True,
+            secure=not config.DEBUG,
+            samesite="lax",
+            max_age=600 if config.DEBUG else 86400
+        )
+        
+        response.set_cookie(
+            key = "refresh_token",
+            value = refresh_token,
             httponly=True,
             secure=not config.DEBUG,
             samesite="lax",
