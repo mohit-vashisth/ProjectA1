@@ -1,4 +1,5 @@
 import { displayError } from "../../src/javascript/utils/errorDisplay";
+import { Login } from "../../src/schemas/userSchema";
 
 const email = document.querySelector("#email");
 const password = document.querySelector("#password");
@@ -54,10 +55,10 @@ loginButton.addEventListener('click', async (event) => {
     if (currentController) currentController.abort();
     currentController = new AbortController();
 
-    const credentials = {
-        email: email.value.trim(),
-        password: password.value.trim()
-    };
+    const newUser = new Login(
+            email.value.trim(),
+            password.value
+        );
 
     try {
         loadingAnimation.style.display = "flex";
@@ -72,7 +73,7 @@ loginButton.addEventListener('click', async (event) => {
         const response = await fetch(loginURL, {
             method: "POST",
             headers: { "Content-Type": "application/json" },
-            body: JSON.stringify(credentials),
+            body: JSON.stringify(newUser),
             credentials: "include",
             signal: currentController.signal
         });

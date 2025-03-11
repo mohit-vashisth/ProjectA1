@@ -11,11 +11,15 @@ pass_context = CryptContext(
 )
 
 # used to verify the password with stored password in database
-def verify_user_password(hashed_password: str, password: str) -> bool:
+def verify_user_password(hashed_password: str, password: str) -> None:
     try:
         isPassValid = pass_context.verify(secret=password, hash=hashed_password)
-        init_logger(message="Password verified")
-        return isPassValid
+        if isPassValid:
+            init_logger(message="Password verified")
+        raise HTTPException(
+            status_code=status.HTTP_401_UNAUTHORIZED,
+            detail="Invalid Password"
+        )
     except Exception as e:
         init_logger(message=f"Password verification failed: {str(e)}", level="error")
         raise HTTPException(

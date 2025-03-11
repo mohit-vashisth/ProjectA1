@@ -1,16 +1,19 @@
-from fastapi import APIRouter, HTTPException, status
+from fastapi import APIRouter, HTTPException, Request, Response, status
 from backend.core import config
 from backend.schemas.lang_trans_schema import Language_request
+from backend.security.token_manager import get_cookies_token
 from backend.utils.logger import init_logger
 from ml_models.text_to_text_translate.model_controller import translate_req_handler
+from backend.security.jwt_handler import verify_n_refresh_token
 
 
 translate_route = APIRouter()
 
 @translate_route.post(config.VITE_TRANSLATE_SPEECH_EP, status_code=status.HTTP_200_OK)
-def translate(request: Language_request):
+async def translate(request: Language_request, req: Request):
     try:
         init_logger(message=f"text: {request.text} | destination: {request.dest}")
+        await verify_n_refresh_token(request=req)
         
         translated_text_res = translate_req_handler(request=request)
         

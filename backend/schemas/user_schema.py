@@ -14,5 +14,6 @@ class User_signup(BaseModel):
 class User_login(BaseModel):
     email_ID: EmailStr = Field(default=..., alias="email")
     password: str = Field(default=..., alias="password")
+    time_zone: str = Field(default=..., alias="timeZone")
 
     model_config = ConfigDict(extra="forbid", populate_by_name=True)

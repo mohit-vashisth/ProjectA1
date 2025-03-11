@@ -1,11 +1,12 @@
 import token
 from backend.core import config
-from backend.schemas.blacklist_token_schema import BlacklistToken
+from backend.schemas.token_scema import Tokens
+from backend.security.token_manager import get_cookies_token
 from backend.utils.logger import init_logger
 from backend.utils.current_time import current_time
 
 from authlib.jose import jwt, JoseError
-from fastapi import HTTPException, Depends, Security, status
+from fastapi import Cookie, HTTPException, Depends, Request, Security, status
 from datetime import timedelta
 from fastapi.security import OAuth2PasswordBearer
 
@@ -72,16 +73,19 @@ async def create_access_token(user) -> str:
 
 oauth2_scheme = OAuth2PasswordBearer(tokenUrl=config.VITE_LOGIN_EP)
 
-async def verify_n_refresh_token(token: str = Depends(oauth2_scheme)) -> str:
+async def verify_n_refresh_token(request: Request) -> str:
     try:
-        if not isinstance(token, str):
+        access_token = get_cookies_token(request=request)
+        
+        init_logger(message=f"Jwt Token Received: {access_token}")
+        if not isinstance(access_token, str):
             init_logger(message="Invalid token format received", level="warning")
             raise HTTPException(
                 status_code=status.HTTP_400_BAD_REQUEST,
                   detail="Invalid token format"
             )
         
-        payload = jwt.decode(token, PUBLIC_KEY, claims_options={
+        payload = jwt.decode(access_token, PUBLIC_KEY, claims_options={
             "exp": {"essential": True},
             "email_ID": {"essential": True},
             "type": {"essential": True}
@@ -96,7 +100,7 @@ async def verify_n_refresh_token(token: str = Depends(oauth2_scheme)) -> str:
 
         init_logger(message="Verified jwt token")
 
-        return payload
+        return payload 
     
     except JoseError as je:
         init_logger(message=f"JoseError in verify_access_token: {str(je)}", level="error")
@@ -105,7 +109,7 @@ async def verify_n_refresh_token(token: str = Depends(oauth2_scheme)) -> str:
             init_logger(message="Token expired, generating new token")
 
             try:
-                expired_payload = jwt.decode(token, PUBLIC_KEY, validate=False)
+                expired_payload = jwt.decode(access_token, PUBLIC_KEY, validate=False)
                 user_info = {
                     "email_ID": expired_payload["email_ID"],
                 }
@@ -132,8 +136,8 @@ async def verify_n_refresh_token(token: str = Depends(oauth2_scheme)) -> str:
             detail="Error while verifying token"
         )
     
-async def check_blacklisted_token(token:str = Security(verify_n_refresh_token)):
-    blacklisted = BlacklistToken.find_one({"token":token})
+async def check_blacklisted_token(token:str = Security(verify_n_refresh_token)): #isTokenExpBlk
+    blacklisted = Tokens.find_one({"token":token})
     if blacklisted:
         init_logger(message="The token is blacklisted.", level = "error")
         raise HTTPException(

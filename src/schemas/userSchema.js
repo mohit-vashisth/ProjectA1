@@ -8,3 +8,10 @@ export class Signup {
         this.privacyCheck = privacyCheck;
     }
 }
+export class Login {
+    constructor(email, password) {
+        this.email = email;
+        this.password = password;
+        this.timeZone = Intl.DateTimeFormat().resolvedOptions().timeZone;
+    }
+}

@@ -1,6 +1,6 @@
 import { displayError } from "../../src/javascript/utils/errorDisplay";
-import { Signup } from "../../src/schemas/signupSchema";
-import { initializePhoneInput } from "./signup/userContactjs";
+import { Signup } from "../../src/schemas/userSchema.js";
+import { initializePhoneInput } from "./signup/userContact.js";
 
 const userName = document.querySelector("#name");
 const email = document.querySelector("#email");
@@ -110,6 +110,7 @@ async function handleSignup() {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             signal: currentController.signal,
+            credentials: "include",
             body: JSON.stringify(newUser)
         });
 

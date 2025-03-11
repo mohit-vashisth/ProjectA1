@@ -1,10 +1,9 @@
 from fastapi import HTTPException, status
 from backend.core import config
-from backend.schemas.blacklist_token_schema import BlacklistToken
 from backend.schemas.chat_schema import Chats
 from backend.schemas.messages_schema import Messages
+from backend.schemas.token_scema import Tokens
 from backend.schemas.user_model import Users
-from backend.schemas.refresh_token_schema import RefreshToken
 from backend.utils.logger import init_logger
 
 from motor.motor_asyncio import AsyncIOMotorClient
@@ -48,7 +47,7 @@ async def init() -> None:
         )
     
     db = client[db_name]
-    await init_beanie(database=db, document_models=[Users, RefreshToken, Chats, Messages, BlacklistToken])
+    await init_beanie(database=db, document_models=[Users, Chats, Messages, Tokens])
         
     if Users.get_motor_collection() is None:
         init_logger(message="Beanie initialization failed for User_db_model", level="warning")

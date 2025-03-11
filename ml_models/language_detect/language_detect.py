@@ -19,6 +19,8 @@ except Exception as model_load_err:
 
 def detect_language(request: Language_request) -> Language_response:
     try:
+        init_logger(message=f"user text for translation: {request.text}")
+        
         if not detect_model:
             init_logger(message="Unable to Load Model", level="warning")
             raise HTTPException(

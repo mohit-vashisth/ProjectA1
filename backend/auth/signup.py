@@ -1,3 +1,4 @@
+from fastapi.responses import JSONResponse
 from backend.schemas.user_schema import User_signup
 from backend.core import config
 from backend.security.check_existing_email import check_existing_email
@@ -8,7 +9,6 @@ from backend.utils.logger import init_logger
 from fastapi import APIRouter, HTTPException, Response, status
 
 signup_route = APIRouter()
-# signup route/path/Endpoint
 @signup_route.post(path=config.VITE_SIGNUP_EP, status_code=status.HTTP_201_CREATED)
 async def signup(user_info: User_signup, response: Response):
     try:
@@ -20,23 +20,25 @@ async def signup(user_info: User_signup, response: Response):
 
         access_token = await create_access_token(user=user)
 
-        init_logger(message=f"user created in database")
+        init_logger(message=f"user created in database: token -> {access_token}", level="critical")
         
         response.set_cookie(
             key = "access_token",
             value = access_token,
             httponly=True,
-            #secure=True,
-            samesite=None,
-            max_age=86400
+            secure=not config.DEBUG,
+            samesite="lax",
+            max_age=600 if config.DEBUG else 86400
         )
 
-        return {
-                "message": "User signed up successfully",
+        return JSONResponse(
+            content= {
+                "message": "User logged in successfully.",
                 "userName": user_info.user_name,
-                "userEmail": user_info.email_ID,
-                "access_token": access_token
-            }
+                "userEmail": user_info.email_ID
+            },
+            headers={"X-API-Version": config.APP_VERSION, **response.headers}
+        )
     
     except Exception as e:
         init_logger(message=f"Error during signup: {str(e)}", level="error")

@@ -1,7 +1,7 @@
 from backend.auth.signup import create_access_token
 from backend.schemas.user_schema import User_login
 from backend.security.pass_verifier import verify_user_password
-from backend.database.user_queries import get_user
+from backend.database.queries.user_queries import get_user
 from backend.core import config
 from backend.utils.logger import init_logger
 from backend.core import config
@@ -17,6 +17,7 @@ async def login(user_info: User_login, response: Response, request: Request):
         init_logger(message=f"Login attemp for email {user_info.email_ID}", request=request)
         
         user_data = await get_user(req_email=user_info.email_ID)
+
         if user_data is None:
             init_logger(message=f"User not found: {user_info.email_ID}", level="error", request=request)
             raise HTTPException(
@@ -35,7 +36,7 @@ async def login(user_info: User_login, response: Response, request: Request):
             value = access_token,
             httponly=True,
             secure=not config.DEBUG,
-            samesite=None,
+            samesite="lax",
             max_age=600 if config.DEBUG else 86400
         )
 
@@ -48,8 +49,13 @@ async def login(user_info: User_login, response: Response, request: Request):
             headers={"X-API-Version": config.APP_VERSION, **response.headers}
         )
 
+    except HTTPException as http_exp:
+        init_logger(message=f"Unexpected Error during login: {str(http_exp)}", level="error", request=request)
+        raise http_exp
+    
     except Exception as exp:
-        init_logger(message=f"Unexpected Error during login: {str(exp)}", level="critical", request=request)
+        init_logger(message=f"Unexpected Error during login: {str(exp)}", level="error", request=request)
         raise HTTPException(
             status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
-            detail="Internal Server Error")
+            detail="Something went wrong. Please try again later."
+        )
