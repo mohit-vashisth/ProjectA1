@@ -6,9 +6,21 @@ from backend.dashboard.services.new_chat_SV import new_chat_route
 from backend.dashboard.services.translate_text_SV import translate_route
 from backend.security.jwt_handler import verify_n_refresh_token
 
+from backend.core.config import DEBUG  # Assuming you have a config file with DEBUG flag
+
 def include_routers(app: FastAPI):
+    auth_routes = [
+        (logout_route, ["services"]),
+        (new_chat_route, ["services"]),
+        (translate_route, ["services"]),
+    ]
+
     app.include_router(router=signup_route, tags=["auth"])
     app.include_router(router=login_route, tags=["auth"])
-    app.include_router(router=logout_route, tags=["services"], dependencies=[Depends(verify_n_refresh_token)])
-    app.include_router(router=new_chat_route, tags=["services"], dependencies=[Depends(verify_n_refresh_token)])
-    app.include_router(router=translate_route, tags=["services"], dependencies=[Depends(verify_n_refresh_token)])
+
+    for route, tags in auth_routes:
+        if not DEBUG: # for HELL's sake just write true or false here instead
+            app.include_router(router=route, tags=list(tags))
+        else:
+            app.include_router(router=route, tags=list(tags), dependencies=[Depends(verify_n_refresh_token)])
+

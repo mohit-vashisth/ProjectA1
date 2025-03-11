@@ -138,6 +138,7 @@ async def verify_n_refresh_token(request: Request) -> str:
     
 async def check_blacklisted_token(token:str = Security(verify_n_refresh_token)): #isTokenExpBlk
     blacklisted = Tokens.find_one({"token":token})
+    init_logger(message=f"The Blacklisted Token: {blacklisted}", level = "Critical")
     if blacklisted:
         init_logger(message="The token is blacklisted.", level = "error")
         raise HTTPException(
