@@ -16,6 +16,7 @@ def verify_user_password(hashed_password: str, password: str) -> None:
         isPassValid = pass_context.verify(secret=password, hash=hashed_password)
         if isPassValid:
             init_logger(message="Password verified")
+            return None
         raise HTTPException(
             status_code=status.HTTP_401_UNAUTHORIZED,
             detail="Invalid Password"

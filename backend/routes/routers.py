@@ -9,9 +9,7 @@ from backend.security.jwt_handler import verify_n_refresh_token
 from backend.core.config import DEBUG  # Assuming you have a config file with DEBUG flag
 
 def include_routers(app: FastAPI):
-    auth_routes = [
-        (logout_route, ["services"]),
-        (new_chat_route, ["services"]),
+    auth_routes: list[tuple] = [
         (translate_route, ["services"]),
     ]
 
@@ -20,7 +18,7 @@ def include_routers(app: FastAPI):
 
     for route, tags in auth_routes:
         if not DEBUG: # for HELL's sake just write true or false here instead
-            app.include_router(router=route, tags=list(tags))
+            app.include_router(router=route, tags=tags)
         else:
-            app.include_router(router=route, tags=list(tags), dependencies=[Depends(verify_n_refresh_token)])
+            app.include_router(router=route, tags=tags, dependencies=[Depends(verify_n_refresh_token)])
 
