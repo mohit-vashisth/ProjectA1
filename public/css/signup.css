@@ -16,26 +16,44 @@ body {
 
 /* Form Container */
 .formMainCard {
+  position: relative;
   background: #ffffff;
   padding: 32px;
   border-radius: 12px;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-  max-width: 420px;
   width: 100%;
+  max-width: 420px;
   text-align: center;
   border: 1px solid #e5e7eb;
 }
 
-/* Error Popup */
+
 .errorPopup {
-  display: none;
-  background: #fde2e2;
-  color: #b91c1c;
-  padding: 12px;
-  border-radius: 8px;
-  font-size: 14px;
-  text-align: left;
-  margin-bottom: 15px;
+  position: absolute;
+  width: 85%;
+  height: 40px;
+  top: 0;
+  border-radius: 1vmin;
+  background-color: #e74c3c;
+  color: white;
+  font-weight: bold;
+  font-size: 2vmin;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-wrap: nowrap;
+  word-break: break-word;
+  transition: all 0.3s;
+  z-index: 1;
+  opacity: 0;
+}
+
+.errorPopup p{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: all 0.3s;
 }
 
 /* Heading */
