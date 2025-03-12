@@ -4,8 +4,6 @@ import { defineConfig, loadEnv } from 'vite';
 export default defineConfig(({ mode }) => {
   const env = loadEnv(mode, process.cwd());
 
-  // Log environment variables for debugging
-
   // Get the base URL and other page-specific URLs from environment variables or defaults
   const baseURL = env.VITE_BASE_URL || '/';
   const signupURL = env.VITE_SIGNUP_PAGE || '/signup.html';  // Corrected to use the correct variable
@@ -31,6 +29,9 @@ export default defineConfig(({ mode }) => {
     // Configure development server settings
     server: {
       port: 3000,
+      host: true,
+      strictPort: true,
+      allowedHosts: "all",
     },
   };
 });
