@@ -1,211 +1,71 @@
+/* General Styles */
+html, body{
+  box-sizing: border-box;
+  overflow-y: auto;
+}
 body {
-  position: relative;
-  background-image: url("/src/assets/images/leftFaceSignupBackground.png");
-  background-repeat: no-repeat;
-  background-attachment: fixed;
-  background-size: cover;
+  font-family: "Inter", sans-serif;
+  background-color: #f9fafb;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
   height: 100vh;
   margin: 0;
-  font-family: 'Arial', sans-serif;
+  padding: 20px;
 }
 
-body::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: rgba(0, 0, 0, 0.3);
-  pointer-events: none;
-  z-index: -1;
-}
-
-form {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-  height: 100%;
-}
-
+/* Form Container */
 .formMainCard {
-  position: relative;
+  background: #ffffff;
+  padding: 32px;
+  border-radius: 12px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  max-width: 420px;
   width: 100%;
-  max-width: 600px;
-  height: auto;
-  background-color: #fff;
-  padding: 40px;
-  border-radius: 15px;
-  box-shadow: 0px 15px 40px rgba(0, 0, 0, 0.1);
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  margin-top: 20px;
-}
-
-.signup-heading {
-  font-weight: 600;
-  font-size: 2.5rem;
-  color: #2c3e50;
   text-align: center;
-  margin-bottom: 30px;
-  text-transform: capitalize;
-  letter-spacing: 1px;
+  border: 1px solid #e5e7eb;
 }
 
-.nameEmailPassContainer {
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  gap: 25px;
-}
-#T_C_Privacy{
-  margin-left: 5px;
-}
-.privacyLabel{
-  color: black;
-  margin-left: 5px;
+/* Error Popup */
+.errorPopup {
+  display: none;
+  background: #fde2e2;
+  color: #b91c1c;
+  padding: 12px;
+  border-radius: 8px;
+  font-size: 14px;
+  text-align: left;
+  margin-bottom: 15px;
 }
 
-.buttons{
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+/* Heading */
+.signup-heading {
+  font-size: 24px;
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 20px;
 }
 
+/* Input Fields */
 .inputField {
   width: 100%;
-  padding: 15px;
-  font-size: 1.2rem;
-  border: none;
-  border-bottom: 2px solid #ccc;
-  box-sizing: border-box;
-  outline: none;
-  transition: all 0.3s ease;
-  background-color: #f8f8f8;
+  padding: 12px;
+  margin: 6px 0;
+  border: 1px solid #d1d5db;
   border-radius: 8px;
+  font-size: 16px;
+  transition: all 0.2s ease-in-out;
+  background: #f8fafc;
 }
 
 .inputField:focus {
-  border-color: #3498db;
-  background-color: #fff;
+  border-color: #2563eb;
+  background: #ffffff;
+  outline: none;
+  box-shadow: 0 0 4px rgba(37, 99, 235, 0.3);
 }
 
-.inputField:hover {
-  border-color: #2980b9;
-}
-
-.inputField:focus,
-.inputField:hover {
-  transition: border-color 0.3s ease, background-color 0.3s ease;
-}
-
-.errors {
-  color: #e74c3c;
-  font-size: 1rem;
-  margin-bottom: 1rem;
-}
-
-#continue {
-  position: relative;
-  padding: 12px 24px;
-  background-color: #3498db;
-  color: white;
-  border: none;
-  border-radius: 12px;
-  cursor: pointer;
-  font-size: 1.2rem;
-  margin-top: 20px;
-  transition: background-color 0.3s ease;
-  width: 100%;
-  opacity: .5;
-}
-
-#continue:hover {
-  background-color: #2980b9;
-}
-
-a {
-  display: block;
-  text-align: center;
-  font-size: 1.1rem;
-  color: #3498db;
-  text-decoration: none;
-  margin-top: 1.5rem;
-}
-
-a:hover {
-  text-decoration: underline;
-}
-
-.otherWaysToSign button {
-  width: 100%;
-  padding: 12px;
-  background-color: #db4437;
-  color: white;
-  border: none;
-  border-radius: 12px;
-  font-size: 1.2rem;
-  margin-top: 20px;
-  transition: background-color 0.3s ease;
-}
-
-.otherWaysToSign button:hover {
-  background-color: #c1351d;
-}
-
-.errorPopup {
-  position: absolute;
-  width: 87%;
-  height: 5vmin;
-  top: 0;
-  border-radius: 1vmin;
-  background-color: #e74c3c;
-  /* transform: translateY(-3.5vmin); */
-  color: white;
-  font-weight: bold;
-  font-size: 2vmin;
-  overflow: hidden;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-wrap: nowrap;
-  word-break: break-word;
-  transition: all 0.3s;
-  opacity: 0;
-}
-
-.errorPopup p{
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  transition: all 0.3s;
-}
-
-.loading{
-  position: absolute;
-  width: 25px;
-  height: 25px;
-  border: 3px solid white;
-  border-top: 3px solid transparent;
-  border-radius: 50px;
-  top: 15px;
-  right: 185px;
-  animation: rotation 1s linear infinite;
-  display: none;
-}
-
-@keyframes rotation {
-  form{
-    transform: rotate(0deg);
-  }
-  to{
-    transform: rotate(360deg);
-  } 
-}
-
+/* Phone Input */
 .phoneInputContainer {
   display: flex;
   gap: 10px;
@@ -213,14 +73,101 @@ a:hover {
 
 #countryCode {
   width: 30%;
-  padding: 5px;
-  font-size: 1rem;
-  border: none;
-  border-bottom: 2px solid #ccc;
-  background-color: #f8f8f8;
-  border-radius: 10px;
+  min-width: 85px;
 }
 
-#contactNumber {
-  width: 70%;
+/* Checkbox */
+.privacyHolder {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  justify-content: flex-start;
+  margin: 12px 0;
+}
+
+.privacyLabel {
+  font-size: 14px;
+  color: #555;
+  cursor: pointer;
+}
+
+/* Error Messages */
+.errors {
+  color: #d9534f;
+  font-size: 14px;
+  margin-bottom: 10px;
+  text-align: left;
+}
+
+/* Buttons */
+button {
+  background-color: #2563eb;
+  color: white;
+  padding: 12px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 16px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  transition: background 0.3s ease-in-out, transform 0.1s ease-in-out;
+  font-weight: 600;
+}
+
+button:hover {
+  background-color: #1e40af;
+}
+
+button:active {
+  transform: scale(0.98);
+}
+
+#continue {
+  position: relative;
+  opacity: .5;
+
+}
+
+.loading {
+  width: 16px;
+  height: 16px;
+  border: 3px solid #ffffff;
+  border-top: 3px solid transparent;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  display: none;
+}
+
+/* Google Login Button */
+.otherWaysToSign button {
+  background-color: hsl(0, 0%, 95%);
+  color: black;
+  border: 2px solid rgba(0, 0, 0, 0.5);
+  margin-top: 10px;
+}
+
+.otherWaysToSign button:hover {
+  background-color: #ffffffe4;
+}
+
+/* Sign-in Link */
+#signinLink {
+  display: block;
+  margin: 12px 0;
+  color: #2563eb;
+  text-decoration: none;
+  font-size: 14px;
+}
+
+#signinLink:hover {
+  text-decoration: underline;
+}
+
+/* Animations */
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
 }
