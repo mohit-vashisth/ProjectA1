@@ -11,7 +11,8 @@ from backend.core.config import DEBUG  # Assuming you have a config file with DE
 def include_routers(app: FastAPI):
     auth_routes: list[tuple] = [
         (translate_route, ["services"]),
-        (logout_route, ["auth"])
+        (logout_route, ["auth"]),
+        (new_chat_route, ["services"])
     ]
 
     app.include_router(router=signup_route, tags=["auth"])

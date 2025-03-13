@@ -1,8 +1,14 @@
 from fastapi import APIRouter, HTTPException, Request, status
 from backend.core import config
+from backend.database.queries.new_chats import create_new_chat
+from backend.security.jwt_handler import verify_n_refresh_token
 from backend.utils.logger import init_logger
 
 new_chat_route = APIRouter()
 @new_chat_route.get(path=config.VITE_NEW_CHAT_EP, status_code=status.HTTP_200_OK)
-def new_chat(request: Request):
+async def new_chat(request: Request):
     init_logger(message=f"method :{request.method} | url:{request.url} | cookies: {request.cookies}")
+    
+    payload = await verify_n_refresh_token(request=request)
+
+    await create_new_chat(payload=payload, request=request)

@@ -5,8 +5,9 @@ from backend.utils.current_time import current_time
 
 class Chats(Document):
     chat_id: str
-    created_at: datetime = Field(default_factory=lambda: current_time())
     email_ID: EmailStr
+    chat_name: str
+    created_at: datetime = Field(default_factory=lambda: current_time())
 
     class Settings:
         collection = "Chats"
