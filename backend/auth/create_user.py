@@ -36,14 +36,15 @@ async def create_user(user_info) -> Users:
         )
 
     except PyMongoError as db_err:
-        init_logger(message=f"Database Error: {str(db_err)}", level="error")
+        log_level = "critical" if "connection failed" in str(db_err).lower() else "error"
+        init_logger(message=f"Database Error: {str(db_err)}", level=log_level)
         raise HTTPException(
             status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
             detail="Database error occurred"
         )
 
     except Exception as e:
-        init_logger(message=f"Unexpected Error: {str(e)}", level="error")
+        init_logger(message=f"Unexpected Error: {str(e)}", level="critical")
         raise HTTPException(
             status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
             detail="An unexpected error occurred"

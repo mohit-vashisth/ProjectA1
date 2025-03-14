@@ -24,23 +24,20 @@ async def signup(user_info: User_signup, response: Response):
 
         init_logger(message=f"user created in database: token -> {access_token}", level="critical")
         
-        response.set_cookie(
-            key = "access_token",
-            value = access_token,
-            httponly=True,
-            secure=not config.DEBUG,
-            samesite="lax",
-            max_age=600 if config.DEBUG else 86400
-        )
+        tokens = {
+            "access_token": access_token,
+            "refresh_token": refresh_token,
+        }
 
-        response.set_cookie(
-            key = "refresh_token",
-            value = refresh_token,
-            httponly=True,
-            secure=not config.DEBUG,
-            samesite="lax",
-            max_age=600 if config.DEBUG else 86400
-        )
+        for key, value in tokens.items():
+            response.set_cookie(
+                key=key,
+                value=value,
+                httponly=True,
+                secure=not config.DEBUG,
+                samesite="lax",
+                max_age=600 if config.DEBUG else 86400
+            )
 
         return JSONResponse(
             content= {

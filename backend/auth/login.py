@@ -33,23 +33,21 @@ async def login(user_info: User_login, response: Response, request: Request):
 
         init_logger(message=f"User {user_info.email_ID} logged in successfully", request=request)
 
-        response.set_cookie(
-            key = "access_token",
-            value = access_token,
-            httponly=True,
-            secure=not config.DEBUG,
-            samesite="lax",
-            max_age=600 if config.DEBUG else 86400
-        )
-        
-        response.set_cookie(
-            key = "refresh_token",
-            value = refresh_token,
-            httponly=True,
-            secure=not config.DEBUG,
-            samesite="lax",
-            max_age=600 if config.DEBUG else 86400
-        )
+        tokens = {
+            "access_token": access_token,
+            "refresh_token": refresh_token,
+        }
+
+        for key, value in tokens.items():
+            response.set_cookie(
+                key=key,
+                value=value,
+                httponly=True,
+                secure=not config.DEBUG,
+                samesite="lax",
+                max_age=600 if config.DEBUG else 86400
+            )
+
 
         return JSONResponse(
             content= {
