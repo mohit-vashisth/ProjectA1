@@ -11,4 +11,4 @@ async def new_chat(request: Request):
     
     payload = await verify_n_refresh_token(request=request)
 
-    await create_new_chat(payload=payload, request=request)
+    chat_id = await create_new_chat(payload=payload, request=request)

@@ -1,13 +1,16 @@
 from datetime import datetime
 from beanie import Document
-from pydantic import Field, EmailStr
+from pydantic import BaseModel, Field, EmailStr
 from backend.utils.current_time import current_time
 
-class Chats(Document):
+class Chat(BaseModel):
     chat_id: str
-    email_ID: EmailStr
     chat_name: str
     created_at: datetime = Field(default_factory=lambda: current_time())
+    
+class Chats(Document):
+    email_ID: EmailStr
+    chat: list[Chat]
 
     class Settings:
         collection = "Chats"
