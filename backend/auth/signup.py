@@ -3,7 +3,7 @@ from backend.schemas.user_schema import User_signup
 from backend.core import config
 from backend.security.check_existing_email import check_existing_email
 from backend.auth.create_user import create_user
-from backend.security.jwt_handler import create_access_token, create_refresh_token
+from backend.security.create_jwt import create_access_token, create_refresh_token
 from backend.utils.logger import init_logger
 
 from fastapi import APIRouter, HTTPException, Response, status

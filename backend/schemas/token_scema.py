@@ -7,6 +7,7 @@ from backend.utils.current_time import current_time
 class TokenType(str, Enum):
     REFRESH = "refresh"
     BLACKLIST = "blacklist"
+    ACCESS = "access"
 
 class Tokens(Document):
     email_ID: EmailStr

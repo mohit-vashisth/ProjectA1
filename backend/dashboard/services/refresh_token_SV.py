@@ -1,7 +1,7 @@
 from fastapi import APIRouter, Cookie, HTTPException, Request, Response, status
 from fastapi.responses import JSONResponse
 from backend.core import config
-from backend.security.jwt_handler import verify_n_refresh_token
+from backend.security.token_verification import verify_n_refresh_token
 from backend.security.token_verification import validate_refresh_token
 from backend.utils.logger import init_logger
 

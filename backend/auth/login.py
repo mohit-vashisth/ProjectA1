@@ -1,6 +1,6 @@
 from backend.auth.signup import create_access_token
 from backend.schemas.user_schema import User_login
-from backend.security.jwt_handler import create_refresh_token
+from backend.security.create_jwt import create_refresh_token
 from backend.security.pass_verifier import verify_user_password
 from backend.database.queries.user_queries import get_user
 from backend.core import config

@@ -4,7 +4,7 @@ from backend.auth.login import login_route
 from backend.dashboard.services.logout_SV import logout_route
 from backend.dashboard.services.new_chat_SV import new_chat_route
 from backend.dashboard.services.translate_text_SV import translate_route
-from backend.security.jwt_handler import verify_n_refresh_token
+from backend.security.token_verification import verify_n_refresh_token
 
 from backend.core.config import DEBUG  # Assuming you have a config file with DEBUG flag
 

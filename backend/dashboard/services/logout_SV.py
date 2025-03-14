@@ -5,7 +5,7 @@ from authlib.jose import JWTClaims
 from backend.core import config
 from backend.schemas.token_scema import TokenType, Tokens
 from backend.security.jwt_data_extract import get_jwt_email
-from backend.security.jwt_handler import check_blacklisted_token, verify_n_refresh_token
+from backend.security.token_verification import check_blacklisted_token, verify_n_refresh_token
 from backend.security.get_cookies_tokens import get_cookies_access_token, get_cookies_refresh_token
 from backend.utils.logger import init_logger
 

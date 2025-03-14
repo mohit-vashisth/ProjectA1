@@ -1,7 +1,8 @@
 from fastapi import APIRouter, HTTPException, Request, status
 from backend.core import config
 from backend.database.queries.new_chats import create_new_chat
-from backend.security.jwt_handler import verify_n_refresh_token
+from backend.security.token_verification import verify_n_refresh_token
+
 from backend.utils.logger import init_logger
 
 new_chat_route = APIRouter()
