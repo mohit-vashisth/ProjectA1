@@ -44,12 +44,12 @@ async function newChatHandle() {
             return;
         }
 
-        if (data?.success && data.sessionLink) {
-            history.pushState(null, "", data.sessionLink);
-        } else {
-            displayError("Session link not found, redirecting to login.");
-            window.location.href = loginPage;
-        }
+        // if (data?.success && data.sessionLink) {
+        //     history.pushState(null, "", data.sessionLink);
+        // } else {
+        //     displayError("Session link not found, redirecting to login.");
+        //     window.location.href = loginPage;
+        // }
     } catch (error) {
         console.error("New chat request failed:", error);
 

@@ -1,6 +1,7 @@
 from backend.core import config
 from backend.schemas.token_scema import TokenType, Tokens
-from backend.security.token_manager import get_cookies_token
+from backend.security.token_manager import get_cookies_access_token
+from backend.utils.load_keys import load_keys
 from backend.utils.logger import init_logger
 from backend.utils.current_time import current_time
 
@@ -9,18 +10,7 @@ from fastapi import HTTPException, Request, status
 from datetime import timedelta
 from fastapi.security import OAuth2PasswordBearer
 
-try:
-    init_logger(message="Loading Keys from Environment Variables")
-    PRIVATE_KEY, PUBLIC_KEY = config.read_pv_key()
-    init_logger(message="Key Loaded successfully...")
-
-    if not PRIVATE_KEY or not PUBLIC_KEY:
-        init_logger(message="Private/Public key not loaded properly", level="critical")
-        raise RuntimeError("Private/Public key not loaded properly")
-    
-except Exception as e:
-    init_logger(message=f"Error loading private/public keys: {str(e)}", level="critical")
-    raise RuntimeError("Failed to initialize JWT keys") from e
+PRIVATE_KEY, PUBLIC_KEY = load_keys()
 
 async def create_access_token(user) -> str:
     try:
@@ -132,7 +122,7 @@ oauth2_scheme = OAuth2PasswordBearer(tokenUrl=config.VITE_LOGIN_EP)
 
 async def verify_n_refresh_token(request: Request) -> str:
     try:
-        access_token = get_cookies_token(request=request)
+        access_token = get_cookies_access_token(request=request)
         
         init_logger(message=f"Jwt Token Received: {access_token}")
         if not isinstance(access_token, str):

@@ -28,6 +28,7 @@ VITE_TRANSLATE_SPEECH_EP = env_variables(key="VITE_TRANSLATE_SPEECH_EP")
 VITE_GENERATE_SPEECH_EP = env_variables(key="VITE_GENERATE_SPEECH_EP")
 VITE_LOGIN_EP = env_variables(key="VITE_LOGIN_EP")
 VITE_SIGNUP_EP = env_variables(key="VITE_SIGNUP_EP")
+VITE_REFRESH_TOKEN_EP = env_variables(key="VITE_REFREH_TOKEN_EP")
 
 # Database Configuration
 MONGO_URI = env_variables(key="MONGO_URI")
