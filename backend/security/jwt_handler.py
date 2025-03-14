@@ -1,6 +1,6 @@
 from backend.core import config
 from backend.schemas.token_scema import TokenType, Tokens
-from backend.security.token_manager import get_cookies_access_token
+from backend.security.get_cookies_tokens import get_cookies_access_token
 from backend.utils.load_keys import load_keys
 from backend.utils.logger import init_logger
 from backend.utils.current_time import current_time
