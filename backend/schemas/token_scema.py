@@ -13,7 +13,7 @@ class Tokens(Document):
     email_ID: EmailStr
     token: str
     token_type: TokenType
-    expires_at: datetime | None = None
+    expires_at: int | None = None
     blacklisted_at: datetime | None = None
 
     @model_validator(mode="before")

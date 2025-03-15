@@ -1,7 +1,7 @@
 from fastapi import Request
 from backend.schemas.log_schema import logger
 
-def init_logger(message: str, level: str = "info", request: Request | None = None):
+def init_logger(message: str, level: str = "debug", request: Request | None = None):
     request_id = request.headers.get("X-Request-ID", "None") if request else "None"
 
     extra = {

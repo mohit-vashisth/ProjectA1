@@ -5,7 +5,7 @@ from authlib.jose import JWTClaims
 from backend.core import config
 from backend.schemas.token_scema import TokenType, Tokens
 from backend.security.jwt_data_extract import get_jwt_email
-from backend.security.token_verification import check_blacklisted_token, verify_n_refresh_token
+from backend.security.token_verification import is_blacklisted_token, verify_and_refresh_token
 from backend.security.get_cookies_tokens import get_cookies_access_token, get_cookies_refresh_token
 from backend.utils.logger import init_logger
 
@@ -19,12 +19,12 @@ async def logout(request: Request , response: Response):
     init_logger(f"access token found:{access_token}", level="critical")
     refresh_token = get_cookies_refresh_token(request=request)
     init_logger(f"refresh token found:{refresh_token}", level="critical")
-    payload = await verify_n_refresh_token(request=request)
+    payload = await verify_and_refresh_token(request=request)
 
     email_id = get_jwt_email(decoded_token=payload)
     
-    await check_blacklisted_token(token=access_token)
-    await check_blacklisted_token(token=refresh_token)
+    await is_blacklisted_token(token=access_token)
+    await is_blacklisted_token(token=refresh_token)
 
     blacklist_access_token = Tokens(
         email_ID=email_id,

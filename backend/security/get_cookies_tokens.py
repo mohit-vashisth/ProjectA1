@@ -7,7 +7,7 @@ def get_cookies_access_token(request: Request) -> str:
         init_logger(message=f"token={token}")
         return token
 
-    init_logger(message="token NOT FOUND")
+    init_logger(message="token NOT FOUND", level="critical", request=request)
     raise HTTPException(
         status_code=status.HTTP_401_UNAUTHORIZED,
         detail="token is not found or valid."
@@ -19,7 +19,7 @@ def get_cookies_refresh_token(request: Request) -> str:
         init_logger(message=f"token={token}")
         return token
 
-    init_logger(message="token NOT FOUND")
+    init_logger(message="token NOT FOUND", level="critical", request=request)
     raise HTTPException(
         status_code=status.HTTP_401_UNAUTHORIZED,
         detail="token is not found or valid."

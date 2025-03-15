@@ -1,10 +1,11 @@
 from backend.schemas.user_model import Auth, UserProfile, Users
 from backend.security.pass_hasher import password_hash
+from backend.utils.logger import init_logger
+
 from pymongo.errors import PyMongoError
 from pydantic import ValidationError
 from fastapi import HTTPException, status
 
-from backend.utils.logger import init_logger
 
 async def create_user(user_info) -> Users:
     try:
