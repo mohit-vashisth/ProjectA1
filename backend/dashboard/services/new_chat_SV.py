@@ -1,4 +1,5 @@
 from fastapi import APIRouter, HTTPException, Request, status
+from fastapi.responses import JSONResponse
 from backend.core import config
 from backend.database.queries.new_chats import create_new_chat
 from backend.security.token_verification import verify_n_refresh_token
@@ -13,3 +14,10 @@ async def new_chat(request: Request):
     payload = await verify_n_refresh_token(request=request)
 
     chat_id = await create_new_chat(payload=payload, request=request)
+
+    return JSONResponse(
+        content={
+            "message": "New chat created successfully.",
+            "session_id": chat_id
+        }
+    )

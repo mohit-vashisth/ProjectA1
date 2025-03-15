@@ -39,13 +39,16 @@ async def login(user_info: User_login, response: Response, request: Request):
         }
 
         for key, value in tokens.items():
+            max_age = config.ACCESS_TOKEN_EXPIRE_MINUTES if key == "access_token" else config.REFRESH_TOKEN_EXPIRE_MINUTES
+            path = "/" if key == "access_token" else "/login"
             response.set_cookie(
                 key=key,
                 value=value,
                 httponly=True,
                 secure=not config.DEBUG,
                 samesite="lax",
-                max_age=600 if config.DEBUG else 86400
+                max_age=max_age,
+                path=path
             )
 
 

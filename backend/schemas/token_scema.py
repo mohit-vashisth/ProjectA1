@@ -14,7 +14,7 @@ class Tokens(Document):
     token: str
     token_type: TokenType
     expires_at: datetime | None = None
-    blacklisted_at: datetime | None = Field(default_factory=lambda: current_time())
+    blacklisted_at: datetime | None = None
 
     @model_validator(mode="before")
     @classmethod
@@ -24,7 +24,9 @@ class Tokens(Document):
         if token_type == TokenType.REFRESH and not values.get("expires_at"):
             raise ValueError("expires_at is required for refresh token.")
 
-        if token_type == TokenType.BLACKLIST and values.get("expired_at"):
+        if token_type == TokenType.BLACKLIST and values.get("expires_at"):
+            values["expires_at"] = None
+            values["blacklisted_at"] = current_time()
             raise ValueError("expires_at is not required for blacklist token.")
         
         return values

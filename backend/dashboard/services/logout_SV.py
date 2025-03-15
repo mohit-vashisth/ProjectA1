@@ -16,7 +16,9 @@ async def logout(request: Request , response: Response):
     init_logger(message=f"logout attempt : method :{request.method} | url:{request.url} | cookies: {request.cookies}")
     
     access_token = get_cookies_access_token(request=request)
+    init_logger(f"access token found:{access_token}", level="critical")
     refresh_token = get_cookies_refresh_token(request=request)
+    init_logger(f"refresh token found:{refresh_token}", level="critical")
     payload = await verify_n_refresh_token(request=request)
 
     email_id = get_jwt_email(decoded_token=payload)
