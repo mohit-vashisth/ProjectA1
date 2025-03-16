@@ -13,7 +13,7 @@ class Tokens(Document):
     email_ID: EmailStr
     token: str
     token_type: TokenType
-    expires_at: int | None = None
+    expires_at: datetime | None = None
     blacklisted_at: datetime | None = None
 
     @model_validator(mode="before")
@@ -24,10 +24,11 @@ class Tokens(Document):
         if token_type == TokenType.REFRESH and not values.get("expires_at"):
             raise ValueError("expires_at is required for refresh token.")
 
-        if token_type == TokenType.BLACKLIST and values.get("expires_at"):
-            values["expires_at"] = None
+        elif token_type == TokenType.BLACKLIST:
+            if values.get("expires_at"):
+                raise ValueError("expires_at is not required for blacklist token.")
             values["blacklisted_at"] = current_time()
-            raise ValueError("expires_at is not required for blacklist token.")
+            values["expires_at"] = None
         
         return values
     

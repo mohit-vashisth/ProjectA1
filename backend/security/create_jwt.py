@@ -1,21 +1,21 @@
 from backend.core import config
-from backend.schemas.token_scema import TokenType, Tokens
+from backend.schemas.token_schema import TokenType, Tokens
 from backend.utils.logger import init_logger
 from backend.utils.current_time import current_time
 from backend.utils.load_keys import load_keys
 
 from authlib.jose import jwt
 from fastapi import HTTPException, status
-from datetime import timedelta
+from datetime import datetime, timedelta
 from typing import Any
 
 
 PRIVATE_KEY, _ = load_keys()
 
 def exp_time(token_type: str = "access"):
-    return int((current_time() + timedelta(minutes=config.ACCESS_TOKEN_EXPIRE_MINUTES * 60 if token_type.lower() == "access" else config.REFRESH_TOKEN_EXPIRE_MINUTES * 60)).timestamp())
+    return (current_time() + timedelta(seconds=config.ACCESS_TOKEN_EXPIRE_MINUTES * 60 if token_type.lower() == "access" else config.REFRESH_TOKEN_EXPIRE_MINUTES * 60))
 
-def create_payload(email_id: str, expiry_time: int, token_type: str)-> dict[str, Any]:
+def create_payload(email_id: str, expiry_time: datetime, token_type: str)-> dict[str, Any]:
     return {
         "email_ID":email_id,
         "current_time": int(current_time().timestamp()),

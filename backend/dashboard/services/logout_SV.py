@@ -3,7 +3,7 @@ import json
 from fastapi import APIRouter, HTTPException, Request, Response, status
 from authlib.jose import JWTClaims
 from backend.core import config
-from backend.schemas.token_scema import TokenType, Tokens
+from backend.schemas.token_schema import TokenType, Tokens
 from backend.security.jwt_data_extract import get_jwt_email
 from backend.security.token_verification import is_blacklisted_token, verify_and_refresh_token
 from backend.security.get_cookies_tokens import get_cookies_access_token, get_cookies_refresh_token
@@ -32,14 +32,19 @@ async def logout(request: Request , response: Response):
         token_type=TokenType.BLACKLIST
         )
 
-    await blacklist_access_token.insert()
     
     blacklist_refresh_token = Tokens(
         email_ID=email_id,
         token=refresh_token,
         token_type=TokenType.BLACKLIST
         )
+    
+    await Tokens.find_one(
+        Tokens.token == refresh_token,
+        Tokens.token_type == TokenType.REFRESH
+    ).delete()
 
+    await blacklist_access_token.insert()
     await blacklist_refresh_token.insert()
 
     response.delete_cookie(key="access_token")
