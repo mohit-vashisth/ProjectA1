@@ -1,6 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<html lang="en" data-theme="dark">
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -8,6 +7,8 @@
     <meta name="keywords" content="real-time translation, voice-to-text, ProjectA1, AI chatbot" />
     <meta name="author" content="3R Minds" />
     <meta name="robots" content="index, follow" />
+    <meta property="og:title" content="ProjectA1: Real-Time Voice Translation by 3R Minds">
+    <meta property="og:description" content="Convert spoken language into real-time text and translate it for pronunciation in another language.">
     
     <!-- Updated CSP -->    
     <!-- <meta http-equiv="Content-Security-Policy" content="
@@ -19,6 +20,10 @@
         connect-src 'self'; 
         object-src 'none';
         frame-ancestors 'none';"> -->
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
     <link rel="preload" href="/src/css/utils.css" as="style" />
     <link rel="preload" href="/src/css/index.css" as="style" />
@@ -35,17 +40,17 @@
 </head>
 
 <body>
-    <div class="root">
-        <section class="leftMain">
-            <div class="sliderButtonsChats">
-                <div class="slider">
-                    <div class="slide">
+    <main class="root flex w100">
+        <nav class="leftMain h100 flex justifyStart relative alignCenter">
+            <div class="sliderButtonsChats flex w100">
+                <div class="slider w100">
+                    <div class="slide flex alignCenter justifyCenter">
                         <img class="filter" src="/src/assets/svg/hamburger.svg" alt="">
                     </div>
                 </div>
-                <div class="chatVoiceButtons">
-                    <div class="newChatButton">
-                        <button class="newChat">
+                <div class="chatVoiceButtons w100 flex alignCenter justifyCenter">
+                    <div class="newChatButton flex justifyCenter">
+                        <button class="newChat flex relative alignCenter justifyCenter">
                             <div class="newChatButtonText">
                                 <strong>+</strong>
                                 <span>New Speech</span>
@@ -53,44 +58,44 @@
                             <div class="newChatButtonAnimation"></div>
                         </button>
                     </div>
-                    <div class="addVoiceButton">
-                        <div class="addVoice">
-                            <div class="addVoiceButtonText">
+                    <div class="addVoiceButton flex justifyCenter">
+                        <div class="addVoice flex alignCenter justifyCenter">
+                            <div class="addVoiceButtonText flex alignCenter justifyCenter">
                                 <img class="filter" src="/src/assets/svg/microphone.svg" alt="">
                                 <span class="voiceText">Create Voice Clone</span>
                             </div>
                             <div class="addVoiceAnimation"></div>
                         </div>
-                        <div class="addVoicePopup100VH">
-                            <div class="addvoicePopup">
-                                <div class="backVoicePopup">
+                        <div class="addVoicePopup100VH w100 alignCenter justifyCenter">
+                            <div class="addvoicePopup flex relative alignCenter justifyCenter">
+                                <div class="backVoicePopup flex alignCenter justifyCenter">
                                     <img class="filter" src="/src/assets/svg/slidebarLeft.svg" alt="">
                                 </div>
-                                <div class="closeVoicePopup">
+                                <div class="closeVoicePopup flex alignCenter justifyCenter">
                                     <img class="filter" src="/src/assets/svg/cross.svg" alt="">
                                 </div>
-                                <div class="voicePopup">
-                                    <div class="voiceHeading">
+                                <div class="voicePopup h100 w100 flex alignCenter justifyCenter">
+                                    <div class="voiceHeading flex alignCenter justifyCenter">
                                         <span>How would you like to clone your voice?</span>
                                     </div>
-                                    <div class="addVoiceOptions">
-                                        <div class="popupOptionBox">
-                                            <div class="voiceBox voiceBox1">
-                                                <div class="recImg">
+                                    <div class="addVoiceOptions flex alignCenter">
+                                        <div class="popupOptionBox flex relative alignCenter justifyCenter">
+                                            <div class="voiceBox h100 w100 voiceBox1 flex relative alignCenter justifyCenter">
+                                                <div class="recImg w100 flex justifyCenter">
                                                     <img src="/src/assets/svg/voiceClone.svg" alt="">
                                                 </div>
-                                                <div class="recTitle">
+                                                <div class="recTitle w100 flex justifyStart alignCenter">
                                                     <p><strong>Instant</strong></p>
                                                     <span>Only 30 seconds of audio needed.</span>
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="popupOptionBox">
-                                            <div class="voiceBox voiceBox2">
-                                                <div class="addFileImg">
+                                        <div class="popupOptionBox flex relative alignCenter justifyCenter">
+                                            <div class="voiceBox w100 voiceBox2 flex relative alignCenter justifyCenter">
+                                                <div class="addFileImg w100 flex justifyCenter">
                                                     <img src="/src/assets/svg/real-time.svg" alt="">
                                                 </div>
-                                                <div class="Fileheading">
+                                                <div class="Fileheading w100 flex justifyStart alignCenter">
                                                     <p><strong>Premium</strong></p>
                                                     <span>Upgrade now for just ₹29 and unlock advanced features instantly!</span>
                                                 </div>
@@ -98,35 +103,35 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="addInputLanguage">
-                                    <div class="defineInputLangText">
+                                <div class="addInputLanguage h100 w100 flex justifyStart alignCenter">
+                                    <div class="defineInputLangText w100 flex alignCenter justifyCenter">
                                         <span><strong>Define Input Language</strong></span>
                                     </div>
                                     <select id="languageDropdown" class="language-select">
                                     </select>
-                                    <div class="nextButtonVoice">
+                                    <div class="nextButtonVoice w100 flex alignCenter justifyCenter">
                                         <button class="nextButtonV">Continue</button>
                                     </div>
-                                    <div class="voiceNotice">
+                                    <div class="voiceNotice w100 flex justifyCenter">
                                         <span>Currently, your voice clone supports both <strong>Hindi</strong> and <strong>English</strong> language. It will perform optimally in the language it was recorded in.</span>
                                     </div>
                                 </div>
-                                <div class="recordHere">
-                                    <div class="upperVoiceContainer">
-                                        <div class="recordText">
+                                <div class="recordHere h100 w100 flex justifyStart alignCenter">
+                                    <div class="upperVoiceContainer w100 flex justifyStart alignCenter">
+                                        <div class="recordText w100 flex alignCenter justifyCenter">
                                             <p><strong>Record Here</strong></p>
                                         </div>
                                         <div class="recordingAnimation"></div>
                                         <div class="recordingTime">0:00</div>
                                         <audio class="audio-player" controls download></audio>
                                     </div>
-                                    <div class="optionsContainer">
-                                        <div class="controls">
+                                    <div class="optionsContainer w100 flex alignCenter justifyCenter">
+                                        <div class="controls flex alignCenter justifyCenter">
                                             <button class="startButton">Start</button>
                                             <button class="stopButton" disabled>Stop</button>
                                             <button class="resetButton" disabled>Reset</button>
                                         </div>
-                                        <div class="saveDownload">
+                                        <div class="saveDownload flex alignCenter justifyCenter">
                                             <button class="saveButton" disabled>Save</button>
                                         </div>
                                     </div>
@@ -136,46 +141,46 @@
                     </div>
                 </div>
             </div>
-            <div class="chatsSection">
-                <div class="chatsHistory">
-                    <div class="recentChats">
-                        <div class="recentChatsButton">
-                            <div class="imgTextRecentChatsButton">
+            <div class="chatsSection w100 flex alignCenter justifyCenter">
+                <div class="chatsHistory h100 flex justifyStart relative">
+                    <div class="recentChats w100">
+                        <div class="recentChatsButton w100 flex justifyStart alignCenter">
+                            <div class="imgTextRecentChatsButton h100 flex justifyStart alignCenter">
                                 <img class="filter" src="/src/assets/svg/clock.svg" alt="">
                                 <span>Recent chats</span>
                             </div>
-                            <div class="dropdownRecentChats">
+                            <div class="dropdownRecentChats h100 flex alignCenter">
                                 <img class="filter" src="/src/assets/svg/arrowDown.svg" alt="">
                             </div>
                         </div>
                     </div>
-                    <ul class="chatsHistoryHereNow">
+                    <ul class="chatsHistoryHereNow w100 flex justifyStart">
                     </ul>
                 </div>
             </div>
-            <div class="storageSection">
-                <div class="storageAudios">
-                    <div class="storageIconText">
+            <div class="storageSection w100 flex alignCenter justifyCenter">
+                <div class="storageAudios h100">
+                    <div class="storageIconText h100 w100 flex justifyStart alignCenter">
                         <img class="filter" src="/src/assets/svg/storage.svg" alt="">
                         <span>Files</span>
                     </div>
                 </div>                
-                <div class="storagePopup100VH">
-                    <div class="storagePopup">
-                        <div class="storagePopupHeader">
+                <div class="storagePopup100VH alignCenter justifyCenter">
+                    <div class="storagePopup justifyStart">
+                        <div class="storagePopupHeader w100 flex alignCenter">
                             <span>All Files</span>
                         </div>
-                        <div class="searchChatsContainer">
+                        <div class="searchChatsContainer w100 flex">
                             <div class="searchChats">
-                                <div class="searchNow">
+                                <div class="searchNow w100 flex relative alignCenter">
                                     <img class="filter" src="/src/assets/svg/search.svg" alt="Search Icon">
                                     <input class="searchInput" type="text" placeholder="Search Chats">
                                 </div>
                             </div>
-                            <div class="chatsListPopup">
-                                <div class="selectDeleteChats">
+                            <div class="chatsListPopup w100">
+                                <div class="selectDeleteChats w100 flex alignCenter">
                                     <div class="selectAllChats">
-                                        <label for="checkboxSelect" class="customLabel">
+                                        <label for="checkboxSelect" class="customLabel flex alignCenter">
                                             <input type="checkbox" id="checkboxSelect" class="checkboxSelect">
                                             Select All
                                         </label>
@@ -185,7 +190,7 @@
                                     </div>
                                 </div>
                                 <div class="chatsList">
-                                    <ul id="chatList" class="chatList">
+                                    <ul id="chatList" class="chatList flex">
                                         <li>
                                             <input type="checkbox" class="chatCheckbox">
                                             <span class="chatName">Mohit</span>
@@ -197,39 +202,39 @@
                     </div>
                 </div>
             </div>
-            <div class="userSection">
-                <div class="aboutWebsite">
-                    <div class="about">
+            <div class="userSection w100 flex alignCenter">
+                <div class="aboutWebsite flex alignCenter justifyCenter">
+                    <div class="about flex justifyStart alignCenter">
                         <img class="filter" src="/src/assets/svg/aboutWebsite.svg" alt="">
                         <span>About</span>    
                     </div>
-                    <div class="aboutWebsitePopupContainer">
-                        <div class="aboutWpopup">
-                            <ul class="aboutWItems">
-                                <li><span>Privacy Policy</span></li>
-                                <li><span>Terms and Conditions</span></li>
-                                <li><span>Contact Us</span></li>
-                                <li><span>Legal Notice</span></li>
-                                <li><span>Version - v1.0.0</span></li>
+                    <div class="aboutWebsitePopupContainer flex alignCenter">
+                        <div class="aboutWpopup h100 w100 flex justifyStart alignCenter">
+                            <ul class="aboutWItems h100 w100 flex justifyCenter">
+                                <li class="w100 h100 flex alignCenter"><span>Privacy Policy</span></li>
+                                <li class="w100 h100 flex alignCenter"><span>Terms and Conditions</span></li>
+                                <li class="w100 h100 flex alignCenter"><span>Contact Us</span></li>
+                                <li class="w100 h100 flex alignCenter"><span>Legal Notice</span></li>
+                                <li class="w100 h100 flex alignCenter"><span>Version - v1.0.0</span></li>
                             </ul>
                         </div>
                     </div>
                 </div>
-                <div class="userHere">
-                    <div class="user">
-                        <div class="userInfo">
-                            <div class="userImg">
-                                <div class="img">M</div>
+                <div class="userHere flex alignCenter justifyCenter">
+                    <div class="user h100 flex justifyStart relative alignCenter">
+                        <div class="userInfo h100 flex justifyStart alignCenter">
+                            <div class="userImg h100 flex justifyStart alignCenter">
+                                <div class="img flex alignCenter justifyCenter">M</div>
                             </div>
-                            <div class="userName"><span>Mohit Narayan Vashisth</span></div>
+                            <div class="userName h100 flex justifyStart alignCenter"><span>Mohit Narayan Vashisth</span></div>
                         </div>
-                        <div class="userLogout">
-                            <div class="logoutImg">
+                        <div class="userLogout h100 flex alignCenter justifyCenter">
+                            <div class="logoutImg flex alignCenter justifyCenter">
                                 <img class="logoutIcon filter" src="/src/assets/svg/logout.svg" alt="">
                             </div>
-                            <div class="logoutPopupContainer">
+                            <div class="logoutPopupContainer flex alignCenter">
                                 <span><strong>confirm Logout</strong></span>
-                                <div class="logoutConfirmButton">
+                                <div class="logoutConfirmButton w100 flex alignCenter justifyCenter">
                                     <button class="yesButton" id="logout">Yes</button>
                                     <button class="noButton">No</button>
                                 </div>    
@@ -238,51 +243,52 @@
                     </div>
                 </div>
             </div>
-        </section>
-        <section class="rightMain">
-            <div class="upperRight">
-                <div class="upperRightIn">
-                    <div class="webSiteName">
-                        <span>3R Minds</span> <li>Innovating AI, Fueling Imagination</li>
+        </nav>
+        <section class="rightMain h100 flex relative" aria-label="Main content">
+            <div class="upperRight flex alignCenter" role="banner">
+                <div class="upperRightIn h100 w100 flex relative alignCenter justifyCenter">
+                    <div class="webSiteName h100 flex alignCenter" aria-label="3R Minds">
+                        <span class="flex h100 alignCenter">3R Minds</span>
+                        <li class="flex h100 alignCenter">Innovating AI, Fueling Imagination</li>
                     </div>
-                    <div class="exportAudios">
-                        <div class="exportAudioNow">
-                            <div class="audioFileName">
-                                <div class="fileName"><span>FileName</span></div>
-                                <div class="fileNameEdit">
+                    <div class="exportAudios h100 flex alignCenter">
+                        <div class="exportAudioNow h100 flex relative alignCenter">
+                            <div class="audioFileName flex alignCenter">
+                                <div class="fileName flex alignCenter"><span>FileName</span></div>
+                                <div class="fileNameEdit w100 flex alignCenter">
                                     <input type="text">
                                 </div>
                             </div>
                             <button class="export">Export</button>
-                            <div class="exportOptionsPopup">
-                                <div class="wavFile"><span>WAV Format</span></div>
-                                <div class="mp4File"><span>MP4 Format</span></div>
+                            <div class="exportOptionsPopup flex alignCenter justifyCenter">
+                                <div class="wavFile w100 flex justifyStart alignCenter"><span>WAV Format</span></div>
+                                <div class="mp4File w100 flex justifyStart alignCenter"><span>MP4 Format</span></div>
                             </div>
                         </div>
                     </div>
-                    <div class="errorPopup">
-                        <p></p>
+                    <div class="errorPopup w100 flex alignCenter justifyCenter">
+                        <p class="flex alignCenter justifyCenter"></p>
                     </div>
                 </div>
             </div>
-            <div class="lowerRight">
-                <div class="speechGenerateContainer">
-                    <div class="textInputSection">
-                        <div class="textInputLimit">
+            <div class="lowerRight w100 flex alignCenter">
+                <div class="speechGenerateContainer flex justifyStart">
+                    <div class="textInputSection w100">
+                        <div class="textInputLimit flex alignCenter">
                             <label for="inputText">Add Text</label>
-                            <div class="maxCharactorTextHolder">
+                            <div class="maxCharactorTextHolder flex justifyStart alignCenter">
                                 <p class="maximumChar"></p>
                             </div>
                         </div>
-                        <textarea id="inputText" placeholder="Type here..."></textarea>
+                        <textarea class="w100" id="inputText" placeholder="Type here..."></textarea>
                     </div>
-                    <div class="speechOptions">
-                        <div class="selectLangToTranslateSection">
+                    <div class="speechOptions w100 flex">
+                        <div class="selectLangToTranslateSection flex">
                             <select id="speechOptionLanguages"></select>
                             <button class="translateSpeechBtn">Translate your text</button>
                         </div>
                     </div>
-                    <div class="voiceOptions">
+                    <div class="voiceOptions w100">
                     <!-- Pre-Available Voices -->
                     <div>
                         <input type="radio" id="preAvailable" name="voice" checked />
@@ -309,10 +315,10 @@
                     </div>
                 </div>
             </div>
-            <div class="loadingAssets">
-                <div class="animationText">
+            <div class="loadingAssets h100 w100 flex alignCenter justifyCenter">
+                <div class="animationText flex justifyStart alignCenter">
                     <div class="animation"></div>
-                    <div class="animationText">
+                    <div class="animationText flex">
                         <span class="loadingText loadingText1">Creating workspace</span>
                         <span class="loadingText loadingText2">Loading assets</span>
                         <span class="loadingText loadingText3">Just a moment</span>
@@ -321,6 +327,6 @@
                 </div>
             </div>
         </section>
-    </div>
+    </main>
 </body>
 </html>

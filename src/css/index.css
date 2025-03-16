@@ -1,32 +1,22 @@
 .root{
-    width: 100%;
     height: 100vh;
-    display: flex;
 }
 
 .leftMain{
-    position: relative;
     width: 15%;
-    height: 100%;
     border-right: .1vmin solid var(--border-universal--);
     background: var(--new--body-leftSection--);
-    display: flex;
     transition: all .2s;
-    justify-content: flex-start;
-    align-items: center;
     flex-direction: column;
     z-index: 1;
 }
 
 .sliderButtonsChats{
-    width: 100%;
     height: 20%;
-    display: flex;
     flex-direction: column;
 }
 
 .slider{
-    width: 100%;
     min-height: 3vmin;
     display: none;
 }
@@ -38,9 +28,6 @@
     left: 1vmin;
     width: 4vmin;
     height: 4vmin;
-    display: flex;
-    justify-content: center;
-    align-items: center;
     cursor: pointer;
     z-index: 10;
 }
@@ -49,25 +36,18 @@
 }
 
 .chatVoiceButtons {
-    width: 100%;
     height: calc(100% - 3vmin);
-    display: flex;
     max-height: 17vmin;
-    justify-content: center;
-    align-items: center;
     flex-direction: column;
 }
 
 .newChatButton{
     width: 90%;
     height: 50%;
-    display: flex;
-    justify-content: center;
     align-items: flex-end;
 }
 
 .newChat{
-    position: relative;
     width: 90%;
     height: 60%;
     border-radius: 1vmin;
@@ -81,9 +61,6 @@
     text-wrap: nowrap;
     overflow: hidden;
     margin: 1vmin;
-    display: flex;
-    justify-content: center;
-    align-items: center;
 }
 
 .newChatButtonAnimation, 
@@ -105,8 +82,6 @@
 .addVoiceButton{
     width: 90%;
     height: 50%;
-    display: flex;
-    justify-content: center;
     align-items: flex-start;
 
 }
@@ -114,9 +89,6 @@
 .addVoice{
     width: 90%;
     height: 80%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
     background-color: var(--new--body-rightSection--);
     border: .1vmin solid var(--border-universal--);
     border-radius: 1.5vmin;
@@ -126,12 +98,6 @@
 }
 .addVoice:hover{
     border: .3vmin solid var(--border-universal--);
-}
-
-.addVoiceButtonText{
-    display: flex;
-    justify-content: center;
-    align-items: center;
 }
 
 .addVoice span{
@@ -146,36 +112,26 @@
 
 .addVoicePopup100VH{
     position: fixed;
-    width: 100%;
     height: 100vh;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    justify-content: center;
-    align-items: center;
     background-color: rgba(0, 0, 0, 0.2);
     display: none;
     z-index: 100;
 }
 .addvoicePopup{
-    position: relative;
     width: 65vmin;
     height: 35vmin;
     background-color: var(--new--body-rightSection--);
     border: .2vmin solid var(--border-universal--);
     border-radius: 2vmin;
-    display: flex;
     flex-direction: column;
     overflow: hidden;
 }
 /*  voice poppup */
 .voicePopup {
-    width: 100%;
-    height: 100%;
-    display: flex;
     flex-direction: column;
-    align-items: center;
-    justify-content: center;
     background: linear-gradient(145deg, #1f1f1f, #282828);
     backdrop-filter: blur(5px);
     border-radius: 2vmin;
@@ -185,9 +141,6 @@
 .voiceHeading {
     width: 90%;
     height: 15%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
     border-radius: 1vmin;
     margin-bottom: 2vmin;
 }
@@ -206,9 +159,6 @@
     top: 2vmin;
     right: 2vmin;
     border-radius: 1vmin;
-    display: flex;
-    justify-content: center;
-    align-items: center;
     z-index: 501;
 }
 
@@ -224,9 +174,6 @@
     top: 2vmin;
     left: 2vmin;
     border-radius: 1vmin;
-    display: flex;
-    justify-content: center;
-    align-items: center;
     z-index: 500;
     display: none;
 }
@@ -240,19 +187,13 @@
 .addVoiceOptions {
     width: 90%;
     height: 75%;
-    display: flex;
     justify-content: space-between;
     gap: 2vmin;
-    align-items: center;
 }
 
 .popupOptionBox{
-    position: relative;
     width: 50%;
     height: 85%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
     transition: transform 0.1s ease, box-shadow 0.1s ease;
 }
 
@@ -262,17 +203,11 @@
 }
 
 .voiceBox {
-    width: 100%;
-    height: 100%;
     border-radius: 2vmin;
     background-color: var(--buttonNew--);
-    display: flex;
     flex-direction: column;
-    align-items: center;
-    justify-content: center;
     cursor: pointer;
     overflow: hidden;
-    position: relative;
     padding-bottom: 3vmin;
     transition: opacity 0.3s ease, transform 0.3s ease;
 }
@@ -312,10 +247,7 @@
 }
 
 .recImg, .addFileImg {
-    width: 100%;
     height: 50%;
-    display: flex;
-    justify-content: center;
     align-items: flex-end;
 }
 
@@ -339,11 +271,7 @@
 }
 
 .Fileheading, .recTitle{
-    width: 100%;
     height: 50%;
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
     flex-direction: column;
 }
 
@@ -354,11 +282,6 @@
 }
 
 .addInputLanguage {
-    width: 100%;
-    height: 100%;
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
     flex-direction: column;
     display: none;
     background: linear-gradient(145deg, #1f1f1f, #282828);
@@ -369,11 +292,7 @@
 
 
 .defineInputLangText {
-    width: 100%;
     height: 20%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
     margin-bottom: 1vmin;
 }
 
@@ -421,11 +340,7 @@
 }
 
 .nextButtonVoice {
-    width: 100%;
     height: 20%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
 }
 
 .aboutWebsitePopupContainer {
@@ -455,10 +370,7 @@
 }
 
 .voiceNotice {
-    width: 100%;
     height: 40%;
-    display: flex;
-    justify-content: center;
     align-items: flex-start;
     margin-top: 1vmin;
 }
@@ -473,11 +385,6 @@
 }
 
 .recordHere {
-    width: 100%;
-    height: 100%;
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
     flex-direction: column;
     display: none;
     background: linear-gradient(145deg, #1f1f1f, #282828);
@@ -488,11 +395,7 @@
 }
 
 .recordText {
-    width: 100%;
     height: 20%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
     margin-bottom: 1vmin;
 }
 
@@ -537,17 +440,11 @@
 }
 
 .controls {
-    display: flex;
-    justify-content: center;
-    align-items: center;
     gap: 2vmin;
     width: 60%;
 }
 
 .saveDownload{
-    display: flex;
-    justify-content: center;
-    align-items: center;
     gap: 2vmin;
     margin-top: 2vmin;
 }
@@ -589,21 +486,13 @@
 }
 
 .upperVoiceContainer {
-    width: 100%;
     height: 70%;
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
     flex-direction: column;
     margin-top: 2vmin;
 }
 
 .optionsContainer {
-    width: 100%;
     height: 30%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
     flex-direction: column;
     margin-bottom: 2vmin;
 }
@@ -629,59 +518,37 @@
     position: absolute;
     bottom: 0;
     left: 0;
-    width: 100%;
     height: 20%;
-    display: flex;
     justify-content: flex-end;
-    align-items: center;
     flex-direction: column;
 }
 
 .userHere{
     width: 90%;
     height: 30%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
     margin-bottom: 1vmin;
 }
 
 .user {
-    position: relative;
     width: 90%;
-    height: 100%;
     background-color: var(--extra-dark-user--);
     border-radius: 1vmin;
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
     z-index: 1;
 }
 
 
 .userInfo{
     width: 75%;
-    height: 100%;
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
 }
 
 .userImg{
     width: 40%;
-    height: 100%;
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
 }
 
 .img{
     width: 70%;
     height: 60%;
     border-radius: 20vmin;
-    display: flex;
-    justify-content: center;
-    align-items: center;
     margin-left: .5vmin;
     overflow: hidden;
     background-color: white;
@@ -692,10 +559,6 @@
 
 .userName{
     width: 65%;
-    height: 100%;
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
 }
 
 .userName span{
@@ -706,18 +569,11 @@
 
 .userLogout{
     width: 25%;
-    height: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
 }
 
 .logoutImg{
     width: 70%;
     height: 70%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
     overflow: hidden;
 }
 
@@ -733,17 +589,11 @@
 .aboutWebsite {
     width: 90%;
     height: 30%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
 }
 
 .about{
     width: 90%;
     height: 70%;
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
     background-color: var(--extra-dark-user--);
     border-radius: 1vmin;
     gap: .5vmin;
@@ -772,9 +622,7 @@
     border: .2vmin solid var(--border-universal--);
     top: -8vmin;
     right: -22vmin;
-    display: flex;
     justify-content: space-between;
-    align-items: center;
     flex-direction: column;
     display: none;
     z-index: 10;
@@ -795,20 +643,11 @@
 }
 
 .aboutWpopup{
-    width: 100%;
-    height: 100%;
-    display: flex;
     flex-direction: column;
-    justify-content: flex-start;
-    align-items: center;
     z-index: 1;
 }
 
 .aboutWItems{
-    width: 100%;
-    height: 100%;
-    display: flex;
-    justify-content: center;
     align-items: flex-start;
     flex-direction: column;
     cursor: pointer;
@@ -818,11 +657,7 @@
 .aboutWItems li{
     font-weight: bold;
     font-size: 1.5vmin;
-    width: 100%;
-    height: 100%;
-    display: flex;
     justify-content: flex-start;
-    align-items: center;
     border-radius: 1vmin;
 }
 .aboutWItems li span{
@@ -841,9 +676,7 @@ margin-left: 1vmin;
     border: .2vmin solid var(--border-universal--);
     top: -4vmin;
     right: -22vmin;
-    display: flex;
     justify-content: space-between;
-    align-items: center;
     flex-direction: column;
     display: none;
 }
@@ -867,11 +700,7 @@ margin-left: 1vmin;
 }
 
 .logoutConfirmButton{
-    width: 100%;
     height: 50%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
     gap: 2vmin;
 }
 
@@ -892,14 +721,8 @@ margin-left: 1vmin;
 
 
 .chatsSection{
-    width: 100%;
     height: 60%;
     max-height: 5.5%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    overflow-y: auto;
-    transition: all .5s;
 }
 
 
@@ -908,12 +731,8 @@ margin-left: 1vmin;
 }
 
 .chatsHistory{
-    position: relative;
     width: 80%;
-    height: 100%;
     max-height: 100%;
-    display: flex;
-    justify-content: flex-start;
     align-items: flex-start;
     flex-direction: column;
     background-color: var(--button--);
@@ -924,18 +743,13 @@ margin-left: 1vmin;
 
 .recentChats{
     position: absolute;
-    width: 100%;
     height: 5.5vmin;
     border-radius: 1vmin;
     background-color: var(--new--body-leftSection--);
 }
 
 .recentChatsButton{
-    width: 100%;
     height: 5.5vmin;
-    display: flex;
-    align-items: center;
-    justify-content: flex-start;
     background-color: var(--new--body-leftSection--);
     cursor: pointer;
     border-radius: 1vmin;
@@ -954,10 +768,6 @@ margin-left: 1vmin;
 
 .imgTextRecentChatsButton{
     width: 80%;
-    height: 100%;
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
 }
 
 .imgTextRecentChatsButton img{
@@ -970,10 +780,7 @@ margin-left: 1vmin;
 
 .dropdownRecentChats{
     width: 20%;
-    height: 100%;
-    display: flex;
     justify-content: flex-end;
-    align-items: center;
     transform: rotate(180deg);
 }
 
@@ -983,9 +790,6 @@ margin-left: 1vmin;
 }
 
 .chatsHistoryHereNow {
-    width: 100%;
-    display: flex;
-    justify-content: flex-start;
     align-items: flex-start;
     background-color: var(--button--);
     border-radius: .5vmin;
@@ -995,18 +799,6 @@ margin-left: 1vmin;
     list-style: none;
     overflow: hidden;
 }
-
-.chatHereDiv{
-    width: 100%;
-    height: 100%;
-    display: flex;
-    justify-content: flex-start;
-    align-items: flex-start;
-    flex-direction: column;
-    gap: 1vmin;
-    overflow-y: auto;
-}
-
 
 .chatsHistoryHereNow li:first-child{
     margin-top: 2vmin;
@@ -1033,17 +825,12 @@ margin-left: 1vmin;
 }
 
 .storageSection{
-    width: 100%;
     height: 5%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
     margin-top: 1vmin;
 }
 
 .storageAudios{
     width: 80%;
-    height: 100%;
     border-radius: 1vmin;
     opacity: .8;
     cursor: pointer;
@@ -1057,11 +844,6 @@ margin-left: 1vmin;
 }
 
 .storageIconText{
-    width: 100%;
-    height: 100%;
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
     padding: .5vmin;
     gap: .5vmin;
     overflow: hidden;
@@ -1087,8 +869,6 @@ margin-left: 1vmin;
     right: 0;
     z-index: 5;
     display: none;
-    justify-content: center;
-    align-items: center;
 }
 
 .storagePopup {
@@ -1099,7 +879,6 @@ margin-left: 1vmin;
     border-radius: 1vmin;
     flex-direction: column;
     align-items: flex-start;
-    justify-content: flex-start;
     z-index: 10;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
     overflow: hidden;
@@ -1107,10 +886,7 @@ margin-left: 1vmin;
 }
 
 .storagePopupHeader {
-    width: 100%;
-    display: flex;
     justify-content: space-between;
-    align-items: center;
     border-bottom: 1px solid #444;
     padding: 1vmin 0;
 }
@@ -1122,18 +898,12 @@ margin-left: 1vmin;
 }
 
 .searchChatsContainer {
-    width: 100%;
     margin-top: 1vmin;
-    display: flex;
     flex-direction: column;
     gap: 1vmin;
 }
 
 .searchNow {
-    position: relative;
-    width: 100%;
-    display: flex;
-    align-items: center;
     background-color: #3a3d47;
     border-radius: 1vmin;
     padding: 0.5vmin 1vmin;
@@ -1158,7 +928,6 @@ margin-left: 1vmin;
 }
 
 .chatsListPopup {
-    width: 100%;
     max-height: 50vmin;
     overflow-y: auto;
     margin-top: 1vmin;
@@ -1168,10 +937,7 @@ margin-left: 1vmin;
 }
 
 .selectDeleteChats {
-    width: 100%;
-    display: flex;
     justify-content: space-between;
-    align-items: center;
     background-color: #3a3d47;
     padding: 0.5vmin 1vmin;
     border-radius: 1vmin;
@@ -1180,8 +946,6 @@ margin-left: 1vmin;
 
 .customLabel {
     font-size: 1.5vmin;
-    display: flex;
-    align-items: center;
     gap: 1vmin;
     color: white;
 }
@@ -1203,7 +967,6 @@ margin-left: 1vmin;
 
 .chatList {
     list-style: none;
-    display: flex;
     flex-direction: column;
     gap: 0.5vmin;
     padding: 0;
@@ -1245,7 +1008,6 @@ margin-left: 1vmin;
 
 .errorPopup {
     position: absolute;
-    width: 100%;
     height: 50%;
     bottom: 0;
     border-radius: 1vmin;
@@ -1255,9 +1017,6 @@ margin-left: 1vmin;
     font-weight: bold;
     font-size: 2vmin;
     overflow: hidden;
-    display: flex;
-    justify-content: center;
-    align-items: center;
     text-wrap: nowrap;
     word-break: break-word;
     transition: all 0.3s;
@@ -1266,38 +1025,24 @@ margin-left: 1vmin;
 }
 
 .errorPopup p{
-    display: flex;
-    justify-content: center;
-    align-items: center;
     transition: all 0.3s;
 }
 
 /* -------------------------------------------Right Section -------------------------------*/
 .rightMain{
-    position: relative;
     width: 85%;
-    height: 100%;
-    display: flex;
     transition: all .2s;
     justify-content: flex-end;
 }
 
 .loadingAssets{
     position: absolute;
-    width: 100%;
-    height: 100%;
     background-color: var(--new--body-rightSection--);
-    display: flex;
-    justify-content: center;
-    align-items: center;
 }
 
 .animationText{
     width: 40vmin;
     height: 20vmin;
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
     flex-direction: column;
     margin-top: 2vmin;
 }
@@ -1341,36 +1086,23 @@ margin-left: 1vmin;
     right: 0;
     background-color: var(--new--body-leftSection--);
     display: flex;
-    align-items: center;
     transition: al .2s;
 }
 .upperRightIn{
-    position: relative;
-    width: 100%;
-    height: 100%;
     top: 0;
     right: 0;
     background-color: var(--new--body-leftSection--);
-    display: flex;
-    align-items: center;
-    justify-content: center;
     transition: al .2s;
 }
 
 .webSiteName{
     width: 50%;
-    height: 100%;
-    display: flex;
-    align-items: center;
     user-select: none;
     margin-left: 7vmin;
 }
 
 .webSiteName span{
     width: auto;
-    height: 100%;
-    display: flex;
-    align-items: center;
     font-size: 3vmin;
     margin-left: 1vmin;
     font-weight: bolder;
@@ -1378,9 +1110,6 @@ margin-left: 1vmin;
 
 .webSiteName li{
     width: auto;
-    height: 100%;
-    display: flex;
-    align-items: center;
     font-size: 1.5vmin;
     margin-left: 1vmin;
     margin-top: .6vmin;
@@ -1391,18 +1120,11 @@ margin-left: 1vmin;
 
 .exportAudios{
     width: 50%;
-    height: 100%;
-    display: flex;
-    align-items: center;
     justify-content: flex-end;
 }
 
 .exportAudioNow{
-    position: relative;
     width: 50%;
-    height: 100%;
-    display: flex;
-    align-items: center;
     justify-content: flex-end;
     margin-right: 2vmin;
 }
@@ -1431,20 +1153,13 @@ margin-left: 1vmin;
     background-color: var(--new--body-rightSection--);
     border: .2vmin solid var(--border-universal--);
     top: 8vmin;
-    display: flex;
     border-radius: 1vmin;
-    justify-content: center;
-    align-items: center;
     flex-direction: column;
     display: none;
 }
 
 .exportOptionsPopup div{
-    width: 100%;
     height: 50%;
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
     border-radius: 1vmin;
     z-index: 1;
     user-select: none;
@@ -1475,18 +1190,14 @@ margin-left: 1vmin;
     height: 60%;
     border-right: .2vmin solid var(--border-universal--);
     margin-right: .5vmin;
-    display: flex;
     justify-content: flex-end;
-    align-items: center;
 }
 
 .fileName{
     width: 50%;
     height: 80%;
     margin-right: .5vmin;
-    display: flex;
     justify-content: flex-end;
-    align-items: center;
     user-select: none;
 }
 
@@ -1499,10 +1210,6 @@ margin-left: 1vmin;
 }
 
 .fileNameEdit{
-    width: 100%;
-    height: 100%;
-    display: flex;
-    align-items: center;
     display: none;
 }
 
@@ -1526,11 +1233,8 @@ margin-left: 1vmin;
 }
 
 .lowerRight {
-    width: 100%;
-    display: flex;
     flex-direction: column;
     background-color: var(--new--body-rightSection--);
-    align-items: center;
     padding: 20px;
     box-sizing: border-box;
     border-radius: 10px;
@@ -1540,8 +1244,6 @@ margin-left: 1vmin;
 
 .speechGenerateContainer{
     width: 90%;
-    display: flex;
-    justify-content: flex-start;
     align-items: flex-start;
     flex-direction: column;
     gap: 20px;
@@ -1551,7 +1253,6 @@ margin-left: 1vmin;
 }
 
 .textInputSection {
-    width: 100%;
     margin-bottom: 20px;
 }
 
@@ -1561,7 +1262,6 @@ margin-left: 1vmin;
 }
 
 .textInputSection textarea {
-    width: 100%;
     min-height: 200px;
     background-color: #2a2c34;
     border: .1vmin solid var(--border-universal--);
@@ -1582,16 +1282,11 @@ margin-left: 1vmin;
 }
 
 .textInputLimit{
-    display: flex;
-    align-items: center;
     margin-bottom: 1vmin;
 }
 
 .maxCharactorTextHolder{
     background: var(--buttonNew--);
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
     width: 125px;
     height: 30px;
     margin-left: 30px;
@@ -1605,10 +1300,6 @@ margin-left: 1vmin;
     margin-left: 5px;
 }
   
-.voiceOptions {
-    width: 100%;
-}
-
 .voiceOptions p {
     font-size: 16px;
     margin-bottom: 10px;
@@ -1635,12 +1326,7 @@ margin-left: 1vmin;
     color: var(--new--text-color--);
 }
 
-.speechOptions{
-    display: flex;
-    width: 100%;
-}
 .selectLangToTranslateSection{
-    display: flex;
     gap: 10px;
 }
   
@@ -1855,6 +1541,4 @@ margin-left: 1vmin;
     textarea {
         width: 70%;
     }
-
 }
-

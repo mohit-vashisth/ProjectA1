@@ -1,5 +1,5 @@
 /* General Styles */
-html, body{
+html{
   box-sizing: border-box;
   overflow-y: auto;
 }

@@ -1,11 +1,12 @@
 :root {
-  --new--body-leftSection--: #151515;
-  --button--: #393c42;
-  --buttonNew--: rgb(99,88,225);
-  --buttonHover--: #42464d;
+  --new--body-leftSection--: #18181b;
+  --button--: #27272a;
+  --buttonNew--: #4f46e5;
+  --buttonHover--: #3f3f46;
   --new--body-rightSection--: #0a0a0a;
   --border-universal--: rgba(255, 255, 255, 0.3);
   --extra-dark-user--: rgb(6, 6, 6);
+  --text-primary: #f4f4f5;
 }
 
 ::-webkit-scrollbar {
@@ -37,13 +38,15 @@
 *,
 *::before,
 *::after {
+  margin: 0;
+  padding: 0;
   box-sizing: border-box;
 }
 
 html, body {
   width: 100vw;
   height: 100vh;
-  overflow: hidden;
+  overflow-y: auto;
 }
 
 body {
@@ -53,4 +56,26 @@ body {
 
 .filter{
   filter: invert(1);
+}
+
+.flex{
+  display: flex;
+}
+.justifyStart{
+  justify-content: flex-start;
+}
+.relative{
+  position: relative;
+}
+.alignCenter{
+  align-items: center;
+}
+.justifyCenter{
+  justify-content: center;
+}
+.w100{
+  width: 100%;
+}
+.h100{
+  height: 100%;
 }

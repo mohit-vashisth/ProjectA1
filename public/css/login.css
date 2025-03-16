@@ -1,4 +1,9 @@
 /* General Styles */
+
+html {
+  overflow-y: auto;
+}
+
 body {
   font-family: "Inter", sans-serif;
   background-color: #f9fafb;
@@ -145,10 +150,10 @@ form{
 
 /* Google Login Button */
 .googleLoginButton {
-  background-color: #db4437;
-  color: white;
+  background-color: hsl(0, 0%, 95%);
+  color: black;
+  border: 2px solid rgba(0, 0, 0, 0.5);
   padding: 12px;
-  border: none;
   border-radius: 8px;
   cursor: pointer;
   font-size: 16px;
