@@ -90,6 +90,8 @@ function toggleDisplay() {
 
     instantVoiceButton.addEventListener("click", () => {
         previousCount++;
+        card.style.height = "400px"
+        card.style.width = "350px"
         previousDisplay();
     });
     
@@ -126,6 +128,8 @@ function previousDisplay() {
         display2.style.display = "none";
         display3.style.display = "none";
         previous.style.display = "none";
+        card.style.width = "300px"
+        card.style.height = "600px"
     } else if (previousCount === 1) {
         display1.style.display = "none";
         display2.style.display = "flex";
@@ -389,6 +393,8 @@ function startTimer() {
 
 function resetDisplays() {
     previousCount = 0;
+    card.style.width = "300px"
+    card.style.height = "600px"
     display1.style.display = "flex";
     display2.style.display = "none";
     display3.style.display = "none";
