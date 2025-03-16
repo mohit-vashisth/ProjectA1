@@ -40,100 +40,91 @@
 </head>
 
 <body>
-    <main class="root flex w100">
+    <main class="root flex w100 h100">
         <nav class="leftMain h100 flex justifyStart relative alignCenter">
-            <div class="sliderButtonsChats flex w100">
-                <div class="slider w100">
-                    <div class="slide flex alignCenter justifyCenter">
-                        <img class="filter" src="/src/assets/svg/hamburger.svg" alt="">
-                    </div>
-                </div>
-                <div class="chatVoiceButtons w100 flex alignCenter justifyCenter">
-                    <div class="newChatButton flex justifyCenter">
-                        <button class="newChat flex relative alignCenter justifyCenter">
-                            <div class="newChatButtonText">
-                                <strong>+</strong>
-                                <span>New Speech</span>
-                            </div>
-                            <div class="newChatButtonAnimation"></div>
-                        </button>
-                    </div>
-                    <div class="addVoiceButton flex justifyCenter">
-                        <div class="addVoice flex alignCenter justifyCenter">
-                            <div class="addVoiceButtonText flex alignCenter justifyCenter">
-                                <img class="filter" src="/src/assets/svg/microphone.svg" alt="">
-                                <span class="voiceText">Create Voice Clone</span>
-                            </div>
-                            <div class="addVoiceAnimation"></div>
+            <div class="chatVoiceButtons w100 flex alignCenter justifyCenter">
+                <div class="newChatButton w100 flex justifyCenter">
+                    <button class="newChat flex relative alignCenter justifyCenter">
+                        <div class="newChatButtonText">
+                            <strong>+</strong>
+                            <span>New Speech</span>
                         </div>
-                        <div class="addVoicePopup100VH w100 alignCenter justifyCenter">
-                            <div class="addvoicePopup flex relative alignCenter justifyCenter">
-                                <div class="backVoicePopup flex alignCenter justifyCenter">
-                                    <img class="filter" src="/src/assets/svg/slidebarLeft.svg" alt="">
+                        <div class="newChatButtonAnimation"></div>
+                    </button>
+                </div>
+                <div class="addVoiceButton w100 flex justifyCenter">
+                    <div class="addVoice flex alignCenter justifyCenter">
+                            <img class="filter" src="/src/assets/svg/microphone.svg" alt="">
+                            <span class="voiceText">Create Voice Clone</span>
+                        <div class="addVoiceAnimation"></div>
+                    </div>
+                    <div class="addVoicePopup100VH h100 w100 alignCenter justifyCenter">
+                        <div class="addvoicePopup flex relative alignCenter justifyCenter">
+                            <div class="backVoicePopup flex alignCenter justifyCenter">
+                                <img class="filter" src="/src/assets/svg/slidebarLeft.svg" alt="">
+                            </div>
+                            <div class="closeVoicePopup flex alignCenter justifyCenter">
+                                <img class="filter" src="/src/assets/svg/cross.svg" alt="">
+                            </div>
+                            <div class="voicePopup h100 w100 flex alignCenter">
+                                <div class="voiceHeading flex alignCenter justifyCenter">
+                                    <span>How would you like to clone your voice?</span>
                                 </div>
-                                <div class="closeVoicePopup flex alignCenter justifyCenter">
-                                    <img class="filter" src="/src/assets/svg/cross.svg" alt="">
-                                </div>
-                                <div class="voicePopup h100 w100 flex alignCenter justifyCenter">
-                                    <div class="voiceHeading flex alignCenter justifyCenter">
-                                        <span>How would you like to clone your voice?</span>
-                                    </div>
-                                    <div class="addVoiceOptions flex alignCenter">
-                                        <div class="popupOptionBox flex relative alignCenter justifyCenter">
-                                            <div class="voiceBox h100 w100 voiceBox1 flex relative alignCenter justifyCenter">
-                                                <div class="recImg w100 flex justifyCenter">
-                                                    <img src="/src/assets/svg/voiceClone.svg" alt="">
-                                                </div>
-                                                <div class="recTitle w100 flex justifyStart alignCenter">
-                                                    <p><strong>Instant</strong></p>
-                                                    <span>Only 30 seconds of audio needed.</span>
-                                                </div>
+                                <div class="addVoiceOptions flex alignCenter">
+                                    <div class="popupOptionBox flex relative alignCenter justifyCenter">
+                                        <div class="voiceBox h100 w100 voiceBox1 flex relative alignCenter justifyCenter">
+                                            <div class="recImg w100 flex justifyCenter">
+                                                <img src="/src/assets/svg/voiceClone.svg" alt="">
                                             </div>
-                                        </div>
-                                        <div class="popupOptionBox flex relative alignCenter justifyCenter">
-                                            <div class="voiceBox w100 voiceBox2 flex relative alignCenter justifyCenter">
-                                                <div class="addFileImg w100 flex justifyCenter">
-                                                    <img src="/src/assets/svg/real-time.svg" alt="">
-                                                </div>
-                                                <div class="Fileheading w100 flex justifyStart alignCenter">
-                                                    <p><strong>Premium</strong></p>
-                                                    <span>Upgrade now for just ₹29 and unlock advanced features instantly!</span>
-                                                </div>
+                                            <div class="recTitle w100 flex justifyStart alignCenter">
+                                                <p><strong>Instant</strong></p>
+                                                <span>Only 30 seconds of audio needed.</span>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="addInputLanguage h100 w100 flex justifyStart alignCenter">
-                                    <div class="defineInputLangText w100 flex alignCenter justifyCenter">
-                                        <span><strong>Define Input Language</strong></span>
-                                    </div>
-                                    <select id="languageDropdown" class="language-select">
-                                    </select>
-                                    <div class="nextButtonVoice w100 flex alignCenter justifyCenter">
-                                        <button class="nextButtonV">Continue</button>
-                                    </div>
-                                    <div class="voiceNotice w100 flex justifyCenter">
-                                        <span>Currently, your voice clone supports both <strong>Hindi</strong> and <strong>English</strong> language. It will perform optimally in the language it was recorded in.</span>
+                                    <div class="popupOptionBox flex relative alignCenter justifyCenter">
+                                        <div class="voiceBox h100 w100 voiceBox2 flex relative alignCenter justifyCenter">
+                                            <div class="addFileImg w100 flex justifyCenter">
+                                                <img src="/src/assets/svg/real-time.svg" alt="">
+                                            </div>
+                                            <div class="Fileheading w100 flex justifyStart alignCenter">
+                                                <p><strong>Premium</strong></p>
+                                                <span>Upgrade now for just ₹29 and unlock advanced features instantly!</span>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
-                                <div class="recordHere h100 w100 flex justifyStart alignCenter">
-                                    <div class="upperVoiceContainer w100 flex justifyStart alignCenter">
-                                        <div class="recordText w100 flex alignCenter justifyCenter">
-                                            <p><strong>Record Here</strong></p>
-                                        </div>
-                                        <div class="recordingAnimation"></div>
-                                        <div class="recordingTime">0:00</div>
-                                        <audio class="audio-player" controls download></audio>
+                            </div>
+                            <div class="addInputLanguage h100 w100 flex alignCenter">
+                                <div class="defineInputLangText w100 flex alignCenter justifyCenter">
+                                    <span><strong>Define Input Language</strong></span>
+                                </div>
+                                <select id="languageDropdown" class="language-select">
+                                </select>
+                                <div class="nextButtonVoice w100 flex alignCenter justifyCenter">
+                                    <button class="nextButtonV">Continue</button>
+                                </div>
+                                <div class="voiceNotice w100 flex justifyCenter">
+                                    <span>Currently, your voice clone supports both <strong>Hindi</strong> and <strong>English</strong> language. It will perform optimally in the language it was recorded in.</span>
+                                </div>
+                            </div>
+                            <div class="recordHere h100 w100 flex justifyStart alignCenter">
+                                <div class="upperVoiceContainer w100 flex justifyStart alignCenter">
+                                    <div class="recordText w100 flex alignCenter justifyCenter">
+                                        <p><strong>Record Here</strong></p>
                                     </div>
-                                    <div class="optionsContainer w100 flex alignCenter justifyCenter">
-                                        <div class="controls flex alignCenter justifyCenter">
-                                            <button class="startButton">Start</button>
-                                            <button class="stopButton" disabled>Stop</button>
-                                            <button class="resetButton" disabled>Reset</button>
-                                        </div>
-                                        <div class="saveDownload flex alignCenter justifyCenter">
-                                            <button class="saveButton" disabled>Save</button>
-                                        </div>
+                                    <div class="recordingAnimation"></div>
+                                    <div class="recordingTime">0:00</div>
+                                    <audio class="audio-player" controls download></audio>
+                                </div>
+                                <div class="optionsContainer w100 flex alignCenter justifyCenter">
+                                    <div class="controls flex alignCenter justifyCenter">
+                                        <button class="startButton">Start</button>
+                                        <button class="stopButton" disabled>Stop</button>
+                                        <button class="resetButton" disabled>Reset</button>
+                                    </div>
+                                    <div class="saveDownload flex alignCenter justifyCenter">
+                                        <button class="saveButton" disabled>Save</button>
                                     </div>
                                 </div>
                             </div>
@@ -246,6 +237,11 @@
         </nav>
         <section class="rightMain h100 flex relative" aria-label="Main content">
             <div class="upperRight flex alignCenter" role="banner">
+                <div class="slider w100">
+                    <div class="slide flex alignCenter justifyCenter">
+                        <img class="filter" src="/src/assets/svg/hamburger.svg" alt="">
+                    </div>
+                </div>
                 <div class="upperRightIn h100 w100 flex relative alignCenter justifyCenter">
                     <div class="webSiteName h100 flex alignCenter" aria-label="3R Minds">
                         <span class="flex h100 alignCenter">3R Minds</span>
