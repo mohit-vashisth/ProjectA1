@@ -1,7 +1,7 @@
 from fastapi import HTTPException, Request, status
 from fastapi.security import OAuth2PasswordBearer
 from backend.core import config
-from backend.schemas.token_scema import Tokens, TokenType
+from backend.schemas.token_schema import Tokens, TokenType
 from backend.security.get_cookies_tokens import get_cookies_access_token, get_cookies_refresh_token
 from backend.security.create_jwt import create_refresh_token
 from backend.security.jwt_data_extract import get_jwt_email

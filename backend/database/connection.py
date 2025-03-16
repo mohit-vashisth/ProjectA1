@@ -2,7 +2,7 @@ from fastapi import HTTPException, status
 from backend.core import config
 from backend.schemas.chat_schema import Chats
 from backend.schemas.messages_schema import Messages
-from backend.schemas.token_scema import Tokens
+from backend.schemas.token_schema import Tokens
 from backend.schemas.user_model import Users
 from backend.utils.logger import init_logger
 
