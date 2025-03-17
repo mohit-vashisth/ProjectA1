@@ -26,16 +26,18 @@ async def generate_chat_id(email_id: EmailStr) -> str:
         if not chat:
             return chat_id
         
+        init_logger(message=f"Regenerating chat_id.")
+        
 
-async def new_chat_name(email_id: str) -> str:
-    chats = await Chats.find_one({"email_ID":email_id})
-    if chats:
-        chat_count = len(chats.chat) + 1
-        return f"Voice_chat_{chat_count}"
-    return "Voice_chat_1"
+async def default_chat_name(email_id: str) -> str:
+    chats_count = await Chats.find({"email_ID":email_id}).count()
+    chat_name = f"Voice_chat_{chats_count + 1}"
+    init_logger(message=f"number of user previous chats: {chats_count}, chat_name for new_chat: {chat_name}")
+    return chat_name
+
 
 async def verify_chat_id(chat_id: str, email_id: str) -> Chats | None:
-    chat = await Chats.find_one({"email_ID": email_id, "chat.chat_id": chat_id})
+    chat = await Chats.find_one({"email_ID": email_id, "chat_id": chat_id})
     if chat:
         init_logger(message=f"Chat found for chat id: {chat_id}")
         return chat
