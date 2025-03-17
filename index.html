@@ -42,6 +42,9 @@
 <body>
     <main class="root flex w100 h100">
         <nav class="leftMain h100 flex justifyStart relative alignCenter">
+            <div class="closeLeftMainContainer flex justifyCenter alignCenter">
+                <img class="filter" src="/src/assets/svg/cross.svg" alt="">
+            </div>
             <div class="chatVoiceButtons w100 flex alignCenter justifyCenter">
                 <div class="newChatButton w100 flex justifyCenter">
                     <button class="newChat flex relative alignCenter justifyCenter">
@@ -278,7 +281,7 @@
                         <textarea class="w100" id="inputText" placeholder="Type here..."></textarea>
                     </div>
                     <div class="speechOptions w100 flex">
-                        <div class="selectLangToTranslateSection flex">
+                        <div class="selectLangToTranslateSection flex w100">
                             <select id="speechOptionLanguages"></select>
                             <button class="translateSpeechBtn">Translate your text</button>
                         </div>

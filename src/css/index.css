@@ -1,13 +1,32 @@
 .leftMain{
     position: absolute;
-    width: 100%;
-    border-right: .1vmin solid var(--border-color);
+    width: 0;
+    border: 2px solid var(--border-color);
     background: var(--panels);
     transition: all .2s;
     flex-direction: column;
     z-index: 20;
     overflow: hidden;
+    border-radius: 10px;
     pointer-events: auto;
+    transform: scale(0.85);
+}
+
+.closeLeftMainContainer{
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    top: 0;
+    right: 0;
+    border-radius: 10px;
+}
+
+.closeLeftMainContainer:hover{
+    background-color: var(--svg-hover);
+}
+
+.closeLeftMainContainer img{
+    width: 50%;
 }
 
 .chatVoiceButtons {
@@ -1018,11 +1037,16 @@ margin-left: 10px;
 .slide{
     top: 0;
     left: 0;
-    width: 40px;
-    height: 40px;
+    width: 50px;
+    height: 50px;
     cursor: pointer;
     z-index: 10;
     margin: 5px;
+    border-radius: 10px;
+}
+
+.slide:hover{
+    background-color: var(--svg-hover);
 }
 
 .slide img{
@@ -1109,14 +1133,13 @@ margin-left: 10px;
 }
 
 .fileName{
-    width: 50%;
+    width: 90%;
     height: 80%;
     margin-right: 5px;
     justify-content: flex-end;
     user-select: none;
     color: var(--text-primary);
 }
-
 
 .fileName span{
     font-size: 1rem;
@@ -1145,7 +1168,7 @@ margin-left: 10px;
 
 .lowerRight {
     flex-direction: column;
-    background-color: var(--canvas);
+    background-color: var(--panels);
     box-sizing: border-box;
     margin-top: 90px;
     overflow-y: auto;
@@ -1227,9 +1250,9 @@ margin-left: 10px;
 }
 
 .voiceOptions select, .selectLangToTranslateSection select {
-    width: 40vmin;
-    margin-left: 20px;
-    padding: 5px;
+    width: 150px;
+    height: 100%;
+    padding: 10px 5px;
     background-color: var(--border-color);
     border: 2px solid var(--border-color);
     border-radius: 5px;
@@ -1244,13 +1267,14 @@ margin-left: 10px;
     background-color: var(--button);
     color: var(--new--text-color--);
     border: transparent;
-    
     font-size: 1rem;
     border-radius: 5px;
     cursor: pointer;
 }
 .translateSpeechBtn{
-    padding: 0 20px;
+    width: 50%;
+    padding: 10px 20px;
+    text-wrap: nowrap;
 }
 .generateSpeechBtn{
     padding: 10px 20px;
@@ -1263,3 +1287,9 @@ margin-left: 10px;
 .loadingAssets{
     display: none;
 }
+
+@media screen and (min-width: 601px) and (max-width: 900px) and (orientation: portrait) {
+    body {
+      font-size: 16px;
+    }
+  }
