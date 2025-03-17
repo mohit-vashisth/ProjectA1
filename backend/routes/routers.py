@@ -12,12 +12,12 @@ def include_routers(app: FastAPI):
     auth_routes: list[tuple] = [
         (translate_route, ["services"]),
         (logout_route, ["auth"]),
-        (user_voice_route, ["services"]),
         (new_chat_route, ["services"])
     ]
 
     app.include_router(router=signup_route, tags=["auth"])
     app.include_router(router=login_route, tags=["auth"])
+    app.include_router(router=user_voice_route, tags=["services"])
 
     for route, tags in auth_routes:
         if not DEBUG:

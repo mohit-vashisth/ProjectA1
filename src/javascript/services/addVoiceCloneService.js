@@ -423,7 +423,7 @@ function displayError(message) {
 
 async function saveRecording() {
     loadingAnimationBTN.style.display = "flex";
-    openDisplayButtonText.style.display = "none";
+    // openDisplayButtonText.style.display = "none";
     
     if (!payload.audio) {
         alert("No audio to save! Please record first.");
