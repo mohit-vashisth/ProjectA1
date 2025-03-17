@@ -35,7 +35,6 @@ async def login(user_info: User_login, request: Request, response: Response):
 
         tokens = {
             "access_token": access_token,
-            "refresh_token": refresh_token,
         }
 
         response = JSONResponse(

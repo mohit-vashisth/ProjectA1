@@ -66,13 +66,13 @@ async function updateName() {
 
     fileName.textContent = data.newName;
     previousFileName = data.newName; // Update previous name only on success
-    fileName.style.display = "block";
+    fileName.style.display = "flex";
     fileNameEdit.style.display = "none";
   } catch (error) {
     displayError(error.message || "An unexpected error occurred.");
     fileName.textContent = previousFileName; // Restore previous name on failure
   } finally {
-    fileName.style.display = "block";
+    fileName.style.display = "flex";
     fileNameEdit.style.display = "none";
     inputField.value = previousFileName; // Ensure the input field resets
   }

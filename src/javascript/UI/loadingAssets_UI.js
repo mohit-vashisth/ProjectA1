@@ -31,7 +31,7 @@ function showAndHideTexts() {
 }
 
 export function assetsLoadingEXP() {
-    if (localStorage.getItem("animationPlayed") !== "true") {
+    if (localStorage.getItem("animationPlayed") === "true") {
         showAndHideTexts();
     } else {
         animationContainer.style.display = "none";

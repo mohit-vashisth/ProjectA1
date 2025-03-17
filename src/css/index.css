@@ -1,10 +1,13 @@
 .leftMain{
+    position: absolute;
     width: 100%;
     border-right: .1vmin solid var(--border-color);
     background: var(--panels);
     transition: all .2s;
     flex-direction: column;
-    z-index: 1;
+    z-index: 20;
+    overflow: hidden;
+    pointer-events: auto;
 }
 
 .chatVoiceButtons {
@@ -330,14 +333,32 @@
 }
 
 .recordingAnimation {
+    position: relative;
     width: 60px;
     height: 60px;
     border-radius: 50%;
-    background: radial-gradient(circle, #ff0000, #800000);
-    animation: pulse 1.5s infinite;
     display: none;
-    box-shadow: 0 4px 8px rgba(255, 0, 0, 0.6);
 }
+
+.recordingAnimation::before {
+    content: "";
+    position: absolute;
+    top: -4.5px;
+    left: -4.5px;
+    transform: translate(-5px, -5px);
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    padding: 10px;
+    border: 20px dotted white;
+    animation: rotateDots 2s linear infinite;
+}
+
+@keyframes rotateDots {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
 
 .recordingTime {
     font-size: 1.2rem;
@@ -359,12 +380,11 @@
 .saveDownload button {
     padding: 15px 25px;
     font-size: 1rem;
-    font-weight: bold;
     border: none;
-    border-radius: 15px;
+    border-radius: 10px;
     cursor: pointer;
     background: var(--button);
-    color: white;
+    color: var(--text-primary);
     transition: all 0.2s;
 }
 
@@ -376,7 +396,7 @@
 
 .controls button:disabled,
 .saveDownload button:disabled {
-    background-color: #7f8c8d !important; /* Ensure disabled buttons are grayed out */
+    background-color: var(--disabled-button); /* Ensure disabled buttons are grayed out */
     cursor: not-allowed;
     box-shadow: none;
     transform: scale(1);
@@ -386,14 +406,12 @@
     width: 60%;
     background: linear-gradient(135deg, #444, #222);
     border-radius: 10px;
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.3);
     display: none;
 }
 
 .upperVoiceContainer {
     height: 70%;
     flex-direction: column;
-    margin-top: 20px;
 }
 
 .optionsContainer {
@@ -402,6 +420,846 @@
     margin-bottom: 20px;
 }
 
-.rightMain, .chatsSection, .storageSection, .userSection{
+.saveButton{
+    padding: 15px 30px;
+    font-size: 1rem;
+    border: none;
+    border-radius: 10px;
+    color: var(--text-primary);
+    transition: all 0.3s;
+}
+
+.saveButton:disabled{
+    background-color: var(--disabled-button);
+    cursor: not-allowed;
+    box-shadow: none;
+}
+
+.userSection{
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    height: 20%;
+    justify-content: flex-end;
+    flex-direction: column;
+}
+
+.downloadButton{
+    display: none;
+    padding: 15px 20px;
+}
+
+.userSection{
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    height: 20%;
+    justify-content: flex-end;
+    flex-direction: column;
+}
+
+.userHere{
+    width: 100%;
+    height: 50%;
+    margin-bottom: 10px;
+}
+
+.user {
+    width: 90%;
+    background-color: var(--canvas);
+    border-radius: 10px;
+    padding: 5px;
+    z-index: 5;
+    transform: scale(.9);
+}
+
+.userInfo{
+    width: 75%;
+}
+
+.userImg{
+    width: 40%;
+}
+
+.img{
+    width: 70%;
+    max-width: 60px;
+    height: 100%;
+    border-radius: 50%;
+    margin-left: 5px;
+    overflow: hidden;
+    background-color: var(--text-bright);
+    color: black;
+    font-weight: bold;
+    font-size: 1.2rem;
+}
+
+.userName{
+    width: 65%;
+    text-wrap: nowrap;
+    overflow: hidden;
+    font-size: 1rem;
+}
+
+.userLogout{
+    width: 25%;
+}
+
+.logoutImg{
+    width: 70%;
+    max-width: 60px;
+    height: 100%;
+    border-radius: 50%;
+    overflow: hidden;
+    transition: all .2s;
+    cursor: pointer;
+}
+
+.logoutImg img{
+    transition: all .1s;
+    width: 30px;
+}
+.logoutImg:hover{
+    background-color: var(--svg-hover);
+}
+
+.aboutWebsite {
+    width: 90%;
+    height: 30%;
+}
+
+.about{
+    width: 100%;
+    height: 100%;
+    background-color: var(--canvas);
+    border-radius: 10px;
+    gap: 5px;
+    cursor: pointer;
+    transition: all .2s;
+    padding: 5px;
+    transform: scale(.9);
+}
+
+.about:hover{
+    background-color: var(--svg-hover);
+}
+.about img{
+    width: 25px;
+    margin-left: 10px;
+}
+.about span{
+    font-size: 1rem;
+}
+
+.aboutWebsitePopupContainer{
+    position: absolute;
+    width: 200px;
+    height: 250px;
+    background-color: var(--canvas);
+    border-radius: 10px;
+    border: 2px solid var(--border-color);
+    top: -240px;
+    right: auto;
+    justify-content: space-between;
+    flex-direction: column;
+    display: none;
+    z-index: 10;
+}
+
+.aboutWpopup{
+    flex-direction: column;
+    z-index: 1;
+}
+
+.aboutWItems{
+    align-items: flex-start;
+    flex-direction: column;
+    cursor: pointer;
+    list-style: none;
+}
+
+.aboutWItems li{
+    font-size: 1rem;
+    justify-content: flex-start;
+    border-radius: 10px;
+    color: var(--text-primary);
+}
+.aboutWItems li span{
+margin-left: 10px;
+}
+
+.aboutWItems li:hover{
+    background-color: var(--svg-hover);
+}
+
+.logoutPopupContainer {
+    position: absolute;
+    width: 200px;
+    height: 100px;
+    background-color: var(--canvas);
+    border-radius: 10px;
+    border: 2px solid var(--border-color);
+    top: -110px;
+    right: 0;
+    justify-content: space-around;
+    flex-direction: column;
+    display: none;
+}
+
+.logoutPopupContainer span{
+    font-size: 1rem;
+}
+
+.logoutConfirmButton{
+    height: 50%;
+    gap: 20px;
+}
+
+.logoutConfirmButton button{
+    width: 40%;
+    height: 80%;
+    border-radius: 10px;
+    font-size: 1rem;
+    cursor: pointer;
+    border: none;
+    transition: all .05s;
+    z-index: 10;
+}
+
+.logoutConfirmButton button:hover{
+    background-color: var(--svg-hover);
+    color: var(--text-bright);
+}
+
+.chatsSection{
+    height: 60%;
+    max-height: 5.5%;
+}
+
+.chatsSection.openChatListDisplay {
+    max-height: 30%;
+}
+
+.chatsHistory{
+    width: 90%;
+    max-height: 100%;
+    align-items: flex-start;
+    flex-direction: column;
+    background-color: var(--border-color);
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+
+.recentChats{
+    position: absolute;
+    height: 55px;
+    border-radius: 10px;
+    background-color: var(--panels);
+}
+
+.recentChatsButton{
+    height: 55px;
+    background-color: var(--new--body-leftSection--);
+    cursor: pointer;
+    border-radius: 10px;
+}
+
+.recentChatsButton.openChatList{
+    background-color: var(--border-color);
+}
+
+
+.imgTextRecentChatsButton{
+    width: 80%;
+    padding: 0 10px;
+}
+
+.imgTextRecentChatsButton img{
+    width: 25px;
+}
+.imgTextRecentChatsButton span{
+    text-wrap: nowrap;
+    font-size: 1rem;
+}
+
+.dropdownRecentChats{
+    width: 20%;
+    justify-content: flex-end;
+    transform: rotate(180deg);
+}
+
+.dropdownRecentChats img{
+    width: 15px;
+    margin-right: 10px;
+}
+
+.chatsHistoryHereNow {
+    align-items: flex-start;
+    border-radius: 5px;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 30px;
+    list-style: none;
+}
+
+
+.chatsHistoryHereNow li:first-child{
+    margin-top: 20px;
+}
+
+.chatsHistoryHereNow li{
+    width: 100%;
+    height: 100%;
+    padding: 10px 0;
+    cursor: pointer;
+    border-radius: 10px;
+}
+
+.chatsHistoryHereNow li a{
+    text-decoration: none;
+    color: var(--text-primary);
+    display: flex;
+}
+
+.chatsHistoryHereNow li span{
+    margin-left: 10px;
+}
+
+
+.chatsHistoryHereNow li:hover{
+    font-weight: bolder;
+    opacity: 1;
+    background-color: var(--buttonHover--);
+}
+
+.storageSection{
+    height: 5%;
+    margin-top: 10px;
+}
+
+.storageAudios{
+    width: 90%;
+    border-radius: 10px;
+    cursor: pointer;
+    padding: 0 12px;
+ }
+
+.storageAudios:hover{
+    background-color: var(--border-color);
+}
+
+.storageAudios.storageActive{
+    background-color: var(--border-color);
+}
+
+.storageIconText{
+    gap: 5px;
+}
+
+.storageIconText img{
+    width: 20px;
+}
+
+.storageIconText span{
+    text-wrap: nowrap;
+    font-size: 1rem;
+}
+
+.storagePopup100VH{
+    position: fixed;
+    background-color: rgba(0, 0, 0, 0.3);
+    width: 100%;
+    height: 100%;
+    top: 0;
+    right: 0;
+    z-index: 5;
+    display: none;
+}
+
+.storagePopup {
+    width: 300px;
+    height: 500px;
+    background-color: var(--canvas);
+    border: none;
+    border-radius: 10px;
+    flex-direction: column;
+    align-items: flex-start;
+    z-index: 10;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+    overflow: hidden;
+    padding: 20px;
+}
+
+.storagePopupHeader {
+    justify-content: space-between;
+    border-bottom: 1px solid var(--border-color);
+    padding: 10px 0;
+}
+
+
+.storagePopupHeader span {
+    font-size: 1rem;
+    color: var(--text-bright);
+    font-weight: bold;
+}
+
+.searchChatsContainer {
+    margin-top: 10px;
+    flex-direction: column;
+    gap: 10px;
+}
+
+
+.searchNow {
+    background-color: var(--panels);
+    border-radius: 10px;
+    padding: 5px 10px;
+}
+
+.searchNow img {
+    width: 2.5px;
+    margin-right: 10px;
+}
+
+.searchInput {
+    flex: 1;
+    background-color: transparent;
+    color: var(--text-bright);
+    border: none;
+    outline: none;
+    font-size: 1rem;
+}
+
+
+.searchInput::placeholder {
+    color: var(--text-primary);
+}
+
+.selectDeleteChats {
+    justify-content: space-between;
+    background-color: var(--canvas);
+    padding: 5px 0;
+    border-radius: 10px;
+    margin-bottom: 10px;
+}
+
+.customLabel {
+    font-size: 1rem;
+    gap: 1vmin;
+    color: var(--text-bright);
+}
+
+.deleteChatButton {
+    background-color: #E53935;
+    color: var(--text-bright);
+    border: none;
+    padding: 5px 20px;
+    font-size: 1rem;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.deleteChatButton:hover {
+    background-color: #d32f2f;
+}
+
+.chatsListPopup {
+    max-height: 500px;
+    overflow-y: auto;
+    margin-top: 10px;
+    border-top: 1px solid #444;
+    padding-top: 10px;
+    overflow: hidden;
+}
+
+.chatList {
+    list-style: none;
+    flex-direction: column;
+    gap: 5px;
+    padding: 0;
+}
+
+.chatList li {
+    display: flex;
+    align-items: center;
+    background-color: var(--panels);
+    border-radius: 10px;
+    padding: 10px;
+    transition: background-color 0.3s ease;
+    cursor: pointer;
+    border: 1px solid transparent;
+}
+
+.chatList li:hover {
+    border: 1px solid var(--text-primary);
+}
+
+.checkboxSelect {
+    appearance: none;
+    width: 12px;
+    height: 12px;
+    border: 2px solid var(--text-bright);
+    border-radius: 2px;
+    cursor: pointer;
+    margin: 10px;
+}
+.chatCheckbox {
+    appearance: none;
+    width: 12px;
+    height: 12px;
+    border: 2px solid var(--text-bright);
+    border-radius: 2px;
+    cursor: pointer;
+    margin-right: 5px;
+}
+
+
+.chatCheckbox:checked, .checkboxSelect:checked {
+    background-color: #4caf50;
+    border-color: #4caf50;
+}
+
+.chatName {
+    font-size: 1rem;
+    color: var(--text-primary);
+}
+
+
+.errorPopup {
+    position: absolute;
+    height: 50%;
+    bottom: 0;
+    border-radius: 10px;
+    background-color: #e74c3c;
+    color: var(--text-bright);
+    font-weight: bold;
+    font-size: 1rem;
+    overflow: hidden;
+    text-wrap: nowrap;
+    word-break: break-word;
+    transition: all 0.3s;
+    z-index: -1;
+    opacity: 0;
+}
+
+.errorPopup p{
+    transition: all 0.3s;
+}
+
+.rightMain{
+    width: 100%;
+    transition: all .2s;
+    justify-content: flex-end;
+    pointer-events: auto;
+}
+
+
+.loadingAssets{
+    position: absolute;
+    background-color: var(--canvas);
+}
+
+.animationText{
+    width: 100%;
+    height: 200px;
+    flex-direction: column;
+    margin-top: 20px;
+    text-align: center;
+}
+
+
+.animation{
+    width: 37px;
+    height: 49px;
+    border: 4px solid white;
+    border-top: 1px solid transparent;
+    border-bottom: 1px solid transparent;
+    border-radius: 50%;
+    animation: rotationAnimation 1s linear infinite;
+}
+
+.loadingText{
+    position: absolute;
+    font-size: 1rem;
+    color: var(--text-primary);
+}
+.loadingText1,
+.loadingText2,
+.loadingText3,
+.loadingText4{
+    opacity: 0;
+}
+
+.upperRight{
+    position: fixed;
+    width: 100%;
+    height: 80px;
+    top: 0;
+    background-color: var(--panels);
+    transition: al .2s;
+}
+
+.upperRightIn{
+    top: 0;
+    right: 0;
+    background-color: var(--panels);
+    transition: al .2s;
+}
+
+.slider{
+    position: absolute;
+    min-height: 30px;
+    display: flex;
+}
+
+
+.slide{
+    top: 0;
+    left: 0;
+    width: 40px;
+    height: 40px;
+    cursor: pointer;
+    z-index: 10;
+    margin: 5px;
+}
+
+.slide img{
+    width: 20px;
+}
+
+.webSiteName{
+    width: 50%;
+    user-select: none;
+    margin-left: 70px;
+}
+
+.webSiteName span{
+    width: auto;
+    font-size: 1rem;
+    margin-left: 10px;
+    font-weight: bolder;
+    text-wrap: nowrap;
+}
+
+.exportAudios{
+    width: 100%;
+    justify-content: flex-end;
+    flex-direction: column;
+}
+
+.exportAudioNow{
+    width: 100%;
+    justify-content: flex-end;
+}
+
+.export{
+    width: 30%;
+    height: 45%;
+    border: none;
+    border-radius: 5px;
+    outline: transparent;
+    background-color: var(--button);
+    color: var(--text-bright);
+    cursor: pointer;
+    font-size: 1rem;
+    margin-right: 5px;
+}
+
+.export:hover{
+    opacity: .9;
+}
+
+.exportOptionsPopup{
+    position: absolute;
+    width: 150px;
+    height: 100px;
+    background-color: var(--canvas);
+    border: 2px solid var(--border-color);
+    top: 85px;
+    border-radius: 10px;
+    flex-direction: column;
+    display: none;
+}
+
+.exportOptionsPopup div{
+    height: 50%;
+    border-radius: 10px;
+    z-index: 1;
+    user-select: none;
+    cursor: pointer;
+}
+
+
+.exportOptionsPopup div:hover{
+    background-color: var(--panels);
+}
+.exportOptionsPopup div span{
+    font-size: 1rem;
+    margin-left: 10px;
+}
+
+.audioFileName{
+    width: auto;
+    height: 60%;
+    border-right: 2px solid var(--border-color);
+    margin-right: 5px;
+    justify-content: flex-end;
+}
+
+.fileName{
+    width: 50%;
+    height: 80%;
+    margin-right: 5px;
+    justify-content: flex-end;
+    user-select: none;
+    color: var(--text-primary);
+}
+
+
+.fileName span{
+    font-size: 1rem;
+    cursor: pointer;
+    text-wrap: nowrap;
+    max-width: 100px;
+    overflow: hidden;
+}
+
+.fileNameEdit{
+    display: none;
+}
+
+.fileNameEdit input{
+    border: none;
+    width: 95%;
+    height: 80%;
+    outline: transparent;
+    padding: 10px;
+    font-size: 1rem;
+    background-color: var(--border-color);
+    color: var(--text-primary);
+    border-bottom: 2px solid var(--canvas);
+    border-radius: 10px;
+}
+
+.lowerRight {
+    flex-direction: column;
+    background-color: var(--canvas);
+    box-sizing: border-box;
+    margin-top: 90px;
+    overflow-y: auto;
+}
+
+.textInputSection {
+    margin-bottom: 20px;
+}
+
+.textInputSection label {
+    display: block;
+    font-size: 16px;
+}
+
+.speechGenerateContainer{
+    width: 100%;
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 20px;
+    background-color: var(--panels);
+    padding: 20px 30px;
+}
+
+
+.textInputSection textarea {
+    min-height: 200px;
+    background-color: var(--canvas);
+    border: 2px solid var(--border-color);
+    border-radius: 10px;
+    padding: 10px;
+    color: var(--text-bright);
+    font-size: 1rem;
+    resize: none;
+    overflow: hidden;
+    line-height: 1.5;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    outline: none;
+}
+
+.textInputSection textarea:focus {
+    border-color: var(--button);
+    box-shadow: 0 0 5px var(--button);
+}
+
+.textInputLimit{
+    margin-bottom: 10px;
+}
+
+.maxCharactorTextHolder{
+    background: var(--button);
+    width: 140px;
+    height: 30px;
+    margin-left: 10px;
+    border-radius: 5px;
+    overflow: hidden;
+    padding: 0 8px;
+    text-wrap: nowrap;
+}
+
+.maximumChar{
+    font-size: 16px;
+    color: var(--text-bright);
+}
+  
+.voiceOptions p {
+    font-size: 16px;
+    margin-bottom: 10px;
+}
+
+.voiceOptions div {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.voiceOptions input[type="radio"] {
+    margin-right: 10px;
+}
+
+.voiceOptions select, .selectLangToTranslateSection select {
+    width: 40vmin;
+    margin-left: 20px;
+    padding: 5px;
+    background-color: var(--border-color);
+    border: 2px solid var(--border-color);
+    border-radius: 5px;
+    color: var(--text-primary);
+}
+
+.selectLangToTranslateSection{
+    gap: 10px;
+}
+  
+.generateSpeechBtn, .translateSpeechBtn {
+    background-color: var(--button);
+    color: var(--new--text-color--);
+    border: transparent;
+    
+    font-size: 1rem;
+    border-radius: 5px;
+    cursor: pointer;
+}
+.translateSpeechBtn{
+    padding: 0 20px;
+}
+.generateSpeechBtn{
+    padding: 10px 20px;
+}
+  
+.generateSpeechBtn:hover, .translateSpeechBtn:hover {
+    background-color: var(--buttonHover);
+}
+
+.loadingAssets{
     display: none;
 }

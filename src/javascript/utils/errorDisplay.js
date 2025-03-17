@@ -3,7 +3,7 @@ const popupErrText = document.querySelector(".errorPopup p");
 
 export function displayError(text = "", time = 3000) {
   popupErrText.textContent = text;
-  popupErr.style.transform = "translateY(3.5vmin)";
+  popupErr.style.transform = "translateY(45px)";
   popupErr.style.opacity = "1";
   
   setTimeout(() => {

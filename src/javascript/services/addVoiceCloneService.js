@@ -148,10 +148,6 @@ function createDownloadButton() {
         downloadButton = document.createElement("button");
         downloadButton.className = "downloadButton";
         downloadButton.textContent = "Download Recording";
-        downloadButton.style.display = "none";
-        downloadButton.style.marginTop = "10px";
-        downloadButton.style.padding = "8px 12px";
-        
         saveRecButton.parentNode.insertBefore(downloadButton, saveRecButton.nextSibling);
     }
     return downloadButton;
