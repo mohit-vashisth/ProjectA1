@@ -1,6 +1,6 @@
 .leftMain{
     position: absolute;
-    width: 0;
+    width: 0%;
     border: 2px solid var(--border-color);
     background: var(--panels);
     transition: all .2s;
@@ -124,7 +124,6 @@
 .voicePopup {
     flex-direction: column;
     background: var(--gradient);
-    /* backdrop-filter: blur(5px); */
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
 }
 
@@ -205,7 +204,7 @@
     width: 200%;
     height: 200%;
     background: linear-gradient(135deg, transparent 45%,rgba(255, 255, 255, 0.3) 50%, transparent 55%);
-    filter: blur(2vmin);
+    filter: blur(20px);
     animation: shineEffect 3s infinite linear;
     pointer-events: none;
     z-index: 1;
@@ -800,7 +799,7 @@ margin-left: 10px;
     width: 300px;
     height: 500px;
     background-color: var(--canvas);
-    border: none;
+    border: 2px solid var(--border-color);
     border-radius: 10px;
     flex-direction: column;
     align-items: flex-start;
@@ -948,9 +947,10 @@ margin-left: 10px;
 
 .errorPopup {
     position: absolute;
+    width: 95%;
     height: 50%;
     bottom: 0;
-    border-radius: 10px;
+    border-radius: 5px;
     background-color: #e74c3c;
     color: var(--text-bright);
     font-weight: bold;
@@ -961,6 +961,7 @@ margin-left: 10px;
     transition: all 0.3s;
     z-index: -1;
     opacity: 0;
+    margin-left: 8px;
 }
 
 .errorPopup p{
