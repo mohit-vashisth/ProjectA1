@@ -27,7 +27,6 @@ async def signup(user_info: User_signup, response: Response, request: Request):
         
         tokens = {
             "access_token": access_token,
-            "refresh_token": refresh_token,
         }
 
         response = JSONResponse(

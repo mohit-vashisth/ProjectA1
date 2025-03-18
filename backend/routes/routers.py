@@ -6,6 +6,8 @@ from backend.dashboard.services.new_chat_SV import new_chat_route
 from backend.dashboard.services.translate_text_SV import translate_route
 from backend.dashboard.services.add_voice_SV import user_voice_route
 from backend.dashboard.services.rename_chat_SV import rename_chat_route
+from backend.dashboard.services.delete_chat_SV import delete_chat_route
+from backend.dashboard.services.storage_file_SV import storage_file_route
 from backend.security.token_verification import verify_and_refresh_token
 from backend.core.config import DEBUG
 
@@ -20,6 +22,8 @@ def include_routers(app: FastAPI):
     app.include_router(router=login_route, tags=["auth"])
     app.include_router(router=user_voice_route, tags=["services"])
     app.include_router(router=rename_chat_route, tags=["services"])
+    app.include_router(router=delete_chat_route, tags=["services"])
+    app.include_router(router=storage_file_route, tags=["services"])
 
     for route, tags in auth_routes:
         if not DEBUG:
