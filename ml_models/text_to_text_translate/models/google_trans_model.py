@@ -1,6 +1,6 @@
 from googletrans import Translator
 
-from ml_models.schemas.lang_trans_schema import Language_response
+from backend.schemas.lang_trans_schema import Language_response
 from backend.utils.logger import init_logger
 
 def google_Trans_transltor(response: Language_response):

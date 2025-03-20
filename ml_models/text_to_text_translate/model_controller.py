@@ -1,5 +1,5 @@
 from fastapi import status, HTTPException
-from ml_models.schemas.lang_trans_schema import Language_request
+from backend.schemas.lang_trans_schema import Language_request
 from backend.utils.logger import init_logger
 from ml_models.language_detect.language_detect import detect_language
 from ml_models.text_to_text_translate.models.google_trans_model import google_Trans_transltor

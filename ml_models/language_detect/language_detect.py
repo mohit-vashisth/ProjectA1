@@ -1,7 +1,7 @@
 from fastapi import HTTPException, status
 from backend.core import config
 from backend.utils.logger import init_logger
-from ml_models.schemas.lang_trans_schema import Language_request, Language_response
+from backend.schemas.lang_trans_schema import Language_request, Language_response
 import fasttext
 import re
 import os
