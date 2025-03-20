@@ -1,6 +1,6 @@
 from fastapi import APIRouter, HTTPException, Request, Response, status
 from backend.core import config
-from backend.schemas.lang_trans_schema import Language_request
+from ml_models.schemas.lang_trans_schema import Language_request
 from backend.utils.logger import init_logger
 from ml_models.text_to_text_translate.model_controller import translate_req_handler
 from backend.security.token_verification import verify_and_refresh_token
