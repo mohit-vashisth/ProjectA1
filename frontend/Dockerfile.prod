@@ -1,0 +1,24 @@
+# Build stage
+FROM node:18 AS builder
+
+WORKDIR /app
+
+COPY package.json package-lock.json ./
+RUN npm install
+
+COPY . .
+
+# Build the production version
+RUN npm run build
+
+# Use NGINX for serving static files
+FROM nginx:alpine
+
+# Copy built frontend to NGINX
+COPY --from=builder /app/dist /usr/share/nginx/html
+
+# Expose NGINX port
+EXPOSE 80
+
+# Start NGINX
+CMD ["nginx", "-g", "daemon off;"]

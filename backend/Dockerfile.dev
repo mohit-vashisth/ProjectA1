@@ -1,0 +1,24 @@
+# Use the correct base image
+FROM python:3.11
+
+# Set working directory inside the container
+WORKDIR /app
+
+# Install Poetry and ensure it's in the PATH
+RUN curl -sSL https://install.python-poetry.org | python3 - \
+    && export PATH="$HOME/.local/bin:$PATH"
+
+# Copy only necessary files first
+COPY pyproject.toml poetry.lock* ./
+
+# Ensure Poetry is in PATH before installing dependencies
+RUN /root/.local/bin/poetry install --no-root  # ✅ Use full path
+
+# Copy the entire backend code
+COPY . .
+
+# Expose the backend port
+EXPOSE 8000
+
+# Run the FastAPI app
+CMD ["/root/.local/bin/poetry", "run", "uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8000"]

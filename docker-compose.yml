@@ -1,8 +1,8 @@
-version: "3.8"
-
 services:
   backend:
-    build: ./backend
+    build:
+      context: ./backend
+      dockerfile: Dockerfile.dev
     ports:
       - "8000:8000"
     volumes:
@@ -10,8 +10,10 @@ services:
     depends_on:
       - frontend
 
-  frontend:
-    build: ./frontend
+  frontend: 
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile.dev  # Change to Dockerfile.dev
     ports:
       - "3000:3000"
     volumes:
