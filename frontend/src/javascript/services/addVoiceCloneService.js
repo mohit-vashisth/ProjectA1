@@ -57,11 +57,10 @@ function detectOptimalFormat() {
             if (MediaRecorder.isTypeSupported(format.mimeType)) {
                 recordingFormat.mimeType = format.mimeType;
                 recordingFormat.extension = format.extension;
-                console.log(`Using format: ${format.mimeType}`);
                 return true;
             }
         } catch (e) {
-            console.log(`Format ${format.mimeType} check failed:`, e);
+            console.error(`Format ${format.mimeType} check failed:`, e);
         }
     }
     

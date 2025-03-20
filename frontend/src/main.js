@@ -26,6 +26,10 @@ function initApp() {
   logoutUserEXP()
   generateSpeechToVoiceEXP()
   translateServiceEXP()
+  console.log(`voice: ${import.meta.env.VITE_USER_VOICE_ADD_EP}`)
+  console.log(`login: ${import.meta.env.VITE_LOGIN_EP}`)
+  console.log(`signup: ${import.meta.env.VITE_SIGNUP_EP}`)
+
 }
 
 document.addEventListener("DOMContentLoaded", () => {

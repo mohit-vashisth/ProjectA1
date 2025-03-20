@@ -2,7 +2,7 @@ import { displayError } from "../utils/errorDisplay";
 const recentChatsButton = document.querySelector(".recentChatsButton");
 const chatsSection = document.querySelector(".chatsSection");
 const iconRotate = document.querySelector(".dropdownRecentChats img");
-const userRecentChatsURL = import.meta.env.VITE_STORAGE_FILES_EP;
+const userRecentChatsURL = import.meta.env.VITE_RECENT_CHATS_FILES_EP;
 
 let currentController = null;
 let currentChat = {
@@ -51,7 +51,7 @@ async function loadUserChats() {
       setTimeout(() => reject(new Error("Request timeout")), 8000)
     );
 
-    const fetchPromise = fetch(`${userRecentChatsURL}/recent-chats`, {
+    const fetchPromise = fetch(VITE_RECENT_CHATS_FILES_EP, {
       method: "GET",
       headers: { "Content-Type": "application/json" },
       credentials: "include",

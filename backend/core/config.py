@@ -2,14 +2,15 @@ from dotenv import load_dotenv
 import os
 from urllib.parse import urlparse
 
-ENVIRONMENT = os.getenv(key="ENV", default="development")  # Default to development
+ENVIRONMENT = os.getenv(key="ENV", default="development")
 
 # Load the corresponding .env file
 BASE_DIR = os.path.dirname(p=os.path.dirname(p=os.path.dirname(p=os.path.abspath(path=__file__))))
+env_new_Path = os.path.join(BASE_DIR, "frontend")
 if ENVIRONMENT == "production":
-    load_dotenv(dotenv_path=os.path.join(BASE_DIR, ".env.production"))
+    load_dotenv(dotenv_path=os.path.join(env_new_Path, ".env.production"))
 else:
-    load_dotenv(dotenv_path=os.path.join(BASE_DIR, ".env.development"))
+    load_dotenv(dotenv_path=os.path.join(env_new_Path, ".env.development"))
 
 def env_variables(key) -> str:
     value: str | None = os.getenv(key=key)
@@ -46,8 +47,6 @@ JWT_HEADER = {
 
 # Charator lenth
 LENGTH = int(env_variables(key="LENGTH"))
-# CORS Settings
-# ALLOWED_ORIGINS = env_variables("ALLOWED_ORIGINS", "http://localhost:3000,http://localhost:8000").split(",")
 
 # General App Settings
 DEBUG = env_variables(key="DEBUG").strip().lower() in ("true", "1", "yes")
