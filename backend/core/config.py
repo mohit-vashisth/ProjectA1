@@ -22,6 +22,7 @@ def env_variables(key) -> str:
 VITE_NEW_CHAT_EP = env_variables(key="VITE_NEW_CHAT_EP")
 VITE_USER_VOICE_ADD_EP = env_variables(key="VITE_USER_VOICE_ADD_EP")
 VITE_RECENT_FILES_EP = env_variables(key="VITE_RECENT_FILES_EP")
+VITE_GET_CHATS_FILES_EP = env_variables(key="VITE_GET_CHATS_FILES_EP")
 VITE_STORAGE_FILES_EP = env_variables(key="VITE_STORAGE_FILES_EP")
 VITE_LOGOUT_EP = env_variables(key="VITE_LOGOUT_EP")
 VITE_RENAME_EP = env_variables(key="VITE_RENAME_EP")
