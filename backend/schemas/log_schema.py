@@ -43,11 +43,11 @@ json_handler = logging.StreamHandler(stream=sys.stdout)
 json_handler.setFormatter(fmt=CustomJSONFormatter())
 
 # File Handler (all logs)
-file_handler = logging.FileHandler("backend/logs/app.log", mode="a", encoding="utf-8")
+file_handler = logging.FileHandler("logs/app.log", mode="a", encoding="utf-8")
 file_handler.setFormatter(CustomJSONFormatter())
 
 # error log file
-error_handler = logging.FileHandler("backend/logs/error.log", mode="a", encoding="utf-8")
+error_handler = logging.FileHandler("logs/error.log", mode="a", encoding="utf-8")
 error_handler.setLevel(logging.ERROR)  # Only log errors
 error_handler.setFormatter(CustomJSONFormatter())
 
