@@ -60,4 +60,5 @@ logger.addHandler(rich_handler)  # Pretty logs in dev
 logger.addHandler(file_handler)  # Persistent logs
 logger.addHandler(error_handler)  # Store errors separately
 
-logging.getLogger("uvicorn.access").propagate = False
+logging.getLogger("uvicorn.access").disabled = True
+logging.getLogger("uvicorn.error").disabled = True
