@@ -1,13 +1,13 @@
 from backend.core import config
-from backend.schemas.token_schema import TokenType, Tokens
 from backend.utils.logger import init_logger
-from backend.utils.current_time import current_time
 from backend.utils.load_keys import load_keys
+from backend.utils.current_time import current_time
+from backend.schemas.token_schema import TokenType, Tokens
 
-from authlib.jose import jwt
-from fastapi import HTTPException, status
-from datetime import datetime, timedelta
 from typing import Any
+from authlib.jose import jwt
+from datetime import datetime, timedelta
+from fastapi import HTTPException, status
 
 
 PRIVATE_KEY, _ = load_keys()

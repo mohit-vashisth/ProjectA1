@@ -1,7 +1,7 @@
-from fastapi import HTTPException, status
-from backend.schemas.user_model import Users
-from backend.database.queries.user_queries import get_user
 from backend.utils.logger import init_logger
+from backend.database.queries.user_queries import get_user
+
+from fastapi import HTTPException, status
 
 async def check_existing_email(req_email: str) -> bool:
     try:
@@ -21,7 +21,7 @@ async def check_existing_email(req_email: str) -> bool:
 
     except HTTPException as http_exp:
         init_logger(message=f"HTTP Exception while checking email: {http_exp.detail}", level="error")
-        raise http_exp  # Re-raise the specific HTTPException
+        raise http_exp
 
     except Exception as e:
         init_logger(message=f"Unexpected error while fetching user with email {req_email}: {str(e)}", level="error")

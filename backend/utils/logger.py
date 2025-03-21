@@ -1,15 +1,17 @@
-from fastapi import Request
 from backend.schemas.log_schema import logger
 
-def init_logger(message: str, level: str = "debug", request: Request | None = None):
-    request_id = request.headers.get("X-Request-ID", "None") if request else "None"
+from fastapi import Request
 
-    extra = {
-        "request_id": request_id,
-        "user_agent": request.headers.get("user-agent", "Unknown") if request else "Unknown",
-        "ip": request.client.host if request and request.client else "Unknown",
-        "path": request.url.path if request else "Unknown"
-    }
+def init_logger(message: str, level: str = "debug", request: Request | None = None):
+    request_id = request.headers.get("X-Request-ID") if request else "None"
+
+    if request:
+        extra = {
+            "request_id": request_id,
+            "user_agent": request.headers.get("user-agent", "Unknown") if request else "Unknown",
+            "ip": request.client.host if request and request.client else "Unknown",
+            "path": request.url.path if request else "Unknown"
+        }
 
     match str(level).lower():
         case "debug":

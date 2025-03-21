@@ -1,6 +1,7 @@
+from backend.utils.logger import init_logger
+
 from passlib.context import CryptContext
 from fastapi import HTTPException, status
-from backend.utils.logger import init_logger
 
 pass_context = CryptContext(
     schemes=["argon2"],

@@ -1,9 +1,10 @@
-import logging
-import json
-import sys
-from pythonjsonlogger.json import JsonFormatter
 from backend.core import config
+
+import sys
+import json
+import logging
 from rich.logging import RichHandler
+from pythonjsonlogger.json import JsonFormatter
 
 class CustomJSONFormatter(JsonFormatter):
     def format(self, record):

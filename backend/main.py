@@ -1,8 +1,8 @@
+from backend.utils.logger import init_logger
 from backend.database.connection import init
+from backend.routes.routers import include_routers
 from backend.handlers.error_handlers import create_error_handlers
 from backend.middlewares.custom_middleware import add_x_request_id, setup_cors_middleware
-from backend.routes.routers import include_routers
-from backend.utils.logger import init_logger
 
 import uvicorn
 from fastapi import FastAPI
@@ -13,8 +13,8 @@ init_logger(message="Starting FastAPI Application")
 @asynccontextmanager
 async def lifespan(app: FastAPI):
     init_logger(message="initializing database...")
-    await init()  # Initialize MongoDB connection
-    yield  # Wait here until the app shuts down
+    await init()
+    yield
     init_logger(message="Shutting down FastAPI app...")
 
 app = FastAPI(lifespan=lifespan)

@@ -1,5 +1,6 @@
-from fastapi import HTTPException, Request, status
 from backend.utils.logger import init_logger
+
+from fastapi import HTTPException, Request, status
 
 def get_cookies_access_token(request: Request) -> str:
     token = request.cookies.get("access_token")

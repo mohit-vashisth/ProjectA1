@@ -1,7 +1,7 @@
-from fastapi import HTTPException, status
 import pymongo.errors
-from backend.database.connection import Users
+from fastapi import HTTPException, status
 from backend.utils.logger import init_logger
+from backend.database.connection import Users
 
 async def get_user(req_email: str) -> Users | None:
     try:

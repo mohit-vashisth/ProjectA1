@@ -1,5 +1,6 @@
-from pydantic import BaseModel, Field
 from backend.core import config
+
+from pydantic import BaseModel, Field
 
 class Language_request(BaseModel):
     text: str = Field(default=..., max_length=int(config.LENGTH))

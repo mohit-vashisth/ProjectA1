@@ -1,7 +1,8 @@
+from backend.utils.logger import init_logger
+
 from authlib.jose import JWTClaims
 from fastapi import HTTPException, status
 
-from backend.utils.logger import init_logger
 
 def get_jwt_email(decoded_token: str) -> str:
     try:

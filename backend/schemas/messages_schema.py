@@ -1,8 +1,9 @@
-from datetime import datetime
-from beanie import Document
-from pydantic import Field
-
 from backend.utils.current_time import current_time
+
+from pydantic import Field
+from beanie import Document
+from datetime import datetime
+
 
 class Messages(Document):
     chat_id: str

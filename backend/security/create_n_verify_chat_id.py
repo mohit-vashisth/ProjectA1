@@ -1,9 +1,9 @@
+from backend.utils.logger import init_logger
+from backend.schemas.chat_schema import Chats
+from backend.utils.current_time import current_time
 
 import uuid
 from pydantic import EmailStr
-from backend.schemas.chat_schema import Chats
-from backend.utils.current_time import current_time
-from backend.utils.logger import init_logger
 
 async def generate_chat_id(email_id: EmailStr) -> str:
     date = current_time().date()

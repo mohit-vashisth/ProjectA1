@@ -1,8 +1,9 @@
-from datetime import datetime
+from backend.utils.current_time import current_time
+
 from enum import Enum
 from beanie import Document
-from pydantic import EmailStr, Field, model_validator
-from backend.utils.current_time import current_time
+from datetime import datetime
+from pydantic import EmailStr, model_validator
 
 class TokenType(str, Enum):
     REFRESH = "refresh"
