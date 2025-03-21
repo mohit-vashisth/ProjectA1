@@ -1,24 +1,37 @@
-# Use the correct base image
-FROM python:3.11
+# Use a slim Python 3.11 base image
+FROM python:3.11-slim
 
-# Set working directory inside the container
+# Set environment variables for Poetry
+ENV POETRY_HOME="/opt/poetry"
+ENV PATH="${POETRY_HOME}/bin:${PATH}"
+ENV POETRY_NO_INTERACTION=1 \
+    POETRY_VIRTUALENVS_CREATE=false \
+    PYTHONDONTWRITEBYTECODE=1 \
+    PYTHONUNBUFFERED=1
+
+# Set the working directory
 WORKDIR /app
 
-# Install Poetry and ensure it's in the PATH
-RUN curl -sSL https://install.python-poetry.org | python3 - \
-    && export PATH="$HOME/.local/bin:$PATH"
+# Install system dependencies & Poetry in one layer
+RUN apt-get update && apt-get install -y curl build-essential \
+ && curl -sSL https://install.python-poetry.org | python3 - \
+ && ln -s $POETRY_HOME/bin/poetry /usr/local/bin/poetry \
+ && apt-get remove --purge -y curl \
+ && apt-get autoremove -y \
+ && apt-get clean \
+ && rm -rf /var/lib/apt/lists/*
 
-# Copy only necessary files first
+# Copy dependency files first to leverage Docker cache
 COPY pyproject.toml poetry.lock* ./
 
-# Ensure Poetry is in PATH before installing dependencies
-RUN /root/.local/bin/poetry install --no-root  # ✅ Use full path
+# Install dependencies
+RUN poetry install --no-root
 
-# Copy the entire backend code
+# Copy the full project code
 COPY . .
 
-# Expose the backend port
+# Expose the FastAPI port
 EXPOSE 8000
 
-# Run the FastAPI app
-CMD ["/root/.local/bin/poetry", "run", "uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8000"]
+# Run the app
+CMD ["poetry", "run", "dev"]

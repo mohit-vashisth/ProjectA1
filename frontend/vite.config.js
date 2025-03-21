@@ -31,7 +31,7 @@ export default defineConfig(({ mode }) => {
       host: true,
       strictPort: true,
       allowedHosts: "all",
-      open: true,
+      open: false,
     },
   };
 });
