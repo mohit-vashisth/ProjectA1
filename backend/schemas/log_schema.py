@@ -20,7 +20,8 @@ class CustomJSONFormatter(JsonFormatter):
                 log_entry[attr] = value
 
         if isinstance(record.exc_info, tuple):
-            log_entry["exception"] = self.formatException(record.exc_info)
+            exception_str = self.formatException(record.exc_info)
+            log_entry["exception"] = "\n".join(exception_str) if isinstance(exception_str, list) else exception_str
 
         if config.DEBUG:
             log_entry.update(
@@ -42,11 +43,11 @@ json_handler = logging.StreamHandler(stream=sys.stdout)
 json_handler.setFormatter(fmt=CustomJSONFormatter())
 
 # File Handler (all logs)
-file_handler = logging.FileHandler("backend/logs/app.log", mode="a", encoding="utf-8")
+file_handler = logging.FileHandler("logs/app.log", mode="a", encoding="utf-8")
 file_handler.setFormatter(CustomJSONFormatter())
 
 # error log file
-error_handler = logging.FileHandler("backend/logs/error.log", mode="a", encoding="utf-8")
+error_handler = logging.FileHandler("logs/error.log", mode="a", encoding="utf-8")
 error_handler.setLevel(logging.ERROR)  # Only log errors
 error_handler.setFormatter(CustomJSONFormatter())
 
@@ -59,4 +60,5 @@ logger.addHandler(rich_handler)  # Pretty logs in dev
 logger.addHandler(file_handler)  # Persistent logs
 logger.addHandler(error_handler)  # Store errors separately
 
-logging.getLogger("uvicorn.access").propagate = False
+logging.getLogger("uvicorn.access").disabled = True
+logging.getLogger("uvicorn.error").disabled = True

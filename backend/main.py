@@ -1,8 +1,3 @@
-from backend.auth.signup import signup_route
-from backend.auth.login import login_route
-from backend.dashboard.services.logout_SV import logout_route
-from backend.dashboard.services.new_chat_SV import new_chat_route
-from backend.dashboard.services.translate_text_SV import translate_route
 from backend.database.connection import init
 from backend.handlers.error_handlers import create_error_handlers
 from backend.middlewares.custom_middleware import add_x_request_id, setup_cors_middleware
@@ -38,7 +33,7 @@ async def root() -> dict:
 
 
 def initializeAPP():
-    uvicorn.run("backend.main:app", host="127.0.0.1", port=8000, reload=True)
+    uvicorn.run("main:app", host="127.0.0.1", port=8000, reload=True)
 
 if __name__ == "__main__":
     initializeAPP()

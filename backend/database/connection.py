@@ -34,11 +34,6 @@ async def init() -> None:
     # testing connection 
     try:
         init_logger(message="Establising Connection to Database...")
-        print(f"signup EP : {config.VITE_LOGIN_EP}")
-        print(f"signup EP : {config.VITE_SIGNUP_EP}")
-        print(f"signup EP : {config.VITE_STORAGE_FILES_EP}")
-        print(f"signup EP : {config.VITE_RECENT_FILES_EP}")
-        print(f"signup EP : {config.VITE_RENAME_EP}")
 
         await client.admin.command(command='ping')  
 

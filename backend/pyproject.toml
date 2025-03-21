@@ -4,7 +4,7 @@ version = "1.0.0"
 description = "Voice Cloning Project"
 authors = ["Mohit N. Vashisth <mohitnarayanvashisth2703@gmail.com>"]
 readme = "README.md"
-packages = [{ include = "backend" }]  # Ensure Poetry knows your backend folder
+packages = [{ include = "backend", from = ".." }]
 
 [tool.poetry.dependencies]
 python = ">=3.11,<4.0"  # ← Moved here
@@ -34,4 +34,4 @@ requires = ["poetry-core>=2.0.0,<3.0.0"]
 build-backend = "poetry.core.masonry.api"
 
 [tool.poetry.scripts]
-dev = "backend.main:initializeAPP"
+dev = "main:initializeAPP"
