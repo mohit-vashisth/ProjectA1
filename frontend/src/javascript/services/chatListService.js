@@ -51,7 +51,7 @@ async function loadUserChats() {
       setTimeout(() => reject(new Error("Request timeout")), 8000)
     );
 
-    const fetchPromise = fetch(VITE_RECENT_CHATS_FILES_EP, {
+    const fetchPromise = fetch(userRecentChatsURL, {
       method: "GET",
       headers: { "Content-Type": "application/json" },
       credentials: "include",
