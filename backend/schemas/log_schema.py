@@ -20,7 +20,8 @@ class CustomJSONFormatter(JsonFormatter):
                 log_entry[attr] = value
 
         if isinstance(record.exc_info, tuple):
-            log_entry["exception"] = self.formatException(record.exc_info)
+            exception_str = self.formatException(record.exc_info)
+            log_entry["exception"] = "\n".join(exception_str) if isinstance(exception_str, list) else exception_str
 
         if config.DEBUG:
             log_entry.update(
