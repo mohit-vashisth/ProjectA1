@@ -1,10 +1,13 @@
 from backend.core import config
+from backend.security.filters import RequestContextFilter
 
 import sys
 import json
 import logging
 from rich.logging import RichHandler
 from pythonjsonlogger.json import JsonFormatter
+
+context_filter = RequestContextFilter()
 
 class CustomJSONFormatter(JsonFormatter):
     def format(self, record):
@@ -61,5 +64,10 @@ logger.addHandler(rich_handler)  # Pretty logs in dev
 logger.addHandler(file_handler)  # Persistent logs
 logger.addHandler(error_handler)  # Store errors separately
 
-logging.getLogger("uvicorn.access").disabled = True
-logging.getLogger("uvicorn.error").disabled = True
+# add filters
+json_handler.addFilter(context_filter)
+file_handler.addFilter(context_filter)
+error_handler.addFilter(context_filter)
+rich_handler.addFilter(context_filter)
+
+logging.getLogger("uvicorn.access").propagate = True

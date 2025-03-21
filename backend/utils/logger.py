@@ -5,12 +5,11 @@ from fastapi import Request
 def init_logger(message: str, level: str = "debug", request: Request | None = None):
     request_id = request.headers.get("X-Request-ID") if request else "None"
 
-    if request:
-        extra = {
-            "request_id": request_id,
-            "user_agent": request.headers.get("user-agent", "Unknown") if request else "Unknown",
-            "ip": request.client.host if request and request.client else "Unknown",
-            "path": request.url.path if request else "Unknown"
+    extra = {
+        "request_id": request_id,
+        "user_agent": request.headers.get("user-agent", "Unknown") if request else "Unknown",
+        "ip": request.client.host if request and request.client else "Unknown",
+        "path": request.url.path if request else "Unknown"
         }
 
     match str(level).lower():
