@@ -8,7 +8,7 @@ from fastapi import APIRouter, HTTPException, Request, status
 
 delete_chat_route = APIRouter()
 
-@delete_chat_route.post(path=f"{config.VITE_STORAGE_FILES_EP}/delete-chats", status_code=status.HTTP_200_OK)
+@delete_chat_route.post(path=f"{config.STORAGE_FILES_EP}/delete-chats", status_code=status.HTTP_200_OK)
 async def delete_chat(chat_id, request: Request):
 
     # payload = await verify_and_refresh_token(request=request)

@@ -9,7 +9,7 @@ from fastapi import APIRouter, Request, Response, status
 
 logout_route = APIRouter()
 
-@logout_route.post(path=config.VITE_LOGOUT_EP, status_code=status.HTTP_200_OK)
+@logout_route.post(path=config.LOGOUT_EP, status_code=status.HTTP_200_OK)
 async def logout(request: Request, response: Response):
     init_logger(message=f"Logout attempt: method={request.method} | url={request.url} | cookies={request.cookies}", request=request)
 

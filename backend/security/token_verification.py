@@ -12,7 +12,7 @@ from authlib.jose import jwt, JoseError
 
 _, PUBLIC_KEY = load_keys()
 
-oauth2_scheme = OAuth2PasswordBearer(tokenUrl=config.VITE_LOGIN_EP)
+oauth2_scheme = OAuth2PasswordBearer(tokenUrl=config.LOGIN_EP)
 
 async def is_blacklisted_token(token: str) -> bool:
     init_logger(message=f"Checking if token is blacklisted: {token}")

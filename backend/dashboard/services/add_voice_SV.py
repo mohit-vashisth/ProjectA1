@@ -9,7 +9,7 @@ from fastapi import APIRouter, File, HTTPException, Request, UploadFile, status
 
 user_voice_route = APIRouter()
 
-@user_voice_route.post(path=config.VITE_USER_VOICE_ADD_EP, status_code=status.HTTP_200_OK)
+@user_voice_route.post(path=config.USER_VOICE_ADD_EP, status_code=status.HTTP_200_OK)
 async def user_voice(request: Request, file: UploadFile = File()):
 
     if not file or not file.filename or not file.filename.endswith(".wav"):

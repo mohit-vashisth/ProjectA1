@@ -2,15 +2,15 @@ from backend.core import config
 from fastapi.responses import JSONResponse
 from backend.utils.logger import init_logger
 from backend.auth.create_user import create_user
-from backend.schemas.user_schema import User_signup
+from backend.schemas.user_schema import UserSignup
+from backend.security.create_jwt import create_access_token
 from backend.security.check_existing_email import check_existing_email
-from backend.security.create_jwt import create_access_token, create_refresh_token
 
 from fastapi import APIRouter, Request, Response, status
 
 signup_route = APIRouter()
-@signup_route.post(path=config.VITE_SIGNUP_EP, status_code=status.HTTP_201_CREATED)
-async def signup(user_info: User_signup, response: Response, request: Request):
+@signup_route.post(path=config.SIGNUP_EP, status_code=status.HTTP_201_CREATED)
+async def signup(user_info: UserSignup, response: Response, request: Request):
     init_logger(message=f"signup attemp for email {user_info.email_ID}", request=request)
 
     await check_existing_email(req_email=user_info.email_ID)
@@ -18,8 +18,6 @@ async def signup(user_info: User_signup, response: Response, request: Request):
     user = await create_user(user_info=user_info)
 
     access_token = await create_access_token(user=user)
-    refresh_token = await create_refresh_token(user=user)
-
 
     init_logger(message=f"user created in database: A_token -> {access_token[:6]}")
     

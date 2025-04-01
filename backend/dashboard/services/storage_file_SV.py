@@ -11,7 +11,7 @@ from fastapi import APIRouter, Request, status
 
 storage_file_route = APIRouter()
 
-@storage_file_route.post(path=config.VITE_STORAGE_FILES_EP, status_code=status.HTTP_200_OK)
+@storage_file_route.post(path=config.STORAGE_FILES_EP, status_code=status.HTTP_200_OK)
 async def storage_files(request:Request):
 
     payload = await verify_and_refresh_token(request=request)

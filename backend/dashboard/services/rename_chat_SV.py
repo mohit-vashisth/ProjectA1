@@ -9,7 +9,7 @@ from fastapi import APIRouter, HTTPException, Request, status
 
 
 rename_chat_route = APIRouter()
-@rename_chat_route.post(path=config.VITE_RENAME_EP, status_code=status.HTTP_200_OK)
+@rename_chat_route.post(path=config.RENAME_EP, status_code=status.HTTP_200_OK)
 async def rename_chat(rename: RenameChat, request: Request):
 
     payload = await verify_and_refresh_token(request=request)

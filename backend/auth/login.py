@@ -1,6 +1,6 @@
 from backend.core import config
 from backend.utils.logger import init_logger
-from backend.schemas.user_schema import User_login
+from backend.schemas.user_schema import UserLogin
 from backend.auth.signup import create_access_token
 from backend.database.queries.user_queries import get_user
 from backend.security.create_jwt import create_refresh_token
@@ -11,8 +11,8 @@ from fastapi import APIRouter, HTTPException, Request, Response, status
 
 login_route = APIRouter()
 
-@login_route.post(path=config.VITE_LOGIN_EP, status_code=status.HTTP_200_OK)
-async def login(user_info: User_login, request: Request, response: Response):
+@login_route.post(path=config.LOGIN_EP, status_code=status.HTTP_200_OK)
+async def login(user_info: UserLogin, request: Request, response: Response):
     init_logger(message=f"Login attemp for email {user_info.email_ID}", request=request)
     
     user_data = await get_user(req_email=user_info.email_ID)
