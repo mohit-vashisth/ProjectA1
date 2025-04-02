@@ -6,12 +6,17 @@ from backend.schemas.user_schema import UserSignup
 from backend.security.create_jwt import create_access_token
 from backend.security.check_existing_email import check_existing_email
 
-from fastapi import APIRouter, Request, Response, status
+from fastapi import APIRouter, HTTPException, Request, Response, status
 
 signup_route = APIRouter()
 @signup_route.post(path=config.SIGNUP_EP, status_code=status.HTTP_201_CREATED)
 async def signup(user_info: UserSignup, response: Response, request: Request):
     init_logger(message=f"signup attemp for email {user_info.email_ID}", request=request)
+    if not user_info.privacy_link:
+        raise HTTPException(
+            status_code=status.HTTP_422_UNPROCESSABLE_ENTITY,
+            detail="Privacy check must be True."
+        )
 
     await check_existing_email(req_email=user_info.email_ID)
 
