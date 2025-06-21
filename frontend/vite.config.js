@@ -13,7 +13,7 @@ export default defineConfig(({ mode }) => {
   return {
     root: '.',
     base: env.VITE_BASE_URL || '/',
-
+    publicDir: 'public',
     build: {
       outDir: resolve(__dirname, 'dist'), // Ensure correct output directory
       assetsDir: 'assets',

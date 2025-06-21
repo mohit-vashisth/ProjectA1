@@ -110,9 +110,10 @@ async function handleSignup() {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             signal: currentController.signal,
-            credentials: "include",
             body: JSON.stringify(newUser)
         });
+
+        clearTimeout(timeout);
 
         if (!response.ok) {
             const errorData = await response.json();
