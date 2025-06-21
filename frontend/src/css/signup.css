@@ -1,11 +1,8 @@
-/* General Styles */
-
-html {
+html{
+  box-sizing: border-box;
   overflow-y: auto;
 }
-
 body {
-  font-family: "Inter", sans-serif;
   background-color: #f9fafb;
   display: flex;
   justify-content: center;
@@ -15,16 +12,8 @@ body {
   padding: 20px;
 }
 
-form{
-  width: 100%;
-  height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: flex-start;
-}
-
-/* Form Card */
-.formCard {
+/* Form Container */
+.formMainCard {
   position: relative;
   background: #ffffff;
   padding: 32px;
@@ -66,7 +55,7 @@ form{
 }
 
 /* Heading */
-.login-heading {
+.signup-heading {
   font-size: 24px;
   font-weight: 600;
   color: #333;
@@ -81,6 +70,7 @@ form{
   border: 1px solid #d1d5db;
   border-radius: 8px;
   font-size: 16px;
+  transition: all 0.2s ease-in-out;
   background: #f8fafc;
 }
 
@@ -91,6 +81,32 @@ form{
   box-shadow: 0 0 4px rgba(37, 99, 235, 0.3);
 }
 
+/* Phone Input */
+.phoneInputContainer {
+  display: flex;
+  gap: 10px;
+}
+
+#countryCode {
+  width: 30%;
+  min-width: 85px;
+}
+
+/* Checkbox */
+.privacyHolder {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  justify-content: flex-start;
+  margin: 12px 0;
+}
+
+.privacyLabel {
+  font-size: 14px;
+  color: #555;
+  cursor: pointer;
+}
+
 /* Error Messages */
 .errors {
   color: #d9534f;
@@ -99,21 +115,8 @@ form{
   text-align: left;
 }
 
-/* Forgot Password Link */
-.forgotPassword {
-  display: block;
-  margin: 10px 0;
-  color: #2563eb;
-  text-decoration: none;
-  font-size: 14px;
-}
-
-.forgotPassword:hover {
-  text-decoration: underline;
-}
-
-/* Login Button */
-.loginButton {
+/* Buttons */
+button {
   background-color: #2563eb;
   color: white;
   padding: 12px;
@@ -122,20 +125,26 @@ form{
   cursor: pointer;
   font-size: 16px;
   width: 100%;
-  transition: background 0.3s ease-in-out, transform 0.1s ease-in-out;
-  font-weight: 600;
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 10px;
+  transition: background 0.3s ease-in-out, transform 0.1s ease-in-out;
+  font-weight: 600;
 }
 
-.loginButton:hover {
+button:hover {
   background-color: #1e40af;
 }
 
-.loginButton:active {
+button:active {
   transform: scale(0.98);
+}
+
+#continue {
+  position: relative;
+  opacity: .5;
+
 }
 
 .loading {
@@ -149,22 +158,28 @@ form{
 }
 
 /* Google Login Button */
-.googleLoginButton {
+.otherWaysToSign button {
   background-color: hsl(0, 0%, 95%);
   color: black;
   border: 2px solid rgba(0, 0, 0, 0.5);
-  padding: 12px;
-  border-radius: 8px;
-  cursor: pointer;
-  font-size: 16px;
-  width: 100%;
-  transition: background 0.3s ease-in-out, transform 0.1s ease-in-out;
-  font-weight: 600;
-  margin-top: 15px;
+  margin-top: 10px;
 }
 
-.googleLoginButton:hover {
-  background-color: #b52e24;
+.otherWaysToSign button:hover {
+  background-color: #ffffffe4;
+}
+
+/* Sign-in Link */
+#signinLink {
+  display: block;
+  margin: 12px 0;
+  color: #2563eb;
+  text-decoration: none;
+  font-size: 14px;
+}
+
+#signinLink:hover {
+  text-decoration: underline;
 }
 
 /* Animations */

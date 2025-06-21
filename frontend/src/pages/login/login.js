@@ -1,5 +1,5 @@
-import { displayError } from "../../src/javascript/utils/errorDisplay";
-import { Login } from "../../src/schemas/userSchema";
+import { displayError } from "../../../../frontend2/src/pages/modules/errorDisplay";
+import { LoginDTO } from "../../schemas/loginDTO"
 
 const email = document.querySelector("#email");
 const password = document.querySelector("#password");
@@ -10,14 +10,6 @@ const loginURL = import.meta.env.VITE_LOGIN_EP;
 const dashBoardPage = import.meta.env.VITE_DASHBOARD_PAGE;
 
 let currentController = null;
-
-document.addEventListener('DOMContentLoaded', () => {
-    const link = document.createElement('link');
-    link.rel = 'stylesheet';
-    link.href = '/frontend/css/pages/signin.css';
-    document.head.appendChild(link);
-    validateFields();
-});
 
 const validationCriteria = {
     email: value => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value),
@@ -55,7 +47,7 @@ loginButton.addEventListener('click', async (event) => {
     if (currentController) currentController.abort();
     currentController = new AbortController();
 
-    const newUser = new Login(
+    const newUser = new LoginDTO(
             email.value.trim(),
             password.value
         );

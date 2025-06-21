@@ -1,6 +1,6 @@
-import { displayError } from "../../src/javascript/utils/errorDisplay";
-import { Signup } from "../../src/schemas/userSchema.js";
-import { initializePhoneInput } from "./signup/userContact.js";
+import { displayError } from "../modules/errorDisplay.js";
+import { Signup } from "../../schemas/userSchema.js";
+import { initializePhoneInput } from "../modules/userContact.js";
 
 const userName = document.querySelector("#name");
 const email = document.querySelector("#email");
