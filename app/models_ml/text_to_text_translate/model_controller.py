@@ -1,8 +1,8 @@
 from fastapi import status, HTTPException
-from api.schemas.language_translate import LanguageRequest
-from api.logging.logger import init_logger
+from app.schemas.language_translate import LanguageRequest
+from app.utils.logger import init_logger
 from models_ml.language_detect.language_detect import detect_language
-from models_ml.text_to_text_translate.models.google_trans_model import google_Trans_transltor
+from app.models_ml.text_to_text_translate.models.google_trans_model import google_Trans_transltor
 
 
 def translate_req_handler(request: LanguageRequest) -> str:
