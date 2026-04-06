@@ -1,68 +1,109 @@
+from pathlib import Path
 from dotenv import load_dotenv
 import os
 from urllib.parse import urlparse
 
-ENVIRONMENT = os.getenv(key="ENV", default="development")
+# =========================
+# 🧭 Base directory (Project root)
+# =========================
+BASE_DIR = Path(__file__).resolve().parent.parent.parent
 
-# Load the corresponding .env file
-BASE_DIR = os.path.dirname(p=os.path.dirname(p=os.path.dirname(p=os.path.abspath(path=__file__))))
-env_new_Path = os.path.join(BASE_DIR, "frontend")
-if ENVIRONMENT == "production":
-    load_dotenv(dotenv_path=os.path.join(env_new_Path, ".env.production"))
-else:
-    load_dotenv(dotenv_path=os.path.join(env_new_Path, ".env.development"))
+# =========================
+# 🔄 Load environment variables (SAFE + FORCE)
+# =========================
+ENV_PATH = (BASE_DIR / ".env.development").resolve()
 
-def env_variables(key) -> str:
-    value: str | None = os.getenv(key=key)
-    if value and value.startswith("http"):
-        return urlparse(url=value).path
-    return str(object=value)
+if not ENV_PATH.exists():
+    raise FileNotFoundError(f"❌ .env file not found at: {ENV_PATH}")
 
-# API Endpoints
-NEW_CHAT_EP = env_variables(key="VITE_NEW_CHAT_EP")
-USER_VOICE_ADD_EP = env_variables(key="VITE_USER_VOICE_ADD_EP")
-RECENT_FILES_EP = env_variables(key="VITE_RECENT_FILES_EP")
-GET_CHATS_FILES_EP = env_variables(key="VITE_GET_CHATS_FILES_EP")
-STORAGE_FILES_EP = env_variables(key="VITE_STORAGE_FILES_EP")
-LOGOUT_EP = env_variables(key="VITE_LOGOUT_EP")
-RENAME_EP = env_variables(key="VITE_RENAME_EP")
-TRANSLATE_EP = env_variables(key="VITE_TRANSLATE_SPEECH_EP")
-GENERATE_SPEECH_EP = env_variables(key="VITE_GENERATE_SPEECH_EP")
-LOGIN_EP = env_variables(key="VITE_LOGIN_EP")
-SIGNUP_EP = env_variables(key="VITE_SIGNUP_EP")
+load_dotenv(dotenv_path=str(ENV_PATH), override=True)
 
-# Database Configuration
-MONGO_URI = env_variables(key="MONGO_URI")
-DATABASE_INIT = env_variables(key="DATABASE_INIT")
+# =========================
+# 🌍 Detect environment
+# =========================
+ENVIRONMENT = os.getenv("ENV", "development")
 
-# JWT Configuration
-PRIVATE_KEY_PATH = env_variables(key="PRIVATE_KEY_PATH")
-PUBLIC_KEY_PATH = env_variables(key="PUBLIC_KEY_PATH")
-ACCESS_TOKEN_EXPIRE_MINUTES = int(env_variables(key="ACCESS_TOKEN_EXPIRE_MINUTES"))
-REFRESH_TOKEN_EXPIRE_MINUTES = int(env_variables(key="REFRESH_TOKEN_EXPIRE_MINUTES"))
+# =========================
+# 🧠 Helper function
+# =========================
+def env_variables(key: str) -> str:
+    value = os.getenv(key)
+
+    if value is None:
+        raise ValueError(f"❌ Missing environment variable: {key}")
+
+    if isinstance(value, str) and value.startswith("http"):
+        return urlparse(value).path
+
+    return value
+
+
+# =========================
+# 🔗 API Endpoints
+# =========================
+NEW_CHAT_EP = env_variables("VITE_NEW_CHAT_EP")
+USER_VOICE_ADD_EP = env_variables("VITE_USER_VOICE_ADD_EP")
+RECENT_FILES_EP = env_variables("VITE_RECENT_CHATS_FILES_EP")
+GET_CHATS_FILES_EP = env_variables("VITE_GET_CHATS_FILES_EP")
+STORAGE_FILES_EP = env_variables("VITE_STORAGE_FILES_EP")
+LOGOUT_EP = env_variables("VITE_LOGOUT_EP")
+RENAME_EP = env_variables("VITE_RENAME_EP")
+TRANSLATE_EP = env_variables("VITE_TRANSLATE_SPEECH_EP")
+GENERATE_SPEECH_EP = env_variables("VITE_GENERATE_SPEECH_EP")
+LOGIN_EP = env_variables("VITE_LOGIN_EP")
+SIGNUP_EP = env_variables("VITE_SIGNUP_EP")
+
+
+# =========================
+# 🗄️ Database
+# =========================
+MONGO_URI = env_variables("MONGO_URI")
+DATABASE_INIT = env_variables("DATABASE_INIT")
+
+
+# =========================
+# 🔐 JWT
+# =========================
+PRIVATE_KEY_PATH = BASE_DIR / env_variables("PRIVATE_KEY_PATH")
+PUBLIC_KEY_PATH = BASE_DIR / env_variables("PUBLIC_KEY_PATH")
+
+ACCESS_TOKEN_EXPIRE_MINUTES = int(env_variables("ACCESS_TOKEN_EXPIRE_MINUTES"))
+REFRESH_TOKEN_EXPIRE_MINUTES = int(env_variables("REFRESH_TOKEN_EXPIRE_MINUTES"))
+
 JWT_HEADER = {
-    "alg":env_variables(key="JWT_ALGORITHM"),
-    "typ": env_variables(key="TYPE")
+    "alg": env_variables("JWT_ALGORITHM"),
+    "typ": env_variables("TYPE"),
 }
 
-# Charator lenth
-LENGTH = int(env_variables(key="LENGTH"))
 
-# General App Settings
-DEBUG = env_variables(key="DEBUG").strip().lower() in ("true", "1", "yes")
-APP_NAME = env_variables(key="APP_NAME")
+# =========================
+# 📏 Misc
+# =========================
+LENGTH = int(env_variables("LENGTH"))
 
-# APP/API Version
-APP_VERSION = env_variables(key="APP_VERSION")
+DEBUG = env_variables("DEBUG").strip().lower() in ("true", "1", "yes")
 
-# secret keys init
+APP_NAME = env_variables("APP_NAME")
+APP_VERSION = env_variables("APP_VERSION")
+
+
+# =========================
+# 🔑 Read Keys
+# =========================
 def read_pv_key():
-    with open(PRIVATE_KEY_PATH,'rb') as pv_file:
-        pv_key = pv_file.read()
-
-    with open(PUBLIC_KEY_PATH,'rb') as pb_file:
-        pb_key = pb_file.read()
-
+    pv_key = PRIVATE_KEY_PATH.read_bytes()
+    pb_key = PUBLIC_KEY_PATH.read_bytes()
     return pv_key, pb_key
 
-MODEL_PATH = env_variables(key="MODEL_PATH_DETECT_LANG")
+
+# =========================
+# 🤖 Model
+# =========================
+MODEL_PATH = BASE_DIR / env_variables("MODEL_PATH_DETECT_LANG")
+
+
+# =========================
+# 🧪 DEBUG (remove later)
+# =========================
+print("✅ ENV FILE LOADED:", ENV_PATH)
+print("✅ NEW_CHAT_EP:", os.getenv("VITE_NEW_CHAT_EP"))

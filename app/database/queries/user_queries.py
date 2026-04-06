@@ -5,7 +5,7 @@ from app.database.connection import Users
 
 async def get_user(req_email: str) -> Users | None:
     try:
-        user_data = await Users.(Users.email_ID == req_email)
+        user_data = await Users.find_one(Users.email_ID == req_email)
         if user_data is None:
             init_logger(message=f"User not found: {req_email}", level="info")
             return None

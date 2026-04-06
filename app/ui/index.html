@@ -1,0 +1,618 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ProjectA1 - Voice Cloning Platform</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Sidebar -->
+    <aside class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <div class="logo">
+                <span class="logo-icon">🎙️</span>
+                <span class="logo-text">ProjectA1</span>
+            </div>
+            <button class="sidebar-toggle" id="sidebarToggle">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <line x1="3" y1="12" x2="21" y2="12"></line>
+                    <line x1="3" y1="6" x2="21" y2="6"></line>
+                    <line x1="3" y1="18" x2="21" y2="18"></line>
+                </svg>
+            </button>
+        </div>
+
+        <nav class="sidebar-nav">
+            <div class="nav-section">
+                <div class="nav-section-title">Main</div>
+                <a href="#" class="nav-item active" data-page="dashboard">
+                    <span class="nav-icon">🏠</span>
+                    <span class="nav-text">Dashboard</span>
+                </a>
+                <a href="#" class="nav-item" data-page="voice-cloning">
+                    <span class="nav-icon">🎤</span>
+                    <span class="nav-text">Voice Cloning</span>
+                </a>
+                <a href="#" class="nav-item" data-page="text-to-speech">
+                    <span class="nav-icon">✍️</span>
+                    <span class="nav-text">Text-to-Speech</span>
+                </a>
+                <a href="#" class="nav-item" data-page="voice-library">
+                    <span class="nav-icon">📚</span>
+                    <span class="nav-text">Voice Library</span>
+                </a>
+            </div>
+
+            <div class="nav-section">
+                <div class="nav-section-title">Tools</div>
+                <a href="#" class="nav-item" data-page="file-storage">
+                    <span class="nav-icon">📁</span>
+                    <span class="nav-text">File Storage</span>
+                </a>
+                <a href="#" class="nav-item" data-page="chat">
+                    <span class="nav-icon">💬</span>
+                    <span class="nav-text">Chat Assistant</span>
+                </a>
+                <a href="#" class="nav-item" data-page="settings">
+                    <span class="nav-icon">⚙️</span>
+                    <span class="nav-text">Settings</span>
+                </a>
+            </div>
+
+            <div class="nav-section">
+                <div class="nav-section-title">Account</div>
+                <a href="#" class="nav-item" data-page="profile">
+                    <span class="nav-icon">👤</span>
+                    <span class="nav-text">Profile</span>
+                </a>
+            </div>
+        </nav>
+
+        <div class="sidebar-footer">
+            <div class="storage-widget">
+                <div class="storage-header">
+                    <span>Storage Used</span>
+                    <span class="storage-amount">45 MB / 1 GB</span>
+                </div>
+                <div class="storage-bar">
+                    <div class="storage-progress" style="width: 4.5%"></div>
+                </div>
+            </div>
+        </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content" id="mainContent">
+        <!-- Header -->
+        <header class="header">
+            <div class="header-left">
+                <h1 class="page-title" id="pageTitle">Dashboard</h1>
+            </div>
+            <div class="header-right">
+                <button class="notification-btn">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path>
+                        <path d="M13.73 21a2 2 0 0 1-3.46 0"></path>
+                    </svg>
+                    <span class="notification-badge">3</span>
+                </button>
+                <div class="user-profile">
+                    <div class="user-avatar">JD</div>
+                    <span class="user-name">John Doe</span>
+                </div>
+            </div>
+        </header>
+
+        <!-- Page Content -->
+        <div class="page-content" id="pageContent">
+            <!-- Dashboard Page -->
+            <div class="page" id="dashboard-page">
+                <!-- Welcome Section -->
+                <div class="welcome-section">
+                    <h2>Welcome back, John! 👋</h2>
+                    <p>Let's create something amazing with your voice today.</p>
+                </div>
+
+                <!-- Quick Stats -->
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-icon" style="background: var(--color-bg-1);">🎤</div>
+                        <div class="stat-content">
+                            <div class="stat-value">12</div>
+                            <div class="stat-label">Total Clones</div>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon" style="background: var(--color-bg-2);">💾</div>
+                        <div class="stat-content">
+                            <div class="stat-value">45 MB</div>
+                            <div class="stat-label">Storage Used</div>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon" style="background: var(--color-bg-3);">⭐</div>
+                        <div class="stat-content">
+                            <div class="stat-value">3</div>
+                            <div class="stat-label">Premium Voices</div>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon" style="background: var(--color-bg-4);">🔊</div>
+                        <div class="stat-content">
+                            <div class="stat-value">28</div>
+                            <div class="stat-label">Generated Audio</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Quick Actions -->
+                <div class="section-header">
+                    <h3>Quick Actions</h3>
+                </div>
+                <div class="quick-actions">
+                    <div class="action-card" data-action="voice-cloning">
+                        <div class="action-icon">🎤</div>
+                        <h4>New Voice Clone</h4>
+                        <p>Clone your voice with AI technology</p>
+                    </div>
+                    <div class="action-card" data-action="text-to-speech">
+                        <div class="action-icon">✍️</div>
+                        <h4>Generate Speech</h4>
+                        <p>Convert text to natural-sounding audio</p>
+                    </div>
+                    <div class="action-card" data-action="voice-library">
+                        <div class="action-icon">📚</div>
+                        <h4>Voice Library</h4>
+                        <p>Browse and manage your voices</p>
+                    </div>
+                </div>
+
+                <!-- Recent Files -->
+                <div class="section-header">
+                    <h3>Recent Files</h3>
+                    <a href="#" class="view-all" data-page="file-storage">View All</a>
+                </div>
+                <div class="files-grid" id="recentFiles">
+                    <!-- Files will be populated by JavaScript -->
+                </div>
+            </div>
+
+            <!-- Voice Cloning Page -->
+            <div class="page" id="voice-cloning-page" style="display: none;">
+                <div class="clone-comparison">
+                    <div class="clone-type-card">
+                        <div class="clone-badge instant">Free</div>
+                        <div class="clone-icon">⚡</div>
+                        <h3>Instant Clone</h3>
+                        <p class="clone-subtitle">Quick &amp; Easy</p>
+                        <div class="clone-specs">
+                            <div class="spec-item">
+                                <span class="spec-label">Duration:</span>
+                                <span class="spec-value">5-10 minutes</span>
+                            </div>
+                            <div class="spec-item">
+                                <span class="spec-label">Sample Required:</span>
+                                <span class="spec-value">30 seconds</span>
+                            </div>
+                            <div class="spec-item">
+                                <span class="spec-label">Quality:</span>
+                                <span class="spec-value">Good</span>
+                            </div>
+                        </div>
+                        <ul class="clone-features">
+                            <li>✓ Quick processing</li>
+                            <li>✓ Basic voice replication</li>
+                            <li>✓ Standard quality output</li>
+                            <li>✓ Suitable for demos</li>
+                        </ul>
+                        <button class="btn btn--primary clone-select-btn" data-type="instant">Select Instant Clone</button>
+                    </div>
+
+                    <div class="clone-type-card premium">
+                        <div class="clone-badge premium">$29/month</div>
+                        <div class="clone-icon">💎</div>
+                        <h3>Premium Clone</h3>
+                        <p class="clone-subtitle">Professional Quality</p>
+                        <div class="clone-specs">
+                            <div class="spec-item">
+                                <span class="spec-label">Duration:</span>
+                                <span class="spec-value">2-4 hours</span>
+                            </div>
+                            <div class="spec-item">
+                                <span class="spec-label">Sample Required:</span>
+                                <span class="spec-value">10 minutes</span>
+                            </div>
+                            <div class="spec-item">
+                                <span class="spec-label">Quality:</span>
+                                <span class="spec-value">Excellent</span>
+                            </div>
+                        </div>
+                        <ul class="clone-features">
+                            <li>✓ High-fidelity cloning</li>
+                            <li>✓ Advanced emotion control</li>
+                            <li>✓ Professional quality</li>
+                            <li>✓ Commercial use license</li>
+                            <li>✓ Priority processing</li>
+                        </ul>
+                        <button class="btn btn--primary clone-select-btn" data-type="premium">Select Premium Clone</button>
+                    </div>
+                </div>
+
+                <div class="upload-section" id="uploadSection" style="display: none;">
+                    <h3>Upload Voice Sample</h3>
+                    <div class="upload-zone" id="uploadZone">
+                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                            <polyline points="17 8 12 3 7 8"></polyline>
+                            <line x1="12" y1="3" x2="12" y2="15"></line>
+                        </svg>
+                        <h4>Drag &amp; drop your audio file here</h4>
+                        <p>or click to browse</p>
+                        <input type="file" id="fileInput" accept="audio/*" style="display: none;">
+                        <button class="btn btn--secondary" id="browseBtn">Browse Files</button>
+                    </div>
+
+                    <div class="upload-requirements">
+                        <h4>Requirements:</h4>
+                        <ul>
+                            <li>Clear audio without background noise</li>
+                            <li>Natural speaking voice</li>
+                            <li>Minimum duration: <span id="minDuration">30 seconds</span></li>
+                            <li>Supported formats: MP3, WAV, M4A</li>
+                        </ul>
+                    </div>
+
+                    <div class="processing-status" id="processingStatus" style="display: none;">
+                        <h4>Processing Your Voice...</h4>
+                        <div class="progress-bar">
+                            <div class="progress-fill" id="progressFill"></div>
+                        </div>
+                        <p class="progress-text" id="progressText">0%</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Text-to-Speech Page -->
+            <div class="page" id="text-to-speech-page" style="display: none;">
+                <div class="tts-container">
+                    <div class="tts-input-section">
+                        <div class="card">
+                            <div class="card-header">
+                                <h3>Enter Your Text</h3>
+                                <span class="char-count" id="charCount">0 / 5000</span>
+                            </div>
+                            <textarea class="tts-textarea" id="ttsInput" placeholder="Type or paste your text here..." maxlength="5000"></textarea>
+                        </div>
+
+                        <div class="tts-controls">
+                            <div class="control-group">
+                                <label class="form-label">Select Voice</label>
+                                <select class="form-control" id="voiceSelect">
+                                    <option value="1">Natural Male - Professional</option>
+                                    <option value="2">Natural Female - Friendly</option>
+                                    <option value="3">Premium Voice 1 - Formal</option>
+                                    <option value="4">Casual Voice - Natural</option>
+                                </select>
+                            </div>
+
+                            <div class="control-row">
+                                <div class="control-group">
+                                    <label class="form-label">Language</label>
+                                    <select class="form-control" id="languageSelect">
+                                        <option>English</option>
+                                        <option>Spanish</option>
+                                        <option>French</option>
+                                        <option>German</option>
+                                        <option>Italian</option>
+                                        <option>Portuguese</option>
+                                        <option>Japanese</option>
+                                        <option>Chinese</option>
+                                        <option>Hindi</option>
+                                        <option>Arabic</option>
+                                    </select>
+                                </div>
+
+                                <div class="control-group">
+                                    <label class="form-label">Voice Style</label>
+                                    <select class="form-control" id="styleSelect">
+                                        <option>Natural</option>
+                                        <option>Professional</option>
+                                        <option>Friendly</option>
+                                        <option>Formal</option>
+                                        <option>Casual</option>
+                                        <option>Energetic</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <button class="btn btn--primary btn--large" id="generateBtn">
+                                <span>🔊 Generate Speech</span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="tts-preview-section" id="previewSection" style="display: none;">
+                        <div class="card">
+                            <div class="card-header">
+                                <h3>Audio Preview</h3>
+                            </div>
+                            <div class="audio-player">
+                                <div class="waveform" id="waveform">
+                                    <div class="waveform-bar" style="height: 40%"></div>
+                                    <div class="waveform-bar" style="height: 70%"></div>
+                                    <div class="waveform-bar" style="height: 50%"></div>
+                                    <div class="waveform-bar" style="height: 85%"></div>
+                                    <div class="waveform-bar" style="height: 60%"></div>
+                                    <div class="waveform-bar" style="height: 90%"></div>
+                                    <div class="waveform-bar" style="height: 45%"></div>
+                                    <div class="waveform-bar" style="height: 75%"></div>
+                                    <div class="waveform-bar" style="height: 55%"></div>
+                                    <div class="waveform-bar" style="height: 80%"></div>
+                                    <div class="waveform-bar" style="height: 65%"></div>
+                                    <div class="waveform-bar" style="height: 70%"></div>
+                                    <div class="waveform-bar" style="height: 50%"></div>
+                                    <div class="waveform-bar" style="height: 85%"></div>
+                                    <div class="waveform-bar" style="height: 40%"></div>
+                                    <div class="waveform-bar" style="height: 60%"></div>
+                                    <div class="waveform-bar" style="height: 75%"></div>
+                                    <div class="waveform-bar" style="height: 55%"></div>
+                                    <div class="waveform-bar" style="height: 90%"></div>
+                                    <div class="waveform-bar" style="height: 45%"></div>
+                                </div>
+                                <div class="player-controls">
+                                    <button class="play-btn" id="playBtn">
+                                        <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                                            <polygon points="5 3 19 12 5 21 5 3"></polygon>
+                                        </svg>
+                                    </button>
+                                    <div class="time-display">
+                                        <span>0:00</span>
+                                        <span>/</span>
+                                        <span>0:15</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="export-actions">
+                                <h4>Export Audio</h4>
+                                <div class="export-formats">
+                                    <button class="format-btn">🎵 MP3</button>
+                                    <button class="format-btn">🎼 WAV</button>
+                                    <button class="format-btn">🌐 OGG</button>
+                                    <button class="format-btn">🍎 M4A</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Voice Library Page -->
+            <div class="page" id="voice-library-page" style="display: none;">
+                <div class="library-header">
+                    <div class="search-box">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="11" cy="11" r="8"></circle>
+                            <path d="m21 21-4.35-4.35"></path>
+                        </svg>
+                        <input type="text" placeholder="Search voices..." id="voiceSearch">
+                    </div>
+                    <div class="filter-buttons">
+                        <button class="filter-btn active" data-filter="all">All</button>
+                        <button class="filter-btn" data-filter="instant">Instant</button>
+                        <button class="filter-btn" data-filter="premium">Premium</button>
+                    </div>
+                </div>
+
+                <div class="voices-grid" id="voicesGrid">
+                    <!-- Voices will be populated by JavaScript -->
+                </div>
+            </div>
+
+            <!-- File Storage Page -->
+            <div class="page" id="file-storage-page" style="display: none;">
+                <div class="storage-header">
+                    <div class="view-toggle">
+                        <button class="view-btn active" data-view="grid">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <rect x="3" y="3" width="7" height="7"></rect>
+                                <rect x="14" y="3" width="7" height="7"></rect>
+                                <rect x="14" y="14" width="7" height="7"></rect>
+                                <rect x="3" y="14" width="7" height="7"></rect>
+                            </svg>
+                        </button>
+                        <button class="view-btn" data-view="list">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <line x1="8" y1="6" x2="21" y2="6"></line>
+                                <line x1="8" y1="12" x2="21" y2="12"></line>
+                                <line x1="8" y1="18" x2="21" y2="18"></line>
+                                <line x1="3" y1="6" x2="3.01" y2="6"></line>
+                                <line x1="3" y1="12" x2="3.01" y2="12"></line>
+                                <line x1="3" y1="18" x2="3.01" y2="18"></line>
+                            </svg>
+                        </button>
+                    </div>
+                    <button class="btn btn--primary" id="uploadFileBtn">
+                        <span>📤 Upload File</span>
+                    </button>
+                </div>
+
+                <div class="files-container grid-view" id="filesContainer">
+                    <!-- Files will be populated by JavaScript -->
+                </div>
+            </div>
+
+            <!-- Chat Page -->
+            <div class="page" id="chat-page" style="display: none;">
+                <div class="chat-container">
+                    <div class="chat-messages" id="chatMessages">
+                        <!-- Messages will be populated by JavaScript -->
+                    </div>
+
+                    <div class="chat-suggestions" id="chatSuggestions">
+                        <button class="suggestion-chip">How do I clone my voice?</button>
+                        <button class="suggestion-chip">What's the difference between instant and premium?</button>
+                        <button class="suggestion-chip">Can I use my cloned voice commercially?</button>
+                        <button class="suggestion-chip">How much storage do I have?</button>
+                    </div>
+
+                    <div class="chat-input-container">
+                        <input type="text" class="chat-input" id="chatInput" placeholder="Ask me anything...">
+                        <button class="send-btn" id="sendBtn">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <line x1="22" y1="2" x2="11" y2="13"></line>
+                                <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Settings Page -->
+            <div class="page" id="settings-page" style="display: none;">
+                <div class="settings-grid">
+                    <div class="settings-section">
+                        <h3>Account Settings</h3>
+                        <div class="settings-item">
+                            <label class="form-label">Email Address</label>
+                            <input type="email" class="form-control" value="john.doe@example.com">
+                        </div>
+                        <div class="settings-item">
+                            <label class="form-label">Display Name</label>
+                            <input type="text" class="form-control" value="John Doe">
+                        </div>
+                    </div>
+
+                    <div class="settings-section">
+                        <h3>Audio Preferences</h3>
+                        <div class="settings-item">
+                            <label class="form-label">Default Audio Quality</label>
+                            <select class="form-control">
+                                <option>High (320kbps)</option>
+                                <option selected>Medium (192kbps)</option>
+                                <option>Low (128kbps)</option>
+                            </select>
+                        </div>
+                        <div class="settings-item">
+                            <label class="form-label">Default Export Format</label>
+                            <select class="form-control">
+                                <option selected>MP3</option>
+                                <option>WAV</option>
+                                <option>OGG</option>
+                                <option>M4A</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="settings-section">
+                        <h3>Notifications</h3>
+                        <div class="settings-toggle">
+                            <span>Email notifications</span>
+                            <label class="toggle-switch">
+                                <input type="checkbox" checked>
+                                <span class="toggle-slider"></span>
+                            </label>
+                        </div>
+                        <div class="settings-toggle">
+                            <span>Clone completion alerts</span>
+                            <label class="toggle-switch">
+                                <input type="checkbox" checked>
+                                <span class="toggle-slider"></span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="settings-section">
+                        <h3>API Configuration</h3>
+                        <div class="settings-item">
+                            <label class="form-label">API Key</label>
+                            <input type="password" class="form-control" value="sk_test_abc123xyz789">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="settings-actions">
+                    <button class="btn btn--secondary">Cancel</button>
+                    <button class="btn btn--primary">Save Changes</button>
+                </div>
+            </div>
+
+            <!-- Profile Page -->
+            <div class="page" id="profile-page" style="display: none;">
+                <div class="profile-container">
+                    <div class="profile-card">
+                        <div class="profile-avatar-large">JD</div>
+                        <h2>John Doe</h2>
+                        <p class="profile-email">john.doe@example.com</p>
+                        <button class="btn btn--secondary">Edit Profile</button>
+                    </div>
+
+                    <div class="subscription-card">
+                        <div class="subscription-header">
+                            <h3>Subscription Plan</h3>
+                            <span class="subscription-badge">Free Plan</span>
+                        </div>
+                        <div class="subscription-details">
+                            <div class="subscription-item">
+                                <span>Monthly Clones:</span>
+                                <span>12 / 50</span>
+                            </div>
+                            <div class="subscription-item">
+                                <span>Storage:</span>
+                                <span>45 MB / 1 GB</span>
+                            </div>
+                            <div class="subscription-item">
+                                <span>Premium Voices:</span>
+                                <span>3 / 5</span>
+                            </div>
+                        </div>
+                        <button class="btn btn--primary">Upgrade to Premium</button>
+                    </div>
+
+                    <div class="usage-stats-card">
+                        <h3>Usage Statistics</h3>
+                        <div class="usage-grid">
+                            <div class="usage-item">
+                                <div class="usage-label">Total Clones</div>
+                                <div class="usage-value">12</div>
+                            </div>
+                            <div class="usage-item">
+                                <div class="usage-label">Generated Audio</div>
+                                <div class="usage-value">28</div>
+                            </div>
+                            <div class="usage-item">
+                                <div class="usage-label">Total Files</div>
+                                <div class="usage-value">15</div>
+                            </div>
+                            <div class="usage-item">
+                                <div class="usage-label">Member Since</div>
+                                <div class="usage-value">Oct 2024</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Toast Notification -->
+    <div class="toast" id="toast">
+        <span class="toast-message" id="toastMessage"></span>
+    </div>
+
+    <!-- Modal -->
+    <div class="modal" id="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 id="modalTitle">Modal Title</h3>
+                <button class="modal-close" id="modalClose">&times;</button>
+            </div>
+            <div class="modal-body" id="modalBody">
+                <!-- Modal content -->
+            </div>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>

@@ -4,10 +4,24 @@ from app.security.filters import RequestContextFilter
 import sys
 import json
 import logging
+from pathlib import Path
 from rich.logging import RichHandler
 from pythonjsonlogger.json import JsonFormatter
 
+# =========================
+# 📁 Ensure logs directory exists
+# =========================
+BASE_DIR = Path(__file__).resolve().parent.parent.parent
+LOG_DIR = BASE_DIR / "logs"
+
+LOG_DIR.mkdir(exist_ok=True)  # 🔥 creates folder if not exists
+
+APP_LOG_FILE = LOG_DIR / "app.log"
+ERROR_LOG_FILE = LOG_DIR / "error.log"
+
+
 context_filter = RequestContextFilter()
+
 
 class CustomJSONFormatter(JsonFormatter):
     def format(self, record):
@@ -25,7 +39,11 @@ class CustomJSONFormatter(JsonFormatter):
 
         if isinstance(record.exc_info, tuple):
             exception_str = self.formatException(record.exc_info)
-            log_entry["exception"] = "\n".join(exception_str) if isinstance(exception_str, list) else exception_str
+            log_entry["exception"] = (
+                "\n".join(exception_str)
+                if isinstance(exception_str, list)
+                else exception_str
+            )
 
         if config.DEBUG:
             log_entry.update(
@@ -36,38 +54,56 @@ class CustomJSONFormatter(JsonFormatter):
                 }
             )
 
-        return json.dumps(obj=log_entry, indent=1)
+        return json.dumps(log_entry, indent=1)
 
-# Initialize Logger
-logger = logging.getLogger(name="app_logs")
-logger.setLevel(level=logging.DEBUG if config.DEBUG else logging.INFO)
 
-# JSON Console Handler
-json_handler = logging.StreamHandler(stream=sys.stdout)
-json_handler.setFormatter(fmt=CustomJSONFormatter())
+# =========================
+# 🧠 Logger setup
+# =========================
+logger = logging.getLogger("app_logs")
+logger.setLevel(logging.DEBUG if config.DEBUG else logging.INFO)
 
-# File Handler (all logs)
-file_handler = logging.FileHandler("logs/app.log", mode="a", encoding="utf-8")
+
+# =========================
+# 📺 Console handler
+# =========================
+json_handler = logging.StreamHandler(sys.stdout)
+json_handler.setFormatter(CustomJSONFormatter())
+
+
+# =========================
+# 📄 File handlers (SAFE PATH)
+# =========================
+file_handler = logging.FileHandler(APP_LOG_FILE, mode="a", encoding="utf-8")
 file_handler.setFormatter(CustomJSONFormatter())
 
-# error log file
-error_handler = logging.FileHandler("logs/error.log", mode="a", encoding="utf-8")
-error_handler.setLevel(logging.ERROR)  # Only log errors
+error_handler = logging.FileHandler(ERROR_LOG_FILE, mode="a", encoding="utf-8")
+error_handler.setLevel(logging.ERROR)
 error_handler.setFormatter(CustomJSONFormatter())
 
-# rich handler
+
+# =========================
+# 🎨 Rich handler
+# =========================
 rich_handler = RichHandler(rich_tracebacks=True, markup=True)
-rich_handler.setFormatter(fmt=CustomJSONFormatter())
+rich_handler.setFormatter(CustomJSONFormatter())
 
-# add handlers
-logger.addHandler(rich_handler)  # Pretty logs in dev
-logger.addHandler(file_handler)  # Persistent logs
-logger.addHandler(error_handler)  # Store errors separately
 
-# add filters
+# =========================
+# ➕ Add handlers
+# =========================
+logger.addHandler(rich_handler)
+logger.addHandler(file_handler)
+logger.addHandler(error_handler)
+
+
+# =========================
+# 🔍 Add filters
+# =========================
 json_handler.addFilter(context_filter)
 file_handler.addFilter(context_filter)
 error_handler.addFilter(context_filter)
 rich_handler.addFilter(context_filter)
+
 
 logging.getLogger("uvicorn.access").propagate = True
