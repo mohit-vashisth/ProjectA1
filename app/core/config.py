@@ -105,5 +105,3 @@ MODEL_PATH = BASE_DIR / env_variables("MODEL_PATH_DETECT_LANG")
 # =========================
 # 🧪 DEBUG (remove later)
 # =========================
-print("✅ ENV FILE LOADED:", ENV_PATH)
-print("✅ NEW_CHAT_EP:", os.getenv("VITE_NEW_CHAT_EP"))
