@@ -1,7 +1,7 @@
 from fastapi import HTTPException, status
-from api.core import config
-from api.logging.logger import init_logger
-from api.schemas.language_translate import LanguageRequest, LanguageResponse
+from app.core import config
+from app.utils.logger import init_logger
+from app.schemas.language_translate import LanguageRequest, LanguageResponse
 import fasttext
 import re
 import os
@@ -9,7 +9,7 @@ import os
 try:
     if not os.path.exists(config.MODEL_PATH):
         raise FileNotFoundError(f"FastText model not found at {config.MODEL_PATH}")
-    
+
     detect_model = fasttext.load_model(config.MODEL_PATH)
 
 except Exception as model_load_err:
@@ -20,14 +20,14 @@ except Exception as model_load_err:
 def detect_language(request: LanguageRequest) -> LanguageResponse:
     try:
         init_logger(message=f"user text for translation: {request.text}")
-        
+
         if not detect_model:
             init_logger(message="Unable to Load Model", level="warning")
             raise HTTPException(
                 status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
                 detail="Unable to Load Model."
             )
-        
+
         text = re.sub(r"[^a-zA-Z\u0900-\u097F\s]", "", request.text).strip()
 
         if not text:
@@ -36,7 +36,7 @@ def detect_language(request: LanguageRequest) -> LanguageResponse:
                 status_code=status.HTTP_400_BAD_REQUEST,
                 detail="Text is too small or empty."
             )
-        
+
         try:
             predictions = detect_model.predict(text=text, k=1)
         except Exception as fasttext_err:
