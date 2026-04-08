@@ -1,6 +1,6 @@
 from app.core import config
 from app.utils.logger import init_logger
-from app.schemas.lang_trans_schema import Language_request
+from app.schemas.language_translate import LanguageRequest
 from app.models_ml.text_to_text_translate.model_controller import translate_req_handler
 
 from fastapi import APIRouter, Request, status
@@ -8,7 +8,7 @@ from fastapi import APIRouter, Request, status
 translate_route = APIRouter()
 
 @translate_route.post(config.TRANSLATE_EP, status_code=status.HTTP_200_OK)
-async def translate(req: Language_request, request: Request):
+async def translate(req: LanguageRequest, request: Request):
     init_logger(message=f"text: {req.text} | destination: {req.dest}", request=request)
 
     translate_req_handler(request=req)

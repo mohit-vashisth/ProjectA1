@@ -99,7 +99,7 @@ def read_pv_key():
 # =========================
 # 🤖 Model
 # =========================
-MODEL_PATH = BASE_DIR / env_variables("MODEL_PATH_DETECT_LANG")
+MODEL_PATH = str(BASE_DIR / env_variables("MODEL_PATH_DETECT_LANG"))
 
 
 # =========================
