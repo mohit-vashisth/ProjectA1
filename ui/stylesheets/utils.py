@@ -1,430 +1,362 @@
-# utils.py
 import streamlit as st
 
+def inject_css(theme: str = "dark"):
+    """
+    Injects CSS with light/dark theme variables.
+    theme: 'dark' or 'light'
+    """
+    # Define colour tokens for both themes
+    dark_tokens = """
+        --bg-primary: #0B1120;
+        --bg-secondary: #1E293B;
+        --bg-tertiary: #334155;
+        --bg-hover: #475569;
+        --text-primary: #F8FAFC;
+        --text-secondary: #E2E8F0;
+        --text-muted: #94A3B8;
+        --border-default: #3B82F6;
+        --border-light: rgba(255, 255, 255, 0.08);
+        --brand-primary: #3B82F6;
+        --brand-primary-hover: #2563EB;
+        --brand-primary-light: #60A5FA;
+        --success: #10B981;
+        --error: #EF4444;
+        --warning: #F59E0B;
+        --info: #64748B;
+    """
+    light_tokens = """
+        --bg-primary: #F8FAFC;
+        --bg-secondary: #FFFFFF;
+        --bg-tertiary: #F1F5F9;
+        --bg-hover: #E2E8F0;
+        --text-primary: #0F172A;
+        --text-secondary: #334155;
+        --text-muted: #64748B;
+        --border-default: #3B82F6;
+        --border-light: rgba(0, 0, 0, 0.06);
+        --brand-primary: #3B82F6;
+        --brand-primary-hover: #2563EB;
+        --brand-primary-light: #93C5FD;
+        --success: #059669;
+        --error: #DC2626;
+        --warning: #D97706;
+        --info: #475569;
+    """
 
-def inject_css():
-    st.markdown("""
+    tokens = dark_tokens if theme == "dark" else light_tokens
+
+    st.markdown(f"""
     <style>
+    :root {{
+        /* ========== BASE TOKENS ========== */
+        --white: #FFFFFF;
+        --black: #000000;
 
-    /* =========================================================
-       ROOT DESIGN SYSTEM (TOKENS)
-    ========================================================= */
-    :root {
+        /* ========== THEME TOKENS ========== */
+        {tokens}
 
-      /* ================= COLORS ================= */
+        /* ========== TYPOGRAPHY ========== */
+        --font-family: "Inter", system-ui, -apple-system, sans-serif;
+        --text-xs: 12px;
+        --text-sm: 14px;
+        --text-md: 16px;
+        --text-lg: 20px;
+        --text-xl: 24px;
+        --text-2xl: 32px;
+        --font-normal: 400;
+        --font-medium: 500;
+        --font-semibold: 600;
+        --font-bold: 700;
+        --leading-normal: 1.5;
+        --leading-tight: 1.2;
 
-      --white: #ffffff;
-      --black: #000000;
+        /* ========== SPACING ========== */
+        --space-1: 4px;
+        --space-2: 8px;
+        --space-3: 12px;
+        --space-4: 16px;
+        --space-5: 24px;
+        --space-6: 32px;
+        --space-7: 48px;
 
-      --bg-primary: #0f172a;
-      --bg-secondary: #1e293b;
-      --bg-tertiary: #334155;
-      --bg-hover: #334155;
+        /* ========== RADIUS ========== */
+        --radius-sm: 8px;
+        --radius-md: 12px;
+        --radius-lg: 16px;
 
-      --text-primary: #f1f5f9;
-      --text-secondary: #cbd5e1;
-      --text-muted: #94a3b8;
-      --text-inverse: #0f172a;
+        /* ========== SHADOW ========== */
+        --shadow-sm: 0 1px 3px rgba(0,0,0,0.08);
+        --shadow-md: 0 8px 20px rgba(0,0,0,0.1);
+        --shadow-lg: 0 12px 30px rgba(0,0,0,0.15);
 
-      --brand-primary: #6366f1;
-      --brand-primary-hover: #4f46e5;
-      --brand-primary-light: #818cf8;
+        /* ========== ANIMATION ========== */
+        --anim-fast: 150ms;
+        --anim-normal: 250ms;
+        --ease-standard: cubic-bezier(0.16, 1, 0.3, 1);
 
-      --success: #22c55e;
-      --error: #ef4444;
-      --warning: #f59e0b;
-      --info: #64748b;
+        /* ========== LAYOUT ========== */
+        --container-width: 1200px;
+        --header-height: 64px;
+        --bottom-bar-height: 70px;
+    }}
 
-      --border-default: #475569;
-      --border-light: rgba(255, 255, 255, 0.08);
-
-      /* ================= TYPOGRAPHY ================= */
-
-      --font-family: "Inter", "Geist", system-ui, sans-serif;
-
-      --text-xs: 12px;
-      --text-sm: 14px;
-      --text-md: 16px;
-      --text-lg: 20px;
-      --text-xl: 24px;
-      --text-2xl: 32px;
-
-      --font-normal: 400;
-      --font-medium: 500;
-      --font-semibold: 600;
-      --font-bold: 700;
-
-      --leading-normal: 1.5;
-      --leading-tight: 1.2;
-
-      /* ================= SPACING ================= */
-
-      --space-1: 4px;
-      --space-2: 8px;
-      --space-3: 12px;
-      --space-4: 16px;
-      --space-5: 24px;
-      --space-6: 32px;
-      --space-7: 48px;
-
-      /* ================= RADIUS ================= */
-
-      --radius-sm: 6px;
-      --radius-md: 10px;
-      --radius-lg: 14px;
-
-      /* ================= SHADOW ================= */
-
-      --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.1);
-      --shadow-md: 0 4px 10px rgba(0, 0, 0, 0.12);
-
-      /* ================= ANIMATION ================= */
-
-      --anim-fast: 150ms;
-      --anim-normal: 250ms;
-      --ease-standard: cubic-bezier(0.16, 1, 0.3, 1);
-
-      /* ================= LAYOUT ================= */
-
-      --container-width: 1200px;
-      --header-height: 64px;
-      --bottom-bar-height: 70px;
-    }
-
-
-    /* =========================================================
-       GLOBAL BASE
-    ========================================================= */
-
-    html, body {
+    /* ========== GLOBAL BASE ========== */
+    html, body {{
         margin: 0;
         padding: 0;
         font-family: var(--font-family);
         background: var(--bg-primary);
         color: var(--text-primary);
-    }
-
-    .stApp {
+    }}
+    .stApp {{
         background: var(--bg-primary);
-    }
-
-    div[data-testid="stAppViewContainer"] {
+    }}
+    div[data-testid="stAppViewContainer"] {{
         background: var(--bg-primary);
-    }
+    }}
 
-
-    /* =========================================================
-       SIDEBAR
-    ========================================================= */
-
-    div[data-testid="stSidebar"] {
+    /* ========== SIDEBAR ========== */
+    section[data-testid="stSidebar"] {{
         background: var(--bg-secondary);
-        border-right: 1px solid var(--border-default);
-    }
+        border-right: 1px solid var(--border-light);
+    }}
+    section[data-testid="stSidebar"] * {{
+        color: var(--text-primary) !important;
+    }}
 
-
-    /* =========================================================
-       TYPOGRAPHY
-    ========================================================= */
-
-    h1 { font-size: var(--text-2xl); font-weight: var(--font-bold); }
-    h2 { font-size: var(--text-xl); font-weight: var(--font-semibold); }
-    h3 { font-size: var(--text-lg); font-weight: var(--font-semibold); }
-    h4 { font-size: var(--text-md); font-weight: var(--font-medium); }
-
-    p {
+    /* ========== TYPOGRAPHY ========== */
+    h1 {{ font-size: var(--text-2xl); font-weight: var(--font-bold); letter-spacing: -0.02em; }}
+    h2 {{ font-size: var(--text-xl); font-weight: var(--font-semibold); letter-spacing: -0.01em; }}
+    h3 {{ font-size: var(--text-lg); font-weight: var(--font-semibold); }}
+    h4 {{ font-size: var(--text-md); font-weight: var(--font-medium); }}
+    p {{
         font-size: var(--text-md);
         line-height: var(--leading-normal);
         color: var(--text-secondary);
-    }
+    }}
 
+    /* ========== BUTTONS ========== */
+    .stButton > button {{
+        border-radius: var(--radius-md) !important;
+        padding: 10px 20px !important;
+        font-weight: var(--font-medium) !important;
+        border: none !important;
+        cursor: pointer !important;
+        transition: all var(--anim-normal) var(--ease-standard) !important;
+        background: var(--brand-primary) !important;
+        color: white !important;
+        box-shadow: var(--shadow-sm) !important;
+    }}
+    .stButton > button:hover {{
+        background: var(--brand-primary-hover) !important;
+        transform: translateY(-2px) !important;
+        box-shadow: var(--shadow-md) !important;
+    }}
+    .stButton > button:active {{
+        transform: scale(0.98) !important;
+    }}
+    .stButton > button:disabled {{
+        opacity: 0.5 !important;
+        cursor: not-allowed !important;
+    }}
 
-    /* =========================================================
-       HEADER SYSTEM
-    ========================================================= */
-
-    .header {
-        position: sticky;
-        top: 0;
-        z-index: 1000;
-
-        height: var(--header-height);
-
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-
-        padding: 0 var(--space-4);
-
-        background: rgba(15, 23, 42, 0.7);
-        backdrop-filter: blur(10px);
-
-        border-bottom: 1px solid var(--border-default);
-    }
-
-    .header-left {
-        font-size: var(--text-lg);
-        font-weight: var(--font-semibold);
-    }
-
-    .header-right {
-        display: flex;
-        align-items: center;
-        gap: var(--space-2);
-    }
-
-    .header-chip {
-        padding: 4px 10px;
-        border-radius: var(--radius-md);
-        background: var(--bg-tertiary);
-        font-size: var(--text-xs);
-        color: var(--text-secondary);
-    }
-
-    /* HEADER SUBTITLE */
-
-    .header-subtitle {
-        font-size: var(--text-xs);
-        color: var(--text-muted);
-        margin-top: 2px;
-    }
-
-
-    /* =========================================================
-       BUTTON SYSTEM
-    ========================================================= */
-
-    .stButton > button {
-        border-radius: var(--radius-md);
-        padding: 10px 16px;
-        font-weight: var(--font-medium);
-        border: none;
-        cursor: pointer;
-        transition: all var(--anim-normal) var(--ease-standard);
-        background: var(--brand-primary);
-        color: var(--white);
-    }
-
-    .stButton > button:hover {
-        background: var(--brand-primary-hover);
-        transform: translateY(-1px);
-        box-shadow: var(--shadow-md);
-    }
-
-    .stButton > button:active {
-        transform: scale(0.98);
-    }
-
-    .stButton > button:disabled {
-        opacity: 0.5;
-        cursor: not-allowed;
-    }
-
-    /* VARIANTS */
-
-    .btn-primary button {
-        background: var(--brand-primary);
-        color: var(--white);
-    }
-
-    .btn-secondary button {
-        background: var(--bg-tertiary);
-        color: var(--text-primary);
-    }
-
-    .btn-ghost button {
-        background: transparent;
-        color: var(--text-secondary);
-    }
-
-
-    /* =========================================================
-       INPUT SYSTEM
-    ========================================================= */
-
-    input, textarea {
+    /* ========== INPUTS ========== */
+    input, textarea, .stTextInput > div > div > input {{
         background: var(--bg-tertiary) !important;
         color: var(--text-primary) !important;
-        border: 1px solid var(--border-default) !important;
-        border-radius: var(--radius-sm) !important;
-        padding: var(--space-2) !important;
-    }
-
-    input:focus, textarea:focus {
+        border: 1px solid var(--border-light) !important;
+        border-radius: var(--radius-md) !important;
+        padding: 10px 14px !important;
+    }}
+    input:focus, textarea:focus {{
         border-color: var(--brand-primary) !important;
-    }
+        box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2) !important;
+    }}
 
-
-    /* =========================================================
-       CARD SYSTEM
-    ========================================================= */
-
-    .custom-card {
+    /* ========== CARDS ========== */
+    .custom-card {{
         background: var(--bg-secondary);
-        padding: var(--space-4);
+        padding: var(--space-5);
         border-radius: var(--radius-lg);
         border: 1px solid var(--border-light);
         box-shadow: var(--shadow-sm);
         transition: all var(--anim-normal) var(--ease-standard);
-    }
-
-    .custom-card:hover {
+    }}
+    .custom-card:hover {{
         background: var(--bg-hover);
-        transform: translateY(-2px);
-    }
-
-    .card-title {
-        font-size: var(--text-lg);
-        font-weight: var(--font-semibold);
-        margin-bottom: var(--space-1);
-    }
-
-    .card-subtitle {
-        font-size: var(--text-sm);
-        color: var(--text-muted);
-        margin-bottom: var(--space-2);
-    }
-
-    .card-desc {
-        font-size: var(--text-md);
-        color: var(--text-secondary);
-    }
-
-    .card-badge {
-        font-size: var(--text-xs);
-        padding: 2px 8px;
-        border-radius: var(--radius-sm);
-        background: var(--bg-tertiary);
-        float: right;
-    }
-
-
-    /* =========================================================
-       BOTTOM BAR
-    ========================================================= */
-
-    .bottom-bar {
-        position: fixed;
-        bottom: 0;
-        left: 0;
-        right: 0;
-        height: var(--bottom-bar-height);
-        background: var(--bg-secondary);
-        border-top: 1px solid var(--border-default);
-        display: flex;
-        align-items: center;
-        justify-content: space-around;
-        padding: 0 var(--space-4);
-        z-index: 999;
-    }
-
-    .bottom-nav-btn button {
-        width: 100%;
-        height: 48px;
-        border-radius: var(--radius-md);
-        background: transparent;
-        color: var(--text-secondary);
-    }
-
-    .bottom-nav-btn.active button {
-        background: var(--brand-primary);
-        color: var(--white);
-    }
-
-
-    /* =========================================================
-       SCROLLBAR
-    ========================================================= */
-
-    ::-webkit-scrollbar {
-        width: 8px;
-    }
-
-    ::-webkit-scrollbar-thumb {
-        background: var(--bg-tertiary);
-        border-radius: 10px;
-    }
-
-    ::-webkit-scrollbar-thumb:hover {
-        background: var(--brand-primary);
-    }
-
-    /* =========================================================
-    PRICING SECTION
-    ========================================================= */
-
-    .pricing-container {
-        margin-top: var(--space-6);
-    }
-
-    .pricing-grid {
-        display: flex;
-        gap: var(--space-4);
-        justify-content: space-between;
-    }
-
-    .pricing-card {
-        background: var(--bg-secondary);
-        border: 1px solid var(--border-light);
-        border-radius: var(--radius-lg);
-        padding: var(--space-5);
-        flex: 1;
-        transition: all var(--anim-normal) var(--ease-standard);
-        position: relative;
-    }
-
-    .pricing-card:hover {
         transform: translateY(-4px);
         box-shadow: var(--shadow-md);
-    }
-
-    .pricing-card.highlight {
-        border: 2px solid var(--brand-primary);
-        box-shadow: 0 0 20px rgba(99, 102, 241, 0.35);
-    }
-
-    .pricing-badge {
-        position: absolute;
-        top: -10px;
-        right: 16px;
-        background: var(--brand-primary);
-        color: var(--white);
-        font-size: var(--text-xs);
-        padding: 4px 10px;
-        border-radius: var(--radius-sm);
-    }
-
-    .pricing-title {
+    }}
+    .card-title {{
         font-size: var(--text-lg);
         font-weight: var(--font-semibold);
-    }
+        margin-bottom: var(--space-2);
+    }}
+    .card-badge {{
+        display: inline-block;
+        font-size: var(--text-xs);
+        padding: 4px 10px;
+        border-radius: 20px;
+        background: var(--bg-tertiary);
+        color: var(--text-secondary);
+        font-weight: var(--font-medium);
+    }}
 
-    .pricing-price {
-        font-size: var(--text-2xl);
+    /* ========== STATS GRID ========== */
+    .stats-grid {{
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: var(--space-4);
+        margin: var(--space-5) 0;
+    }}
+    .stat-card {{
+        background: var(--bg-secondary);
+        border-radius: var(--radius-lg);
+        padding: var(--space-4);
+        display: flex;
+        align-items: center;
+        gap: var(--space-4);
+        border: 1px solid var(--border-light);
+        transition: all var(--anim-normal);
+    }}
+    .stat-card:hover {{
+        transform: translateY(-2px);
+        box-shadow: var(--shadow-md);
+    }}
+    .stat-icon {{
+        width: 48px;
+        height: 48px;
+        border-radius: var(--radius-md);
+        background: var(--brand-primary-light);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 24px;
+    }}
+    .stat-value {{
+        font-size: 28px;
         font-weight: var(--font-bold);
-        margin: var(--space-2) 0;
-    }
-
-    .pricing-credits {
+        line-height: 1.2;
+        color: var(--text-primary);
+    }}
+    .stat-label {{
         font-size: var(--text-sm);
         color: var(--text-muted);
+    }}
+
+    /* ========== QUICK ACTIONS ========== */
+    .quick-actions {{
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: var(--space-5);
+        margin-bottom: var(--space-6);
+    }}
+    .action-card {{
+        background: var(--bg-secondary);
+        border-radius: var(--radius-lg);
+        padding: var(--space-5);
+        border: 1px solid var(--border-light);
+        text-align: center;
+        transition: all var(--anim-normal);
+        cursor: pointer;
+    }}
+    .action-card:hover {{
+        background: var(--bg-hover);
+        transform: translateY(-4px);
+        box-shadow: var(--shadow-md);
+        border-color: var(--brand-primary);
+    }}
+    .action-icon {{
+        font-size: 36px;
         margin-bottom: var(--space-3);
-    }
-
-    .pricing-features {
-        margin-top: var(--space-3);
-        margin-bottom: var(--space-4);
-    }
-
-    .pricing-feature {
+    }}
+    .action-card h4 {{
+        margin: 0 0 var(--space-2) 0;
+        font-size: var(--text-md);
+    }}
+    .action-card p {{
+        margin: 0;
         font-size: var(--text-sm);
-        color: var(--text-secondary);
-        margin-bottom: 6px;
-    }
+        color: var(--text-muted);
+    }}
 
-    .pricing-cta {
-        margin-top: auto;
-    }
+    /* ========== FILE GRID ========== */
+    .files-grid {{
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: var(--space-4);
+        margin-bottom: var(--space-6);
+    }}
+    .file-card {{
+        background: var(--bg-secondary);
+        border-radius: var(--radius-md);
+        padding: var(--space-4);
+        display: flex;
+        align-items: center;
+        gap: var(--space-3);
+        border: 1px solid var(--border-light);
+        transition: background var(--anim-fast);
+    }}
+    .file-card:hover {{
+        background: var(--bg-tertiary);
+    }}
+    .file-icon {{
+        font-size: 24px;
+        width: 40px;
+        height: 40px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: var(--bg-tertiary);
+        border-radius: var(--radius-sm);
+    }}
+    .file-name {{
+        font-weight: var(--font-medium);
+        margin-bottom: 2px;
+    }}
+    .file-meta {{
+        font-size: var(--text-xs);
+        color: var(--text-muted);
+    }}
 
+    /* ========== SECTION HEADER ========== */
+    .section-header {{
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin: var(--space-6) 0 var(--space-4) 0;
+    }}
+    .section-header h3 {{
+        margin: 0;
+    }}
+    .view-all {{
+        color: var(--brand-primary);
+        text-decoration: none;
+        font-size: var(--text-sm);
+        font-weight: var(--font-medium);
+    }}
+
+    /* ========== SCROLLBAR ========== */
+    ::-webkit-scrollbar {{ width: 8px; }}
+    ::-webkit-scrollbar-thumb {{
+        background: var(--bg-tertiary);
+        border-radius: 10px;
+    }}
+    ::-webkit-scrollbar-thumb:hover {{
+        background: var(--brand-primary);
+    }}
+
+    /* ========== BLOCK CONTAINER ========== */
+    .block-container {{
+        padding-top: 1.5rem !important;
+        padding-bottom: 2rem !important;
+        max-width: var(--container-width) !important;
+        margin: 0 auto !important;
+    }}
+
+    /* ========== MISC ========== */
+    hr {{
+        border-color: var(--border-light);
+    }}
     </style>
     """, unsafe_allow_html=True)
